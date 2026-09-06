@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0
+
+- **Setup wizard** under Appearance → Acreline Setup: Welcome → Identity → Colors → Demo → Done
+- Saves brand, phone, email, hours, color style, and optional demo seed without leaving wp-admin
+- Opens automatically after theme activation until you finish or skip (no upsells)
+
 ## 1.2.3
 
 - Concept demo URL is https://acreline.matthummel.com/
