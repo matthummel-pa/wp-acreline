@@ -157,10 +157,10 @@ Do **not** install ACF, a page builder, or an IDX plugin. The fields are already
 
 1. Extract the outer `acreline-*.zip`. Do not upload the outer file in wp-admin.
 2. **Appearance → Themes → Add New → Upload Theme** → choose the inner **`acreline.zip`**. Activate. The folder must stay **`acreline`**.
-3. **Appearance → Customize → Identity** — set brand name, phone, email, address, hours, and the header CTA button. Upload a logo under **Site Identity**.
-4. Optional: upload `acreline-child.zip`, then `acreline-core.zip`.
-5. **Appearance → Acreline Setup** for the guided checklist.
-6. **Tools → Seed Acreline demo** if you want the preview pages, eight sample listings, agents, and blog posts.
+3. **Appearance → Acreline Setup** — run the setup wizard (office identity, color style, optional demo content).
+4. **Appearance → Customize → Identity** — fine-tune brand name, phone, email, address, hours, and the header CTA. Upload a logo under **Site Identity**.
+5. Optional: upload `acreline-child.zip`, then `acreline-core.zip`.
+6. **Tools → Seed Acreline demo** remains available if you prefer to load inventory outside the wizard.
 
 Full walkthrough, screenshots, and field reference: open `Documentation/index.html` from your seller pack.
 
