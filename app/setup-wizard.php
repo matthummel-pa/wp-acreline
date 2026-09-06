@@ -156,3 +156,96 @@ add_action('admin_enqueue_scripts', function (string $hook): void {
     wp_enqueue_style('ks-setup-wizard');
     wp_add_inline_style('ks-setup-wizard', $css);
 });
+
+add_action('admin_post_ks_setup_wizard', __NAMESPACE__.'\\ks_handle_setup_wizard');
+
+function ks_handle_setup_wizard(): void
+{
+    if (! current_user_can('edit_theme_options')) {
+        wp_die(esc_html__('You do not have permission to edit theme options.', 'acreline'));
+    }
+
+    check_admin_referer('ks_setup_wizard', 'ks_wizard_nonce');
+
+    $step = isset($_POST['ks_wizard_step']) ? sanitize_key((string) $_POST['ks_wizard_step']) : 'welcome';
+    if (! in_array($step, ks_wizard_steps(), true)) {
+        $step = 'welcome';
+    }
+
+    $action = isset($_POST['ks_wizard_action']) ? sanitize_key((string) $_POST['ks_wizard_action']) : 'next';
+
+    if ($action === 'skip') {
+        update_option(KS_WIZARD_OPTION, '1');
+        update_option(KS_WIZARD_STEP_OPTION, 'finish');
+        wp_safe_redirect(ks_wizard_url('finish'));
+        exit;
+    }
+
+    if ($action === 'back') {
+        $prev = ks_wizard_prev_step($step);
+        update_option(KS_WIZARD_STEP_OPTION, $prev);
+        wp_safe_redirect(ks_wizard_url($prev));
+        exit;
+    }
+
+    if ($step === 'identity') {
+        $fields = [
+            'ks_brand_name' => 'sanitize_text_field',
+            'ks_tagline' => 'sanitize_text_field',
+            'ks_phone' => 'sanitize_text_field',
+            'ks_email' => 'sanitize_email',
+            'ks_cta_label' => 'sanitize_text_field',
+            'ks_cta_url' => 'esc_url_raw',
+            'ks_address' => 'sanitize_textarea_field',
+            'ks_hours' => 'sanitize_textarea_field',
+        ];
+        foreach ($fields as $key => $sanitize) {
+            if (! isset($_POST[$key])) {
+                continue;
+            }
+            $raw = wp_unslash((string) $_POST[$key]);
+            set_theme_mod($key, $sanitize($raw));
+        }
+        if (isset($_POST['ks_brand_name'])) {
+            $brand = sanitize_text_field(wp_unslash((string) $_POST['ks_brand_name']));
+            if ($brand !== '') {
+                update_option('blogname', $brand);
+            }
+        }
+        if (isset($_POST['ks_tagline'])) {
+            $tagline = sanitize_text_field(wp_unslash((string) $_POST['ks_tagline']));
+            update_option('blogdescription', $tagline);
+        }
+    }
+
+    if ($step === 'colors') {
+        $schemeKey = ColorSchemes::sanitizeKey($_POST['ks_color_scheme'] ?? ColorSchemes::defaultKey());
+        $scheme = ColorSchemes::all()[$schemeKey];
+        set_theme_mod('ks_color_scheme', $schemeKey);
+        set_theme_mod('ks_accent', $scheme['accent']);
+        set_theme_mod('ks_paper', $scheme['paper']);
+        set_theme_mod('ks_ink', $scheme['ink']);
+        set_theme_mod('ks_show_demo_chrome', ! empty($_POST['ks_hide_demo_chrome']) ? false : true);
+        set_theme_mod('ks_show_credit', ! empty($_POST['ks_hide_credit']) ? false : true);
+    }
+
+    if ($step === 'demo' && ! empty($_POST['ks_load_demo']) && current_user_can('manage_options')) {
+        DemoContent::seed();
+        update_option(DemoContent::OPTION, '1');
+    }
+
+    if ($step === 'finish' || $action === 'finish') {
+        update_option(KS_WIZARD_OPTION, '1');
+        update_option(KS_WIZARD_STEP_OPTION, 'finish');
+        wp_safe_redirect(ks_wizard_url('finish'));
+        exit;
+    }
+
+    $next = ks_wizard_next_step($step);
+    update_option(KS_WIZARD_STEP_OPTION, $next);
+    if ($next === 'finish') {
+        update_option(KS_WIZARD_OPTION, '1');
+    }
+    wp_safe_redirect(ks_wizard_url($next));
+    exit;
+}
