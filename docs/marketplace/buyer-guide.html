@@ -208,3 +208,47 @@
     <h2 id="a11y">14. Browsers, accessibility, performance</h2>
     <p>Chrome, Firefox, Safari, Edge (current two versions). Responsive. High-resolution / retina: SVG house mark; raster logo from Site Identity.</p>
     <p>WCAG 2.2 AA intent: 4.5:1 body contrast, 44px targets, <code>:focus-visible</code> rings, reduced motion. Skip link to <code>#main</code>.</p>
+    <p>Host: PHP 8.3+, 128&nbsp;MB memory (256&nbsp;MB recommended), HTTPS, <code>mod_rewrite</code> or nginx equivalents. Compiled CSS/JS live in <code>public/build/</code> — do not delete that folder.</p>
+
+    <h2 id="files">15. File structure (theme zip)</h2>
+    <p class="copy">acreline/
+  style.css          Theme header (name, version, license)
+  screenshot.png     Appearance → Themes thumbnail (1200×900)
+  readme.txt         Store parser
+  functions.php      Sage bootstrap
+  app/               PHP (Customizer, metaboxes, CPT fallback, updater)
+  resources/views/   Blade templates
+  resources/css/     Tokens in keystone.css; card-lock.css is last
+  public/build/      Compiled Vite CSS/JS (required)
+  public/images/     Brand SVG
+  vendor/            Production Composer (Acorn)
+  languages/         acreline.pot</p>
+    <p>Git source does not commit <code>vendor/</code> or <code>public/build/</code>. Store zips already include both. After a git clone: <code>npm run build</code> and <code>composer install --no-dev</code>.</p>
+    <p>Outer pack also has <code>acreline-child.zip</code>, <code>acreline-core.zip</code>, <code>Documentation/</code>, <code>Demos/</code>, <code>Licensing/</code>.</p>
+
+    <h2 id="faq">16. FAQ</h2>
+    <h3>Where do I change the phone number?</h3>
+    <p>Customize → Identity.</p>
+    <h3>How do I hide the concept banner?</h3>
+    <p>Customize → Identity → uncheck “Show concept demo banner and author badge.”</p>
+    <h3>Can I use a page builder?</h3>
+    <p>Not supported. Fields are classic metaboxes on purpose. Gutenberg optimized: No.</p>
+    <h3>Does this connect to my MLS?</h3>
+    <p>No. Sample inventory only. MLS number on a listing is a text field for demo/layout.</p>
+    <h3>White screen: Vite manifest not found</h3>
+    <p>The zip is missing <code>public/build</code>. Re-download the store zip, or from source run <code>npm run build</code>. Folder must be named <code>acreline</code>.</p>
+    <h3>Blade edits do not show</h3>
+    <p><code>wp acorn view:clear</code>.</p>
+    <h3>Do I need ACF?</h3>
+    <p>No. Metaboxes are in the theme.</p>
+    <h3>How do I add a listing?</h3>
+    <p>Listings → Add New. Fill Listing details. Publish. It appears in search and on <code>/listings/</code>.</p>
+    <h3>Showing form does nothing</h3>
+    <p>Confirm permalinks are Post name. Check that <code>keystone/v1/bookings</code> is reachable (Acreline Core or the theme fallback). Look under Bookings in wp-admin.</p>
+    <h3>Can I rename the theme folder?</h3>
+    <p>No. Compiled asset URLs use <code>/wp-content/themes/acreline/public/build/</code>.</p>
+    <h3>WooCommerce / WPML / RTL?</h3>
+    <p>No / not tested / no.</p>
+    <h3>Where is the license key?</h3>
+    <p>There isn’t one. GPLv2 or later. No Freemius or Envato purchase-code nag.</p>
+  </main>
