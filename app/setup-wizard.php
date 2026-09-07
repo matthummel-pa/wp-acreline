@@ -249,3 +249,118 @@ function ks_handle_setup_wizard(): void
     wp_safe_redirect(ks_wizard_url($next));
     exit;
 }
+
+function ks_render_setup_wizard(): void
+{
+    if (! current_user_can('edit_theme_options')) {
+        wp_die(esc_html__('You do not have permission to edit theme options.', 'acreline'));
+    }
+
+    $step = ks_wizard_current_step();
+    $steps = ks_wizard_steps();
+    $labels = [
+        'welcome' => __('Welcome', 'acreline'),
+        'identity' => __('Identity', 'acreline'),
+        'colors' => __('Colors', 'acreline'),
+        'demo' => __('Demo', 'acreline'),
+        'finish' => __('Done', 'acreline'),
+    ];
+    $currentIndex = (int) array_search($step, $steps, true);
+
+    echo '<div class="wrap ks-wizard">';
+    echo '<h1>'.esc_html__('Acreline Setup', 'acreline').'</h1>';
+    echo '<p class="ks-wizard__intro">'.esc_html__('A short wizard to brand your office, pick a color style, and optionally load demo listings. No upsells — everything stays in this theme.', 'acreline').'</p>';
+
+    echo '<ol class="ks-wizard__steps" aria-label="'.esc_attr__('Setup steps', 'acreline').'">';
+    foreach ($steps as $index => $key) {
+        $class = $index < $currentIndex ? 'is-done' : ($index === $currentIndex ? 'is-current' : '');
+        echo '<li class="'.esc_attr($class).'">';
+        echo '<span>'.esc_html((string) ($index + 1)).'</span>';
+        echo '<span>'.esc_html($labels[$key]).'</span>';
+        echo '</li>';
+    }
+    echo '</ol>';
+
+    echo '<div class="ks-wizard__panel">';
+    echo '<form method="post" action="'.esc_url(admin_url('admin-post.php')).'">';
+    echo '<input type="hidden" name="action" value="ks_setup_wizard">';
+    echo '<input type="hidden" name="ks_wizard_step" value="'.esc_attr($step).'">';
+    wp_nonce_field('ks_setup_wizard', 'ks_wizard_nonce');
+
+    match ($step) {
+        'identity' => ks_wizard_step_identity(),
+        'colors' => ks_wizard_step_colors(),
+        'demo' => ks_wizard_step_demo(),
+        'finish' => ks_wizard_step_finish(),
+        default => ks_wizard_step_welcome(),
+    };
+
+    if ($step !== 'finish') {
+        echo '<div class="ks-wizard__actions">';
+        if ($step !== 'welcome') {
+            echo '<button type="submit" name="ks_wizard_action" value="back" class="button">'.esc_html__('Back', 'acreline').'</button>';
+        }
+        $nextLabel = $step === 'demo' ? __('Finish setup', 'acreline') : __('Continue', 'acreline');
+        echo '<button type="submit" name="ks_wizard_action" value="next" class="button button-primary">'.esc_html($nextLabel).'</button>';
+        echo '<button type="submit" name="ks_wizard_action" value="skip" class="button-link">'.esc_html__('Skip wizard', 'acreline').'</button>';
+        echo '</div>';
+    }
+
+    echo '</form>';
+    echo '</div>';
+    echo '</div>';
+}
+
+function ks_wizard_step_welcome(): void
+{
+    $coreActive = defined('KEYSTONE_CORE_VERSION');
+    echo '<h2>'.esc_html__('Welcome to Acreline', 'acreline').'</h2>';
+    echo '<p>'.esc_html__('This wizard walks the first branding pass so your real estate site looks like your office — not the concept demo.', 'acreline').'</p>';
+    echo '<ul class="ks-wizard__checklist">';
+    echo '<li>'.esc_html__('Set office name, phone, email, and hours', 'acreline').'</li>';
+    echo '<li>'.esc_html__('Pick one of eight color styles', 'acreline').'</li>';
+    echo '<li>'.esc_html__('Optionally load demo pages, listings, and agents', 'acreline').'</li>';
+    echo '</ul>';
+    echo '<p class="ks-wizard__note">';
+    echo $coreActive
+        ? esc_html__('Acreline Core is active — listings stay if you switch themes later.', 'acreline')
+        : esc_html__('Optional: install Acreline Core from your marketplace pack so listings survive a theme switch.', 'acreline');
+    echo '</p>';
+}
+
+function ks_wizard_step_identity(): void
+{
+    echo '<h2>'.esc_html__('Office identity', 'acreline').'</h2>';
+    echo '<p>'.esc_html__('These values power the header, footer, and contact blocks. You can change them again anytime under Customize → Identity.', 'acreline').'</p>';
+    echo '<div class="ks-wizard__grid ks-wizard__grid--2">';
+    $fields = [
+        'ks_brand_name' => [__('Brand name', 'acreline'), Identity::brandName(), 'text'],
+        'ks_tagline' => [__('Header tagline', 'acreline'), (string) get_theme_mod('ks_tagline', Identity::tagline()), 'text'],
+        'ks_phone' => [__('Phone', 'acreline'), Identity::phone(), 'text'],
+        'ks_email' => [__('Email', 'acreline'), Identity::email(), 'email'],
+        'ks_cta_label' => [__('Header button label', 'acreline'), (string) get_theme_mod('ks_cta_label', __('Book a showing', 'acreline')), 'text'],
+        'ks_cta_url' => [__('Header button URL', 'acreline'), (string) get_theme_mod('ks_cta_url', ''), 'url'],
+    ];
+    foreach ($fields as $name => [$label, $value, $type]) {
+        echo '<div class="ks-wizard__field">';
+        echo '<label for="'.esc_attr($name).'">'.esc_html($label).'</label>';
+        printf(
+            '<input type="%1$s" name="%2$s" id="%2$s" value="%3$s" class="regular-text">',
+            esc_attr($type),
+            esc_attr($name),
+            esc_attr($value)
+        );
+        echo '</div>';
+    }
+    echo '</div>';
+    echo '<div class="ks-wizard__grid" style="margin-top:1rem">';
+    echo '<div class="ks-wizard__field">';
+    echo '<label for="ks_address">'.esc_html__('Address', 'acreline').'</label>';
+    echo '<textarea name="ks_address" id="ks_address" rows="3">'.esc_textarea(Identity::address()).'</textarea>';
+    echo '</div>';
+    echo '<div class="ks-wizard__field">';
+    echo '<label for="ks_hours">'.esc_html__('Hours', 'acreline').'</label>';
+    echo '<textarea name="ks_hours" id="ks_hours" rows="3">'.esc_textarea(Identity::hours()).'</textarea>';
+    echo '</div>';
+    echo '</div>';
+}
