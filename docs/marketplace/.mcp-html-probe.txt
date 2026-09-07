@@ -1,1 +1,0 @@
-<strong>Appearance → Acreline Setup</strong> — run the setup wizard (identity, colors, optional demo).
