@@ -121,3 +121,50 @@
       <tbody>
         <tr><th>Identity</th><td>Photo, title / designation, avatar initials, avatar color</td></tr>
         <tr><th>License</th><td>License number, license state, years of experience</td></tr>
+        <tr><th>Contact</th><td>Direct phone, mobile, email, office name, office phone</td></tr>
+        <tr><th>Practice</th><td>Specialties, service areas, languages, designations (ABR, CRS, GRI…)</td></tr>
+        <tr><th>IDs</th><td>MLS ID, NRDS ID — text fields; not a live association lookup</td></tr>
+        <tr><th>Links</th><td>Personal website, booking / calendar URL, Facebook, Instagram, LinkedIn</td></tr>
+        <tr><th>Bio / featured</th><td>Bio, featured checkbox</td></tr>
+      </tbody>
+    </table>
+    <p>Public URL: <code>/agent/{slug}/</code>.</p>
+
+    <h3>Bookings</h3>
+    <p>The public showing form POSTs to <code>keystone/v1/bookings</code> and creates a Booking post. Pipeline: Requested → Confirmed → Completed (or Cancelled). Advance status from <strong>WP Admin → Bookings</strong> (row action or the metabox). Use <code>/book/?listing_id=123</code> to preselect a listing. Do not use <code>?listing=</code> as a public query (it 404s <code>/book/</code>).</p>
+    <p>Showing types: In-person tour, Private preview, Virtual walk-through. Fields: date, time, client name / email / phone, notes, assigned agent.</p>
+    <p>This is a concept pipeline — not a calendar, payment, or lockbox system.</p>
+
+    <h3>Blog posts (Post fields)</h3>
+    <p>Featured image + article body. The block editor is off; paste HTML in the body if you need links or lists.</p>
+    <p>Editing theme files does not change live posts. Re-seed only to reset sample inventory.</p>
+
+    <h2 id="menus">6. Menus, widgets, and logo</h2>
+    <ol>
+      <li><strong>Appearance → Menus</strong> — locations <em>Primary Navigation</em> (header) and <em>Footer Navigation</em>. Seed creates Home, Listings, Areas, Guide, Blog, Agents, Contact.</li>
+      <li>Hardcoded concept slugs are the fallback only, before a menu is assigned.</li>
+      <li><strong>Appearance → Widgets</strong> — Footer (public) and Primary (sidebar). Classic widgets.</li>
+      <li><strong>Customize → Site Identity → Logo</strong> — replaces the house mark. See <a href="branding.html">branding</a>.</li>
+    </ol>
+
+    <h2 id="templates">7. Templates</h2>
+    <table>
+      <tbody>
+        <tr><th>Home</th><td><code>front-page.blade.php</code> (Template: Home)</td></tr>
+        <tr><th>Listings</th><td><code>page-listings.blade.php</code></td></tr>
+        <tr><th>Book a showing</th><td><code>page-book.blade.php</code></td></tr>
+        <tr><th>Areas</th><td><code>page-areas.blade.php</code></td></tr>
+        <tr><th>Guide</th><td><code>page-guide.blade.php</code></td></tr>
+        <tr><th>Agents</th><td><code>page-agents.blade.php</code></td></tr>
+        <tr><th>Contact</th><td><code>page-contact.blade.php</code></td></tr>
+        <tr><th>Blog</th><td><code>home.blade.php</code></td></tr>
+        <tr><th>Listing / agent singles</th><td><code>single-listing.blade.php</code>, <code>single-agent.blade.php</code></td></tr>
+        <tr><th>Posts</th><td><code>single.blade.php</code></td></tr>
+      </tbody>
+    </table>
+    <p>Rewrites: <code>/listing/{slug}/</code>, <code>/agent/{slug}/</code>. Bookings are not public. Assign a template under Page attributes when you create a page by hand (seed already sets <code>_wp_page_template</code>).</p>
+    <p>Contact uses office phone, email, address, and hours from Customize → Identity — not a third-party form plugin. Showing requests go to Bookings, not Contact.</p>
+
+    <h2 id="chrome">8. Front-end chrome (demo only)</h2>
+    <table>
+      <tbody>
