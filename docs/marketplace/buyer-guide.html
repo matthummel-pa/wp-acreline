@@ -1,153 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Acreline — Buyer guide</title>
-  <meta name="description" content="Install Acreline, set brand colors and logo, add listings, and ship a fiction-first real estate WordPress site.">
+  <title>Acreline — Install & setup</title>
   <link rel="stylesheet" href="assets/docs.css">
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="doc-top">
-    <div class="wrap doc-top__inner">
-      <a class="brand" href="index.html">Acreline docs</a>
-      <nav class="doc-nav" aria-label="Docs">
-        <a href="index.html">Overview</a>
-        <a href="buyer-guide.html" aria-current="page">Buyer guide</a>
-        <a href="SELLING.md">Selling notes</a>
+  <p class="site-bar">Acreline documentation · ThemeForest / own-site pack · Fiction only</p>
+  <header class="doc-head">
+    <div class="doc-head-inner">
+      <a class="brand-lockup" href="index.html">
+        <img src="assets/acreline-mark.svg" width="40" height="40" alt="">
+        <span><strong>Acreline</strong><span>Farms · land · historic homes</span></span>
+      </a>
+      <nav class="docs-nav" aria-label="Documentation">
+        <a href="index.html">Contents</a>
+        <a href="buyer-guide.html" aria-current="page">Install &amp; setup</a>
+        <a href="branding.html">Branding</a>
+        <a href="customizer.html">Customizer</a>
+        <a href="listings.html">Listings</a>
+        <a href="support.html">Support</a>
       </nav>
     </div>
   </header>
+  <main class="wrap">
+<h1>Install and match the demo</h1>
+    <p>Acreline is a classic (non-block) WordPress theme for land, farms, and historic homes. Sample phones are 555 numbers. It is not a live MLS or licensed brokerage. Created by <a href="https://matthummel.com/">Matt Hummel</a>.</p>
 
-  <main id="main" class="wrap prose">
-    <p class="eyebrow">For shop owners</p>
-    <h1>Buyer guide</h1>
-    <p class="lede">Acreline is a classic WordPress theme for real estate marketing sites. You install it like any theme, set colors and logo in the Customizer, and manage listings as a custom post type. This guide walks through a first launch without requiring a developer.</p>
+    <div class="note">
+      <strong>Little plugin stack.</strong> The theme zip alone runs the office. You do not need Advanced Custom Fields, Elementor, a Gutenberg kit, or an IDX plugin. Change headlines, prices, and photos in Customizer + metaboxes — not in Blade or CSS.
+    </div>
 
-    <nav class="toc" aria-label="On this page">
-      <strong>On this page</strong>
-      <ol>
-        <li><a href="#requirements">Requirements</a></li>
-        <li><a href="#install">Install</a></li>
-        <li><a href="#brand">Brand and Customizer</a></li>
-        <li><a href="#listings">Listings</a></li>
-        <li><a href="#templates">Page templates</a></li>
-        <li><a href="#seo">SEO and sharing</a></li>
-        <li><a href="#a11y">Accessibility</a></li>
-        <li><a href="#files">What ships in the zip</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ol>
-    </nav>
+    <p>Jump: <a href="#install">Install</a> · <a href="#plugins">Plugins</a> · <a href="#homepage">Homepage</a> · <a href="#customizer">Customizer</a> · <a href="#fields">Fields</a> · <a href="#menus">Menus</a> · <a href="#templates">Templates</a> · <a href="#demo">Demo</a> · <a href="#child">Child</a> · <a href="#update">Updates</a> · <a href="#faq">FAQ</a></p>
 
-    <section id="requirements">
-      <h2>Requirements</h2>
-      <ul>
-        <li>WordPress 6.4 or newer</li>
-        <li>PHP 8.0 or newer (8.2+ recommended)</li>
-        <li>A classic theme-capable install (Acreline is not a block theme)</li>
-      </ul>
-      <p>Optional: a caching plugin and an SMTP plugin for contact form delivery. Acreline uses <code>wp_mail()</code> for inquiries.</p>
-    </section>
+    <h2 id="install">1. Installation</h2>
+    <ol>
+      <li>Host: WordPress 6.6+ and PHP 8.3+ (<a href="requirements.html">full table</a>). Composer and npm are <em>not</em> required on the host.</li>
+      <li>Extract the outer pack zip. Upload <code>acreline.zip</code> via <strong>Appearance → Themes → Add New → Upload Theme</strong>.</li>
+      <li>Activate <strong>Acreline</strong>. The folder name must stay <code>acreline</code> (Vite asset URLs).</li>
+      <li>Optional: activate <code>acreline-child.zip</code>, then <code>acreline-core.zip</code>.</li>
+      <li><strong>Appearance → Acreline Setup</strong> — run the setup wizard (identity, colors, optional demo).</li>
+      <li><strong>Customize → Identity</strong> — brand, phone, email, address. <strong>Site Identity</strong> — logo.</li>
+      <li><strong>Tools → Seed Acreline demo</strong> if you want the preview pages and sample inventory.</li>
+    </ol>
+    <p>Do not upload the outer <code>acreline-*.zip</code> into WordPress. WordPress only accepts a zip whose root folder contains <code>style.css</code>.</p>
+    <p>Permalinks: <strong>Settings → Permalinks → Post name</strong>. Pretty permalinks are required for <code>/listing/{slug}/</code> and <code>/agent/{slug}/</code>.</p>
 
-    <section id="install">
-      <h2>Install</h2>
-      <ol>
-        <li>In wp-admin, open <strong>Appearance → Themes → Add New → Upload Theme</strong>.</li>
-        <li>Upload the Acreline zip and activate the theme.</li>
-        <li>Open <strong>Appearance → Acreline Setup</strong> and run the setup wizard (identity, colors, optional demo).</li>
-        <li>Visit <strong>Settings → Permalinks</strong> and click Save (even if you change nothing) so listing URLs register cleanly.</li>
-        <li>Create a primary menu under <strong>Appearance → Menus</strong> and assign it to the theme’s primary location.</li>
-      </ol>
-      <p>After activation, Acreline can seed starter pages and a sample listing once. Existing content is left alone.</p>
-    </section>
-
-    <section id="brand">
-      <h2>Brand and Customizer</h2>
-      <p>Open <strong>Appearance → Customize</strong>. Look for the Acreline sections (names may vary slightly by version):</p>
-      <ul>
-        <li><strong>Colors</strong> — primary, accent, and supporting tones. Prefer brand colors your shop already uses on print or social.</li>
-        <li><strong>Identity / logo</strong> — site title, tagline, and logo image. Keep the logo simple; it appears in the header on every page.</li>
-        <li><strong>Homepage / hero</strong> — headline, supporting line, and call-to-action when you use the front page template.</li>
-        <li><strong>Contact</strong> — phone, email, and office lines used in the footer and contact template.</li>
-      </ul>
-      <p>Publish when you are done. Changes are live for visitors immediately after you click Publish.</p>
-      <aside class="callout">
-        <p><strong>Tip:</strong> Set a custom logo with a transparent background. Test the header on a phone-width window before you launch.</p>
-      </aside>
-    </section>
-
-    <section id="listings">
-      <h2>Listings</h2>
-      <p>Listings are a custom post type. In wp-admin you will see a <strong>Listings</strong> menu (label may read Properties depending on version).</p>
-      <h3>Add a listing</h3>
-      <ol>
-        <li>Go to <strong>Listings → Add New</strong>.</li>
-        <li>Enter the property title (street address or marketing name).</li>
-        <li>Fill listing fields: price, beds, baths, square footage, status, and location as provided by the theme meta box.</li>
-        <li>Set a featured image for the card and single header.</li>
-        <li>Write the body copy in the editor. Keep paragraphs short for phone readers.</li>
-        <li>Publish.</li>
-      </ol>
-      <p>The public archive is typically at <code>/listings/</code> (confirm under Permalinks if you customized structures). Each listing has its own URL for sharing.</p>
-      <h3>Statuses and filters</h3>
-      <p>Use status values the theme exposes (for example for sale, pending, sold) so archive filters stay accurate. Do not invent statuses in free text if a dropdown is provided.</p>
-    </section>
-
-    <section id="templates">
-      <h2>Page templates</h2>
-      <p>Acreline ships named page templates. Create a Page, then choose a template in the Page Attributes / Template panel:</p>
-      <ul>
-        <li><strong>Front page / Home</strong> — hero, featured listings, and primary CTA.</li>
-        <li><strong>Listings</strong> — points visitors at the listing archive or a curated grid when configured.</li>
-        <li><strong>About</strong> — story and trust content for the brokerage or agent.</li>
-        <li><strong>Contact</strong> — inquiry form plus office details from the Customizer.</li>
-      </ul>
-      <p>Under <strong>Settings → Reading</strong>, set your Front page to the Home page you created. Optionally set a Posts page if you also publish a journal.</p>
-    </section>
-
-    <section id="seo">
-      <h2>SEO and sharing</h2>
-      <ul>
-        <li>Write a clear site tagline in <strong>Settings → General</strong>.</li>
-        <li>Give every listing a unique title and excerpt-friendly summary.</li>
-        <li>Add meaningful alt text on featured images (address or room type — not “image1”).</li>
-        <li>Pair Acreline with your preferred SEO plugin if you need schema beyond what the theme outputs.</li>
-      </ul>
-      <p>Share listing URLs on social; Open Graph tags follow your title, excerpt, and featured image when supported.</p>
-    </section>
-
-    <section id="a11y">
-      <h2>Accessibility</h2>
-      <ul>
-        <li>Keep color contrast readable when you change Customizer colors (especially text on accent buttons).</li>
-        <li>Do not remove focus outlines with custom CSS.</li>
-        <li>Ensure the primary menu is keyboard reachable on desktop and mobile.</li>
-        <li>Contact forms should remain usable without a mouse.</li>
-      </ul>
-    </section>
-
-    <section id="files">
-      <h2>What ships in the zip</h2>
-      <p>A typical Acreline package includes:</p>
-      <ul>
-        <li>Theme PHP templates and <code>functions.php</code></li>
-        <li>Styles and scripts under the theme’s asset folders</li>
-        <li>Listing post type and meta registration</li>
-        <li>This <code>docs/marketplace/</code> folder for buyers and reviewers</li>
-      </ul>
-      <p>You do not need Node or Composer on the server for a classic build. Follow the zip’s README if a built CSS file must already be present.</p>
-    </section>
-
-    <section id="faq">
-      <h2>FAQ</h2>
-      <h3>Can I use a page builder?</h3>
-      <p>Acreline is built as a classic theme with its own templates. Heavy page builders may fight the layout. Prefer the bundled templates for the marketing pages.</p>
-      <h3>Does Acreline connect to an MLS?</h3>
-      <p>Not out of the box. Listings are managed in WordPress. MLS or IDX belongs in a separate plugin or integration if you need it later.</p>
-      <h3>Is the sample content required?</h3>
-      <p>No. Starter pages and a sample listing are optional helpers. Delete or replace them anytime.</p>
-      <h3>Where do I get support?</h3>
-      <p>Use the support channel listed on your marketplace purchase page or the theme author site. Include your WordPress and PHP versions when you write in.</p>
-    </section>
-  </main>
+    <h2 id="plugins">2. Plugins — none required</h2>
+    <table>
+      <tbody>
+        <tr><th>To go live</th><td>Theme only. Listings, agents, and bookings register in the theme so the demo works.</td></tr>
