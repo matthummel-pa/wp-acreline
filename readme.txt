@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.2.3
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -24,6 +24,7 @@ House mark and wordmark (original SVG, GPLv2) ship in public/images/brand/. Supp
 
 = Features =
 
+* Appearance → Acreline Setup wizard (identity, colors, optional demo content)
 * Almost no plugins — theme zip is enough; optional Acreline Core and child theme
 * Custom fields on pages, listings, agents, and posts (classic metaboxes, not ACF)
 * Customizer identity: brand, phone, email, address, hours, header button, removable author credit
@@ -48,9 +49,9 @@ This theme ships compiled Vite assets and an Acorn/Sage vendor tree. The directo
 1. Upload `acreline` to `/wp-content/themes/` (or use the zip from Appearance → Themes → Add New).
 2. Activate Acreline. The folder name must stay `acreline`.
 3. Optional: install Acreline Core so listings survive a theme switch; optional child theme for CSS.
-4. Go to Appearance → Acreline Setup and walk the checklist.
-5. Appearance → Customize → Identity and Site Identity (logo). No page builder.
-6. Tools → Seed Acreline demo if you want the preview pages and sample inventory.
+4. Go to Appearance → Acreline Setup and walk the setup wizard (identity, colors, optional demo).
+5. Appearance → Customize → Identity and Site Identity (logo) for anything you skipped. No page builder.
+6. Tools → Seed Acreline demo remains available if you prefer to load inventory outside the wizard.
 
 Store zips already include `public/build` and `vendor`. After a git clone run `npm run build` and `composer install --no-dev`. Full ThemeForest documentation: Documentation/index.html in the seller pack.
 

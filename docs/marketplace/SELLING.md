@@ -83,4 +83,4 @@ Leave the live demo URL in `style.css` Theme URI. Brand kit for screenshots and 
 
 ## After a sale
 
-Buyer path is Appearance → Acreline Setup. Do not add a license server unless a marketplace requires it. Envato purchase codes are their problem, not a theme options lock.
+Buyer path is Appearance → Acreline Setup (multi-step wizard). Do not add a license server unless a marketplace requires it. Envato purchase codes are their problem, not a theme options lock.
