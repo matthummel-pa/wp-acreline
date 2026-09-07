@@ -80,3 +80,44 @@
         <tr><th>Social links</th><td>Facebook, Instagram, YouTube, LinkedIn, X.</td></tr>
         <tr><th>Menus</th><td>Assign <em>Primary Navigation</em> and <em>Footer Navigation</em>. Seed creates them if missing.</td></tr>
         <tr><th>Widgets</th><td><em>Footer</em> and <em>Primary</em> sidebars. Footer is the public one. Classic widgets (block widgets are off).</td></tr>
+        <tr><th>GitHub</th><td>Fine-grained PAT for <strong>Appearance → Update Theme</strong>. Contents: Read. Add Actions: Read and write only to trigger rebuilds. Repo: <code>matthummel-pa/wp-acreline</code>.</td></tr>
+      </tbody>
+    </table>
+    <p>Uncheck <em>Show concept demo banner</em> and <em>Show removable author credit</em> before a client preview. Footer copyright is always the site name and year (WordPress.org rule). The floating <strong>Colors</strong> control on the concept preview is demo chrome only — buyers set a style in Customize → Colors.</p>
+    <p>Logos and fair-housing notes: <a href="branding.html">branding.html</a>.</p>
+
+    <h2 id="fields">5. Custom fields — do not edit the design</h2>
+    <p>The block editor is off. Templates are Blade. Day-to-day copy is metaboxes on the post or page. Keys are stored as <code>ks_{field}</code> — do not rename them or live posts go blank. Allowed HTML in page copy: <code>em</code>, <code>strong</code>, <code>br</code>, <code>a</code>.</p>
+    <p>Photo fields use the media library (upload or pick). A URL is kept for existing Unsplash / hotlinked photos. Uploads also set the featured image.</p>
+
+    <h3>Pages (Page fields)</h3>
+    <p>Each marketing template has hero brand, eyebrow, title, lead, hero image, plus page-specific section copy and a bottom CTA. Empty fields fall back to theme defaults — you can clear a field to restore the sample sentence.</p>
+    <table>
+      <tbody>
+        <tr><th>Shared hero</th><td><code>hero_brand</code>, <code>hero_eyebrow</code>, <code>hero_title</code>, <code>hero_text</code>, <code>hero_image</code></td></tr>
+        <tr><th>Shared CTA</th><td><code>cta_title</code>, <code>cta_text</code>, <code>cta_primary</code>, <code>cta_secondary</code></td></tr>
+        <tr><th>Home extras</th><td>Start-here cards, search labels, spotlight, booking intro — all labeled in the metabox</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Listings (Listing details)</h3>
+    <p>Type: Home, Working Farm, Land / Acreage, Historic Home. Status: Active, New, Pending, Sold.</p>
+    <table>
+      <tbody>
+        <tr><th>Location</th><td>Street address, city, state, ZIP, township (sample areas: North Ridge, Mill Creek, Oak Hollow)</td></tr>
+        <tr><th>Numbers</th><td>List price, beds, baths, square feet, acres, year built, annual taxes, HOA / dues</td></tr>
+        <tr><th>MLS</th><td>MLS number is a <em>text field for layout</em> — not a live feed</td></tr>
+        <tr><th>Map pins</th><td>Map pin top % and left % place the marker on the listings map graphic (not Google Maps lat/lng)</td></tr>
+        <tr><th>Media</th><td>Listing photo, card gradient fallback, virtual tour URL</td></tr>
+        <tr><th>Agent</th><td>Listing agent (agent post ID)</td></tr>
+        <tr><th>Featured</th><td>Checkbox — show in the homepage spotlight. Store <code>1</code> or omit; do not store <code>"0"</code></td></tr>
+        <tr><th>Description</th><td>Long listing copy</td></tr>
+      </tbody>
+    </table>
+    <p>Public URL: <code>/listing/{slug}/</code>. Add a listing under <strong>Listings → Add New</strong> (not Pages).</p>
+
+    <h3>Agents (Agent details)</h3>
+    <table>
+      <tbody>
+        <tr><th>Identity</th><td>Photo, title / designation, avatar initials, avatar color</td></tr>
+        <tr><th>License</th><td>License number, license state, years of experience</td></tr>
