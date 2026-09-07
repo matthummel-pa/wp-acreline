@@ -51,3 +51,32 @@
     <table>
       <tbody>
         <tr><th>To go live</th><td>Theme only. Listings, agents, and bookings register in the theme so the demo works.</td></tr>
+        <tr><th>Acreline Core (optional)</th><td>Keeps those post types in the database if you later switch themes. Store-correct home for CPTs. In this pack as <code>acreline-core.zip</code>.</td></tr>
+        <tr><th>Acreline Child (optional)</th><td>CSS that survives parent updates. <code>acreline-child.zip</code>.</td></tr>
+        <tr><th>SEO (optional)</th><td>Yoast, Rank Math, SEOPress, or AIOSEO. The theme already prints title, description, canonical, Open Graph, and Twitter tags and <strong>yields</strong> when one of those is active.</td></tr>
+        <tr><th>Do not install to “make fields work”</th><td>ACF, Meta Box, Elementor, WPBakery, an IDX/MLS plugin, or a second SEO panel in the theme.</td></tr>
+        <tr><th>TGMPA / plugin installer</th><td>Not used. This theme does not auto-install plugins.</td></tr>
+      </tbody>
+    </table>
+    <p>WordPress.org / Theme Check: a future lite zip can define <code>KS_DISABLE_THEME_CPTS</code> so the theme is presentation-only when Core is the registrar. This general pack does <em>not</em> set that, so a regular host works with the theme zip alone.</p>
+
+    <h2 id="homepage">3. Homepage and reading settings</h2>
+    <ol>
+      <li>Seed creates a page titled <strong>Home</strong> with template <em>Home</em> (<code>front-page.blade.php</code>).</li>
+      <li><strong>Settings → Reading</strong> → A static page → Homepage: <strong>Home</strong>. Posts page: <strong>Blog</strong>.</li>
+      <li>If the front page looks like a post list, Reading is still set to “Your latest posts.”</li>
+    </ol>
+    <p>The homepage search form (type, price, acreage, area) submits to the Listings page with query params. Inventory is the <code>listing</code> post type — JavaScript reads <code>window.KEYSTONE.listings</code>.</p>
+
+    <h2 id="customizer">4. Customizer (theme options)</h2>
+    <p>All office chrome is under <strong>Appearance → Customize</strong>. There is no separate “Theme Options” panel and no dummy license screen.</p>
+    <table>
+      <tbody>
+        <tr><th>Identity</th><td>Brand name, header tagline, phone, email, address, hours, header button label/URL, footer blurb, demo banner, removable author credit.</td></tr>
+        <tr><th>Site Identity</th><td>Custom logo (replaces the house mark), site title, tagline. Logo max height 44px in the header. Recommended ~200×48 PNG or SVG.</td></tr>
+        <tr><th>Colors</th><td>Eight styles: Forest, Clay, Navy, Burgundy, Harvest, Lake, Orchard, Charcoal. Then accent, paper (page background), ink (text). Forest sample: accent <code>#1f6b4a</code>, paper <code>#f5f4f1</code>, ink <code>#141210</code>.</td></tr>
+        <tr><th>Header</th><td>Standard or compact; sticky on/off.</td></tr>
+        <tr><th>Typography</th><td>Heading and body fonts (Inter default). Plus Jakarta Sans, DM Sans, Manrope, Montserrat — Google Fonts, SIL OFL. No font files in the zip.</td></tr>
+        <tr><th>Social links</th><td>Facebook, Instagram, YouTube, LinkedIn, X.</td></tr>
+        <tr><th>Menus</th><td>Assign <em>Primary Navigation</em> and <em>Footer Navigation</em>. Seed creates them if missing.</td></tr>
+        <tr><th>Widgets</th><td><em>Footer</em> and <em>Primary</em> sidebars. Footer is the public one. Classic widgets (block widgets are off).</td></tr>
