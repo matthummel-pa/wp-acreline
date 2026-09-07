@@ -191,3 +191,20 @@
     <h2 id="update">11. Updating the theme</h2>
     <ol>
       <li>Appearance → Update Theme (or upload a newer <code>acreline.zip</code>).</li>
+      <li>GitHub zip: release tag <code>theme-latest</code> on <code>matthummel-pa/wp-acreline</code>.</li>
+      <li>PAT: <strong>Contents: Read</strong>. Add <strong>Actions: Read and write</strong> only for Rebuild zip on GitHub.</li>
+      <li>Theme files only — pages, listings, and uploads stay put.</li>
+    </ol>
+    <p>If Update Theme 404s, the running PHP still has an old repo slug — upload inner <code>acreline.zip</code> once, then the updater works. Do not rename the install folder, <code>ks_*</code> meta, or the <code>keystone/v1</code> REST namespace.</p>
+
+    <h2 id="i18n">12. Translation</h2>
+    <p>Text domain <code>acreline</code>. Domain path <code>/languages</code>. A <code>.pot</code> ships with the theme. Loco Translate or Poedit work. Gettext calls use the literal string <code>'acreline'</code> (Theme Check).</p>
+    <p>RTL: not supported. WPML / Polylang: not bundled and not tested. WooCommerce: not used.</p>
+
+    <h2 id="seo">13. SEO, analytics, and privacy</h2>
+    <p>Native title, description, canonical, Open Graph, Twitter, BreadcrumbList JSON-LD. Yields to Yoast / Rank Math / SEOPress / AIOSEO. Do not put Google Analytics IDs in the theme Customizer. There is no theme SEO metabox (plugin territory).</p>
+    <p>The theme does not set marketing cookies. The concept chat is on-page JavaScript only. Seed may create a Privacy Policy page stub — replace it with your office policy before a client site goes public.</p>
+
+    <h2 id="a11y">14. Browsers, accessibility, performance</h2>
+    <p>Chrome, Firefox, Safari, Edge (current two versions). Responsive. High-resolution / retina: SVG house mark; raster logo from Site Identity.</p>
+    <p>WCAG 2.2 AA intent: 4.5:1 body contrast, 44px targets, <code>:focus-visible</code> rings, reduced motion. Skip link to <code>#main</code>.</p>
