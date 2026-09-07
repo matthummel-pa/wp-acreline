@@ -168,3 +168,26 @@
     <h2 id="chrome">8. Front-end chrome (demo only)</h2>
     <table>
       <tbody>
+        <tr><th>Concept banner</th><td>Top bar “fiction only.” Turn off: Customize → Identity.</td></tr>
+        <tr><th>Colors switcher</th><td>Floating control on the preview. Not a buyer setting — use Customize → Colors.</td></tr>
+        <tr><th>Chat bubble</th><td>Concept assistant in the corner. Sample answers only.</td></tr>
+        <tr><th>Author badge</th><td>“Concept by Matt Hummel.” Removable; link is <code>rel="nofollow noopener"</code>.</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="demo">9. Demo content</h2>
+    <p>Preferred: <strong>Tools → Seed Acreline demo</strong> or <code>wp ks seed</code>. Safe to run again — slugs update, they do not duplicate. Creates Home, Listings, Areas, Guide, Agents, Contact, Book a showing, Blog, eight listings, three agents, menus, and sample posts.</p>
+    <p>Manual WXR: see <code>Demos/README.txt</code> in this pack. Tools → Import → WordPress (install the official importer if asked). Do not put XML inside the theme folder for a WordPress.org upload.</p>
+    <p>Concept photos are Unsplash <em>hotlinks</em>, not files in the zip. Replace them from the media library on a client site.</p>
+    <p>Sample townships in filters: North Ridge, Mill Creek, Oak Hollow (stored keys Cumberland, Straban, Franklin — labels are what buyers see).</p>
+
+    <h2 id="child">10. Child theme</h2>
+    <p>Upload <code>acreline-child.zip</code>. Template: <code>acreline</code>. Text domain: <code>acreline-child</code>. Put CSS in the child <code>style.css</code>. Do not edit parent Blade or PHP if you want clean updates from the <code>theme-latest</code> zip.</p>
+    <p class="copy">/* Example — child style.css */
+.site-header { /* header tweaks */ }
+</p>
+    <p>Keep a child theme for CSS. After a parent update, Customizer and <code>ks_*</code> meta are unchanged.</p>
+
+    <h2 id="update">11. Updating the theme</h2>
+    <ol>
+      <li>Appearance → Update Theme (or upload a newer <code>acreline.zip</code>).</li>
