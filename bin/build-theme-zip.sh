@@ -29,7 +29,7 @@ echo "==> Staging runtime files"
 mkdir -p "$STAGE"
 for item in app resources public functions.php index.php style.css screenshot.png \
             comments.php theme.json composer.json composer.lock LICENSE LICENSE.md \
-            readme.txt CREDITS.md CHANGELOG.md languages; do
+            license.txt readme.txt CREDITS.md CHANGELOG.md languages; do
   if [ -e "$THEME_DIR/$item" ]; then
     cp -a "$THEME_DIR/$item" "$STAGE/$item"
   fi

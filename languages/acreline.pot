@@ -2,8 +2,8 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Acreline 1.2.0\n"
-"Report-Msgid-Bugs-To: https://github.com/matthummel-pa/keystone-homes-wp-theme/issues\n"
+"Project-Id-Version: Acreline 1.2.2\n"
+"Report-Msgid-Bugs-To: https://github.com/matthummel-pa/wp-acreline/issues\n"
 "POT-Creation-Date: 2026-08-31 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"

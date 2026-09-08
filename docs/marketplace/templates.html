@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acreline — Templates</title>
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <p class="site-bar">Acreline documentation · ThemeForest / own-site pack · Fiction only</p>
+  <header class="doc-head">
+    <div class="doc-head-inner">
+      <a class="brand-lockup" href="index.html">
+        <img src="assets/acreline-mark.svg" width="40" height="40" alt="">
+        <span><strong>Acreline</strong><span>Farms · land · historic homes</span></span>
+      </a>
+      <nav class="docs-nav" aria-label="Documentation">
+        <a href="index.html">Contents</a>
+        <a href="buyer-guide.html">Install &amp; setup</a>
+        <a href="branding.html">Branding</a>
+        <a href="customizer.html">Customizer</a>
+        <a href="listings.html">Listings</a>
+        <a href="support.html">Support</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+<h1>Page template map</h1>
+      <p>Every marketing page has a named Blade template. Assign it under <strong>Page attributes → Template</strong>, or run <strong>Tools → Seed Acreline demo</strong> so the pages are created with the right template already set.</p>
+      <p>The block editor is off. Edit title, featured image, and the <strong>Page fields</strong> metabox (eyebrow, lead, body) instead of Gutenberg blocks.</p>
+      <table>
+        <thead><tr><th>Concept page</th><th>Template name</th><th>File</th></tr></thead>
+        <tbody>
+          <tr><td>Home</td><td>Home</td><td><code>front-page.blade.php</code></td></tr>
+          <tr><td>Listings</td><td>Listings</td><td><code>page-listings.blade.php</code></td></tr>
+          <tr><td>Book a showing</td><td>Book a showing</td><td><code>page-book.blade.php</code></td></tr>
+          <tr><td>Areas</td><td>Areas</td><td><code>page-areas.blade.php</code></td></tr>
+          <tr><td>Guide</td><td>Guide</td><td><code>page-guide.blade.php</code></td></tr>
+          <tr><td>Agents</td><td>Agents</td><td><code>page-agents.blade.php</code></td></tr>
+          <tr><td>Contact</td><td>Contact</td><td><code>page-contact.blade.php</code></td></tr>
+          <tr><td>Blog (posts index)</td><td>Blog</td><td><code>home.blade.php</code></td></tr>
+          <tr><td>Simple inner page</td><td>Simple page</td><td><code>page.blade.php</code></td></tr>
+          <tr><td>Listing single</td><td>—</td><td><code>single-listing.blade.php</code></td></tr>
+          <tr><td>Agent single</td><td>—</td><td><code>single-agent.blade.php</code></td></tr>
+          <tr><td>Blog post</td><td>—</td><td><code>single.blade.php</code></td></tr>
+          <tr><td>Search</td><td>—</td><td><code>search.blade.php</code></td></tr>
+          <tr><td>404</td><td>—</td><td><code>404.blade.php</code></td></tr>
+        </tbody>
+      </table>
+      <h2>Reading settings</h2>
+      <p>Seed sets a static front page (Home) and a posts page (Blog). If you build pages by hand: <strong>Settings → Reading</strong> — Homepage: Home, Posts page: Blog.</p>
+      <h2>Menus</h2>
+      <p>Register locations: <em>Primary</em> and <em>Footer</em>. Hardcoded concept slugs are a fallback only, for a fresh install before menus exist.</p>
+      <h2>Widgets</h2>
+      <p>One footer widget area. Optional. The footer still renders brand, hours, and credit without widgets.</p>
+  </main>
+  <footer class="doc-foot">Fiction only · Equal Housing Opportunity (concept) · Theme license GPLv2 or later · Created by Matt Hummel</footer>
+  <script src="assets/docs.js"></script>
+</body>
+</html>
+

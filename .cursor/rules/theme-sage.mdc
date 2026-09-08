@@ -1,5 +1,5 @@
 ---
-description: Sage 11 theme, CPTs, PageCopy fields, and Blade conventions
+description: Sage 11 theme, CPTs, blocks, and Blade conventions
 globs: app/**/*.php,resources/views/**/*.blade.php
 alwaysApply: false
 ---
@@ -19,14 +19,14 @@ Constants: `Catalog::LISTING` (`listing`), `Catalog::BOOKING` (`booking`), `Cata
 - Listing agent is `ks_listing_agent` (agent post ID), not a slug.
 - Showings POST to `keystone/v1/bookings` and create Booking posts (`requested` → `confirmed` → `completed`).
 
-## Page copy
+## Page copy → Gutenberg blocks
 
-Marketing page text is post meta on the WordPress page, schema in `app/Support/PageCopy.php`.
+Marketing page content is in **Gutenberg block attributes** (not `ks_*` post meta). Blocks are registered in `app/blocks.php` and `resources/js/blocks/index.js`.
 
-- Blade should use `{!! ($copy['field'] ?? '') ?: 'fallback' !!}` so empty meta does not blank the H1 and a missing key does not 500 on PHP 8.
-- `PageCopy::all()` needs a real page ID. On the static front page that is `page_on_front`. Do not return `[]` when the queried object ID is 0 if you still need home defaults.
-- Allowed HTML in copy: `em`, `strong`, `br`, `a`.
-- Templates (also set as `_wp_page_template`):
+- `PageCopy.php` is retained for migration reference and SEO fallbacks only.
+- Blade page templates (`front-page.blade.php`, `page-listings.blade.php`, etc.) call `@php(the_content())`. All section HTML comes from block render callbacks in `app/blocks.php`.
+- Block attributes store copy text. Site-wide defaults (phone, address, hours, social) stay in **Appearance → Customize → Identity**.
+- Page template mapping still applies — the Blade file determines which template WordPress sees.
 
 | Slug | Template |
 | --- | --- |
@@ -47,6 +47,6 @@ After Blade edits, if the page looks stale: `wp acorn view:clear --path="$HOME/w
 
 ## Admin
 
-Field-only editing (`app/admin.php` metaboxes). Do not reintroduce blocks or the site editor as the editing path.
+Pages / posts: **Gutenberg blocks**. CPTs (listing, booking, agent): classic metaboxes in `app/admin.php`.
 
-Image fields use the media library (`resources/js/admin-media.js`): page `hero_image`, listing/agent `image`, post featured image. Store a URL in `ks_*` (Unsplash hotlinks still work). Uploads also set the featured image. Do not go back to a textarea “Photo URL” for those.
+Image fields use the media library (`resources/js/admin-media.js`): listing/agent `image`, post featured image. Store a URL in `ks_*` (Unsplash hotlinks still work). Uploads also set the featured image.

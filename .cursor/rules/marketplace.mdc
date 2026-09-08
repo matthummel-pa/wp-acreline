@@ -6,7 +6,7 @@ alwaysApply: false
 
 # 8. Marketplace and distribution
 
-Matt asked to package this theme for sale. Follow 8.1–8.12 on marketplace work.
+Matt asked to package this theme for sale. Follow 8.1–8.12 on marketplace work. README / `readme.txt` / ThemeForest documentation copy: `.cursor/rules/theme-shop-readme.mdc`.
 
 This repo is still a **concept Sage theme**. Listings stay in-theme as a fallback so the live demo keeps working. The **Acreline Core** companion plugin (`plugins/acreline-core`) is the store-correct home for CPTs and booking REST.
 
@@ -27,7 +27,7 @@ Do **not** add Freemius, Envato banners, affiliate chrome, or “upgrade to Pro�
 
 - Companion plugin: `plugins/acreline-core`. It defines `KEYSTONE_CORE_VERSION` and owns CPT + `keystone/v1/bookings`.
 - Theme `app/post-types.php` registers the same types **only when the plugin is not loaded** (concept / live demo fallback).
-- WP.org / store theme zip: define `KS_DISABLE_THEME_CPTS` (the marketplace pack script does this) so the theme is presentation-only.
+- WP.org-only theme zip (future): define `KS_DISABLE_THEME_CPTS` so the theme is presentation-only. The general install / marketplace pack does **not** set this — buyers need listings without requiring the plugin.
 - Switching themes must leave listing / agent / booking posts and `ks_*` meta in the database.
 - Theme templates may *display* those types; they must not be required to register them.
 
@@ -100,16 +100,17 @@ Identity (phone, email, address, hours, CTA, accent, social, demo banner) comes 
 | `style.css` headers | Theme Name, URI, Author, Description, Version, Requires at least, Tested up to, Requires PHP, License (GPLv2+), License URI, Text Domain `acreline`, Tags |
 | `readme.txt` | WP.org / ThemeForest parser format |
 | `screenshot.png` | 1200×900, 4:3, not an ad |
+| `license.txt` | GPLv2 notice + full GPLv2 text (Theme Check) |
 | `languages/acreline.pot` | Translation-ready |
 | `CREDITS.md` | Third-party licenses |
 | `child-theme/` | ThemeForest buyer expectation |
-| `docs/marketplace/` | Buyer install + seller channel notes |
+| `docs/marketplace/` | Buyer HTML hub (`index.html`) + seller briefs (`SELLING.md`, `themeforest-listing.md`, `wordpress-org.md`). Pack copies the hub, branding, screenshots, Customizer/listings pages, `assets/` into `Documentation/`. |
 
 **8.12 Pack, don’t pollute the theme zip.**
 
 - Theme zip (`bin/build-theme-zip.sh`): theme runtime only. No `.git`, no plugin zips, no `.sh` inside the theme folder. This is what buyers upload in Appearance → Themes.
-- General seller pack (`bin/build-install-pack.sh`): outer `acreline-*.zip` with the theme zip + child + Core + `Documentation/requirements.html`. Buyers extract the outer zip; they do not upload it to WordPress.
-- Marketplace folder (`bin/build-marketplace-pack.sh`) copies that pack and adds `SELLING.md` beside it for Matt. Do not put `SELLING.md` inside the buyer zip.
+- General seller pack (`bin/build-install-pack.sh`): outer `acreline-*.zip` with the theme zip + child + Core + `Documentation/` (open `index.html`). Buyers extract the outer zip; they do not upload it to WordPress.
+- Marketplace folder (`bin/build-marketplace-pack.sh`) copies that pack and adds `SELLING.md` beside it for Matt. Do not put `SELLING.md`, `themeforest-listing.md`, or `wordpress-org.md` inside the buyer zip.
 - `KS_DISABLE_THEME_CPTS` is for a future WP.org-only zip, not the general install pack (buyers need listings without the plugin).
 
 ## Do not

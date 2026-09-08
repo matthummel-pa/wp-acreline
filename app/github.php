@@ -67,7 +67,7 @@ function github_headers(): array
         'Accept' => 'application/vnd.github+json',
         'X-GitHub-Api-Version' => '2022-11-28',
         'User-Agent' => 'acreline-theme/'.(function_exists('wp_get_theme') ? (string) wp_get_theme()->get('Version') : '0.1')
-            .' (+'.(function_exists('home_url') ? home_url('/') : 'https://github.com/matthummel-pa/keystone-homes-wp-theme').')',
+            .' (+'.(function_exists('home_url') ? home_url('/') : 'https://github.com/matthummel-pa/wp-acreline').')',
     ];
     $token = github_token();
     if ($token !== '') {

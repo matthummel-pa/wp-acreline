@@ -18,13 +18,22 @@ MIT is GPL-compatible. The distributed theme is offered under GPLv2 or later.
 | DM Sans | SIL OFL | https://fonts.google.com/specimen/DM+Sans |
 | Manrope | SIL OFL | https://fonts.google.com/specimen/Manrope |
 | Montserrat | SIL OFL | https://fonts.google.com/specimen/Montserrat |
+| Poppins | SIL OFL | https://fonts.google.com/specimen/Poppins |
+| Source Sans 3 | SIL OFL | https://fonts.google.com/specimen/Source+Sans+3 |
+| Nunito Sans | SIL OFL | https://fonts.google.com/specimen/Nunito+Sans |
+| Outfit | SIL OFL | https://fonts.google.com/specimen/Outfit |
+| Lato | SIL OFL | https://fonts.google.com/specimen/Lato |
 
 No font files are vendored in the zip.
 
 ## Images
 
-- House mark SVGs in the header/footer — original, GPLv2 or later
-- `screenshot.png` — capture of the concept homepage; Unsplash photo is hotlinked on the live demo, not copied into `public/`
+- House mark and horizontal lockup SVG — original, GPLv2 or later
+  - Theme: `public/images/brand/acreline-mark.svg`, `acreline-lockup.svg`
+  - Docs pack: `docs/marketplace/assets/` (same files)
+- Header / footer house mark — original SVG language, GPLv2 or later
+- `screenshot.png` — capture of the concept homepage (1200×900); Unsplash photo is hotlinked on the live demo, not copied into `public/`
+- Documentation screenshots (`docs/marketplace/screenshots/`) — captures of the seeded concept site for ThemeForest extra item images
 - Listing / blog Unsplash URLs — preview only. **Do not** bundle those binaries in `acreline.zip`
 
 ## Companion plugin

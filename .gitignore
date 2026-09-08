@@ -5,7 +5,13 @@
 !/public/images/
 !/public/images/**
 .env
-npm-debug.log
+.env.*
+.cache/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
 
 # Generated installable theme package
 /dist-theme

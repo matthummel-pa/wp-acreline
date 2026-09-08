@@ -24,6 +24,24 @@ This is sample / concept inventory — not a live MLS.
 3. Activate the Acreline theme.
 4. Use Tools → Seed Acreline demo, or add listings from wp-admin.
 
+== Frequently Asked Questions ==
+
+= Do I need this plugin? =
+
+The Acreline theme still registers listings, agents, and bookings if the plugin is off (concept-site fallback). Activate Acreline Core on a store install so those posts stay in the database after a theme switch.
+
+= Is this a live MLS? =
+
+No. Sample inventory is concept data. The plugin does not sync RETS, IDX, or any listing feed.
+
+= Where do showing requests go? =
+
+POST `keystone/v1/bookings` creates a Booking post in Requested status. Nothing is emailed.
+
+= What is the booking query string? =
+
+Use `?listing_id=123` (listing post ID). Do not use `?listing=123` as a public query.
+
 == Changelog ==
 
 = 1.0.0 =

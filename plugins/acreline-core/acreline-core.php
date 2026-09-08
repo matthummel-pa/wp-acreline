@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name:       Acreline Core
- * Plugin URI:        https://github.com/matthummel-pa/keystone-homes-wp-theme
+ * Plugin URI:        https://github.com/matthummel-pa/wp-acreline
  * Description:       Listings, agents, and showing bookings for the Acreline theme. Keeps inventory in the database when you switch themes.
  * Version:           1.0.0
  * Requires at least: 6.6

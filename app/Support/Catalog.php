@@ -82,7 +82,7 @@ class Catalog
             'property_tax' => 'Annual taxes',
             'hoa' => 'HOA / dues',
             'listing_agent' => 'Listing agent (agent post ID)',
-            'featured' => 'Featured on homepage (1/0)',
+            'featured' => 'Featured on homepage (store 1 or omit)',
             'description' => 'Listing description',
         ];
     }
@@ -118,7 +118,7 @@ class Catalog
             'linkedin' => 'LinkedIn URL',
             'initials' => 'Avatar initials',
             'avatar_color' => 'Avatar color',
-            'featured' => 'Featured (1/0)',
+            'featured' => 'Featured (store 1 or omit)',
             'bio' => 'Bio',
         ];
     }
@@ -337,7 +337,7 @@ class Catalog
             'property_tax' => (string) self::getMeta($post->ID, 'property_tax', ''),
             'hoa' => (string) self::getMeta($post->ID, 'hoa', ''),
             'listing_agent' => (int) self::getMeta($post->ID, 'listing_agent', 0),
-            'featured' => (bool) self::getMeta($post->ID, 'featured', 0),
+            'featured' => self::isFeaturedFlag(self::getMeta($post->ID, 'featured', '')),
         ];
     }
 
@@ -374,8 +374,30 @@ class Catalog
             'initials' => (string) self::getMeta($post->ID, 'initials', self::initials(get_the_title($post))),
             'avatar_color' => (string) self::getMeta($post->ID, 'avatar_color', 'var(--accent)'),
             'photo' => $photo ?: '',
-            'featured' => (bool) self::getMeta($post->ID, 'featured', 0),
+            'featured' => self::isFeaturedFlag(self::getMeta($post->ID, 'featured', '')),
         ];
+    }
+
+    /**
+     * Featured must be store "1" or omit. Never treat string "0" as true — (bool) '0' is true in PHP.
+     */
+    public static function isFeaturedFlag(mixed $value): bool
+    {
+        return ! empty($value) && (string) $value !== '0';
+    }
+
+    /**
+     * Persist featured as "1", or delete the meta when off (do not store "0").
+     */
+    public static function setFeaturedFlag(int $postId, bool $featured): void
+    {
+        $key = self::metaKey('featured');
+        if ($featured) {
+            update_post_meta($postId, $key, '1');
+
+            return;
+        }
+        delete_post_meta($postId, $key);
     }
 
     public static function formatMoney(int $amount): string
@@ -494,7 +516,7 @@ class Catalog
             'property_tax' => (string) ($item['property_tax'] ?? ''),
             'hoa' => (string) ($item['hoa'] ?? ''),
             'listing_agent' => 0,
-            'featured' => ! empty($item['featured']) && (string) $item['featured'] !== '0',
+            'featured' => self::isFeaturedFlag($item['featured'] ?? ''),
         ];
     }
 
@@ -535,7 +557,7 @@ class Catalog
             'initials' => (string) ($item['initials'] ?? self::initials($name)),
             'avatar_color' => (string) ($item['avatar_color'] ?? 'var(--accent)'),
             'photo' => '',
-            'featured' => ! empty($item['featured']) && (string) $item['featured'] !== '0',
+            'featured' => self::isFeaturedFlag($item['featured'] ?? ''),
         ];
     }
 

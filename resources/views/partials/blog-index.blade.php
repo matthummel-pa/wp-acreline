@@ -58,7 +58,7 @@
             >
             <div class="blog-card-body">
                 <span class="blog-meta">{{ wp_strip_all_tags(get_the_category_list(' · ')) ?: 'Notes' }} · {{ max(1, (int) ceil(str_word_count(wp_strip_all_tags(get_the_content())) / 200)) }} min</span>
-              <h2>{!! get_the_title() !!}</h2>
+              <h2>{{ get_the_title() }}</h2>
               <p>{{ get_the_excerpt() }}</p>
               <span class="teaser-link">Read post →</span>
             </div>

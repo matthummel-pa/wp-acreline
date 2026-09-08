@@ -1,0 +1,169 @@
+---
+description: Prep README / readme.txt / SUPPORT for ThemeForest, TemplateMonster, and own-site theme shops — Sage 11 zip vs git, gitignore, listing copy
+globs: README.md,readme.txt,SUPPORT.md,.gitignore,style.css,docs/marketplace/**,bin/build-*.sh,composer.json,package.json
+alwaysApply: false
+---
+
+# Theme-shop README and Sage distribution
+
+When prepping **README.md**, **readme.txt**, **SUPPORT.md**, or the marketplace pack for ThemeForest, TemplateMonster, Creative Market, Gumroad, or a direct sale: treat this as a **Sage 11 + Acorn + Blade + Vite 8** theme (not Bud, not a block/Gutenberg kit). Product name is **Acreline**. Install folder and text domain stay **`acreline`**. GitHub repo slug is **`wp-acreline`**.
+
+Plugin territory, WPCS, credits, and zip contents: also follow `marketplace.mdc`.
+
+## 1. Repository vs production zip
+
+Git is the Sage **source**. Market buyers get a **built zip**. Do not tell a ThemeForest buyer to run `composer install` / `npm run build` on the host.
+
+| Surface | What lives there |
+| --- | --- |
+| Git (`main`) | Blade, PHP, `resources/`, lockfiles. **No** `vendor/`, **no** `public/build/` |
+| `acreline.zip` (`bin/build-theme-zip.sh`) | Runtime only: compiled `public/build`, production `vendor/` (`composer install --no-dev`), `style.css`, `readme.txt`, `screenshot.png` |
+| Outer `acreline-*.zip` (`bin/build-install-pack.sh`) | Inner theme zip + child + Acreline Core + Documentation. Buyers extract this; they upload **inner** `acreline.zip` in wp-admin |
+
+CI (`.github/workflows/deploy.yml`) publishes those zips on the `theme-latest` GitHub release. Do not commit compiled assets to git “so the zip has them.”
+
+### `.gitignore` (keep this split)
+
+Never commit `node_modules/` or `vendor/`. Never commit Vite output (`public/build` is covered by `/public/*` plus keep `public/images`). Dist folders stay ignored — they are build products.
+
+Current intent (edit `.gitignore` if an agent re-opens this):
+
+```gitignore
+/node_modules
+/vendor
+/public/*
+!/public/.gitkeep
+!/public/images/
+!/public/images/**
+.env
+.env.*
+.cache/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+/dist-theme
+/dist-marketplace
+/dist-install
+```
+
+`/public/hot` and `/public/storage` are already excluded by `/public/*`. Do **not** add `!/public/build/` to git so market zips stay CI-built.
+
+## 2. `style.css` theme header
+
+WordPress and ThemeForest parse the comment at the top of **`style.css`**. Keep every field. Use **plain URLs**, not markdown links (`[url](url)` will fail Theme Check).
+
+Canonical Acreline header (do **not** revert to Keystone Homes / `keystone-homes` / PHP 8.1 / WP 6.2 / Version 1.0.0):
+
+```css
+/*
+Theme Name:         Acreline
+Theme URI:          https://acreline.matthummel.com/
+Description:        WordPress theme for farms, land, and historic homes — searchable listings, agents, and showing requests. Customizer identity and eight color styles. Blade + Tailwind + Vite (Sage 11).
+Version:            1.2.3
+Author:             Matt Hummel
+Author URI:         https://matthummel.com/
+Text Domain:        acreline
+Domain Path:        /languages
+License:            GNU General Public License v2 or later
+License URI:        https://www.gnu.org/licenses/gpl-2.0.html
+Requires PHP:       8.3
+Requires at least:  6.6
+Tested up to:       7.0.1
+Tags:               blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready, sticky-post
+*/
+```
+
+Rules when editing this header:
+
+| Field | Keep |
+| --- | --- |
+| Theme Name | **Acreline** (folder is still `acreline`) |
+| Theme URI | Live concept demo, not a dead GitHub slug |
+| Description | Land / farms / historic homes — not “custom home builders” or generic luxury |
+| Version | Must match `readme.txt` Stable tag. Bump only with a real shipping change |
+| Author / Author URI | Matt Hummel / https://matthummel.com/ (not `github.com/matthummel-pa`) |
+| Text Domain | **`acreline`** — same as install folder |
+| License | WordPress wording (`GNU General Public License v2 or later`), not SPDX `GPL-2.0-or-later` |
+| Requires PHP | **8.3** (Sage 11 / Acorn). Do not lower to 8.1 for a shop form |
+| Requires at least | **6.6** |
+| Tested up to | Keep in lockstep with `readme.txt` |
+
+Child theme (`child-theme/style.css`): `Theme Name: Acreline Child`, `Template: acreline`, `Text Domain: acreline-child`.
+
+## 3. Release zip (do not paste a yarn/Bud packager)
+
+Shop drafts often ship a `rsync` + `yarn` + `bud.config.js` script named for **keystone-homes**. **Do not replace** this repo’s packagers with that. We already have:
+
+| Script | What it makes |
+| --- | --- |
+| `bin/build-theme-zip.sh` | Inner **`dist-theme/acreline.zip`** — `npm run build`, whitelist copy, `composer install --no-dev --optimize-autoloader` |
+| `bin/build-install-pack.sh` | Outer **`dist-install/acreline-<version>.zip`** — theme zip + `acreline-child` + Acreline Core + Documentation |
+| `bin/build-marketplace-pack.sh` | Same pack plus seller brief (`SELLING.md`) in `dist-marketplace/` (repo only, not the buyer zip) |
+
+`build-theme-zip.sh` **copies a whitelist** (`app`, `resources`, `public`, `style.css`, `readme.txt`, `screenshot.png`, `composer.lock`, …). That is stricter than “rsync everything then exclude.” Do not switch to rsync-exclude: it is easy to leak `.cursor/`, tests, and source configs into a ThemeForest zip.
+
+Map from a typical Sage-seller paste → this repo:
+
+| Paste said | This repo |
+| --- | --- |
+| `THEME_SLUG="keystone-homes"` | `SLUG="acreline"` |
+| `yarn install` / `yarn build` | `npm run build` (`package-lock.json`, Node 20/22) |
+| `bud.config.js` | Vite 8 (`vite.config.js`). **Keep it in git.** It is **not** in the zip because it is not on the whitelist |
+| Exclude `vite.config.js` / `tailwind.config.js` from the zip | Already omitted (whitelist). Tailwind v4 lives in CSS + Vite plugin — no `tailwind.config.js` |
+| Exclude `composer.lock` | **Ship `composer.lock`** in the zip, then `composer install --no-dev` in the stage dir |
+| Zip to `./keystone-homes.zip` in the repo root | `dist-theme/acreline.zip` (`dist-*` is gitignored) |
+| Exclude `.cursorrules` | Cursor rules are `.cursor/rules/*.mdc` — never copy `.cursor/` into a buyer zip |
+
+CI (`.github/workflows/deploy.yml`) runs these scripts and publishes `acreline.zip` plus the versioned seller pack on the `theme-latest` release. Do not add a second packager that writes `build/keystone-homes`.
+
+## 4. README.md (GitHub + shops)
+
+`README.md` is dual-audience: **zip buyers first**, Sage developers second. Do not turn it into a Keystone Homes / yarn / Bud template. Do not make `composer install` / `npm run build` the first install path.
+
+Keep this outline (see the file):
+
+1. One-line product (search → listings → agent → showing), then Sage in one line
+2. Table: demo, support, author, **`acreline`** folder, GitHub `matthummel-pa/wp-acreline`
+3. Fiction-only callout (555 phones, `@acreline-concept.test`)
+4. **Install from a marketplace zip** — extract outer pack, upload inner `acreline.zip`, Identity, optional child + Core. Host: WordPress 6.6+, PHP 8.3+, no Composer/npm
+5. Who it is for / what you get
+6. **Local development (this git repo)** — `bin/setup-wp.sh`, then `npm run build`
+7. Package scripts (`bin/build-theme-zip.sh`, `bin/build-install-pack.sh`) — versioned zip as `acreline-<version>.zip`, not a stale `1.2.0`
+8. GitHub `theme-latest` updater
+9. Template map
+10. License GPLv2+
+
+Also:
+
+- Author: Matt Hummel / https://matthummel.com/
+- Demo: https://acreline.matthummel.com/
+- Buyer walkthrough lives in `docs/marketplace/`; start at **`docs/marketplace/index.html`**. Do not paste that HTML into README. Pack script copies the whole hub (`index`, buyer-guide, branding, requirements, support, sources, changelog, `assets/`, `screenshots/`) into `Documentation/`. Do not shrink the pack back to three HTML files.
+- Do **not** claim WordPress.org approval, Gutenberg-optimized, Elementor, or a live IDX/MLS
+- Do **not** paste Envato item IDs or dummy license keys
+- Support: `SUPPORT.md` and GitHub issues on `matthummel-pa/wp-acreline`
+
+## 5. readme.txt (WP.org / ThemeForest parser)
+
+`readme.txt` is the **store parser** file (Stable tag, Requires at least, Tested up to, Requires PHP, License GPLv2+, tags). Keep it in WP.org format even if we are not submitting yet.
+
+- Stable tag matches `style.css` Version
+- Description: land, farms, historic homes — not generic luxury brokerage
+- Installation: upload **`acreline.zip`**, folder name `acreline`, Customize → Identity, optional Seed + Core + child
+- FAQ: phone in Customizer; demo banner off; listings are a CPT (Core or theme fallback)
+- Changelog: user-facing, short; no agent jargon
+- Resources: fonts and licenses (see `CREDITS.md`)
+
+## 6. Copy you can paste on the store listing
+
+Use `docs/marketplace/themeforest-listing.md` and `requirements.html` as the source of truth for ThemeForest / TemplateMonster form fields (software version, browsers, Gutenberg optimized = **No**, WooCommerce/WPML/RTL = No, demo URL, support URL, license). Short description lives there too. Screenshots for extra item images: `docs/marketplace/screenshots/`. Sources: `docs/marketplace/sources.html`. WordPress.org upload rules: `docs/marketplace/wordpress-org.md`. Buyer HTML starts at `docs/marketplace/index.html`. Do not invent a second set of versions in README that disagrees with `style.css` / `readme.txt`.
+
+## Do not
+
+- Commit `vendor/` or `public/build/` to git to “help ThemeForest”
+- Tell buyers this is a Bud or Sage 10 theme
+- Lead README with `yarn` / `composer install` as the shop install path
+- Enable the block editor or Gutenberg patterns to pass a shop checklist
+- Put `SELLING.md` inside the buyer zip
+- Rename the install folder away from `acreline` in README “for branding”

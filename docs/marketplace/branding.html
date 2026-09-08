@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acreline — Branding</title>
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <p class="site-bar">Acreline documentation · ThemeForest / own-site pack · Fiction only</p>
+  <header class="doc-head">
+    <div class="doc-head-inner">
+      <a class="brand-lockup" href="index.html">
+        <img src="assets/acreline-mark.svg" width="40" height="40" alt="">
+        <span><strong>Acreline</strong><span>Farms · land · historic homes</span></span>
+      </a>
+      <nav class="docs-nav" aria-label="Documentation">
+        <a href="index.html">Contents</a>
+        <a href="buyer-guide.html">Install &amp; setup</a>
+        <a href="branding.html" aria-current="page">Branding</a>
+        <a href="customizer.html">Customizer</a>
+        <a href="listings.html">Listings</a>
+        <a href="support.html">Support</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+<h1>Branding and logos</h1>
+    <p>Office identity on realtor sites is a house mark, a short wordmark, forest or navy, and cream paper — not a luxury-gold skin. Acreline ships original SVG marks (GPLv2). They are not NAR, MLS, or HUD trademarks.</p>
+    <p><strong>Canonical kit:</strong> <code>BRAND.md</code> in the theme repo (name, tagline, Forest palette, mark paths). Product landing: <a href="https://matthummel.com/projects/acreline/">matthummel.com/projects/acreline</a>.</p>
+
+    <figure>
+      <img class="lockup" src="assets/acreline-lockup.svg" alt="Acreline wordmark lockup: house mark plus Farms, land, historic homes" width="320" height="56">
+      <figcaption>Horizontal lockup — header and documentation. Tagline: Farms · land · historic homes.</figcaption>
+    </figure>
+    <p><img src="assets/acreline-mark.svg" width="64" height="64" alt="Acreline house mark"></p>
+
+    <h2>How to put your office on the theme</h2>
+    <ol>
+      <li><strong>Appearance → Customize → Site Identity → Logo</strong> — PNG or SVG, about 200×48 or a square mark. The header caps height at 44px.</li>
+      <li><strong>Customize → Identity → Brand name</strong> — replaces “Acreline” in the fallback lockup and footer.</li>
+      <li><strong>Customize → Colors</strong> — Forest is the sample office; Navy and Charcoal are the other palettes offices use most.</li>
+      <li>Do not edit Blade to change the logo. A child theme can restyle it; the Customizer is enough for a client handoff.</li>
+    </ol>
+    <p>Files in this pack: <code>Documentation/assets/acreline-mark.svg</code>, <code>acreline-lockup.svg</code>. Same files in the theme at <code>public/images/brand/</code>.</p>
+
+    <h2>Color (Forest sample)</h2>
+    <table>
+      <tbody>
+        <tr><th>Ink</th><td><code>#141210</code> — body text</td></tr>
+        <tr><th>Paper</th><td><code>#f5f4f1</code> — page background</td></tr>
+        <tr><th>Accent</th><td><code>#1f6b4a</code> — buttons, links, mark roof</td></tr>
+        <tr><th>Accent dark</th><td><code>#155539</code></td></tr>
+        <tr><th>Card</th><td><code>#ffffff</code> — listing and agent cards</td></tr>
+      </tbody>
+    </table>
+    <p>Keep body text dark on a light page (WCAG). Do not put white type on an unshaded photo.</p>
+
+    <h2>Type</h2>
+    <p>Headings and body default to Inter (SIL OFL, Google Fonts). Customize → Typography. Serif in this documentation is Georgia for the wordmark only — the live theme stays Inter unless you change it.</p>
+
+    <h2>Fair housing / association marks</h2>
+    <p>The footer line “Equal Housing Opportunity (concept)” is a <strong>sample</strong>. It is not the official HUD logo. On a live licensed office, replace it with artwork your brokerage is allowed to use. Do not copy NAR, MLS, or Equal Housing logos from the internet into this theme.</p>
+    <p>Agent designations (ABR, CRS, GRI) and MLS/NRDS fields are text fields on the Agent metabox — type what the agent actually holds.</p>
+
+    <h2>Named color styles</h2>
+    <p>Customize → Colors. Forest is the sample office.</p>
+    <div class="pal">
+      <div class="swatch" style="background:#1f6b4a">Forest</div>
+      <div class="swatch" style="background:#9a4324">Clay</div>
+      <div class="swatch" style="background:#1e3a5f">Navy</div>
+      <div class="swatch" style="background:#722f37">Burgundy</div>
+      <div class="swatch" style="background:#7a5b14">Harvest</div>
+      <div class="swatch" style="background:#0e5f5c">Lake</div>
+      <div class="swatch" style="background:#5c3d6e">Orchard</div>
+      <div class="swatch" style="background:#2c2a28">Charcoal</div>
+    </div>
+
+    <h2>Do not</h2>
+    <ul>
+      <li>Claim this sample office is a licensed brokerage or a live MLS.</li>
+      <li>Use 555 phones and <code>@acreline-concept.test</code> on a client’s public site — Identity is for their real (or still-fictional) numbers.</li>
+      <li>Stretch the house mark or recolor it off the ink/forest pair without checking contrast.</li>
+    </ul>
+  </main>
+  <footer class="doc-foot">Fiction only · Equal Housing Opportunity (concept) · Theme license GPLv2 or later · Created by Matt Hummel</footer>
+  <script src="assets/docs.js"></script>
+</body>
+</html>
+

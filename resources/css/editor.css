@@ -1,1 +1,98 @@
 @import "tailwindcss";
+
+/* ==========================================================================
+   Block editor overrides
+   Loaded after app.css so these rules win inside the editor canvas.
+   Goal: blocks look like the live page while staying usable as editor UI.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Hero sections — cap height so they don't eat the entire canvas
+   -------------------------------------------------------------------------- */
+.hero {
+  min-height: clamp(280px, 38vw, 500px) !important;
+  padding-top: clamp(60px, 8vh, 100px);
+}
+
+.page-hero,
+.page-hero--photo {
+  min-height: clamp(220px, 28vw, 400px) !important;
+  padding-top: clamp(48px, 6vh, 80px);
+}
+
+/* Ken-Burns animation is distracting while editing — freeze it. */
+.hero-media img {
+  animation: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Interactive elements — visual only in the editor (non-functional)
+   -------------------------------------------------------------------------- */
+.hero-search,
+.listings-toolbar,
+.booking-form-wrap,
+#contactForm,
+#valForm,
+#valueForm,
+#alertForm,
+#loanForm,
+#prequalForm {
+  pointer-events: none;
+  opacity: 0.75;
+  cursor: default;
+}
+
+/* Prevent listing/map grid from spinning with "no data" state */
+#listingGrid,
+#listingMap {
+  min-height: 180px;
+}
+
+/* --------------------------------------------------------------------------
+   ServerSideRender loading/error states
+   -------------------------------------------------------------------------- */
+.wp-block-acreline-home-hero .components-spinner,
+.wp-block-acreline-page-hero .components-spinner {
+  display: block;
+  margin: 40px auto;
+}
+
+/* While SSR is loading, show a subtle shimmer */
+.wp-block[data-block-name^="acreline/"] .is-loading {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+/* --------------------------------------------------------------------------
+   Typography corrections inside the editor iframe
+   -------------------------------------------------------------------------- */
+
+/* The editor adds its own body padding; remove ours */
+body.block-editor-iframe__body {
+  padding: 0;
+}
+
+/* Reveal animation classes block visibility in editor — disable them */
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Section spacing — tighten slightly for the narrower canvas
+   -------------------------------------------------------------------------- */
+.section {
+  padding-block: clamp(40px, 5vw, 64px);
+}
+
+.section-alt {
+  padding-block: clamp(40px, 5vw, 64px);
+}
+
+/* --------------------------------------------------------------------------
+   Booking photo — hide in editor to save vertical space
+   -------------------------------------------------------------------------- */
+.booking-photo {
+  display: none;
+}

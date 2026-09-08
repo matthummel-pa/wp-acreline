@@ -4,7 +4,7 @@
   $phone = $identity['phone'] ?? '(555) 010-0455';
   $phoneHref = $identity['phoneHref'] ?? 'tel:+15550100455';
   $brand = $identity['brand'] ?? 'Acreline';
-  $tagline = $identity['tagline'] ?? 'Concept demo';
+  $tagline = $identity['tagline'] ?? 'Farms · land · historic homes';
   $cta = $identity['ctaLabel'] ?? 'Book a showing';
 @endphp
 

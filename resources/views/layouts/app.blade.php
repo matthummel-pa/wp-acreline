@@ -20,7 +20,7 @@
     @php(wp_body_open())
 
     @if (! empty($identity['showDemoChrome']))
-      <p class="demo-banner"><strong>{{ __('Concept demo', 'acreline') }}</strong> · {{ __('Fiction only', 'acreline') }} · {{ __('Not a live MLS, brokerage or booking system', 'acreline') }}</p>
+      <p class="demo-banner"><strong>{{ __('Acreline demo', 'acreline') }}</strong> · {{ __('Fiction only', 'acreline') }} · {{ __('Not a live MLS, brokerage or booking system', 'acreline') }}</p>
     @endif
 
     @include('sections.header')

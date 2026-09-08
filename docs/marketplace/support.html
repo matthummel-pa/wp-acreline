@@ -4,59 +4,68 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Acreline — Support</title>
-  <style>
-    :root { color-scheme: light; }
-    body { margin: 0 auto; max-width: 44rem; padding: 2rem 1.25rem 4rem; font: 17px/1.6 system-ui, sans-serif; color: #141210; background: #f5f4f1; }
-    h1, h2 { line-height: 1.2; letter-spacing: -.02em; }
-    h1 { font-size: 2rem; }
-    h2 { margin-top: 2.2rem; font-size: 1.35rem; }
-    a { color: #155539; }
-    table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #d6d0c6; border-radius: 12px; overflow: hidden; }
-    th, td { text-align: left; padding: .7rem .9rem; border-top: 1px solid #e8e4dc; vertical-align: top; }
-    th { background: #efece6; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; }
-    .note { background: #fff; border: 1px solid #d6d0c6; border-radius: 12px; padding: 1rem 1.1rem; }
-    footer { margin-top: 3rem; font-size: .85rem; color: #7a7368; }
-  </style>
+  <link rel="stylesheet" href="assets/docs.css">
 </head>
 <body>
-  <p><strong>Acreline</strong> · Support</p>
-  <h1>Help with the theme</h1>
-  <p>Acreline is a WordPress theme for farms, land, and historic homes. Sample listings and showing requests are concept data — not a live MLS or licensed brokerage.</p>
+  <p class="site-bar">Acreline documentation · ThemeForest / own-site pack · Fiction only</p>
+  <header class="doc-head">
+    <div class="doc-head-inner">
+      <a class="brand-lockup" href="index.html">
+        <img src="assets/acreline-mark.svg" width="40" height="40" alt="">
+        <span><strong>Acreline</strong><span>Farms · land · historic homes</span></span>
+      </a>
+      <nav class="docs-nav" aria-label="Documentation">
+        <a href="index.html">Contents</a>
+        <a href="buyer-guide.html">Install &amp; setup</a>
+        <a href="branding.html">Branding</a>
+        <a href="customizer.html">Customizer</a>
+        <a href="listings.html">Listings</a>
+        <a href="support.html" aria-current="page">Support</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+<h1>Support</h1>
+    <p>Acreline is a WordPress theme for farms, land, and historic homes. Sample listings and showing requests are concept data — not a live MLS or licensed brokerage. Created by <a href="https://matthummel.com/">Matt Hummel</a>.</p>
+    <div class="note">ThemeForest / Envato item support follows that marketplace’s channel and hours. GitHub issues are welcome for reproducible theme bugs: <a href="https://github.com/matthummel-pa/wp-acreline/issues">matthummel-pa/wp-acreline</a>. There is no ticket desk or live chat in the theme.</div>
 
-  <div class="note">
-    Created by <a href="https://matthummel.com/">Matt Hummel</a>.
-    Full notes: <a href="https://github.com/matthummel-pa/keystone-homes-wp-theme/blob/main/SUPPORT.md">SUPPORT.md on GitHub</a>.
-  </div>
+    <h2>Where to go</h2>
+    <table>
+      <thead><tr><th>Need</th><th>Link</th></tr></thead>
+      <tbody>
+        <tr><td>Install, Customizer, fields, child theme, updates</td><td><a href="buyer-guide.html">Install &amp; setup</a></td></tr>
+        <tr><td>Logo, colors, fair housing note</td><td><a href="branding.html">Branding</a></td></tr>
+        <tr><td>Host versions, ThemeForest form fields</td><td><a href="requirements.html">Requirements</a></td></tr>
+        <tr><td>Public concept site</td><td><a href="https://acreline.matthummel.com/">acreline.matthummel.com</a></td></tr>
+        <tr><td>Theme bugs</td><td><a href="https://github.com/matthummel-pa/wp-acreline/issues">GitHub issues</a></td></tr>
+        <tr><td>Sources and credits</td><td><a href="sources.html">sources.html</a></td></tr>
+        <tr><td>Author</td><td><a href="https://matthummel.com/">matthummel.com</a></td></tr>
+      </tbody>
+    </table>
 
-  <h2>Where to go</h2>
-  <table>
-    <thead>
-      <tr><th>Need</th><th>Link</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>See the public concept</td>
-        <td><a href="https://keystonehomes.ridgesandvalleys.com/">keystonehomes.ridgesandvalleys.com</a></td>
-      </tr>
-      <tr>
-        <td>Install and Customizer</td>
-        <td><a href="buyer-guide.html">Buyer guide</a></td>
-      </tr>
-      <tr>
-        <td>Theme bugs</td>
-        <td><a href="https://github.com/matthummel-pa/keystone-homes-wp-theme/issues">GitHub issues</a></td>
-      </tr>
-      <tr>
-        <td>Author site</td>
-        <td><a href="https://matthummel.com/">matthummel.com</a></td>
-      </tr>
-    </tbody>
-  </table>
+    <h2>Before you write</h2>
+    <ol>
+      <li>Theme folder is still <code>acreline</code>. Store zips include <code>public/build</code>.</li>
+      <li>Identity and colors are under Customize — not in page content.</li>
+      <li>Listings and agents are WordPress posts. Editing a PHP file does not change live copy.</li>
+      <li>Include WordPress version, PHP version, theme version (Appearance → Themes), and whether Acreline Core is active.</li>
+    </ol>
+    <p>Demo phones are 555 numbers (office <code>(555) 010-0455</code>). <code>@acreline-concept.test</code> does not reach a real inbox.</p>
 
-  <h2>Before you write</h2>
-  <p>Keep the theme folder named <code>acreline</code>. Identity and colors are under <strong>Appearance → Customize</strong>. Demo phones are 555 numbers; <code>@acreline-concept.test</code> does not reach a real inbox.</p>
-  <p>This theme does not sync an MLS, take payments, or run a real booking desk. The block editor is off on purpose.</p>
+    <h2>What this theme does not do</h2>
+    <ul>
+      <li>Sync a live MLS or IDX feed</li>
+      <li>Process payments or hold real appointments</li>
+      <li>Replace a licensed brokerage or CRM</li>
+      <li>Ship Gutenberg / block-editor patterns</li>
+      <li>Require ACF, Elementor, or a page builder</li>
+    </ul>
 
-  <footer>Fiction only · Equal Housing Opportunity (concept) · Theme license GPLv2 or later</footer>
+    <h2>Security</h2>
+    <p>Do not commit GitHub tokens. The updater PAT lives in Customizer → GitHub, Appearance → Update Theme, or <code>KS_GITHUB_TOKEN</code> on the host. Contents: Read to install the zip. Add Actions: Read and write only to trigger rebuilds. Repo: <code>matthummel-pa/wp-acreline</code>.</p>
+  </main>
+  <footer class="doc-foot">Fiction only · Equal Housing Opportunity (concept) · Theme license GPLv2 or later · Created by Matt Hummel</footer>
+  <script src="assets/docs.js"></script>
 </body>
 </html>
+

@@ -1,6 +1,6 @@
 # Acreline — WordPress Theme
 
-A [Roots Sage 11](https://roots.io/sage/) theme (Blade + Tailwind CSS v4 + Vite 8, powered by Acorn) for a land-and-farms realtor concept. The visual design is ported from the static concept in [`matthummel-pa/realtor-keystone-homes-and-land-theme`](https://github.com/matthummel-pa/realtor-keystone-homes-and-land-theme).
+A [Roots Sage 11](https://roots.io/sage/) theme (Blade + Tailwind CSS v4 + Vite 8, powered by Acorn) for a land-and-farms realtor concept. GitHub repo: [`matthummel-pa/wp-acreline`](https://github.com/matthummel-pa/wp-acreline). The visual design is ported from the static concept in [`matthummel-pa/realtor-keystone-homes-and-land-theme`](https://github.com/matthummel-pa/realtor-keystone-homes-and-land-theme).
 
 ## Project rules (Cursor Agent)
 
@@ -14,6 +14,7 @@ Versioned Cursor rules live in [`.cursor/rules/`](.cursor/rules/) as `.mdc` file
 - `conversion-ux.mdc` — labels, autocomplete, button states, `aria-live`
 - `seo-native.mdc` — native title / description / OG / Twitter; no SEO plugins
 - `marketplace.mdc` — ThemeForest / WP.org (plugin territory, WPCS, demo zip, no admin upsells)
+- `theme-shop-readme.mdc` — seller README / `readme.txt` / ThemeForest docs (Sage 11 + Vite zip layout)
 - `live-wordpress.mdc` — when editing the live WP site via WPVibe
 
 Edit those files when an agent repeats a mistake. Use `.mdc` only (plain `.md` in that folder is ignored).

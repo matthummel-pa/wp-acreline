@@ -19,15 +19,13 @@ add_action('add_meta_boxes', function () {
     if (post_type_exists(Catalog::BOOKING)) {
         add_meta_box('ks_booking_details', __('Booking details', 'acreline'), __NAMESPACE__.'\\booking_metabox', Catalog::BOOKING, 'normal', 'high');
     }
-    add_meta_box('ks_page_fields', __('Page fields', 'acreline'), __NAMESPACE__.'\\page_metabox', 'page', 'normal', 'high');
-    add_meta_box('ks_post_fields', __('Post fields', 'acreline'), __NAMESPACE__.'\\post_metabox', 'post', 'normal', 'high');
+    // Page and post copy is now managed via Gutenberg blocks.
+    // Listing / booking / agent CPTs still use classic metaboxes below.
 });
 
 add_action('save_post_'.Catalog::LISTING, __NAMESPACE__.'\\save_listing_metabox');
 add_action('save_post_'.Catalog::AGENT, __NAMESPACE__.'\\save_agent_metabox');
 add_action('save_post_'.Catalog::BOOKING, __NAMESPACE__.'\\save_booking_metabox');
-add_action('save_post_page', __NAMESPACE__.'\\save_page_metabox');
-add_action('save_post_post', __NAMESPACE__.'\\save_post_metabox');
 
 add_action('admin_enqueue_scripts', function (string $hook): void {
     if (! in_array($hook, ['post.php', 'post-new.php'], true)) {
@@ -107,7 +105,7 @@ function listing_metabox(\WP_Post $post): void
         <th><label for="ks_featured"><?php esc_html_e('Featured', 'acreline'); ?></label></th>
         <td>
           <label>
-            <input type="checkbox" name="ks_featured" id="ks_featured" value="1" <?php checked(Catalog::getMeta($post->ID, 'featured', 0), '1'); ?>>
+            <input type="checkbox" name="ks_featured" id="ks_featured" value="1" <?php checked(Catalog::isFeaturedFlag(Catalog::getMeta($post->ID, 'featured', '')), true); ?>>
             <?php esc_html_e('Show in the homepage spotlight', 'acreline'); ?>
           </label>
         </td>
@@ -284,7 +282,7 @@ function save_listing_metabox(int $postId): void
 
     foreach (array_keys(Catalog::listingFields()) as $field) {
         if ($field === 'featured') {
-            Catalog::updateMeta($postId, 'featured', empty($_POST['ks_featured']) ? '0' : '1');
+            Catalog::setFeaturedFlag($postId, ! empty($_POST['ks_featured']));
 
             continue;
         }
@@ -317,6 +315,11 @@ function save_agent_metabox(int $postId): void
     }
 
     foreach (array_keys(Catalog::agentFields()) as $field) {
+        if ($field === 'featured') {
+            Catalog::setFeaturedFlag($postId, ! empty($_POST['ks_featured']) && (string) $_POST['ks_featured'] === '1');
+
+            continue;
+        }
         if ($field === 'image') {
             save_image_field($postId, 'image');
 
@@ -539,7 +542,17 @@ function save_page_metabox(int $postId): void
             ? wp_kses_post((string) $raw)
             : ($type === 'url'
                 ? esc_url_raw((string) $raw)
-                : wp_kses((string) $raw, ['em' => [], 'strong' => []]));
+                : wp_kses((string) $raw, [
+                    'em' => [],
+                    'strong' => [],
+                    'br' => [],
+                    'a' => [
+                        'href' => true,
+                        'title' => true,
+                        'rel' => true,
+                        'target' => true,
+                    ],
+                ]));
         Catalog::updateMeta($postId, $field, $value);
     }
 }

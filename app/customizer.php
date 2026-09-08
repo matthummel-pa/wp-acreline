@@ -20,7 +20,7 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
 
     $text = [
         'ks_brand_name' => [__('Brand name', 'acreline'), 'Acreline'],
-        'ks_tagline' => [__('Header tagline', 'acreline'), 'Concept demo'],
+        'ks_tagline' => [__('Header tagline', 'acreline'), 'Farms · land · historic homes'],
         'ks_phone' => [__('Phone', 'acreline'), '(555) 010-0455'],
         'ks_email' => [__('Email', 'acreline'), 'hello@acreline-concept.test'],
         'ks_cta_label' => [__('Header button label', 'acreline'), 'Book a showing'],

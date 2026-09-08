@@ -1,8 +1,23 @@
 # Changelog
 
-## 1.2.2
+## 1.3.1
 
 - Single blog posts no longer fatal: adjacent / related post data is passed as arrays, not invokable view variables
+
+## 1.3.0
+
+- **Setup wizard** under Appearance → Acreline Setup: Welcome → Identity → Colors → Demo → Done
+- Saves brand, phone, email, hours, color style, and optional demo seed without leaving wp-admin
+- Opens automatically after theme activation until you finish or skip (no upsells)
+
+## 1.2.3
+
+- Concept demo URL is https://acreline.matthummel.com/
+- readme.txt and marketplace docs point at matthummel.com/projects/acreline/ and the 01–07 screenshot set
+
+## 1.2.2
+
+- GitHub repository, updater, support links, and Composer package name are `matthummel-pa/wp-acreline`
 
 ## 1.2.1
 

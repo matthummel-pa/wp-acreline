@@ -1,0 +1,118 @@
+:root {
+  color-scheme: light;
+  --ink: #141210;
+  --ink-soft: #4a453d;
+  --ink-faint: #7a7368;
+  --paper: #f5f4f1;
+  --card: #fff;
+  --line: #d6d0c6;
+  --accent: #1f6b4a;
+  --accent-dark: #155539;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font: 17px/1.65 system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+.site-bar {
+  background: var(--ink);
+  color: #fffcf7;
+  font-size: .78rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: .45rem 1rem;
+}
+.doc-head {
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  padding: 1rem 1.25rem;
+}
+.doc-head-inner, .wrap {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+.doc-head-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  text-decoration: none;
+  color: inherit;
+}
+.brand-lockup img, .brand-lockup svg { width: 40px; height: 40px; }
+.brand-lockup strong { display: block; font-family: Georgia, serif; font-size: 1.25rem; letter-spacing: -.02em; }
+.brand-lockup span { display: block; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+nav.docs-nav { display: flex; flex-wrap: wrap; gap: .35rem .75rem; font-size: .85rem; }
+nav.docs-nav a { color: var(--accent-dark); text-decoration: none; }
+nav.docs-nav a[aria-current="page"] { font-weight: 700; }
+.wrap { padding: 2rem 1.25rem 4rem; }
+h1, h2, h3 { line-height: 1.2; letter-spacing: -.02em; }
+h1 { font-size: 2rem; font-family: Georgia, serif; margin: 0 0 .75rem; }
+h2 { margin-top: 2.2rem; font-size: 1.35rem; }
+h3 { margin-top: 1.4rem; font-size: 1.05rem; }
+p, li { color: var(--ink-soft); }
+a { color: var(--accent-dark); }
+code, kbd { font-size: .9em; background: var(--card); padding: .1em .35em; border-radius: 4px; border: 1px solid var(--line); }
+.note, .card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+}
+.cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin: 1.25rem 0; }
+.cards a.card { text-decoration: none; color: inherit; }
+.cards a.card:hover { border-color: var(--accent); }
+.cards h3 { margin: 0 0 .35rem; font-size: 1.05rem; color: var(--ink); }
+.cards p { margin: 0; font-size: .92rem; }
+table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+th, td { text-align: left; padding: .65rem .85rem; border-top: 1px solid #e8e4dc; vertical-align: top; }
+th { background: #efece6; font-size: .8rem; letter-spacing: .04em; text-transform: uppercase; width: 34%; }
+ol, ul { padding-left: 1.2rem; }
+figure { margin: 1.25rem 0; }
+figure img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--line); border-radius: 12px; background: #fff;
+}
+figure img.lockup {
+  width: 320px;
+  max-width: 100%;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+}
+figcaption { font-size: .85rem; color: var(--ink-faint); margin-top: .45rem; }
+.copy {
+  font-family: ui-monospace, monospace; font-size: .88rem;
+  background: var(--card); border: 1px dashed #c9c2b6; border-radius: 8px;
+  padding: .75rem .9rem; white-space: pre-wrap;
+}
+footer.doc-foot {
+  max-width: 52rem; margin: 0 auto; padding: 0 1.25rem 3rem;
+  font-size: .85rem; color: var(--ink-faint);
+}
+.toc { columns: 2; gap: 2rem; }
+.toc a { display: block; margin: .2rem 0; }
+.shot-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  margin: 1.25rem 0;
+}
+.shot-grid figure { margin: 0; }
+.pal { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0 1.25rem; }
+.swatch {
+  width: 4.5rem; height: 4.5rem; border-radius: 10px;
+  border: 1px solid var(--line); display: flex; align-items: flex-end;
+  padding: .35rem; font-size: .62rem; color: #fff; letter-spacing: .04em;
+}
+@media (max-width: 639px) { .toc { columns: 1; } }

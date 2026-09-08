@@ -30,7 +30,8 @@
 .topic-card,
 .nearby-card,
 .contact-info,
-.listings-toolbar{
+.listings-toolbar,
+.val-card{
   background:var(--card-bg, #fff);
   border:1px solid var(--line);
   box-shadow:var(--shadow-rest, 0 6px 22px rgba(12,12,12,.06));

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acreline — Listings, agents, and bookings</title>
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <p class="site-bar">Acreline documentation · ThemeForest / own-site pack · Fiction only</p>
+  <header class="doc-head">
+    <div class="doc-head-inner">
+      <a class="brand-lockup" href="index.html">
+        <img src="assets/acreline-mark.svg" width="40" height="40" alt="">
+        <span><strong>Acreline</strong><span>Farms · land · historic homes</span></span>
+      </a>
+      <nav class="docs-nav" aria-label="Documentation">
+        <a href="index.html">Contents</a>
+        <a href="buyer-guide.html">Install &amp; setup</a>
+        <a href="branding.html">Branding</a>
+        <a href="customizer.html">Customizer</a>
+        <a href="listings.html" aria-current="page">Listings</a>
+        <a href="support.html">Support</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+<h1>Listings, agents, and showing requests</h1>
+      <p>Inventory is WordPress posts, not an MLS feed. Sample data is fiction. Replace it with your own photos and copy on a client site.</p>
+      <h2>Who registers the types</h2>
+      <ul>
+        <li><strong>Acreline Core</strong> (recommended on a store install) owns <code>listing</code>, <code>agent</code>, and <code>booking</code> plus the <code>keystone/v1/bookings</code> REST route. Switching themes leaves those posts and <code>ks_*</code> meta in the database.</li>
+        <li>If the plugin is off, the parent theme registers the same types so the concept demo keeps working.</li>
+      </ul>
+      <h2>Listings</h2>
+      <p>wp-admin → <strong>Listings</strong>. Classic metabox “Listing details,” plus title, editor, and featured image. Types: Home, Working Farm, Land / Acreage, Historic Home. Statuses: Active, New, Pending, Sold.</p>
+      <table>
+        <thead><tr><th>Field</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Address, city, state, ZIP</td><td>Shown on the card and single.</td></tr>
+          <tr><td>Township</td><td>Filter values stay <code>Cumberland</code> / <code>Straban</code> / <code>Franklin</code>. Labels on the public site are North Ridge / Mill Creek / Oak Hollow.</td></tr>
+          <tr><td>Price, beds, baths, sqft, acres, year built</td><td>Used in search filters and listing cards.</td></tr>
+          <tr><td>MLS number</td><td>Display only — not a live feed.</td></tr>
+          <tr><td>Map pin top % / left %</td><td>Position on the concept map graphic, not lat/long of a real parcel.</td></tr>
+          <tr><td>Listing photo / virtual tour</td><td>Media library or URL. Do not keep Unsplash hotlinks on a client site.</td></tr>
+          <tr><td>Listing agent</td><td>Agent post ID.</td></tr>
+          <tr><td>Featured</td><td>Homepage spotlight.</td></tr>
+        </tbody>
+      </table>
+      <h2>Agents</h2>
+      <p>License, MLS/NRDS, specialties, service areas, contact, and social fields. Assign an agent on each listing.</p>
+      <h2>Bookings</h2>
+      <p>The public Book a showing form POSTs to <code>/wp-json/keystone/v1/bookings</code>. A Booking post is created in <strong>Requested</strong> status. Advance it in wp-admin: Requested → Confirmed → Completed (or Cancelled). Nothing is emailed, texted, or added to a calendar.</p>
+      <p>Public links must use a numeric listing post ID:</p>
+      <p class="copy">/book/?listing_id=123</p>
+      <p>Do not use <code>?listing=123</code> as a public query — that string can collide with the listing post type and 404.</p>
+      <h2>Showing types</h2>
+      <ul>
+        <li>In-person tour</li>
+        <li>Private preview</li>
+        <li>Virtual walk-through</li>
+      </ul>
+      <h2>Search</h2>
+      <p>The listings page filters by type, price, acreage, and township. Grid and map views read the same <code>listing</code> posts. The payment-estimate modal is a concept calculator, not a lender.</p>
+  </main>
+  <footer class="doc-foot">Fiction only · Equal Housing Opportunity (concept) · Theme license GPLv2 or later · Created by Matt Hummel</footer>
+  <script src="assets/docs.js"></script>
+</body>
+</html>
+

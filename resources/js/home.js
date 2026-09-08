@@ -1,12 +1,44 @@
 /* =========================================================================
-   Home-only behaviors
+   Home-only behaviors (also runs sitewide via app.js for shared forms)
    - Search → listings
    - Home value + listing alerts (demo)
    - Showing appointment booking (demo)
-   - Spotlight cards prefill property
+   - Contact + contact valuation (demo)
    ========================================================================= */
 (function(){
   "use strict";
+
+  var WARN_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>';
+
+  function setBusy(btn, busy, busyLabel){
+    if(!btn) return;
+    if(busy){
+      if(!btn.dataset.label) btn.dataset.label = btn.textContent;
+      btn.disabled = true;
+      btn.setAttribute("aria-disabled", "true");
+      btn.textContent = busyLabel || "Sending…";
+    } else {
+      btn.disabled = false;
+      btn.removeAttribute("aria-disabled");
+      if(btn.dataset.label) btn.textContent = btn.dataset.label;
+    }
+  }
+
+  function showStatus(el, message, isError){
+    if(!el) return;
+    el.className = "confirm-msg show";
+    if(isError){
+      el.style.background = "#fff7ed";
+      el.style.borderColor = "#fdba74";
+      el.style.color = "#9a3412";
+      el.innerHTML = WARN_ICON + "<span>" + message + "</span>";
+    } else {
+      el.style.background = "";
+      el.style.borderColor = "";
+      el.style.color = "";
+      el.innerHTML = "<span>" + message + "</span>";
+    }
+  }
 
   var form = document.getElementById("heroSearchForm");
   if(form){
@@ -36,6 +68,8 @@
   if(valueForm && valueResult){
     valueForm.addEventListener("submit", function(e){
       e.preventDefault();
+      var btn = valueForm.querySelector("button[type=submit]");
+      setBusy(btn, true, "Estimating…");
       var beds = Number(document.getElementById("vBeds").value) || 3;
       var acres = Number(document.getElementById("vAcres").value) || 5;
       var mid = 180000 + beds * 42000 + acres * 8500;
@@ -47,6 +81,7 @@
         "<span style=\"color:var(--ink-soft);font-size:.9rem\">Demo range for " +
         (document.getElementById("vAddress").value || "your address") +
         ". Not an appraisal.</span>";
+      setBusy(btn, false);
     });
   }
 
@@ -56,9 +91,54 @@
   if(alertForm && alertConfirm){
     alertForm.addEventListener("submit", function(e){
       e.preventDefault();
-      alertConfirm.classList.add("show");
       var btn = alertForm.querySelector("button[type=submit]");
-      if(btn) btn.disabled = true;
+      setBusy(btn, true);
+      alertConfirm.classList.add("show");
+      if(btn){
+        btn.textContent = "Saved";
+        btn.disabled = true;
+        btn.setAttribute("aria-disabled", "true");
+      }
+    });
+  }
+
+  /* Contact message (concept demo — no network) */
+  var contactForm = document.getElementById("contactForm");
+  var contactConfirm = document.getElementById("contactConfirm");
+  if(contactForm && contactConfirm){
+    contactForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      var btn = contactForm.querySelector("button[type=submit]");
+      setBusy(btn, true);
+      contactConfirm.classList.add("show");
+      if(btn){
+        btn.textContent = "Sent";
+        btn.disabled = true;
+        btn.setAttribute("aria-disabled", "true");
+      }
+    });
+  }
+
+  /* Contact page valuation */
+  var valForm = document.getElementById("valForm");
+  var valResult = document.getElementById("valResult");
+  var valResultAmount = document.getElementById("valResultAmount");
+  if(valForm && valResult && valResultAmount){
+    valForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      var btn = valForm.querySelector("button[type=submit]");
+      setBusy(btn, true, "Estimating…");
+      var acres = Number(document.getElementById("valAcres").value) || 0;
+      var sqft = Number(document.getElementById("valSqft").value) || 0;
+      var type = (document.getElementById("valType") || {}).value || "home";
+      var base = type === "land" ? 12000 : (type === "farm" ? 18000 : 22000);
+      var mid = acres * base + sqft * 145;
+      var low = Math.round(mid * 0.9 / 1000) * 1000;
+      var high = Math.round(mid * 1.12 / 1000) * 1000;
+      valResultAmount.textContent = formatMoney(low) + " – " + formatMoney(high);
+      valResult.classList.add("show");
+      valResult.style.display = "block";
+      setBusy(btn, false);
     });
   }
 
@@ -93,7 +173,7 @@
 
   if(showProperty){
     var params = new URLSearchParams(window.location.search);
-    var listingId = params.get("listing");
+    var listingId = params.get("listing_id") || params.get("listing");
     if(listingId){
       showProperty.value = listingId;
     }
@@ -103,11 +183,7 @@
     showingForm.addEventListener("submit", function(e){
       e.preventDefault();
       if(!showTime.value){
-        showingConfirm.className = "confirm-msg show";
-        showingConfirm.style.background = "#fff7ed";
-        showingConfirm.style.borderColor = "#fdba74";
-        showingConfirm.style.color = "#9a3412";
-        showingConfirm.textContent = "Pick a time slot to continue.";
+        showStatus(showingConfirm, "Pick a time slot to continue.", true);
         return;
       }
       var listingId = showProperty ? showProperty.value : "";
@@ -115,7 +191,7 @@
       var when = (showDate && showDate.value ? showDate.value : "your date") + " · " + showTime.value;
       var name = (document.getElementById("showName") || {}).value || "Guest";
       var submitBtn = showingForm.querySelector("button[type=submit]");
-      if(submitBtn) submitBtn.disabled = true;
+      setBusy(submitBtn, true);
 
       var endpoint = window.ACRELINE && window.ACRELINE.restUrl ? window.ACRELINE.restUrl + "bookings" : "";
       var payload = {
@@ -134,16 +210,18 @@
         showingConfirm.style.background = "";
         showingConfirm.style.borderColor = "";
         showingConfirm.style.color = "";
-        showingConfirm.innerHTML = "<span><strong>Showing requested.</strong> " + (message || (name + " — " + propLabel + " on " + when)) + "</span>";
+        var text = message || (name + " — " + propLabel + " on " + when);
+        showingConfirm.innerHTML = "<span>" + text + "</span>";
+        if(submitBtn){
+          submitBtn.disabled = true;
+          submitBtn.setAttribute("aria-disabled", "true");
+          submitBtn.textContent = "Requested";
+        }
       }
 
       function showErr(message){
-        if(submitBtn) submitBtn.disabled = false;
-        showingConfirm.className = "confirm-msg show";
-        showingConfirm.style.background = "#fff7ed";
-        showingConfirm.style.borderColor = "#fdba74";
-        showingConfirm.style.color = "#9a3412";
-        showingConfirm.textContent = message || "Could not save this showing. Try again.";
+        setBusy(submitBtn, false);
+        showStatus(showingConfirm, message || "Could not save this showing. Try again.", true);
       }
 
       if(!endpoint){

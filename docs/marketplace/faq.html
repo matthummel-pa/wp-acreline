@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acreline — FAQ</title>
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <p class="site-bar">Acreline documentation · ThemeForest / own-site pack · Fiction only</p>
+  <header class="doc-head">
+    <div class="doc-head-inner">
+      <a class="brand-lockup" href="index.html">
+        <img src="assets/acreline-mark.svg" width="40" height="40" alt="">
+        <span><strong>Acreline</strong><span>Farms · land · historic homes</span></span>
+      </a>
+      <nav class="docs-nav" aria-label="Documentation">
+        <a href="index.html">Contents</a>
+        <a href="buyer-guide.html">Install &amp; setup</a>
+        <a href="branding.html">Branding</a>
+        <a href="customizer.html">Customizer</a>
+        <a href="listings.html">Listings</a>
+        <a href="support.html">Support</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+<h1>Frequently asked questions</h1>
+      <h2>Install</h2>
+      <h3>Where do I change the phone number?</h3>
+      <p>Appearance → Customize → Identity.</p>
+      <h3>How do I hide the concept demo banner?</h3>
+      <p>Customize → Identity → uncheck “Show concept demo banner and author badge.” Uncheck the credit box to drop the footer author line. WordPress.org expects the buyer’s copyright only.</p>
+      <h3>The theme folder was renamed and styles broke.</h3>
+      <p>Rename it back to <code>acreline</code>. Compiled CSS/JS URLs use that path. Do not install the outer pack zip as a theme.</p>
+      <h3>White screen after upload?</h3>
+      <p>Confirm PHP 8.3+ and that you uploaded the inner <code>acreline.zip</code> (it must contain <code>style.css</code>, <code>functions.php</code>, <code>vendor/</code>, and <code>public/build/</code>). After Blade edits on a source checkout, run <code>wp acorn view:clear</code>.</p>
+      <h2>Editor</h2>
+      <h3>Where is Gutenberg / Elementor?</h3>
+      <p>Not included. Gutenberg optimized = No. Pages, listings, and agents use classic metaboxes on purpose.</p>
+      <h3>Can I use a child theme?</h3>
+      <p>Yes. The pack includes <code>acreline-child</code>. See <a href="child-theme.html">child-theme.html</a>.</p>
+      <h2>Inventory</h2>
+      <h3>Where do listings live?</h3>
+      <p>The <code>listing</code> post type. Acreline Core owns registration on a store install. The theme still registers the types when the plugin is missing so the concept site keeps working.</p>
+      <h3>Does this sync a live MLS or IDX?</h3>
+      <p>No. MLS numbers on sample cards are display-only. There is no RETS/Web API feed and no payment processor.</p>
+      <h3>Book showing 404s with <code>?listing=123</code>.</h3>
+      <p>Use <code>?listing_id=123</code> (the listing post ID). See <a href="listings.html">listings.html</a>.</p>
+      <h3>Do showing requests email the office?</h3>
+      <p>No. They create a Booking post in Requested status. Demo emails at <code>@acreline-concept.test</code> do not reach an inbox.</p>
+      <h2>SEO and credits</h2>
+      <h3>Can I use Yoast or Rank Math?</h3>
+      <p>Yes. Native title / description / canonical / Open Graph / Twitter tags yield when those plugins are active.</p>
+      <h3>Must I keep the author credit?</h3>
+      <p>No. Uncheck it under Identity. The remaining footer line is the site name and year. The optional credit uses <code>rel="nofollow"</code>.</p>
+      <h2>Photos</h2>
+      <h3>Why are listing photos missing offline?</h3>
+      <p>Concept photos are Unsplash hotlinks. They are not in the zip. Replace them from the Media Library on a client site.</p>
+  </main>
+  <footer class="doc-foot">Fiction only · Equal Housing Opportunity (concept) · Theme license GPLv2 or later · Created by Matt Hummel</footer>
+  <script src="assets/docs.js"></script>
+</body>
+</html>
+

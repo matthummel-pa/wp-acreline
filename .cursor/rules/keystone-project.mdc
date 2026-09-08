@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Acreline WordPress theme
 
-Sage 11 WordPress **theme only** (`wp-content/themes/acreline`). **Theme Name:** Acreline. Repo: `matthummel-pa/keystone-homes-wp-theme`. WordPress core is not in this repo. The sample brokerage in the preview stays Acreline until Identity is changed.
+Sage 11 WordPress **theme only** (`wp-content/themes/acreline`). **Theme Name:** Acreline. Repo: `matthummel-pa/wp-acreline`. WordPress core is not in this repo. The sample brokerage in the preview stays Acreline until Identity is changed.
 
 Matt Hummel is the owner (marketer) and theme Author (`style.css` Author / Author URI: https://matthummel.com/). Prefer working in code. Keep copy editorial — rural farms, historic homes, and acreage in a **sample county** a buyer can rename — not generic luxury-broker voice and not a Gettysburg / Adams County-only brand story. Township filter **values** stay `Cumberland` / `Straban` / `Franklin`; labels are North Ridge / Mill Creek / Oak Hollow.
 
@@ -26,7 +26,7 @@ Listings, agents, phones, emails, appointments, and market stats are **sample / 
 | **Theme** | Blade, CSS, JS, PHP, field defaults | Merge to `main` → GitHub Action publishes `theme-latest` zip → **Appearance → Update Theme** on the host |
 | **Content** | Pages, listings, agents, posts, `ks_*` meta, options | Lives in WordPress. Editing theme files does not change live posts |
 
-Live concept site: https://keystonehomes.ridgesandvalleys.com/
+Live concept site: https://acreline.matthummel.com/
 
 CI **does not FTP** to the host. Do not assume a theme PR is live until the zip is installed.
 
@@ -34,9 +34,20 @@ CI **does not FTP** to the host. Do not assume a theme PR is live until the zip 
 
 Card chrome is locked in `resources/css/card-lock.css` (imported last from `app.css`). White faces, thin `--shadow-rest`, no green bars, large grey tour-step numbers. Edit a component in `keystone.css` if you need layout — do not delete the lock, and do not re-open older PRs that rewrite the whole sheet from a pre-#23 `main`.
 
+## Gutenberg (enabled)
+
+Gutenberg is **on** for `page` and `post`. CPTs (`listing`, `booking`, `agent`) still use classic metaboxes.
+
+- Custom blocks are registered in `app/blocks.php` and `resources/js/blocks/index.js`.
+- Page copy fields migrated from `ks_*` meta into block attributes — do not recreate the old `ks_page_fields` metabox.
+- Site-wide settings (phone, address, social, hours) remain in **Appearance → Customize → Identity**.
+- Full-site editing (FSE) remains **off** (`remove_theme_support('block-templates')`).
+- Custom block generator: **Tools → Block Generator** for no-code block creation.
+- Migration tool: **Tools → Migrate to Blocks** converts legacy meta to block content.
+
 ## Do not
 
-- Enable the block editor or Gutenberg patterns
+- Re-disable Gutenberg for `page` or `post` post types
 - Treat this repo as a full WordPress install
 - Put secrets in the theme. GitHub token lives in Customizer / `KS_GITHUB_TOKEN`, never commit it
 - Document rare setup steps here — see `AGENTS.md` and `README.md`

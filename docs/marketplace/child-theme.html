@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acreline — Child theme</title>
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <p class="site-bar">Acreline documentation · ThemeForest / own-site pack · Fiction only</p>
+  <header class="doc-head">
+    <div class="doc-head-inner">
+      <a class="brand-lockup" href="index.html">
+        <img src="assets/acreline-mark.svg" width="40" height="40" alt="">
+        <span><strong>Acreline</strong><span>Farms · land · historic homes</span></span>
+      </a>
+      <nav class="docs-nav" aria-label="Documentation">
+        <a href="index.html">Contents</a>
+        <a href="buyer-guide.html">Install &amp; setup</a>
+        <a href="branding.html">Branding</a>
+        <a href="customizer.html">Customizer</a>
+        <a href="listings.html">Listings</a>
+        <a href="support.html">Support</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+<h1>Keep CSS through parent updates</h1>
+      <p>The pack includes <code>acreline-child.zip</code>. Activate it <em>after</em> the parent so WordPress still finds templates in <code>acreline</code>.</p>
+      <table class="fields">
+        <tbody>
+          <tr><th>Theme Name</th><td>Acreline Child</td></tr>
+          <tr><th>Template</th><td><code>acreline</code> (must match the parent folder)</td></tr>
+          <tr><th>Text domain</th><td><code>acreline-child</code></td></tr>
+        </tbody>
+      </table>
+      <h2>What to edit</h2>
+      <ul>
+        <li>Put CSS overrides in the child <code>style.css</code>. Parent styles already load from compiled Sage assets; the child file is extra.</li>
+        <li>Add PHP in the child <code>functions.php</code> (hooks only — do not copy the parent file).</li>
+        <li>Do not edit parent Blade or PHP if you want clean updates from the <code>theme-latest</code> zip or a new marketplace download.</li>
+      </ul>
+      <h2>Install</h2>
+      <ol>
+        <li>Appearance → Themes → Add New → Upload Theme → <code>acreline-child.zip</code>.</li>
+        <li>Activate <strong>Acreline Child</strong>.</li>
+        <li>Re-assign menus if WordPress dropped them (rare; check Appearance → Menus).</li>
+      </ol>
+      <h2>Folder name</h2>
+      <p>The parent folder must stay <code>acreline</code>. Renaming it breaks Vite asset URLs and the child <code>Template:</code> header.</p>
+  </main>
+  <footer class="doc-foot">Fiction only · Equal Housing Opportunity (concept) · Theme license GPLv2 or later · Created by Matt Hummel</footer>
+  <script src="assets/docs.js"></script>
+</body>
+</html>
+

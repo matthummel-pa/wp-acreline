@@ -31,7 +31,7 @@ class Identity
 
         $desc = (string) get_bloginfo('description', 'display');
 
-        return $desc !== '' ? $desc : __('Concept demo', 'acreline');
+        return $desc !== '' ? $desc : __('Farms · land · historic homes', 'acreline');
     }
 
     public static function phone(): string
@@ -77,7 +77,7 @@ class Identity
             return $blurb;
         }
 
-        return __('Concept realtor site by Matt Hummel. Fiction only — not a licensed brokerage or live MLS feed.', 'acreline');
+        return __('Acreline sample office by Matt Hummel. Fiction only — not a licensed brokerage or live MLS feed.', 'acreline');
     }
 
     public static function ctaLabel(): string
@@ -113,7 +113,7 @@ class Identity
     {
         $text = trim((string) get_theme_mod('ks_credit_text', ''));
 
-        return $text !== '' ? $text : __('Concept by Matt Hummel', 'acreline');
+        return $text !== '' ? $text : __('Theme by Matt Hummel', 'acreline');
     }
 
     public static function creditUrl(): string

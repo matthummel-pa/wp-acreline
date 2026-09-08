@@ -41,6 +41,10 @@ class Seo
      */
     public static function titleParts(array $parts): array
     {
+        if (self::pluginOwnsHead()) {
+            return $parts;
+        }
+
         if (is_front_page()) {
             return [
                 'title' => self::siteName().' | Homes, Farms & Land',

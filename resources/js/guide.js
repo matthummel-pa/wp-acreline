@@ -42,6 +42,11 @@
 
   /* ============================= PRE-QUALIFICATION ============================= */
   var pqForm = document.getElementById("preQualForm");
+  var pqResult = document.getElementById("pqResult");
+  if(pqResult){
+    pqResult.setAttribute("role", "status");
+    pqResult.setAttribute("aria-live", "polite");
+  }
   if(pqForm){
     pqForm.addEventListener("submit", function(e){
       e.preventDefault();
@@ -61,7 +66,7 @@
       var maxPrice = loanAmount + down;
 
       document.getElementById("pqAmount").textContent = currency(maxPrice);
-      document.getElementById("pqResult").style.display = "flex";
+      if(pqResult) pqResult.style.display = "flex";
     });
   }
 
@@ -70,8 +75,16 @@
   if(schForm){
     schForm.addEventListener("submit", function(e){
       e.preventDefault();
-      document.getElementById("scheduleConfirm").classList.add("show");
-      this.reset();
+      var btn = schForm.querySelector("button[type=submit]");
+      if(btn){
+        if(!btn.dataset.label) btn.dataset.label = btn.textContent;
+        btn.disabled = true;
+        btn.setAttribute("aria-disabled", "true");
+        btn.textContent = "Sending…";
+      }
+      var confirm = document.getElementById("scheduleConfirm");
+      if(confirm) confirm.classList.add("show");
+      if(btn) btn.textContent = "Requested";
     });
     try{
       var dateInput = document.getElementById("schDate");

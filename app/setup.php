@@ -12,14 +12,21 @@ use Illuminate\Support\Facades\Vite;
 /**
  * Inject styles into the block editor.
  *
+ * Loads the full frontend stylesheet (app.css) so blocks render with the
+ * same design tokens, typography, and card chrome as the public site.
+ * Editor-specific overrides (hero height cap, disabled form opacity, etc.)
+ * are applied on top via editor.css.
+ *
  * @return array
  */
 add_filter('block_editor_settings_all', function ($settings) {
-    $style = Vite::asset('resources/css/editor.css');
+    // Full frontend design system — tokens, sections, cards, hero, etc.
+    $appStyle = Vite::asset('resources/css/app.css');
+    $settings['styles'][] = ['css' => "@import url('{$appStyle}')"];
 
-    $settings['styles'][] = [
-        'css' => "@import url('{$style}')",
-    ];
+    // Editor-only overrides (loaded after app.css so they win).
+    $editorStyle = Vite::asset('resources/css/editor.css');
+    $settings['styles'][] = ['css' => "@import url('{$editorStyle}')"];
 
     return $settings;
 });
@@ -183,30 +190,33 @@ add_action('after_setup_theme', function () {
  * @return void
  */
 /**
- * Classic custom-field editing only — no Gutenberg, patterns, or FSE.
+ * Gutenberg is enabled for page and post.
+ * CPTs (listing, booking, agent) keep classic metabox editing.
  */
-add_filter('use_block_editor_for_post', '__return_false', 100);
-add_filter('use_block_editor_for_post_type', '__return_false', 100);
+add_filter('use_block_editor_for_post_type', function (bool $enabled, string $postType): bool {
+    if (in_array($postType, ['listing', 'booking', 'agent'], true)) {
+        return false;
+    }
+
+    return $enabled;
+}, 100, 2);
+
 add_filter('use_widgets_block_editor', '__return_false');
 add_filter('should_load_remote_block_patterns', '__return_false');
-add_filter('should_load_block_editor_scripts_and_styles', '__return_false');
 
 add_action('init', function () {
-    foreach (['post', 'page', 'listing', 'booking', 'agent'] as $type) {
+    foreach (['listing', 'booking', 'agent'] as $type) {
         remove_post_type_support($type, 'editor');
         remove_post_type_support($type, 'trackbacks');
     }
+    // Ensure page and post retain editor support for Gutenberg.
+    add_post_type_support('page', 'editor');
+    add_post_type_support('post', 'editor');
 }, 100);
 
+// Core block patterns are disabled; only Acreline patterns are registered via app/blocks.php.
 add_action('init', function () {
-    if (! class_exists(\WP_Block_Patterns_Registry::class) || ! function_exists('unregister_block_pattern')) {
-        return;
-    }
-    foreach (\WP_Block_Patterns_Registry::get_instance()->get_all_registered() as $pattern) {
-        if (! empty($pattern['name'])) {
-            unregister_block_pattern($pattern['name']);
-        }
-    }
+    remove_theme_support('core-block-patterns');
 }, 99);
 
 add_action('widgets_init', function () {

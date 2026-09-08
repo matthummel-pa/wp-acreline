@@ -1,9 +1,9 @@
 {
-  "name": "matthummel/acreline",
+  "name": "matthummel-pa/wp-acreline",
   "type": "wordpress-theme",
   "license": "MIT",
   "description": "Acreline — Sage 11 WordPress theme for rural listings, agents, and showing requests",
-  "homepage": "https://roots.io/sage/",
+  "homepage": "https://github.com/matthummel-pa/wp-acreline",
   "authors": [
     {
       "name": "Matt Hummel",
@@ -34,7 +34,9 @@
     "wordpress"
   ],
   "support": {
-    "issues": "https://github.com/roots/sage/issues",
+    "issues": "https://github.com/matthummel-pa/wp-acreline/issues",
+    "source": "https://github.com/matthummel-pa/wp-acreline",
+    "docs": "https://github.com/matthummel-pa/wp-acreline/blob/main/SUPPORT.md",
     "forum": "https://discourse.roots.io/"
   },
   "autoload": {

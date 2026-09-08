@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Acreline">
+  <rect width="48" height="48" rx="12" fill="#141210"/>
+  <path d="M8 23.5 24 10l16 13.5V38H8V23.5Z" fill="#1f6b4a"/>
+  <path d="M24 10 40 23.5H8L24 10Z" fill="#155539"/>
+  <rect x="20" y="26" width="8" height="12" fill="#fffcf7"/>
+  <rect x="12" y="27" width="5" height="4" fill="#fffcf7" opacity=".4"/>
+</svg>

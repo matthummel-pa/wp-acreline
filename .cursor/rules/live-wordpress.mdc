@@ -1,17 +1,18 @@
 ---
-description: Seeding or editing the live Keystone WordPress site (WPVibe, WP-CLI emulator, host cache)
+description: Seeding or editing the live Acreline WordPress site (WPVibe, WP-CLI emulator, host cache)
 alwaysApply: false
 ---
 
 # Live WordPress
 
-Use when Matt asks to add/fix **content** on https://keystonehomes.ridgesandvalleys.com/ — not when the task is theme-only.
+Use when Matt asks to add/fix **content** on https://acreline.matthummel.com/ — not when the task is theme-only.
 
 ## What the live site is
 
-- Theme slug `acreline`. Connected via WPVibe (`vibe-ai`).
+- Live demo: https://acreline.matthummel.com/ (admin user `matthummel`). Theme slug `acreline`. Connected via WPVibe (`vibe-ai`).
 - Content is already seeded: Home `#12`, marketing pages, 8 listings, 3 agents, 3 posts. Front page = page 12, posts page = Blog.
 - Installing a new theme zip does **not** recreate posts. Missing fields → empty headings unless Blade has `?:` fallbacks.
+- Theme updates: CI publishes `theme-latest` on GitHub; install via **Appearance → Update Theme**, or a one-shot WPCode snippet if Matt set one up. Do not assume a merged PR is live until the zip is installed.
 
 ## Writes (WPVibe)
 

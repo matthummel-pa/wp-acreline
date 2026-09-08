@@ -141,7 +141,8 @@
     flex-direction:column;
     align-items:stretch;
   }
-  .header-phone{min-height:44px;}
+  .header-phone{min-height:44px;width:auto;}
+  .map-pin{min-width:44px;min-height:44px;}
   .modal-overlay{padding:12px 10px;}
   .modal-body{padding:18px 16px;}
   .modal-gallery{

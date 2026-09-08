@@ -59,6 +59,7 @@ class DemoContent
         self::cpts();
         self::menus();
         self::attachHeroImages();
+        self::buildPageBlocks();
         self::cleanupDefaults();
         flush_rewrite_rules(false);
     }
@@ -72,7 +73,7 @@ class DemoContent
 
         $tagline = (string) get_option('blogdescription');
         if ($tagline === '' || $tagline === 'Just another WordPress site') {
-            update_option('blogdescription', 'Concept demo · Fiction only');
+            update_option('blogdescription', 'Farms · land · historic homes');
         }
     }
 
@@ -255,7 +256,7 @@ class DemoContent
                 'showing_time' => '10:30 AM',
                 'showing_type' => 'in-person',
                 'client_name' => 'Alex Buyer',
-                'client_email' => 'alex@example.test',
+                'client_email' => 'alex@acreline-concept.test',
                 'client_phone' => '(555) 010-0199',
                 'notes' => 'Seeded sample request so the Bookings pipeline is visible.',
                 'status' => 'requested',
@@ -392,8 +393,16 @@ class DemoContent
     private static function upsertCpt(string $type, string $slug, string $title, array $meta, string $content = ''): int
     {
         $id = self::upsertPost($type, $slug, $title, $content);
+        $featured = null;
+        if (array_key_exists('featured', $meta)) {
+            $featured = Catalog::isFeaturedFlag($meta['featured']);
+            unset($meta['featured']);
+        }
         foreach ($meta as $key => $value) {
             Catalog::updateMeta($id, (string) $key, $value);
+        }
+        if ($featured !== null) {
+            Catalog::setFeaturedFlag($id, $featured);
         }
 
         return $id;
@@ -407,13 +416,19 @@ class DemoContent
             'post_status' => 'publish',
             'post_title' => $title,
             'post_name' => $slug,
-            'post_content' => $content,
             'post_excerpt' => $excerpt,
         ];
+
         if ($id > 0) {
+            // Preserve existing block content so re-seeding doesn't wipe Gutenberg markup.
+            $existing = get_post($id);
+            $existingContent = $existing instanceof \WP_Post ? $existing->post_content : '';
+            $preserveBlocks = $content === '' && str_contains($existingContent, '<!-- wp:');
+            $payload['post_content'] = $preserveBlocks ? $existingContent : $content;
             $payload['ID'] = $id;
             wp_update_post($payload);
         } else {
+            $payload['post_content'] = $content;
             $id = (int) wp_insert_post($payload, true);
             if ($id <= 0) {
                 return 0;
@@ -471,6 +486,31 @@ class DemoContent
 
         foreach (PageCopy::schemaForPost($id) as $key => $def) {
             update_post_meta($id, Catalog::metaKey($key), $def['default'] ?? '');
+        }
+    }
+
+    /**
+     * Populate post_content with Gutenberg block markup for all seeded pages.
+     * Runs after attachHeroImages() so the hero image URL resolves correctly.
+     */
+    public static function buildPageBlocks(): void
+    {
+        $slugs = ['home', 'listings', 'areas', 'guide', 'agents', 'contact', 'book', 'blog'];
+        foreach ($slugs as $slug) {
+            $id = self::findId('page', $slug);
+            if ($id <= 0) {
+                continue;
+            }
+            $post = get_post($id);
+            if (! $post instanceof \WP_Post) {
+                continue;
+            }
+            // Skip pages that already have block content (idempotent).
+            if (str_contains($post->post_content, '<!-- wp:')) {
+                continue;
+            }
+            BlockMigration::migrate($id);
+            BlockMigration::markMigrated($id);
         }
     }
 }

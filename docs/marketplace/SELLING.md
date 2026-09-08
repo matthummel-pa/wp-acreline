@@ -6,13 +6,13 @@ This is the seller brief — not buyer docs. Buyer HTML is `buyer-guide.html`.
 
 Realtor themes on Envato move when the demo looks like a working office: search → listings → agent → book a showing. You already have that. Buyers pay for **identity Customizer, menus, a child theme, and a plugin that keeps listings after they switch themes** — not for another “luxury brokerage” skin.
 
-Price band for a niche land/farms theme: **$39–$69** on ThemeForest, **$49–$79** on your own checkout (Gumroad / Lemon Squeezy). Keep the own-site price higher; Envato takes a large cut.
+Price band for a niche land/farms theme: **$39–$69** on ThemeForest, **$79** on your own checkout ([matthummel.com/product/acreline/](https://matthummel.com/product/acreline/)). Product landing / ads: [matthummel.com/projects/acreline/](https://matthummel.com/projects/acreline/) (legacy `/concept/acreline/` redirects here). Keep the own-site price higher; Envato takes a large cut.
 
 ## Channel by channel
 
 | Channel | Ship | Do not claim |
 | --- | --- | --- |
-| **Own site** | Full pack from `bin/build-marketplace-pack.sh` | Nothing. Best margin. |
+| **Own site** | Full pack + WooCommerce on matthummel.com | Nothing. Best margin. Landing: `/projects/acreline/`. |
 | **ThemeForest / Creative Market** | Same pack + live preview URL | “#1 realtor theme.” Show the sample-county land/farms concept honestly. |
 | **WordPress.org** | Theme zip only. No plugin inside the theme. CPTs off (`KS_DISABLE_THEME_CPTS`). `readme.txt` + 1200×900 screenshot | “Approved” or “in the picker” until a reviewer says so. Sage + Acorn + Gutenberg-off is a common rejection. Use WP.org later as a **lite** traffic listing, or list **Acreline Core** as a free plugin and sell setup. |
 
@@ -27,19 +27,21 @@ bin/build-marketplace-pack.sh     # same files + this brief copied beside them
 
 Creates `dist-install/`:
 
-- `acreline-1.2.0.zip` — **upload this to ThemeForest / Gumroad** (folder inside: `acreline-pack/`)
+- `acreline-1.2.3.zip` — **upload this to ThemeForest / Gumroad** (folder inside: `acreline-pack/`)
 - `acreline-pack/acreline.zip` — what the buyer uploads in Appearance → Themes
 - `acreline-pack/acreline-child.zip`
 - `acreline-pack/acreline-core.zip`
-- `acreline-pack/Documentation/requirements.html` — host needs + listing fields to paste
-- `acreline-pack/Documentation/buyer-guide.html`
-- `acreline-pack/Documentation/support.html`
+- `acreline-pack/Documentation/index.html` — Envato-style docs hub (open this first)
+- `acreline-pack/Documentation/` — buyer-guide, branding, customizer, templates, listings, child-theme, translation, faq, requirements, support, sources, credits, changelog
+- `acreline-pack/Documentation/assets/` and `screenshots/`
 - `acreline-pack/Demos/README.txt`
-- `acreline-pack/Licensing/CREDITS.md`
+- `acreline-pack/Licensing/CREDITS.md`, `LICENSE.md`, `license.txt`
 
-`SELLING.md` stays in the repo and in `dist-marketplace/SELLING.md` only. It is **not** inside the buyer zip.
+`SELLING.md`, `themeforest-listing.md`, and `wordpress-org.md` stay in the repo (and `SELLING.md` is copied beside the pack in `dist-marketplace/`). They are **not** inside the buyer zip.
 
 Upload the **outer** `acreline-*.zip` to Envato (“All files & documentation”). Buyers extract it, then upload `acreline.zip`. Upload **only** `acreline.zip` if you try WordPress.org.
+
+Paste-ready ThemeForest title, excerpt, long description, and attributes: `docs/marketplace/themeforest-listing.md`. WP.org upload rules and Theme Check blockers: `docs/marketplace/wordpress-org.md`.
 
 ## Before you submit anywhere
 
@@ -61,7 +63,7 @@ A future “Acreline Lite” without Acorn would have a real shot at the picker.
 
 ## GitHub repo About (paste in Settings → General)
 
-`gh` in this workspace cannot write repo metadata. After merge, paste these on https://github.com/matthummel-pa/keystone-homes-wp-theme/settings :
+GitHub repo is **`matthummel-pa/wp-acreline`**. Paste these on https://github.com/matthummel-pa/wp-acreline/settings :
 
 **Description** (under 350 characters; this is the search snippet):
 
@@ -69,16 +71,16 @@ A future “Acreline Lite” without Acorn would have a real shot at the picker.
 Acreline is a WordPress theme for farms, land, and historic homes — searchable listings, agents, and showing requests. Customizer identity, eight color styles, Sage 11. Demo and support by Matt Hummel.
 ```
 
-**Website** (points at the support page, not only the demo):
+**Website** (product landing + support):
 
 ```
-https://github.com/matthummel-pa/keystone-homes-wp-theme/blob/main/SUPPORT.md
+https://matthummel.com/projects/acreline/
 ```
 
 **Topics:** `wordpress-theme`, `wordpress`, `real-estate`, `realtor`, `farms`, `land`, `sage`, `acreline`
 
-Leave the demo URL in `style.css` Theme URI. The repo Website field is the support page so GitHub’s “About” sidebar sends people to help, not a second concept HTML demo.
+Leave the live demo URL in `style.css` Theme URI. Brand kit for screenshots and ads: [`BRAND.md`](../../BRAND.md).
 
 ## After a sale
 
-Buyer path is Appearance → Acreline Setup. Do not add a license server unless a marketplace requires it. Envato purchase codes are their problem, not a theme options lock.
+Buyer path is Appearance → Acreline Setup (multi-step wizard). Do not add a license server unless a marketplace requires it. Envato purchase codes are their problem, not a theme options lock.
