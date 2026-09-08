@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1
+
+- Single blog posts no longer fatal: adjacent / related post data is passed as arrays, not invokable view variables
+
 ## 1.3.0
 
 - **Setup wizard** under Appearance → Acreline Setup: Welcome → Identity → Colors → Demo → Done

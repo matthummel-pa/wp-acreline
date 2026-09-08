@@ -21,7 +21,7 @@
           @php(the_content())
         </div>
 
-        @if ($pagination())
+        @if ($pagination)
           <nav class="page-nav" aria-label="Page">
             {!! $pagination !!}
           </nav>

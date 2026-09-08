@@ -19,6 +19,24 @@ class Post extends Composer
     ];
 
     /**
+     * Resolve invokable composer methods to plain values.
+     * Acorn skips extractPublicMethods() when with() is non-empty, so every
+     * blade variable this composer owns must be listed here.
+     */
+    public function with(): array
+    {
+        return [
+            'title' => $this->title(),
+            'pagination' => $this->pagination(),
+            'postEyebrow' => $this->postEyebrow(),
+            'postLede' => $this->postLede(),
+            'readingMinutes' => $this->readingMinutes(),
+            'adjacentPosts' => $this->adjacentPosts(),
+            'relatedPosts' => $this->relatedPosts(),
+        ];
+    }
+
+    /**
      * Retrieve the post title.
      */
     public function title(): string
