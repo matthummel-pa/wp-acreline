@@ -30,7 +30,7 @@
 .booking-times legend{
   margin:0 0 10px;
   font-family:var(--ff-mono);font-size:.68rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--ink-faint);font-weight:500;
+  text-transform:uppercase;color:var(--ink-soft);font-weight:600;
 }
 .toolbar-actions,
 .modal-actions{
