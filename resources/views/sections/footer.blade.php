@@ -36,7 +36,7 @@
         @include('partials.social-links')
       </div>
       <div>
-        <h2 class="footer-heading">{{ __('Office', 'acreline') }}</h2>
+        <h3 class="footer-heading">{{ __('Office', 'acreline') }}</h3>
         <address>
           {!! nl2br(esc_html($identity['address'] ?? '')) !!}<br>
           <a href="{{ esc_url($phoneHref) }}">{{ $phone }}</a><br>
@@ -44,11 +44,11 @@
         </address>
       </div>
       <div>
-        <h2 class="footer-heading">{{ __('Hours', 'acreline') }}</h2>
+        <h3 class="footer-heading">{{ __('Hours', 'acreline') }}</h3>
         <p>{!! nl2br(esc_html($identity['hours'] ?? '')) !!}</p>
       </div>
       <nav aria-labelledby="footer-links-heading">
-        <h2 class="footer-heading" id="footer-links-heading">{{ __('Explore', 'acreline') }}</h2>
+        <h3 class="footer-heading" id="footer-links-heading">{{ __('Explore', 'acreline') }}</h3>
         <ul class="footer-links">
           @foreach ($explore as $item)
             <li><a href="{{ esc_url($item['url']) }}" @if(! empty($item['active'])) aria-current="page" @endif>{{ $item['label'] }}</a></li>

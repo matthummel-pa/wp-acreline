@@ -57,30 +57,35 @@
 <section class="section">
   <div class="wrap listing-single">
     <div class="listing-single-main">
-      <div class="listing-single-photo" style="@if ($listing['image']) background-image:url({{ $listing['image'] }});background-size:cover;background-position:center;@else background:{{ $listing['grad'] }};@endif"></div>
+      <div
+        class="listing-single-photo"
+        role="img"
+        aria-label="{{ esc_attr($listing['title']) }}"
+        style="@if ($listing['image']) background-image:url({{ $listing['image'] }});background-size:cover;background-position:center;@else background:{{ $listing['grad'] }};@endif"
+      ></div>
       <p class="modal-price">{{ \App\Support\Catalog::formatMoney((int) $listing['price']) }}</p>
       <div class="modal-specs">
         @if ($listing['type'] !== 'land')
-          <div><strong>{{ $listing['beds'] }}</strong><span>Beds</span></div>
-          <div><strong>{{ $listing['baths'] }}</strong><span>Baths</span></div>
-          <div><strong>{{ number_format((int) $listing['sqft']) }}</strong><span>Sq Ft</span></div>
+          <div><strong>{{ $listing['beds'] }}</strong><span>{{ __('Beds', 'acreline') }}</span></div>
+          <div><strong>{{ $listing['baths'] }}</strong><span>{{ __('Baths', 'acreline') }}</span></div>
+          <div><strong>{{ number_format((int) $listing['sqft']) }}</strong><span>{{ __('Sq Ft', 'acreline') }}</span></div>
         @endif
-        <div><strong>{{ $listing['acres'] }}</strong><span>Acres</span></div>
+        <div><strong>{{ $listing['acres'] }}</strong><span>{{ __('Acres', 'acreline') }}</span></div>
         @if ($listing['year_built'])
-          <div><strong>{{ $listing['year_built'] }}</strong><span>Year built</span></div>
+          <div><strong>{{ $listing['year_built'] }}</strong><span>{{ __('Year built', 'acreline') }}</span></div>
         @endif
       </div>
       <div class="prose">
         <p>{{ $listing['desc'] }}</p>
       </div>
       <div class="cta-actions" style="margin-top:24px">
-        <a class="btn btn-primary" href="{{ home_url('/book/') }}?listing_id={{ $listing['id'] }}">Book a showing</a>
-        <a class="btn btn-outline" href="{{ home_url('/listings') }}">All listings</a>
+        <a class="btn btn-primary" href="{{ home_url('/book/') }}?listing_id={{ $listing['id'] }}">{{ __('Book a showing', 'acreline') }}</a>
+        <a class="btn btn-outline" href="{{ home_url('/listings') }}">{{ __('All listings', 'acreline') }}</a>
       </div>
     </div>
     @if ($agent)
       <aside class="listing-agent-card">
-        <p class="eyebrow">Listing agent</p>
+        <p class="eyebrow">{{ __('Listing agent', 'acreline') }}</p>
         <h2><a href="{{ $agent['permalink'] }}">{{ $agent['name'] }}</a></h2>
         <p class="agent-title">{{ $agent['job_title'] }}</p>
         <p>{{ $agent['bio'] }}</p>
