@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.3.2
+
+- **Accessibility** — mobile nav close button is now a full 44×44 px touch target (WCAG 2.2 Target Size)
+- **Accessibility** — concept-badge raised to 44 px min-height; light-outline buttons show a white focus ring on dark hero backgrounds
+- **Accessibility** — footer column headings (`Office`, `Hours`, `Explore`) demoted from `h2` to `h3` for a correct document outline
+- **Accessibility** — `<main>` gets `tabindex="-1"` so keyboard skip links land and move focus correctly
+- **Accessibility** — header phone link carries a full accessible name (`Call 555…`) when the number is visually hidden at tablet widths
+- **Contrast** — form notes and booking time-slot legend raised from `--ink-faint` to `--ink-soft` for WCAG AA compliance
+- **Contrast** — footer copyright text opacity raised from 45 % to 58 %; calculator label from 60 % to 78 %; testimonial location and average promoted to `--ink-soft`
+- **Contrast** — hero search panel gets explicit `color-scheme: light` to prevent OS dark-mode from inverting field colours
+- **i18n** — hardcoded English strings in single listing, single agent, blog post single, and footer templates wrapped in `__()`; listing image alt text now uses the listing title
+- **Docs** — `SUPPORT.md` block-editor note corrected (Gutenberg is enabled for pages and posts)
+- **Docs** — `DEVELOPMENT.md` CSS architecture table updated with `responsive-forms.css` and `form-contrast.css`
+
 ## 1.3.1
 
 - Single blog posts no longer fatal: adjacent / related post data is passed as arrays, not invokable view variables

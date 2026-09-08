@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -26,7 +26,8 @@ House mark and wordmark (original SVG, GPLv2) ship in public/images/brand/. Supp
 
 * Appearance → Acreline Setup wizard (identity, colors, optional demo content)
 * Almost no plugins — theme zip is enough; optional Acreline Core and child theme
-* Custom fields on pages, listings, agents, and posts (classic metaboxes, not ACF)
+* Gutenberg block editor for pages and posts (21 custom dynamic blocks, no page builder or shortcodes)
+* Classic metaboxes for listings, agents, and bookings (no ACF required)
 * Customizer identity: brand, phone, email, address, hours, header button, removable author credit
 * Custom logo under Site Identity (replaces the Acreline house mark)
 * Eight color styles (Forest, Clay, Navy, Burgundy, Harvest, Lake, Orchard, Charcoal) plus accent, paper, and ink
@@ -117,6 +118,20 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.3.2 =
+* Accessibility: mobile nav close button raised to 44×44 px touch target (WCAG 2.2 Target Size).
+* Accessibility: concept-badge and light-outline-button focus rings now visible on dark backgrounds.
+* Accessibility: footer column headings downgraded from h2 to h3 for correct document outline.
+* Accessibility: main element gets tabindex="-1" so keyboard skip links land correctly.
+* Accessibility: header phone link carries a visible accessible name when the number is hidden at tablet widths.
+* Contrast: form-note and booking-times legend raised from ink-faint to ink-soft for WCAG AA.
+* Contrast: footer-bottom text opacity raised from .45 to .58; calc-result label from .60 to .78; testi-loc and testi-avg promoted to ink-soft.
+* Contrast: hero search panel gets explicit color-scheme:light to prevent OS dark-mode override.
+* i18n: hardcoded English strings in single-listing, single-agent, content-single, and footer wrapped in __().
+* i18n: listing image alt text populated from listing title.
+* Docs: SUPPORT.md block-editor statement corrected (Gutenberg is on for pages and posts).
+* Docs: DEVELOPMENT.md CSS architecture table updated with responsive-forms.css and form-contrast.css.
 
 = 1.3.1 =
 * Fix a critical error on single blog posts (adjacent/related post data passed as arrays, not invokable view variables).

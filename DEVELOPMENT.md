@@ -62,10 +62,12 @@ wp acorn view:clear --path="$HOME/wp" --allow-root
 | Path | Purpose |
 | --- | --- |
 | `resources/css/keystone.css` | Design tokens and component styles |
-| `resources/css/card-lock.css` | Card chrome — **do not delete or move** |
+| `resources/css/responsive-forms.css` | Touch targets (44 px min), phone/tablet form grids |
+| `resources/css/form-contrast.css` | WCAG AA contrast lock for selects and inputs (ink-on-white) |
+| `resources/css/card-lock.css` | Card chrome — **do not delete or move above `keystone.css`** |
 | `resources/css/block-options.css` | CSS modifier classes for block advanced settings |
 | `resources/css/editor.css` | Editor-only overrides (hero height caps, form pointer-events) |
-| `resources/css/app.css` | Entry — imports keystone, block-options, card-lock |
+| `resources/css/app.css` | Entry — imports keystone → responsive-forms → form-contrast → block-options → card-lock |
 | `resources/js/app.js` | Frontend JS entry |
 | `resources/js/blocks/index.js` | Gutenberg block registrations (separate Vite entry) |
 | `app/blocks.php` | Block `register_block_type()` + all PHP render callbacks |
@@ -226,10 +228,13 @@ Versions that disagree across these files will confuse the WP.org parser and the
 ## Design system notes
 
 - **`keystone.css`** — source of all tokens and component CSS. Edit layout/component CSS here.
+- **`responsive-forms.css`** — 44 px minimum touch targets, phone/tablet form layout. Do not touch `.step` / `.market-*` layout here (card-lock owns those).
+- **`form-contrast.css`** — locks selects and inputs to charcoal-on-white (`--field-text` / `--field-bg`). Loaded after `responsive-forms.css`; overrides Tailwind preflight's `color: inherit`.
 - **`card-lock.css`** — locked card chrome (white faces, thin shadow, no green bars). Imported **last** in `app.css`; do not delete or move it above `keystone.css`.
 - **`block-options.css`** — CSS modifier classes for block advanced settings. Class names must match what the PHP render callbacks emit.
 - **`editor.css`** — editor-only overrides, loaded after `app.css` in the block editor canvas.
 - Color tokens come from `Identity::cssVariables()` (Customizer-driven), overriding the defaults in `keystone.css :root`.
+- Accessibility target: WCAG 2.2 AA. Color contrast floors: `--ink` (#141210) on `--paper` (#f5f4f1), `--ink-soft` (#4a453d) for secondary text, `--ink-faint` (#7a7368) for decorative metadata only.
 
 ---
 
@@ -252,11 +257,13 @@ wp-acreline (git)
 │       └── DemoContent.php ← demo seed (pages + blocks + CPTs)
 ├── resources/
 │   ├── css/
-│   │   ├── app.css         ← entry (imports below)
-│   │   ├── keystone.css    ← design system + components
+│   │   ├── app.css           ← entry (import order matters)
+│   │   ├── keystone.css      ← design system + components
+│   │   ├── responsive-forms.css ← 44 px touch targets, phone/tablet grids
+│   │   ├── form-contrast.css ← WCAG AA contrast lock (ink-on-white fields)
 │   │   ├── block-options.css ← block advanced-setting CSS classes
-│   │   ├── editor.css      ← editor-only overrides
-│   │   └── card-lock.css   ← locked card chrome (last import)
+│   │   ├── editor.css        ← editor-only overrides
+│   │   └── card-lock.css     ← locked card chrome (MUST be last import)
 │   ├── js/
 │   │   ├── app.js          ← frontend JS entry
 │   │   └── blocks/

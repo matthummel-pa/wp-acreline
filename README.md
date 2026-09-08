@@ -1,5 +1,7 @@
 # Acreline — WordPress theme for farms, land, and historic homes
 
+[![Deploy theme zip](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml/badge.svg)](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml)
+
 **Acreline** is a WordPress real estate theme for rural land offices: searchable listings, agent profiles, and showing requests — built for farms, acreage, and historic homes, not a generic luxury brokerage skin.
 
 | | |

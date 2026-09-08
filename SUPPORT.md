@@ -30,24 +30,25 @@ There is no ticket desk or live chat in the theme. Envato item support follows t
 
 The theme zip is enough. Optional **Acreline Core** (listings survive a theme switch) and **Acreline Child** (CSS survives parent updates). Native SEO tags yield to Yoast / Rank Math / SEOPress / AIOSEO. Do not install ACF or Elementor to make fields appear — they are already metaboxes.
 
-## Custom fields, not the design
+## Custom fields and the block editor
 
-Identity, colors, header, typography, and logo: **Appearance → Customize**. Page / listing / agent / post copy: classic metaboxes. The block editor is off. Editing theme files does not change live posts.
+Identity, colors, header, typography, and logo: **Appearance → Customize**. Marketing pages and posts use the **Gutenberg block editor** (21 custom blocks). Listing, agent, and booking CPTs use classic metaboxes. Editing theme files does not change live posts.
 
 ## Before you file an issue
 
 1. Confirm the theme folder is still `acreline` and you ran `npm run build` (or installed a zip that already includes `public/build`).
-2. After Blade edits, clear Acorn views: `wp acorn view:clear`.
+2. After Blade edits, clear Acorn views: `wp acorn view:clear --allow-root`.
 3. Identity, colors, and the header live under **Appearance → Customize**.
 4. Include WordPress version, PHP version, theme version, and whether Acreline Core is active.
+5. For block editor issues (blank canvas, SSR preview errors), confirm Acorn booted: `wp acorn key:generate` if needed.
 
 ## What this theme does not do
 
 - Sync a live MLS or IDX feed
 - Process payments or hold real appointments
 - Replace a licensed brokerage or CRM
-- Ship Gutenberg / block-editor patterns
 - Require ACF, Elementor, or a page builder
+- Connect to full-site editing (FSE) — the theme uses classic templates
 
 ## Marketplace buyers
 
