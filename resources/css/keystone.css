@@ -993,6 +993,30 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
   grid-column:1/-1;margin:0;color:var(--ink-soft);font-size:.95rem;
 }
 
+.review-card__head{
+  display:flex;align-items:center;gap:12px;margin:0 0 16px;
+}
+.review-card__photo{
+  width:52px;height:52px;flex:none;border-radius:50%;
+  object-fit:cover;background:var(--paper-2);border:1px solid var(--line);
+}
+.review-card__photo--fallback{
+  display:grid;place-items:center;
+  font-family:var(--ff-display);font-weight:700;font-size:.85rem;
+  letter-spacing:.04em;color:var(--accent);background:var(--accent-soft);
+}
+.review-card__identity{min-width:0;display:grid;gap:2px;}
+.review-card__author{margin:0;}
+.review-card__meta{margin:6px 0 0;flex-wrap:wrap;gap:8px 10px;}
+.review-card__time{
+  font-family:var(--ff-mono);font-size:.72rem;color:var(--ink-faint);
+  letter-spacing:.06em;
+}
+.testi blockquote.review-card__text,.testi blockquote.review-card__text,.review-card__text{margin:0;}
+.reviews-empty{
+  grid-column:1/-1;margin:0;color:var(--ink-soft);font-size:.95rem;
+}
+
 /* CTA */
 .cta-band{
   background:linear-gradient(135deg,#141210 0%,#1a3d2e 100%);
