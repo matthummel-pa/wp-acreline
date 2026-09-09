@@ -51,6 +51,7 @@ function ks_register_blocks(): void
         'overlayPreset' => ['type' => 'string', 'default' => 'default'],
         'imagePosition' => ['type' => 'string', 'default' => 'center'],
         'textAlign' => ['type' => 'string', 'default' => 'left'],
+        'primaryBtnStyle' => ['type' => 'string', 'default' => 'primary'],
     ];
 
     $blocks = [
@@ -77,6 +78,7 @@ function ks_register_blocks(): void
                 'primaryUrl' => ['type' => 'string', 'default' => ''],
                 'secondaryLabel' => ['type' => 'string', 'default' => ''],
                 'secondaryUrl' => ['type' => 'string', 'default' => ''],
+                'secondaryBtnStyle' => ['type' => 'string', 'default' => 'outline-light'],
             ]),
         ],
         'acreline/intent-cards' => [
@@ -399,7 +401,7 @@ function ks_hero_class(array $attrs, string $base = 'hero'): string
     }
 
     $imgPos = sanitize_key((string) ($attrs['imagePosition'] ?? 'center'));
-    if (in_array($imgPos, ['top', 'bottom'], true)) {
+    if (in_array($imgPos, ['top', 'bottom', 'left', 'right'], true)) {
         $cls .= ' img-pos--'.$imgPos;
     }
 
@@ -445,6 +447,27 @@ function ks_veil_style(array $attrs): string
     }
 
     return 'opacity:'.number_format($opacity / 100, 2);
+}
+
+/**
+ * Map a block button-style slug to the correct CSS class string.
+ *
+ * @param string $style  Slug from the editor's SelectControl.
+ * @param string $extra  Any additional classes to append (e.g. 'btn-block').
+ */
+function ks_btn_class(string $style, string $extra = ''): string
+{
+    $map = [
+        'primary'       => 'btn btn-primary',
+        'outline-light' => 'btn btn-outline light',
+        'outline'       => 'btn btn-outline',
+        'white'         => 'btn btn-white',
+        'gold'          => 'btn btn-gold',
+        'ghost'         => 'btn btn-ghost',
+    ];
+    $cls = $map[$style] ?? 'btn btn-primary';
+
+    return $extra ? $cls.' '.$extra : $cls;
 }
 
 // ---------------------------------------------------------------------------
@@ -760,6 +783,7 @@ function ks_render_home_hero(array $attrs): string
     $imgUrl = esc_url(ks_hero_image_url($attrs));
     $heroClass = esc_attr(ks_hero_class($attrs, 'hero'));
     $veilStyle = ks_veil_style($attrs);
+    $primaryBtnClass = esc_attr(ks_btn_class(sanitize_key((string) ($attrs['primaryBtnStyle'] ?? 'primary'))));
     $bookUrl = esc_url(home_url('/book/'));
     $listUrl = esc_url(home_url('/listings'));
     $ldjson = ks_home_ldjson($identity);
@@ -817,7 +841,7 @@ function ks_render_home_hero(array $attrs): string
           </div>
           <div class="hero-search-actions">
             <a class="hero-search-link" href="<?php echo esc_url($listUrl); ?>"><?php echo esc_html($secondary); ?></a>
-            <button type="submit" class="btn btn-primary"><?php echo esc_html($primary); ?></button>
+            <button type="submit" class="<?php echo $primaryBtnClass; ?>"><?php echo esc_html($primary); ?></button>
           </div>
         </form>
       </div>
@@ -841,6 +865,8 @@ function ks_render_page_hero(array $attrs): string
     $thumbUrl = esc_url(ks_hero_image_url($attrs, (int) get_the_ID()));
     $heroClass = esc_attr(ks_hero_class($attrs, 'page-hero page-hero--photo'));
     $veilStyle = ks_veil_style($attrs);
+    $primaryBtnClass   = esc_attr(ks_btn_class(sanitize_key((string) ($attrs['primaryBtnStyle']   ?? 'primary'))));
+    $secondaryBtnClass = esc_attr(ks_btn_class(sanitize_key((string) ($attrs['secondaryBtnStyle'] ?? 'outline-light'))));
 
     ob_start();
     ?>
@@ -855,9 +881,9 @@ function ks_render_page_hero(array $attrs): string
         <h1 id="page-hero-heading"><?php echo $title; ?></h1>
         <?php if ($text) { ?><p><?php echo $text; ?></p><?php } ?>
         <div class="page-hero-cta">
-          <a class="btn btn-primary" href="<?php echo $pUrl; ?>"><?php echo $primary; ?></a>
+          <a class="<?php echo $primaryBtnClass; ?>" href="<?php echo $pUrl; ?>"><?php echo $primary; ?></a>
           <?php if ($secondary && $sUrl) { ?>
-            <a class="btn btn-outline light" href="<?php echo $sUrl; ?>"><?php echo $secondary; ?></a>
+            <a class="<?php echo $secondaryBtnClass; ?>" href="<?php echo $sUrl; ?>"><?php echo $secondary; ?></a>
           <?php } ?>
         </div>
       </div>
