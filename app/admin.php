@@ -62,6 +62,35 @@ add_action('admin_head', function (): void {
 
 // ─── Listing metabox ────────────────────────────────────────────────────────
 
+add_action('admin_enqueue_scripts', function (string $hook): void {
+    if (! in_array($hook, ['post.php', 'post-new.php'], true)) {
+        return;
+    }
+    wp_enqueue_media();
+    $path = get_theme_file_path('resources/js/admin-media.js');
+    $uri = get_theme_file_uri('resources/js/admin-media.js');
+    wp_enqueue_script(
+        'keystone-admin-media',
+        $uri,
+        [],
+        is_readable($path) ? (string) filemtime($path) : '1',
+        true
+    );
+});
+
+add_action('admin_head', function (): void {
+    $screen = get_current_screen();
+    if (! $screen || ! in_array($screen->base, ['post'], true)) {
+        return;
+    }
+    echo '<style>
+      .ks-media-field{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;max-width:42rem}
+      .ks-media-preview{width:120px;height:80px;object-fit:cover;border-radius:8px;border:1px solid #d6d0c6;background:#f5f4f1}
+      .ks-media-actions{display:flex;flex-direction:column;gap:8px;min-width:16rem}
+      .ks-media-url{width:100%}
+    </style>';
+});
+
 function listing_metabox(\WP_Post $post): void
 {
     wp_nonce_field('ks_listing_meta', 'ks_listing_nonce');
@@ -509,6 +538,11 @@ function save_listing_metabox(int $postId): void
         }
         if ($field === 'floor_plan') {
             save_floor_plan_field($postId);
+
+            continue;
+        }
+        if ($field === 'image') {
+            save_image_field($postId, 'image');
 
             continue;
         }
