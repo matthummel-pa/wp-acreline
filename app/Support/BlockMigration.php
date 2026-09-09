@@ -317,40 +317,50 @@ class BlockMigration
     private static function agentsBlocks(array $m, int $postId): array
     {
         $heroAttrs = [
-            'eyebrow' => $m['hero_eyebrow'] ?? 'Sample team',
-            'title' => $m['hero_title'] ?? 'Agents who know the <em>demo ground</em>',
-            'text' => $m['hero_text'] ?? '',
+            'eyebrow' => $m['hero_eyebrow'] ?? 'Meet the sample team',
+            'title' => $m['hero_title'] ?? 'Local agents. <em>Real land knowledge.</em>',
+            'text' => $m['hero_text'] ?? 'Three demo specialists — farms, historic homes, and raw land. All phone numbers are fictional 555 lines.',
             'imageUrl' => self::resolveHeroImage($postId),
+            'primaryLabel' => 'Book a showing',
+            'secondaryLabel' => 'Browse listings',
         ];
 
         $introAttrs = [
-            'title' => $m['intro_title'] ?? 'A small, local team by design',
-            'text' => $m['intro_text'] ?? '',
-        ];
-
-        $howAttrs = [
-            'eyebrow' => $m['how_eyebrow'] ?? 'How We Work',
-            'title' => $m['how_title'] ?? 'What working with this office looks like',
-            'text' => $m['how_text'] ?? '',
-        ];
-
-        $ctaAttrs = [
-            'title' => $m['cta_title'] ?? 'Talk to a sample agent',
-            'text' => $m['cta_text'] ?? '',
-            'primaryLabel' => $m['cta_primary'] ?? 'Book a showing',
+            'title' => $m['intro_title'] ?? 'A focused team, not a franchise',
+            'text' => $m['intro_text'] ?? 'This sample office is built around a simple idea: rural property deserves an agent who understands it. Farms, orchards, raw land, and century homesteads all carry questions a typical residential agent rarely faces — use-value tax enrollment, agricultural conservation easements, perc evaluations, soil testing, and stone-foundation inspections. Every agent on this team specialises in the property type you are buying or selling.',
         ];
 
         $agentListAttrs = [
             'eyebrow' => 'The sample team',
-            'title' => 'Agents who know this ground',
-            'text' => '',
+            'title' => 'Specialists, not generalists',
+            'text' => 'Each agent focuses on a specific type of rural property. Pick the specialist whose background matches what you are buying.',
             'align' => 'left',
+        ];
+
+        $reviewsAttrs = [
+            'eyebrow' => 'Client stories',
+            'title' => 'What buyers say about the process',
+            'text' => 'Sample quotes for layout demonstration — not real reviews from a licensed brokerage.',
+        ];
+
+        $howAttrs = [
+            'eyebrow' => $m['how_eyebrow'] ?? 'How we work',
+            'title' => $m['how_title'] ?? 'What the process actually looks like',
+            'text' => $m['how_text'] ?? 'No pressure, no jargon, and a straight answer about the ground under your feet. We walk the property with you, explain the issues we find, and let you decide.',
+        ];
+
+        $ctaAttrs = [
+            'title' => $m['cta_title'] ?? 'Ready to talk to a specialist?',
+            'text' => $m['cta_text'] ?? 'Pick an agent above, or book a general showing and we will match you with the right specialist.',
+            'primaryLabel' => $m['cta_primary'] ?? 'Book a showing',
+            'secondaryLabel' => 'Browse listings',
         ];
 
         return [
             self::block('acreline/page-hero', $heroAttrs),
             self::block('acreline/intro-section', $introAttrs),
             self::block('acreline/agent-list', $agentListAttrs),
+            self::block('acreline/reviews', $reviewsAttrs),
             self::block('acreline/how-we-work', $howAttrs),
             self::block('acreline/cta-band', $ctaAttrs),
         ];

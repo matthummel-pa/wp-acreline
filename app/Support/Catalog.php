@@ -596,6 +596,10 @@ class Catalog
             'initials' => (string) self::getMeta($post->ID, 'initials', self::initials(get_the_title($post))),
             'avatar_color' => (string) self::getMeta($post->ID, 'avatar_color', 'var(--accent)'),
             'photo' => $photo ?: '',
+            'rating' => (string) self::getMeta($post->ID, 'rating', ''),
+            'review_snippet' => (string) self::getMeta($post->ID, 'review_snippet', ''),
+            'review_author' => (string) self::getMeta($post->ID, 'review_author', ''),
+            'review_location' => (string) self::getMeta($post->ID, 'review_location', ''),
             'featured' => self::isFeaturedFlag(self::getMeta($post->ID, 'featured', '')),
         ];
     }
@@ -826,7 +830,11 @@ class Catalog
             'featured_badge' => (string) ($item['featured_badge'] ?? ''),
             'initials' => (string) ($item['initials'] ?? self::initials($name)),
             'avatar_color' => (string) ($item['avatar_color'] ?? 'var(--accent)'),
-            'photo' => '',
+            'photo' => (string) ($item['image'] ?? ''),
+            'rating' => (string) ($item['rating'] ?? ''),
+            'review_snippet' => (string) ($item['review_snippet'] ?? ''),
+            'review_author' => (string) ($item['review_author'] ?? ''),
+            'review_location' => (string) ($item['review_location'] ?? ''),
             'featured' => self::isFeaturedFlag($item['featured'] ?? ''),
         ];
     }
