@@ -244,7 +244,7 @@ function render_support_page(): void
         ['1.4.4', [
             __('Homepage hero motion toggles on Appearance → Acreline Settings → General; values stay saved when you leave the page', 'acreline'),
             __('Customize → Header stays in sync with Acreline Settings for Ken Burns and mobile search tilt', 'acreline'),
-            __('Top bar (desktop and mobile nav) uses theme colors with readable contrast', 'acreline'),
+            __('Top bar (desktop and mobile nav) uses the active color scheme; text and icons auto-pick a readable pair when accent-on-paper would fail', 'acreline'),
         ]],
         ['1.4.3', [
             __('Homepage hero photo slowly pans and zooms; headlines, overlay, and listing search stay still', 'acreline'),

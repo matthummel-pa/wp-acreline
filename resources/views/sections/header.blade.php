@@ -152,7 +152,7 @@
 
       {{-- CTA --}}
       @if ($tb['ctaLabel'] && $tb['ctaUrl'])
-        <a class="btn btn-outline btn-sm mnav-tb-cta" href="{{ esc_url($tb['ctaUrl']) }}">{{ $tb['ctaLabel'] }}</a>
+        <a class="top-bar-cta mnav-tb-cta" href="{{ esc_url($tb['ctaUrl']) }}">{{ $tb['ctaLabel'] }}</a>
       @endif
       </div>
 

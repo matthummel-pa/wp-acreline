@@ -175,6 +175,7 @@ input,select,textarea{font-family:inherit;font-size:1rem;}
   --tb-bg:var(--ink);
   --tb-text:var(--paper);
   --tb-text-strong:var(--paper);
+  --tb-icon:var(--accent);
   --tb-line:var(--line);
   --tb-badge-bg:var(--accent-wash);
   --tb-cta-bg:var(--accent-wash);
@@ -237,7 +238,7 @@ input,select,textarea{font-family:inherit;font-size:1rem;}
 .top-bar-social-link{
   display:flex;align-items:center;justify-content:center;
   width:28px;height:28px;border-radius:6px;
-  color:var(--tb-text);text-decoration:none;
+  color:var(--tb-icon, var(--tb-text));text-decoration:none;
   transition:background .12s,color .12s;
 }
 .top-bar-social-link svg{width:14px;height:14px;}
@@ -277,7 +278,7 @@ input,select,textarea{font-family:inherit;font-size:1rem;}
   color:var(--tb-text);text-decoration:none;white-space:nowrap;
   transition:color .12s;
 }
-.top-bar-item svg{width:13px;height:13px;flex-shrink:0;opacity:.7;}
+.top-bar-item svg{width:13px;height:13px;flex-shrink:0;opacity:.85;color:var(--tb-icon, var(--tb-text));}
 .top-bar-item:is(a):hover{color:var(--tb-text-strong);}
 .top-bar-item:is(a):focus-visible{outline:2px solid var(--tb-text-strong);outline-offset:2px;border-radius:2px;}
 
@@ -325,48 +326,54 @@ body.has-top-bar .site-header.is-sticky{
   body.has-top-bar .site-header.is-sticky{top:var(--top-bar-h,36px);}
 }
 
-/* ── Mobile nav: top-bar content slot ───────────────────────────────────────*/
-.mnav-tb{width:100%;}
+/* ── Mobile nav: same theme-color tokens as the desktop top bar ─────────────*/
+.mnav-tb{
+  width:100%;
+  background:var(--tb-bg);
+  color:var(--tb-text);
+}
 .mnav-tb-announcement{
   width:100%;padding:10px 20px;
-  border-bottom:1px solid var(--tb-line, var(--line));
-  background:var(--tb-bg, var(--paper-2));
+  border-bottom:1px solid var(--tb-line);
   display:flex;align-items:center;gap:8px;
-  font-size:.875rem;font-weight:500;color:var(--tb-text-strong, var(--ink));
+  font-size:.875rem;font-weight:500;color:var(--tb-text-strong);
   flex-wrap:wrap;
 }
 .mnav-tb-msg-link{
-  color:var(--tb-text-strong, var(--accent));font-weight:600;text-decoration:none;
+  color:var(--tb-text-strong);font-weight:600;text-decoration:none;
 }
 .mnav-tb-msg-link:hover{text-decoration:underline;opacity:.85;}
 .mnav-tb-contacts{
   display:flex;flex-direction:column;gap:2px;
-  padding:6px 20px;border-bottom:1px solid var(--line);width:100%;
+  padding:6px 20px;border-bottom:1px solid var(--tb-line);width:100%;
 }
 .mnav-tb-item{
   display:flex;align-items:center;gap:8px;
-  padding:8px 0;font-size:.875rem;color:var(--ink-soft);
+  padding:8px 0;font-size:.875rem;color:var(--tb-text);
   text-decoration:none;border:none;background:none;
 }
-.mnav-tb-item svg{width:16px;height:16px;flex-shrink:0;color:var(--accent);}
-.mnav-tb-item:is(a){color:var(--ink);}
-.mnav-tb-item:is(a):hover{color:var(--accent);}
+.mnav-tb-item svg{width:16px;height:16px;flex-shrink:0;color:var(--tb-icon, var(--tb-text-strong));}
+.mnav-tb-item:is(a){color:var(--tb-text-strong);}
+.mnav-tb-item:is(a):hover{color:var(--tb-icon, var(--tb-text-strong));}
+.mnav-tb-item:is(a):focus-visible{outline:3px solid var(--tb-text-strong);outline-offset:2px;border-radius:4px;}
 .mnav-tb-social{
   display:flex;gap:4px;padding:10px 20px;
   list-style:none;margin:0;
-  border-bottom:1px solid var(--line);width:100%;
+  border-bottom:1px solid var(--tb-line);width:100%;
 }
 .mnav-tb-social a{
   display:flex;align-items:center;justify-content:center;
   width:36px;height:36px;border-radius:8px;
-  background:var(--paper-2);color:var(--ink-soft);
+  background:var(--tb-badge-bg);color:var(--tb-icon, var(--tb-text-strong));
   text-decoration:none;transition:background .12s,color .12s;
 }
 .mnav-tb-social a svg{width:18px;height:18px;}
-.mnav-tb-social a:hover{background:var(--accent-wash);color:var(--accent);}
-.mnav-tb-social a:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:8px;}
+.mnav-tb-social a:hover{background:var(--tb-cta-hover);color:var(--tb-text-strong);}
+.mnav-tb-social a:focus-visible{outline:3px solid var(--tb-text-strong);outline-offset:2px;border-radius:8px;}
 .mnav-tb-cta{
-  margin:0 20px 4px;align-self:flex-start;
+  margin:10px 20px 12px;align-self:flex-start;
+  background:var(--tb-cta-bg);color:var(--tb-text-strong);
+  border-color:var(--tb-line);
 }
 
 /* ── Print: hide top bar */

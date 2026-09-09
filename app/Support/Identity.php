@@ -341,6 +341,7 @@ class Identity
 
     /**
      * Theme-color tokens for the top bar (desktop + mobile) with WCAG AA text.
+     * Uses ks_accent / ks_paper / ks_ink (active color scheme). Custom override stays.
      *
      * @return array{bg:string,text:string,css:string}
      */
@@ -360,7 +361,7 @@ class Identity
             $preferred = $customText;
         } elseif ($style === 'accent') {
             $bg = $accent;
-            $preferred = null;
+            $preferred = $paper;
         } elseif ($style === 'light') {
             $bg = $paper2;
             $preferred = $inkSoft;
@@ -370,7 +371,11 @@ class Identity
         }
 
         $textStrong = self::readableOn($bg, $preferred);
-        $text = self::mixHex($textStrong, $bg, 0.16);
+        $text = self::mixHex($textStrong, $bg, 0.12);
+        if (self::contrastRatio($bg, $text) < 4.5) {
+            $text = $textStrong;
+        }
+        $icon = self::readableIconOn($bg);
         $line = self::mixHex($textStrong, $bg, 0.78);
         $badgeBg = self::mixHex($textStrong, $bg, 0.84);
         $ctaBg = self::mixHex($textStrong, $bg, 0.86);
@@ -379,6 +384,7 @@ class Identity
         $css = '--tb-bg:'.$bg
             .';--tb-text:'.$text
             .';--tb-text-strong:'.$textStrong
+            .';--tb-icon:'.$icon
             .';--tb-line:'.$line
             .';--tb-badge-bg:'.$badgeBg
             .';--tb-cta-bg:'.$ctaBg
@@ -392,20 +398,49 @@ class Identity
     }
 
     /**
-     * Pick ink or paper (or a preferred hex) that meets 4.5:1 on $bg.
+     * First theme color (preferred, then paper / ink / accent) that meets 4.5:1 on $bg.
      */
     public static function readableOn(string $bg, ?string $preferred = null): string
     {
-        if ($preferred && self::contrastRatio($bg, $preferred) >= 4.5) {
-            return $preferred;
+        $candidates = [];
+        foreach ([$preferred, self::paper(), self::ink(), self::accent(), '#ffffff', '#141210'] as $hex) {
+            if (! is_string($hex) || $hex === '') {
+                continue;
+            }
+            $clean = sanitize_hex_color($hex);
+            if ($clean && ! in_array($clean, $candidates, true)) {
+                $candidates[] = $clean;
+            }
         }
 
-        $ink = self::ink();
-        $paper = self::paper();
-        $dark = self::hexLuminance($ink) <= 0.45 ? $ink : '#141210';
-        $light = self::hexLuminance($paper) >= 0.55 ? $paper : '#ffffff';
+        $best = $candidates[0] ?? '#ffffff';
+        $bestRatio = 0.0;
+        foreach ($candidates as $fg) {
+            $ratio = self::contrastRatio($bg, $fg);
+            if ($ratio >= 4.5) {
+                return $fg;
+            }
+            if ($ratio > $bestRatio) {
+                $bestRatio = $ratio;
+                $best = $fg;
+            }
+        }
 
-        return self::contrastRatio($bg, $dark) >= self::contrastRatio($bg, $light) ? $dark : $light;
+        return $best;
+    }
+
+    /**
+     * Accent on the bar when it contrasts; otherwise the readable text color.
+     * Covers accent-on-paper (light bar) and paper-on-accent (accent bar).
+     */
+    public static function readableIconOn(string $bg): string
+    {
+        $accent = self::accent();
+        if (self::contrastRatio($bg, $accent) >= 3.0) {
+            return $accent;
+        }
+
+        return self::readableOn($bg);
     }
 
     private static function hexLuminance(string $hex): float

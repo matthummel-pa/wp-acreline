@@ -142,7 +142,7 @@ Upload your office logo under Customize → Site Identity. Colors: Forest sample
 = 1.4.4 =
 * Homepage hero motion toggles (Ken Burns and mobile search tilt) now live in Appearance → Acreline Settings → General and stay saved when you leave the page.
 * Customize → Header shows the same saved values after you save either screen.
-* Top bar (desktop and mobile nav) uses theme colors with readable contrast.
+* Top bar (desktop and mobile nav) uses the active color scheme. Text and icons auto-pick a readable pair when accent-on-paper would fail. Custom colors still override.
 
 = 1.4.3 =
 * Homepage hero photo slowly pans and zooms. Headlines, overlay, and listing search stay still.
