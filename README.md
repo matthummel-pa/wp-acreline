@@ -72,7 +72,7 @@ Everything a land and farm office needs in **one zip** — no page builder, no A
 | No page builder required | ✅ | Page builder license often needed |
 | No ACF required | ✅ | ACF Pro often bundled |
 | No IDX/MLS plugin | ✅ | IDX subscription often required |
-| 22 custom Gutenberg blocks | ✅ | Most use shortcodes or Classic |
+| 28 custom Gutenberg blocks | ✅ | Most use shortcodes or Classic |
 | Block Generator (no-code blocks) | ✅ | Unique to Acreline |
 | Listing comparison modal | ✅ | Rare without paid add-ons |
 | Saved listings (localStorage) | ✅ | Usually needs a plugin or login |
@@ -83,7 +83,7 @@ Everything a land and farm office needs in **one zip** — no page builder, no A
 | Desktop top bar with mobile fallback | ✅ | Rarely included |
 | Fiction-only concept demo | ✅ | Required for honest marketplace listing |
 
-### 22 custom Gutenberg blocks
+### 28 custom Gutenberg blocks
 
 Every marketing page is built with WordPress blocks that render server-side — what you see in the block editor matches the live site exactly.
 
@@ -110,6 +110,12 @@ Every marketing page is built with WordPress blocks that render server-side — 
 | SEO Content Block | Land-buying guide copy |
 | Booking Note + Form | Standalone booking page |
 | Agent List | Agent grid with photo, stats, designations |
+| Trust Strip | Four contact commitments |
+| Buyer Checklist | Numbered rural-property checklist |
+| Showing Prep Checklist | Two-column buyer / agent prep lists |
+| Area Compare Table | Side-by-side sample-market table |
+| Topic Cards | Three scan cards for the blog index |
+| Post Grid | Blog post cards + pagination |
 | Custom Block | Output of the no-code Block Generator |
 
 **Block Generator** (Tools → Block Generator) — create new content blocks without writing any code. Fields: text, textarea, URL, image picker, toggle.
@@ -121,13 +127,13 @@ Every marketing page is built with WordPress blocks that render server-side — 
 | Page | Blocks included |
 | --- | --- |
 | Home | Hero · Intent Cards · Spotlight · How It Works · Booking · Market Stats · Agent Tools · SEO Content · FAQ · Reviews · CTA |
-| Listings | Page Hero · Listing Grid · CTA |
-| Areas | Page Hero · Intro · Area Grid · CTA |
-| Guide | Page Hero · Tools · FAQ · CTA |
-| Agents | Page Hero · Intro · Agent List · How We Work · CTA |
-| Contact | Page Hero · Contact Form · CTA |
-| Book a showing | Page Hero · Booking Note + Form · FAQ |
-| Blog | Page Hero · CTA |
+| Listings | Page Hero · Listing Grid · Market Stats · Reviews · FAQ · CTA |
+| Areas | Page Hero · Intro · Area Grid · Compare Table · How We Work · Market Stats · Reviews · CTA |
+| Guide | Page Hero · Tools · How It Works · Checklist · FAQ · Reviews · CTA |
+| Agents | Page Hero · Intro · Agent List · Reviews · How We Work · CTA |
+| Contact | Page Hero · Contact Form · Office Info · Trust Strip · Intro · How We Work · Agent List · CTA |
+| Book a showing | Page Hero · Booking Note + Form · Intro · Prep Checklist · FAQ · CTA |
+| Blog | Page Hero · Topic Cards · Post Grid · Reviews · CTA |
 
 ---
 

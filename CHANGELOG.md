@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.1
+
+- **Content** — Marketing pages seed the full Gutenberg stacks that `BlockMigration` already defined: agent-list + reviews on Agents; market-stats, reviews, and FAQ on Listings; how-it-works + reviews on Guide; richer Blog (topic cards, post grid, reviews).
+- **Block** — New editor-editable blocks for the former Blade-only sections: `acreline/trust-strip`, `acreline/checklist`, `acreline/prep-checklist`, `acreline/compare-table`, `acreline/topic-cards`, `acreline/post-grid`.
+- **Block** — `acreline/agent-list` is now registered in the Gutenberg inserter (it already rendered in PHP).
+- **Templates** — Guide, Areas, Contact, and Book output only `the_content()`. Blog (`home.blade.php`) renders the posts-page block content so seeded stacks are not stranded behind hardcoded Blade.
+- **Seed** — `wp ks seed` / Tools → Seed Acreline demo force-rebuilds all eight marketing page stacks. Tools → Migrate to Blocks has a Force rebuild button; `wp ks rebuild-blocks` does the same from CLI.
+
 ## 1.4.0
 
 - **Feature** — Top bar: a configurable slim bar above the header, desktop-only (hidden at < 900 px via CSS). Controls in Appearance → Customize → Top Bar: enable toggle, four color styles (Dark / Accent / Light / Custom), custom background + text colors, announcement badge + message + optional link, CTA pill button, show/hide toggles for phone, email, address, and hours (values pulled from Identity), social icon toggles (Facebook, Instagram, YouTube, LinkedIn, X), and an optional "Allow visitors to dismiss" mode (state stored in sessionStorage).

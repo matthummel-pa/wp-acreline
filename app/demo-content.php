@@ -64,7 +64,7 @@ function render_demo_seed_page(): void
     if ($notice) {
         printf('<div class="notice notice-success is-dismissible"><p>%s</p></div>', esc_html($notice));
     }
-    echo '<p style="max-width:70ch">'.esc_html__('Creates the marketing pages, eight sample listings, three agents, blog posts, and sets Home / Blog as the front page. Safe to run again — existing slugs are updated, not duplicated.', 'acreline').'</p>';
+    echo '<p style="max-width:70ch">'.esc_html__('Creates the marketing pages, eight sample listings, three agents, blog posts, and sets Home / Blog as the front page. Safe to run again — existing slugs are updated, not duplicated. Re-running also rebuilds each marketing page’s Gutenberg block stack so Agents, Listings, Guide, and Blog pick up the full sequences.', 'acreline').'</p>';
     echo '<form method="post">';
     wp_nonce_field('ks_seed_demo', 'ks_seed_nonce');
     printf('<p><button type="submit" class="button button-primary">%s</button></p>', esc_html__('Load demo content', 'acreline'));
@@ -77,5 +77,13 @@ if (defined('WP_CLI') && WP_CLI) {
         DemoContent::seed();
         update_option(DemoContent::OPTION, '1');
         \WP_CLI::success('Acreline demo content loaded.');
+    });
+
+    \WP_CLI::add_command('ks rebuild-blocks', function (): void {
+        $result = \App\Support\BlockMigration::forceRebuildAll();
+        foreach ($result['errors'] as $error) {
+            \WP_CLI::warning($error);
+        }
+        \WP_CLI::success(sprintf('Rebuilt block stacks on %d marketing page(s).', $result['updated']));
     });
 }

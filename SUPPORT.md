@@ -32,7 +32,7 @@ The theme zip is enough. Optional **Acreline Core** (listings survive a theme sw
 
 ## Custom fields and the block editor
 
-Identity, colors, header, typography, and logo: **Appearance → Customize**. Marketing pages and posts use the **Gutenberg block editor** (21 custom blocks). Listing, agent, and booking CPTs use classic metaboxes. Editing theme files does not change live posts.
+Identity, colors, header, typography, and logo: **Appearance → Customize**. Marketing pages and posts use the **Gutenberg block editor** (28 custom blocks). Listing, agent, and booking CPTs use classic metaboxes. Editing theme files does not change live posts.
 
 ## Before you file an issue
 
