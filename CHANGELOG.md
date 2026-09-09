@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.4.0
+
+- **Feature** — Top bar: a configurable slim bar above the header, desktop-only (hidden at < 900 px via CSS). Controls in Appearance → Customize → Top Bar: enable toggle, four color styles (Dark / Accent / Light / Custom), custom background + text colors, announcement badge + message + optional link, CTA pill button, show/hide toggles for phone, email, address, and hours (values pulled from Identity), social icon toggles (Facebook, Instagram, YouTube, LinkedIn, X), and an optional "Allow visitors to dismiss" mode (state stored in sessionStorage).
+- **Feature** — Mobile nav fallback: when the top bar is enabled all of its active items (announcement, contact details, social icons, CTA) surface automatically at the foot of the mobile slide-out nav so no content is hidden from smaller screens.
+- **Accessibility** — Top bar carries `role="complementary"` and `aria-label`; announcement slot uses `role="status"`; dismiss button has a descriptive `aria-label`; all interactive elements expose `:focus-visible` rings.
+- **Accessibility** — Focus trap and `aria-live` announcements added to listing modal, saved-listings drawer, and compare modal for full keyboard navigation.
+- **Accessibility** — Screen-reader announcer live region injected by `listings.js`; save and compare actions announce to assistive technology.
+- **Accessibility** — `aria-label` on each save and compare button updates dynamically to include the listing title.
+- **Responsive** — Listing detail grid stacks to one column on narrow phones (< 380 px); mortgage calc grid stacks below 480 px; compare table enforces horizontal scroll below 600 px; compare bar wraps at 480 px; saved drawer goes full-width below 360 px.
+- **Content** — Seed listings updated with richer details: open house date/time, virtual tour URL, condition, garage type, basement, utilities (water/sewer/heating/cooling), HOA, school district, flood zone, green features, outbuildings, tillable/pasture acres.
+- **Content** — Seed agents updated with performance stats (homes sold, volume, avg DOM, list-to-sale ratio, review count), social links, personal website, booking/calendar URL, bio video, certifications, awards, and agent photo URL.
+- **Block** — New `acreline/agent-list` Gutenberg block renders the full agent grid on the Agents page with photo/avatar, name, job title, designations, specialties, and mini-stats.
+- **Docs** — `README.md` completely rewritten: screenshot gallery, top bar feature, all major features documented, matthummel.com product page coexistence section.
+- **Docs** — `readme.txt`, `CHANGELOG.md`, `docs/marketplace/themeforest-listing.md`, `docs/marketplace/changelog.html`, and `docs/marketplace/buyer-guide.html` all updated.
+
 ## 1.3.3
 
 - **Admin** — Theme Settings page completely redesigned: tabbed navigation (Listings, Agents, Bookings, Market, Labels, General), iOS-style toggle switches, sticky save bar, unsaved-changes guard, and live Market snapshot preview

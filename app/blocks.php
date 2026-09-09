@@ -225,6 +225,14 @@ function ks_register_blocks(): void
                 'gridCols' => ['type' => 'string', 'default' => '3'],
             ],
         ],
+        'acreline/agent-list' => [
+            'render_callback' => __NAMESPACE__.'\\ks_render_agent_list',
+            'attributes' => array_merge($typo, [
+                'eyebrow' => ['type' => 'string', 'default' => 'The sample team'],
+                'title' => ['type' => 'string', 'default' => 'Agents who know this ground'],
+                'text' => ['type' => 'string', 'default' => 'Three demo profiles — one for farm & land, one for historic homes, one for first-time land buyers.'],
+            ]),
+        ],
         'acreline/area-grid' => [
             'render_callback' => __NAMESPACE__.'\\ks_render_area_grid',
             'attributes' => array_merge($typo, [
@@ -1470,6 +1478,64 @@ function ks_render_intro_section(array $attrs): string
 }
 
 /** @param array<string, mixed> $attrs */
+function ks_render_agent_list(array $attrs): string
+{
+    $agents = Catalog::agents();
+    $eyebrow = esc_html($attrs['eyebrow'] ?? 'The sample team');
+    $title = wp_kses($attrs['title'] ?? 'Agents who know this ground', ['em' => [], 'strong' => []]);
+    $text = wp_kses($attrs['text'] ?? '', ['em' => []]);
+    $headClass = esc_attr(ks_head_class($attrs));
+
+    ob_start();
+    ?>
+    <section class="section" aria-labelledby="agent-list-heading">
+      <div class="wrap">
+        <header class="<?php echo $headClass; ?> reveal">
+          <p class="eyebrow"><?php echo $eyebrow; ?></p>
+          <h2 id="agent-list-heading"><?php echo $title; ?></h2>
+          <?php if ($text) { ?><p><?php echo $text; ?></p><?php } ?>
+        </header>
+        <div class="agent-grid" role="list">
+          <?php foreach ($agents as $agent) { ?>
+            <article class="agent-card reveal" role="listitem">
+              <?php if ($agent['photo']) { ?>
+                <a href="<?php echo esc_url($agent['permalink']); ?>" class="agent-photo-link" tabindex="-1" aria-hidden="true">
+                  <img src="<?php echo esc_url($agent['photo']); ?>" width="120" height="120"
+                    alt="<?php echo esc_attr($agent['name']); ?>" loading="lazy" class="agent-avatar-photo">
+                </a>
+              <?php } else { ?>
+                <div class="agent-avatar" style="background:<?php echo esc_attr($agent['avatar_color']); ?>">
+                  <?php echo esc_html($agent['initials']); ?>
+                </div>
+              <?php } ?>
+              <h4><a href="<?php echo esc_url($agent['permalink']); ?>"><?php echo esc_html($agent['name']); ?></a></h4>
+              <p class="agent-title"><?php echo esc_html($agent['job_title']); ?></p>
+              <?php if ($agent['designations']) { ?>
+                <p class="agent-designations"><?php echo esc_html($agent['designations']); ?></p>
+              <?php } ?>
+              <p><?php echo esc_html($agent['specialties']); ?></p>
+              <?php if ($agent['homes_sold'] || $agent['avg_dom']) { ?>
+                <dl class="agent-mini-stats">
+                  <?php if ($agent['homes_sold']) { ?>
+                    <div><dt><?php esc_html_e('Closed', 'acreline'); ?></dt><dd><?php echo esc_html($agent['homes_sold']); ?></dd></div>
+                  <?php } ?>
+                  <?php if ($agent['avg_dom']) { ?>
+                    <div><dt><?php esc_html_e('Avg DOM', 'acreline'); ?></dt><dd><?php echo esc_html($agent['avg_dom']); ?></dd></div>
+                  <?php } ?>
+                </dl>
+              <?php } ?>
+              <a href="<?php echo esc_url($agent['permalink']); ?>" class="btn btn-outline btn-sm">
+                <?php esc_html_e('View profile', 'acreline'); ?>
+              </a>
+            </article>
+          <?php } ?>
+        </div>
+      </div>
+    </section>
+    <?php
+    return (string) ob_get_clean();
+}
+
 function ks_render_listing_grid(array $attrs): string
 {
     $introTitle = wp_kses($attrs['introTitle'] ?? 'Buying rural property', ['em' => [], 'strong' => []]);
@@ -1564,7 +1630,7 @@ function ks_render_listing_grid(array $attrs): string
 
     <!-- Listing detail modal -->
     <div id="modalOverlay" class="listing-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
-      <div class="listing-modal">
+      <div id="listingModal" class="listing-modal">
         <div class="modal-header">
           <button type="button" class="modal-close" id="modalCloseBtn" aria-label="<?php esc_attr_e('Close', 'acreline'); ?>">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -1621,7 +1687,7 @@ function ks_render_listing_grid(array $attrs): string
     </div>
 
     <!-- Saved listings drawer -->
-    <div id="savedDrawer" class="saved-drawer" aria-label="<?php esc_attr_e('Saved listings', 'acreline'); ?>" hidden>
+    <div id="savedDrawer" class="saved-drawer" role="dialog" aria-modal="true" aria-label="<?php esc_attr_e('Saved listings', 'acreline'); ?>" hidden>
       <div class="saved-drawer-header">
         <h2 class="saved-drawer-title"><?php esc_html_e('Saved listings', 'acreline'); ?> <span id="savedDrawerCount" class="saved-count-badge"></span></h2>
         <button type="button" class="modal-close" id="savedDrawerClose" aria-label="<?php esc_attr_e('Close saved listings', 'acreline'); ?>">

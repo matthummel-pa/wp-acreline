@@ -204,4 +204,59 @@
   var yr = new Date().getFullYear();
   yearEls.forEach(function(el){ el.textContent = yr; });
 
+  /* ============================= TOP BAR ============================= */
+  (function(){
+    var topBar    = document.getElementById("topBar");
+    var closeBtn  = document.getElementById("topBarClose");
+    var header    = document.querySelector(".site-header");
+    var DISMISS_KEY = "ks_top_bar_dismissed";
+
+    if(!topBar) return;
+
+    /* Mark <body> so the sticky header offset CSS var can target it. */
+    document.body.classList.add("has-top-bar");
+
+    /* Measure and set the CSS variable used to push the sticky header down. */
+    function setTopBarHeight(){
+      var h = topBar.offsetHeight;
+      document.documentElement.style.setProperty("--top-bar-h", h + "px");
+    }
+
+    /* Restore dismissed state from sessionStorage. */
+    function restoreDismissed(){
+      try {
+        if(sessionStorage.getItem(DISMISS_KEY) === "1"){
+          topBar.classList.add("is-dismissed");
+          document.body.classList.remove("has-top-bar");
+          document.documentElement.style.removeProperty("--top-bar-h");
+        }
+      } catch(e){}
+    }
+
+    /* Dismiss the top bar, store preference. */
+    function dismiss(){
+      topBar.classList.add("is-dismissed");
+      document.body.classList.remove("has-top-bar");
+      document.documentElement.style.removeProperty("--top-bar-h");
+      try { sessionStorage.setItem(DISMISS_KEY, "1"); } catch(e){}
+      /* Return focus to header or hamburger button. */
+      var focusFallback = document.querySelector(".site-header a, .site-header button");
+      if(focusFallback) focusFallback.focus();
+    }
+
+    restoreDismissed();
+
+    if(!topBar.classList.contains("is-dismissed")){
+      setTopBarHeight();
+      window.addEventListener("resize", setTopBarHeight, { passive: true });
+    }
+
+    if(closeBtn){
+      closeBtn.addEventListener("click", dismiss);
+      closeBtn.addEventListener("keydown", function(e){
+        if(e.key === "Enter" || e.key === " "){ e.preventDefault(); dismiss(); }
+      });
+    }
+  }());
+
 })();

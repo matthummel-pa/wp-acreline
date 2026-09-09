@@ -188,6 +188,66 @@ class Identity
     }
 
     /**
+     * Top bar configuration. Returns false when the bar is disabled.
+     *
+     * @return array<string, mixed>|false
+     */
+    public static function topBar(): array|false
+    {
+        if (! get_theme_mod('ks_top_bar_enable', false)) {
+            return false;
+        }
+
+        $style = sanitize_key((string) get_theme_mod('ks_top_bar_style', 'dark'));
+        if (! in_array($style, ['dark', 'accent', 'light', 'custom'], true)) {
+            $style = 'dark';
+        }
+
+        $badge = sanitize_text_field((string) get_theme_mod('ks_top_bar_badge', ''));
+        $message = sanitize_text_field((string) get_theme_mod('ks_top_bar_message', ''));
+        $messageUrl = esc_url_raw((string) get_theme_mod('ks_top_bar_message_url', ''));
+        $ctaLabel = sanitize_text_field((string) get_theme_mod('ks_top_bar_cta_label', ''));
+        $ctaUrl = esc_url_raw((string) get_theme_mod('ks_top_bar_cta_url', ''));
+
+        // Contact items — use values from Identity when toggled on.
+        $showPhone = (bool) get_theme_mod('ks_top_bar_show_phone', true);
+        $showEmail = (bool) get_theme_mod('ks_top_bar_show_email', false);
+        $showAddress = (bool) get_theme_mod('ks_top_bar_show_address', false);
+        $showHours = (bool) get_theme_mod('ks_top_bar_show_hours', false);
+
+        // Social icons — only listed when the platform's URL is also set.
+        $allSocial = self::social();
+        $socialIcons = [];
+        foreach (['facebook', 'instagram', 'youtube', 'linkedin', 'x'] as $key) {
+            if (get_theme_mod('ks_top_bar_show_'.$key, false) && isset($allSocial[$key])) {
+                $socialIcons[$key] = $allSocial[$key];
+            }
+        }
+
+        return [
+            'style' => $style,
+            'bgColor' => $style === 'custom' ? (sanitize_hex_color((string) get_theme_mod('ks_top_bar_bg', '#141210')) ?: '#141210') : '',
+            'textColor' => $style === 'custom' ? (sanitize_hex_color((string) get_theme_mod('ks_top_bar_text_color', '#fffcf7')) ?: '#fffcf7') : '',
+            'badge' => $badge,
+            'message' => $message,
+            'messageUrl' => $messageUrl,
+            'ctaLabel' => $ctaLabel,
+            'ctaUrl' => $ctaUrl,
+            'showPhone' => $showPhone,
+            'showEmail' => $showEmail,
+            'showAddress' => $showAddress,
+            'showHours' => $showHours,
+            'socialIcons' => $socialIcons,
+            'dismissible' => (bool) get_theme_mod('ks_top_bar_dismissible', false),
+            'phone' => self::phone(),
+            'phoneHref' => self::phoneHref(),
+            'email' => self::email(),
+            'address' => self::address(),
+            'hours' => self::hours(),
+        ];
+    }
+
+    /**
      * @return array<string, mixed>
      */
     public static function toArray(): array
@@ -213,6 +273,7 @@ class Identity
             'headerStyle' => self::headerStyle(),
             'headerClass' => implode(' ', self::headerClasses()),
             'colorScheme' => ColorSchemes::currentKey(),
+            'topBar' => self::topBar(),
         ];
     }
 

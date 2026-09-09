@@ -18,79 +18,120 @@
       address:"1755 Ridge Road, North Ridge, PA 00000",
       township:"Cumberland", price:525000,
       beds:4, baths:2, sqft:2400, acres:8.2,
+      image:"https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=900&q=70",
       grad:"linear-gradient(135deg,#155539,#1f6b4a)",
-      desc:"A handsome 1890s brick farmhouse with original hardwood floors, a wraparound porch, and a restored bank barn. Eight-plus acres of gently rolling pasture bordered by mature hedgerow, minutes from the county seat.",
+      desc:"Original hardwood floors, wraparound porch, restored bank barn. 8+ acres of rolling pasture with hedgerow borders, spring-fed pond, and a farm lane to the rear parcel. Kitchen updated with soapstone counters and farmhouse sink while preserving original character.",
       lat:28, lng:22
     },
     {
       id:2, type:"land", typeLabel:"Land / Acreage", status:"active",
-      title:"Mill Run Land Parcel",
+      title:"Mill Run Land Parcel — 38 Acres",
       address:"62 Mill Run Rd, Mill Creek, PA 00000",
       township:"Straban", price:215000,
       beds:0, baths:0, sqft:0, acres:38,
+      image:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=70",
       grad:"linear-gradient(135deg,#059669,#34d399)",
-      desc:"Thirty-eight acres of mostly tillable ground along Mill Run, currently leased for row crops. Road frontage, public water available at the road, and a soil map on file showing strong Class II farmland.",
+      desc:"32 tillable acres of Class II Hagerstown silt loam currently leased at $185/acre. 6 acres timber and creek corridor. Road frontage, public water at road. Perc evaluation scheduled — strong future homesite parcel.",
       lat:52, lng:62
     },
     {
       id:3, type:"farm", typeLabel:"Working Farm", status:"active",
-      title:"Wheatland Farmhouse & Outbuildings",
+      title:"Wheatland Farmhouse & Outbuildings — 12.4 Acres",
       address:"1420 Orchard Farm Rd, North Ridge, PA 00000",
       township:"Cumberland", price:649000,
       beds:4, baths:2.5, sqft:2850, acres:12.4,
+      image:"https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?auto=format&fit=crop&w=900&q=70",
       grad:"linear-gradient(135deg,#1f6b4a,#155539)",
-      desc:"A well-kept 1970s farmhouse updated top to bottom, with a 40x60 pole barn, fenced pasture, and a spring-fed pond. Long been run as a small cattle operation; equally suited to a hobby farm or horse property.",
+      desc:"Fully renovated farmhouse with quartz kitchen, two updated baths, new standing-seam roof (2021), and dual-zone HVAC. 40×60 steel pole barn, spring-fed pond, fenced pasture. Solar panels, smart thermostat, EV charger.",
       lat:20, lng:38
     },
     {
       id:4, type:"home", typeLabel:"Home", status:"active",
-      title:"Ridge Lane Cottage",
+      title:"Ridge Lane Cottage — Walkable to Downtown",
       address:"980 Ridge Lane, North Ridge, PA 00000",
       township:"Cumberland", price:349900,
       beds:3, baths:2, sqft:1680, acres:0.6,
+      image:"https://images.unsplash.com/photo-1628624747186-a941c476b7ef?auto=format&fit=crop&w=900&q=70",
       grad:"linear-gradient(135deg,#3f3f46,#71717a)",
-      desc:"A move-in-ready cottage a short walk from the square, with an updated kitchen, screened porch, and a level, fenced back yard. Ideal starter home or in-town pied-a-terre.",
+      desc:"Move-in ready mid-century cottage 3 blocks from the square. Hardwoods throughout, updated shaker kitchen, screened porch, fenced private backyard. New windows and roof 2020. Public gas, water, sewer.",
       lat:34, lng:18
     },
     {
       id:5, type:"land", typeLabel:"Land / Acreage", status:"active",
-      title:"Creek Bottom Grazing Land",
+      title:"Creek Bottom Grazing Land — 45 Acres",
       address:"215 Creek Bottom Rd, Mill Creek, PA 00000",
       township:"Straban", price:180000,
       beds:0, baths:0, sqft:0, acres:45,
+      image:"https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=900&q=70",
       grad:"linear-gradient(135deg,#047857,#059669)",
-      desc:"Forty-five acres of fenced pasture along the creek with a run-in shed and gravity-fed water. Long history as grazing ground for a beef cattle herd; also suitable for hay or a future homesite.",
+      desc:"4 paddocks of fenced creek-bottom pasture, gravity-fed stock waterer, run-in shed. Perc site identified on high ground — strong future homesite. 38 tillable acres. Road frontage with graveled farm lane.",
       lat:58, lng:74
     },
     {
       id:6, type:"farm", typeLabel:"Working Farm", status:"pending",
-      title:"Oak Ridge Orchard Farm",
+      title:"Oak Ridge Orchard Farm — 60 Acres",
       address:"4110 Orchard Lane, Oak Hollow, PA 00000",
       township:"Franklin", price:875000,
       beds:4, baths:3, sqft:3200, acres:60,
+      image:"https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=900&q=70",
       grad:"linear-gradient(135deg,#d97706,#f59e0b)",
-      desc:"A sixty-acre producing apple and peach orchard with a renovated farmhouse, cold storage building, and roadside stand. A rare turn-key opportunity to continue an established orchard operation.",
+      desc:"60-acre producing apple & peach orchard — 4,200+ trees, 12 varieties, documented yields. Cold storage, grading station, farm stand. Renovated farmhouse. Under contract; reference sale.",
       lat:70, lng:30
     },
     {
       id:7, type:"historic", typeLabel:"Historic Home", status:"active",
-      title:"The Stone Homestead (c.1852)",
+      title:"The Stone Homestead (c.1852) — 22 Acres",
       address:"310 Orchard Ridge Rd, Oak Hollow, PA 00000",
       township:"Franklin", price:795000,
       beds:5, baths:3, sqft:3600, acres:22,
+      image:"https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=900&q=70",
       grad:"linear-gradient(135deg,#0c0c0c,#27272a)",
-      desc:"A stone-and-frame homestead dating to 1852, lovingly maintained through six generations. Original summer kitchen, restored bank barn, twenty-two acres, and documented 19th-century provenance.",
+      desc:"Coursed limestone homestead, first offering in 40 years. Original summer kitchen, spring house, 3-bay bank barn. Wide-plank floors, walk-in hearth, 2 fireplaces. Modern HVAC overlay. National Register research available.",
       lat:78, lng:44
     },
     {
-      id:8, type:"land", typeLabel:"Land / Acreage", status:"new",
-      title:"Hill View Lot",
+      id:8, type:"land", typeLabel:"Land / Acreage", status:"active",
+      title:"Hill View Building Lot — 5.5 Acres",
       address:"0 Hill View Rd, Oak Hollow, PA 00000",
       township:"Franklin", price:129000,
       beds:0, baths:0, sqft:0, acres:5.5,
+      image:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=70",
       grad:"linear-gradient(135deg,#1f6b4a,#9fd5bb)",
-      desc:"A wooded 5.5-acre building lot with long-range ridge views. Perc-approved for a conventional septic system; electric at the road. A quiet, buildable spot minutes from the county seat.",
+      desc:"960-ft elevation, long-range ridge views, mature hardwoods. Perc-approved, electric at road, deeded right-of-way. Survey and soil test on file. No HOA. Paved road frontage.",
       lat:86, lng:56
+    },
+    {
+      id:9, type:"home", typeLabel:"Home", status:"active",
+      title:"Meadow View Ranch — Updated & Move-In Ready",
+      address:"2280 Meadow View Drive, Oak Hollow, PA 00000",
+      township:"Franklin", price:419000,
+      beds:3, baths:2, sqft:1920, acres:1.2,
+      image:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=70",
+      grad:"linear-gradient(135deg,#1f6b4a,#3d9970)",
+      desc:"2023 full renovation: quartz, LVP floors, new roof, new HVAC. Attached 2-car garage with EV charging. Full-width rear deck looks out over open farmland. Smart thermostat, video doorbell, smart locks. Public utilities.",
+      lat:62, lng:48
+    },
+    {
+      id:10, type:"farm", typeLabel:"Working Farm", status:"active",
+      title:"Mill Creek Road Farmette — 6 Acres",
+      address:"771 Mill Creek Road, Mill Creek, PA 00000",
+      township:"Straban", price:387500,
+      beds:3, baths:1.5, sqft:1760, acres:6,
+      image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=70",
+      grad:"linear-gradient(135deg,#7c3aed,#5b21b6)",
+      desc:"1935 farmhouse updated with modern kitchen, new bath, metal roof. 3-stall horse barn with water & electric. 4 fenced acres currently leased. Equipment bays, chicken coop. Under $400K — rare in this township.",
+      lat:44, lng:68
+    },
+    {
+      id:11, type:"home", typeLabel:"Home", status:"sold",
+      title:"Spring Valley Colonial — In-Town 4BR",
+      address:"445 Spring Valley Road, North Ridge, PA 00000",
+      township:"Cumberland", price:465000,
+      beds:4, baths:2.5, sqft:2280, acres:0.35,
+      image:"https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=900&q=70",
+      grad:"linear-gradient(135deg,#1e3a5f,#3b82f6)",
+      desc:"Sold in 8 days at full price. 2004 colonial in Spring Valley neighborhood. 4BR, 2.5 bath, 2-car garage, finished basement. Shows the strength of the North Ridge residential market.",
+      lat:30, lng:52
     }
   ];
 
@@ -99,6 +140,44 @@
   }
 
   if(!document.getElementById("listingGrid")) return; /* not the listings page */
+
+  /* ============================= SCREEN READER ANNOUNCER ============================= */
+  var srAnnouncer = document.createElement("div");
+  srAnnouncer.setAttribute("aria-live", "polite");
+  srAnnouncer.setAttribute("aria-atomic", "true");
+  srAnnouncer.setAttribute("class", "sr-only");
+  document.body.appendChild(srAnnouncer);
+
+  function announce(msg) {
+    srAnnouncer.textContent = "";
+    /* Short delay ensures AT re-reads even identical messages */
+    setTimeout(function(){ srAnnouncer.textContent = msg; }, 50);
+  }
+
+  /* ============================= FOCUS TRAP UTILITY ============================= */
+  function trapFocus(container) {
+    var sel = 'a[href],button:not([disabled]),input:not([disabled]),textarea:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])';
+    function handler(e) {
+      if (e.key !== "Tab") return;
+      var focusable = Array.prototype.slice.call(container.querySelectorAll(sel)).filter(function(el){
+        return !el.closest("[hidden]") && !el.closest("[disabled]");
+      });
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last  = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+      }
+    }
+    container.addEventListener("keydown", handler);
+    return function removeTrap(){ container.removeEventListener("keydown", handler); };
+  }
+
+  var removeTrapModal   = null;
+  var removeTrapDrawer  = null;
+  var removeTrapCompare = null;
 
   /* ============================= SAVED (localStorage) ============================= */
   var savedListings = {};
@@ -316,10 +395,16 @@
   /* ============================= SAVE HEARTS ============================= */
   function toggleSave(btn){
     var id = Number(btn.getAttribute("data-save"));
+    var listing = LISTINGS.filter(function(l){ return l.id === id; })[0];
+    var titleStr = listing ? listing.title : "listing";
     if(savedListings[id]){
       delete savedListings[id];
+      btn.setAttribute("aria-label", "Save " + titleStr);
+      announce(titleStr + " removed from saved.");
     } else {
       savedListings[id] = true;
+      btn.setAttribute("aria-label", "Remove " + titleStr + " from saved");
+      announce(titleStr + " saved.");
     }
     btn.setAttribute("aria-pressed", !!savedListings[id]);
     persistSaved();
@@ -412,6 +497,8 @@
       document.body.classList.add("drawer-open");
       var closeBtn = document.getElementById("savedDrawerClose");
       if(closeBtn) closeBtn.focus();
+      if(removeTrapDrawer) removeTrapDrawer();
+      removeTrapDrawer = trapFocus(savedDrawer);
     });
   }
 
@@ -421,6 +508,7 @@
       if(!savedDrawer) return;
       savedDrawer.hidden = true;
       document.body.classList.remove("drawer-open");
+      if(removeTrapDrawer){ removeTrapDrawer(); removeTrapDrawer = null; }
       if(savedFab) savedFab.focus();
     });
   }
@@ -436,20 +524,26 @@
 
   function toggleCompare(btn){
     var id = Number(btn.getAttribute("data-compare"));
+    var listing = LISTINGS.filter(function(l){ return l.id === id; })[0];
+    var titleStr = listing ? listing.title : "listing";
     if(compareSet[id]){
       delete compareSet[id];
+      announce(titleStr + " removed from comparison.");
     } else {
       var count = Object.keys(compareSet).length;
       if(count >= 3){
-        /* silently ignore if already at max */
+        announce("Maximum 3 listings can be compared at once.");
         return;
       }
       compareSet[id] = true;
+      var newCount = Object.keys(compareSet).length;
+      announce(titleStr + " added to comparison. " + newCount + " of 3 selected.");
     }
     updateCompareBar();
-    /* update button text */
+    /* update button text + aria-label */
     var pressed = !!compareSet[id];
     btn.setAttribute("aria-pressed", pressed);
+    btn.setAttribute("aria-label", (pressed ? "Remove " : "Compare ") + titleStr);
     btn.textContent = pressed ? "Added ✓" : "Compare";
   }
 
@@ -479,12 +573,14 @@
       compareSet = {};
       updateCompareBar();
       compareBar.hidden = true;
+      announce("Comparison cleared.");
     });
   }
   if(compareCloseBtn){
     compareCloseBtn.addEventListener("click", function(){
       if(compareModal) compareModal.hidden = true;
       document.body.style.overflow = "";
+      if(removeTrapCompare){ removeTrapCompare(); removeTrapCompare = null; }
       if(compareOpenBtn) compareOpenBtn.focus();
     });
   }
@@ -546,6 +642,8 @@
       compareModal.hidden = false;
       document.body.style.overflow = "hidden";
       if(compareCloseBtn) compareCloseBtn.focus();
+      if(removeTrapCompare) removeTrapCompare();
+      removeTrapCompare = trapFocus(compareModal);
     }
   }
 
@@ -644,6 +742,9 @@
     overlay.classList.add("open");
     document.body.style.overflow = "hidden";
     document.getElementById("modalCloseBtn").focus();
+    if(removeTrapModal) removeTrapModal();
+    var modalEl = document.getElementById("listingModal");
+    if(modalEl) removeTrapModal = trapFocus(modalEl);
   }
 
   function closeModal(){
@@ -651,6 +752,7 @@
     overlay.classList.remove("open");
     overlay.hidden = true;
     document.body.style.overflow = "";
+    if(removeTrapModal){ removeTrapModal(); removeTrapModal = null; }
     if(lastFocused) lastFocused.focus();
   }
 

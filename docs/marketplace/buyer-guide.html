@@ -32,7 +32,7 @@
       <strong>Little plugin stack.</strong> The theme zip alone runs the office. You do not need Advanced Custom Fields, Elementor, a Gutenberg kit, or an IDX plugin. Change headlines, prices, and photos in Customizer + metaboxes — not in Blade or CSS.
     </div>
 
-    <p>Jump: <a href="#install">Install</a> · <a href="#plugins">Plugins</a> · <a href="#homepage">Homepage</a> · <a href="#customizer">Customizer</a> · <a href="#fields">Fields</a> · <a href="#menus">Menus</a> · <a href="#templates">Templates</a> · <a href="#demo">Demo</a> · <a href="#child">Child</a> · <a href="#update">Updates</a> · <a href="#faq">FAQ</a></p>
+    <p>Jump: <a href="#install">Install</a> · <a href="#plugins">Plugins</a> · <a href="#homepage">Homepage</a> · <a href="#customizer">Customizer</a> · <a href="#top-bar">Top bar</a> · <a href="#fields">Fields</a> · <a href="#menus">Menus</a> · <a href="#templates">Templates</a> · <a href="#demo">Demo</a> · <a href="#child">Child</a> · <a href="#update">Updates</a> · <a href="#faq">FAQ</a></p>
 
     <h2 id="install">1. Installation</h2>
     <ol>
@@ -80,11 +80,26 @@
         <tr><th>Social links</th><td>Facebook, Instagram, YouTube, LinkedIn, X.</td></tr>
         <tr><th>Menus</th><td>Assign <em>Primary Navigation</em> and <em>Footer Navigation</em>. Seed creates them if missing.</td></tr>
         <tr><th>Widgets</th><td><em>Footer</em> and <em>Primary</em> sidebars. Footer is the public one. Classic widgets (block widgets are off).</td></tr>
+        <tr><th>Top Bar</th><td>Slim bar above the header — desktop only (hidden below 900 px). Enable toggle, color style (Dark / Accent / Light / Custom), announcement badge + message + link, CTA pill button, contact item toggles (phone / email / address / hours), social icon toggles, optional dismiss. All enabled items surface at the foot of the mobile nav drawer automatically.</td></tr>
         <tr><th>GitHub</th><td>Fine-grained PAT for <strong>Appearance → Update Theme</strong>. Contents: Read. Add Actions: Read and write only to trigger rebuilds. Repo: <code>matthummel-pa/wp-acreline</code>.</td></tr>
       </tbody>
     </table>
     <p>Uncheck <em>Show concept demo banner</em> and <em>Show removable author credit</em> before a client preview. Footer copyright is always the site name and year (WordPress.org rule). The floating <strong>Colors</strong> control on the concept preview is demo chrome only — buyers set a style in Customize → Colors.</p>
     <p>Logos and fair-housing notes: <a href="branding.html">branding.html</a>.</p>
+
+    <h3 id="top-bar">Top bar</h3>
+    <p>The top bar (Customize → Top Bar) places a slim, configurable strip above the site header on desktop screens (900 px wide and up). On mobile it is hidden — its content is available inside the slide-out nav drawer instead so visitors on phones still see the announcement and contacts.</p>
+    <table>
+      <tbody>
+        <tr><th>Color style</th><td><strong>Dark</strong> — ink background (default). <strong>Accent</strong> — brand color. <strong>Light</strong> — paper background. <strong>Custom</strong> — pick any background and text color.</td></tr>
+        <tr><th>Announcement</th><td>Optional badge pill (e.g. "OPEN HOUSE") + message text. Add a URL to make the message a link.</td></tr>
+        <tr><th>CTA pill</th><td>Button on the right side — label + URL. Leave empty to hide.</td></tr>
+        <tr><th>Contact items</th><td>Toggle phone, email, office address, or hours on/off. Values come from Customize → Identity automatically.</td></tr>
+        <tr><th>Social icons</th><td>Per-platform toggles (Facebook, Instagram, YouTube, LinkedIn, X). Icons only appear if the platform URL is set in Customize → Social links.</td></tr>
+        <tr><th>Dismiss</th><td>When checked, a × button appears. Clicking it hides the bar for the current browser session (sessionStorage). Refreshing the page after the session ends restores it.</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Tip:</strong> Use the announcement slot for open-house dates, price drops, or seasonal hours. The bar shifts the sticky header down automatically so nothing overlaps.</p>
 
     <h2 id="fields">5. Custom fields — do not edit the design</h2>
     <p>The block editor is off. Templates are Blade. Day-to-day copy is metaboxes on the post or page. Keys are stored as <code>ks_{field}</code> — do not rename them or live posts go blank. Allowed HTML in page copy: <code>em</code>, <code>strong</code>, <code>br</code>, <code>a</code>.</p>

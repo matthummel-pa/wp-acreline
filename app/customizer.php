@@ -192,6 +192,180 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
         ]);
     }
 
+    // ── Top Bar ──────────────────────────────────────────────────────────────
+    $wp_customize->add_section('ks_top_bar', [
+        'title' => __('Top Bar', 'acreline'),
+        'description' => __('A slim bar above the header. Toggle items on/off; style and colors apply when "Custom" is chosen.', 'acreline'),
+        'priority' => 38,
+    ]);
+
+    // Enable
+    $wp_customize->add_setting('ks_top_bar_enable', [
+        'default' => false,
+        'sanitize_callback' => __NAMESPACE__.'\\sanitize_checkbox',
+    ]);
+    $wp_customize->add_control('ks_top_bar_enable', [
+        'label' => __('Show top bar', 'acreline'),
+        'section' => 'ks_top_bar',
+        'type' => 'checkbox',
+    ]);
+
+    // Style preset
+    $wp_customize->add_setting('ks_top_bar_style', [
+        'default' => 'dark',
+        'sanitize_callback' => 'sanitize_key',
+    ]);
+    $wp_customize->add_control('ks_top_bar_style', [
+        'label' => __('Color style', 'acreline'),
+        'section' => 'ks_top_bar',
+        'type' => 'select',
+        'choices' => [
+            'dark' => __('Dark (ink background)', 'acreline'),
+            'accent' => __('Accent (brand color)', 'acreline'),
+            'light' => __('Light (paper background)', 'acreline'),
+            'custom' => __('Custom colors', 'acreline'),
+        ],
+    ]);
+
+    // Custom colors (shown for any style; only applied when style = custom)
+    $wp_customize->add_setting('ks_top_bar_bg', [
+        'default' => '#141210',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ]);
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'ks_top_bar_bg', [
+        'label' => __('Custom background color', 'acreline'),
+        'description' => __('Only applies when "Custom colors" is selected above.', 'acreline'),
+        'section' => 'ks_top_bar',
+    ]));
+
+    $wp_customize->add_setting('ks_top_bar_text_color', [
+        'default' => '#fffcf7',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ]);
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'ks_top_bar_text_color', [
+        'label' => __('Custom text / icon color', 'acreline'),
+        'description' => __('Only applies when "Custom colors" is selected above.', 'acreline'),
+        'section' => 'ks_top_bar',
+    ]));
+
+    // ── Announcement slot ─────────────────────────────────────────────────────
+    $wp_customize->add_setting('ks_top_bar_badge', [
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('ks_top_bar_badge', [
+        'label' => __('Announcement badge', 'acreline'),
+        'description' => __('Short label shown before the message, e.g. "NEW" or "OPEN HOUSE".', 'acreline'),
+        'section' => 'ks_top_bar',
+        'type' => 'text',
+    ]);
+
+    $wp_customize->add_setting('ks_top_bar_message', [
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('ks_top_bar_message', [
+        'label' => __('Announcement message', 'acreline'),
+        'description' => __('Leave empty to hide the announcement slot.', 'acreline'),
+        'section' => 'ks_top_bar',
+        'type' => 'text',
+    ]);
+
+    $wp_customize->add_setting('ks_top_bar_message_url', [
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control('ks_top_bar_message_url', [
+        'label' => __('Announcement link URL', 'acreline'),
+        'description' => __('Optional — wraps the message in a link.', 'acreline'),
+        'section' => 'ks_top_bar',
+        'type' => 'url',
+    ]);
+
+    // ── CTA button ─────────────────────────────────────────────────────────────
+    $wp_customize->add_setting('ks_top_bar_cta_label', [
+        'default' => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ]);
+    $wp_customize->add_control('ks_top_bar_cta_label', [
+        'label' => __('CTA button label', 'acreline'),
+        'description' => __('Optional button on the right side, e.g. "Book now". Leave empty to hide.', 'acreline'),
+        'section' => 'ks_top_bar',
+        'type' => 'text',
+    ]);
+
+    $wp_customize->add_setting('ks_top_bar_cta_url', [
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control('ks_top_bar_cta_url', [
+        'label' => __('CTA button URL', 'acreline'),
+        'section' => 'ks_top_bar',
+        'type' => 'url',
+    ]);
+
+    // ── Contact items ──────────────────────────────────────────────────────────
+    foreach ([
+        'phone' => __('Show phone number', 'acreline'),
+        'email' => __('Show email address', 'acreline'),
+        'address' => __('Show office address', 'acreline'),
+        'hours' => __('Show office hours', 'acreline'),
+    ] as $key => $label) {
+        $wp_customize->add_setting('ks_top_bar_show_'.$key, [
+            'default' => $key === 'phone',
+            'sanitize_callback' => __NAMESPACE__.'\\sanitize_checkbox',
+        ]);
+        $wp_customize->add_control('ks_top_bar_show_'.$key, [
+            'label' => $label,
+            'section' => 'ks_top_bar',
+            'type' => 'checkbox',
+        ]);
+    }
+
+    // ── Social icons ──────────────────────────────────────────────────────────
+    foreach ([
+        'facebook' => __('Show Facebook icon', 'acreline'),
+        'instagram' => __('Show Instagram icon', 'acreline'),
+        'youtube' => __('Show YouTube icon', 'acreline'),
+        'linkedin' => __('Show LinkedIn icon', 'acreline'),
+        'x' => __('Show X / Twitter icon', 'acreline'),
+    ] as $key => $label) {
+        $wp_customize->add_setting('ks_top_bar_show_'.$key, [
+            'default' => false,
+            'sanitize_callback' => __NAMESPACE__.'\\sanitize_checkbox',
+        ]);
+        $wp_customize->add_control('ks_top_bar_show_'.$key, [
+            'label' => $label,
+            'description' => $key === 'facebook' ? __('Social URLs are set in Appearance → Customize → Social links.', 'acreline') : '',
+            'section' => 'ks_top_bar',
+            'type' => 'checkbox',
+        ]);
+    }
+
+    // ── Behaviour ─────────────────────────────────────────────────────────────
+    $wp_customize->add_setting('ks_top_bar_dismissible', [
+        'default' => false,
+        'sanitize_callback' => __NAMESPACE__.'\\sanitize_checkbox',
+    ]);
+    $wp_customize->add_control('ks_top_bar_dismissible', [
+        'label' => __('Allow visitors to dismiss the bar', 'acreline'),
+        'description' => __('A close button appears; dismissed state is stored in sessionStorage.', 'acreline'),
+        'section' => 'ks_top_bar',
+        'type' => 'checkbox',
+    ]);
+
+    $wp_customize->add_setting('ks_top_bar_mobile_show', [
+        'default' => true,
+        'sanitize_callback' => __NAMESPACE__.'\\sanitize_checkbox',
+    ]);
+    $wp_customize->add_control('ks_top_bar_mobile_show', [
+        'label' => __('Show on mobile', 'acreline'),
+        'section' => 'ks_top_bar',
+        'type' => 'checkbox',
+    ]);
+
+    // End of Top Bar section ───────────────────────────────────────────────────
+
     $wp_customize->add_section('ks_typography', [
         'title' => __('Typography', 'acreline'),
         'description' => __('Sans-serif fonts used on modern realtor sites. Inter is the default for headings and body.', 'acreline'),
