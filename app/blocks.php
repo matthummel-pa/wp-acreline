@@ -1530,19 +1530,29 @@ function ks_render_listing_grid(array $attrs): string
           <div class="filters-actions">
             <p id="resultCount" class="result-count" role="status" aria-live="polite"></p>
             <div class="view-toggles">
-              <button type="button" class="view-btn is-active" id="viewGrid" aria-label="<?php esc_attr_e('Grid view', 'acreline'); ?>" aria-pressed="true">
+              <button type="button" class="view-btn is-active" id="gridViewBtn" aria-label="<?php esc_attr_e('Grid view', 'acreline'); ?>" aria-pressed="true">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
               </button>
-              <button type="button" class="view-btn" id="viewMap" aria-label="<?php esc_attr_e('Map view', 'acreline'); ?>" aria-pressed="false">
+              <button type="button" class="view-btn" id="mapViewBtn" aria-label="<?php esc_attr_e('Map view', 'acreline'); ?>" aria-pressed="false">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3V7z"/><path d="M9 4v13M15 7v13"/></svg>
               </button>
             </div>
           </div>
         </form>
         <div id="listingGrid" class="listing-grid reveal"></div>
-        <div id="listingMap" class="listing-map" hidden></div>
+        <div id="emptyState" class="listing-empty" hidden>
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="24" cy="24" r="20"/><path d="M16 24h16M24 16v16"/></svg>
+          <p><?php esc_html_e('No properties match these filters.', 'acreline'); ?></p>
+          <button type="button" class="btn btn-secondary" id="emptyResetBtn"><?php esc_html_e('Reset filters', 'acreline'); ?></button>
+        </div>
+        <div id="mapView" class="listing-map-wrap" hidden>
+          <div class="listing-map-stage" aria-label="<?php esc_attr_e('Sample property map', 'acreline'); ?>" role="img">
+            <div id="mapPins"></div>
+          </div>
+        </div>
       </div>
     </section>
+
     <?php if ($introTitle || $introText) { ?>
     <section class="section">
       <div class="wrap intro-note reveal">
@@ -1551,6 +1561,103 @@ function ks_render_listing_grid(array $attrs): string
       </div>
     </section>
     <?php } ?>
+
+    <!-- Listing detail modal -->
+    <div id="modalOverlay" class="listing-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+      <div class="listing-modal">
+        <div class="modal-header">
+          <button type="button" class="modal-close" id="modalCloseBtn" aria-label="<?php esc_attr_e('Close', 'acreline'); ?>">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="modal-gallery" id="modalGallery"></div>
+        <div class="modal-body">
+          <div class="modal-meta">
+            <span class="modal-tag" id="modalTag"></span>
+            <span class="status-tag" id="modalStatus"></span>
+          </div>
+          <h2 class="modal-title" id="modalTitle"></h2>
+          <p class="modal-address" id="modalAddress">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span></span>
+          </p>
+          <p class="modal-price" id="modalPrice"></p>
+          <div class="modal-specs" id="modalSpecs"></div>
+          <p class="modal-desc" id="modalDesc"></p>
+          <div class="modal-actions">
+            <a href="#" class="btn btn-primary" id="modalScheduleBtn"><?php esc_html_e('Book a showing', 'acreline'); ?></a>
+            <button type="button" class="btn btn-secondary" id="modalSaveBtn"><?php esc_html_e('Save Listing', 'acreline'); ?></button>
+          </div>
+          <div class="modal-calc">
+            <h3 class="modal-calc-heading"><?php esc_html_e('Estimate payment', 'acreline'); ?></h3>
+            <div class="modal-calc-grid">
+              <div class="field">
+                <label for="calcPrice"><?php esc_html_e('Price', 'acreline'); ?></label>
+                <input id="calcPrice" type="number" min="0" step="1000" value="0">
+              </div>
+              <div class="field">
+                <label for="calcDown"><?php esc_html_e('Down (%)', 'acreline'); ?></label>
+                <input id="calcDown" type="number" min="0" max="100" value="20">
+              </div>
+              <div class="field">
+                <label for="calcRate"><?php esc_html_e('Rate (%)', 'acreline'); ?></label>
+                <input id="calcRate" type="number" min="0" max="30" step="0.1" value="7.0">
+              </div>
+              <div class="field">
+                <label for="calcTerm"><?php esc_html_e('Term (yrs)', 'acreline'); ?></label>
+                <select id="calcTerm">
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="30" selected>30</option>
+                </select>
+              </div>
+            </div>
+            <p class="modal-calc-result" id="calcMonthly" role="status" aria-live="polite">—</p>
+            <p class="modal-calc-note"><?php esc_html_e('Principal &amp; interest only. Concept demo.', 'acreline'); ?></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saved listings drawer -->
+    <div id="savedDrawer" class="saved-drawer" aria-label="<?php esc_attr_e('Saved listings', 'acreline'); ?>" hidden>
+      <div class="saved-drawer-header">
+        <h2 class="saved-drawer-title"><?php esc_html_e('Saved listings', 'acreline'); ?> <span id="savedDrawerCount" class="saved-count-badge"></span></h2>
+        <button type="button" class="modal-close" id="savedDrawerClose" aria-label="<?php esc_attr_e('Close saved listings', 'acreline'); ?>">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="savedDrawerList" class="saved-drawer-list"></div>
+      <p id="savedDrawerEmpty" class="saved-drawer-empty" hidden><?php esc_html_e('No saved listings yet. Click the heart on any property.', 'acreline'); ?></p>
+    </div>
+
+    <!-- Floating saved button (injected by JS) -->
+    <button type="button" id="savedFab" class="saved-fab" aria-label="<?php esc_attr_e('View saved listings', 'acreline'); ?>" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.3C.5 8 2.4 4.5 6 4c2.1-.3 4 .8 6 3.1C14 4.8 15.9 3.7 18 4c3.6.5 5.5 4 4 7.7-2.5 4.7-10 9.3-10 9.3z"/></svg>
+      <span id="savedFabCount"></span>
+    </button>
+
+    <!-- Comparison bar -->
+    <div id="compareBar" class="compare-bar" hidden aria-live="polite">
+      <span id="compareBarLabel"><?php esc_html_e('0 selected', 'acreline'); ?></span>
+      <button type="button" class="btn btn-primary btn-sm" id="compareOpenBtn" disabled><?php esc_html_e('Compare', 'acreline'); ?></button>
+      <button type="button" class="btn btn-ghost btn-sm" id="compareClearBtn"><?php esc_html_e('Clear', 'acreline'); ?></button>
+    </div>
+
+    <!-- Comparison modal -->
+    <div id="compareModal" class="compare-modal-overlay" role="dialog" aria-modal="true" aria-label="<?php esc_attr_e('Compare listings', 'acreline'); ?>" hidden>
+      <div class="compare-modal">
+        <div class="compare-modal-header">
+          <h2><?php esc_html_e('Compare listings', 'acreline'); ?></h2>
+          <button type="button" class="modal-close" id="compareCloseBtn" aria-label="<?php esc_attr_e('Close comparison', 'acreline'); ?>">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div id="compareTable" class="compare-table-wrap"></div>
+      </div>
+    </div>
+
     <?php
     return (string) ob_get_clean();
 }

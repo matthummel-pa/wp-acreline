@@ -73,6 +73,13 @@ function ks_default_settings(): array
         'show_mortgage_calc' => '1',
         'mortgage_rate_default' => '7.0',
         'show_concept_banner' => '1',
+        // ── Market snapshot ──────────────────────────────────────────────────
+        'market_show_snapshot' => '1',
+        'market_median_price' => '',
+        'market_avg_dom' => '',
+        'market_inventory_months' => '',
+        'market_yoy_change' => '',
+        'market_as_of' => '',
     ];
 }
 
@@ -238,6 +245,18 @@ function render_settings_page(): void
           ?>
         </table>
 
+        <?php ks_settings_section(__('Market snapshot', 'acreline'), __('Enter current market stats for your area. Display anywhere with [acreline_market_snapshot].', 'acreline')); ?>
+        <table class="form-table" role="presentation">
+          <?php
+            ks_toggle_field('market_show_snapshot', __('Enable market snapshot widget', 'acreline'));
+            ks_text_field('market_median_price', __('Median sale price', 'acreline'), __('e.g. $485,000', 'acreline'));
+            ks_text_field('market_avg_dom', __('Average days on market', 'acreline'), __('e.g. 28', 'acreline'));
+            ks_text_field('market_inventory_months', __('Months of inventory', 'acreline'), __('e.g. 1.8', 'acreline'));
+            ks_text_field('market_yoy_change', __('Year-over-year price change', 'acreline'), __('e.g. +4.2% or -1.5%', 'acreline'));
+            ks_text_field('market_as_of', __('Stats as of', 'acreline'), __('e.g. Q3 2026 · Sample county', 'acreline'));
+          ?>
+        </table>
+
         <?php submit_button(__('Save settings', 'acreline')); ?>
       </form>
     </div>
@@ -292,3 +311,48 @@ function ks_select_field(string $key, string $label, array $options): void
     echo '</select></td>';
     echo '</tr>';
 }
+
+// ─── Market snapshot shortcode ────────────────────────────────────────────────
+
+add_shortcode('acreline_market_snapshot', function (): string {
+    if ((string) ks_setting('market_show_snapshot') === '0') {
+        return '';
+    }
+
+    $medianPrice   = sanitize_text_field((string) ks_setting('market_median_price'));
+    $avgDom        = sanitize_text_field((string) ks_setting('market_avg_dom'));
+    $inventory     = sanitize_text_field((string) ks_setting('market_inventory_months'));
+    $yoy           = sanitize_text_field((string) ks_setting('market_yoy_change'));
+    $asOf          = sanitize_text_field((string) ks_setting('market_as_of'));
+
+    /* At least one stat must be set */
+    if (! $medianPrice && ! $avgDom && ! $inventory && ! $yoy) {
+        return '';
+    }
+
+    $stats = [];
+    if ($medianPrice) {
+        $stats[] = ['value' => esc_html($medianPrice), 'label' => esc_html__('Median sale price', 'acreline')];
+    }
+    if ($avgDom) {
+        $stats[] = ['value' => esc_html($avgDom).' <span>'.esc_html__('days', 'acreline').'</span>', 'label' => esc_html__('Avg. days on market', 'acreline')];
+    }
+    if ($inventory) {
+        $stats[] = ['value' => esc_html($inventory).' <span>'.esc_html__('mo', 'acreline').'</span>', 'label' => esc_html__('Months of inventory', 'acreline')];
+    }
+    if ($yoy) {
+        $stats[] = ['value' => esc_html($yoy), 'label' => esc_html__('Year-over-year', 'acreline')];
+    }
+
+    $cols = count($stats);
+    $html = '<div class="market-snapshot market-snapshot--'.$cols.'">';
+    foreach ($stats as $stat) {
+        $html .= '<div class="market-stat"><strong>'.$stat['value'].'</strong><span>'.$stat['label'].'</span></div>';
+    }
+    if ($asOf) {
+        $html .= '<p class="market-as-of">'.esc_html__('As of', 'acreline').' '.esc_html($asOf).'</p>';
+    }
+    $html .= '</div>';
+
+    return $html;
+});

@@ -30,6 +30,16 @@
 @endphp
 @if ($listing)
   @php
+    /* Nearby listings: same township, exclude self, max 3 */
+    $nearbyListings = array_slice(
+      array_values(array_filter(
+        \App\Support\Catalog::listings(),
+        fn ($l) => (int) $l['id'] !== (int) $listing['id'] && $l['township'] === $listing['township'] && $l['status'] !== 'sold'
+      )),
+      0, 3
+    );
+  @endphp
+  @php
     $listingSchema = [
       '@context' => 'https://schema.org',
       '@type' => $listing['type'] === 'land' ? 'Place' : 'SingleFamilyResidence',
@@ -63,6 +73,12 @@
   <script type="application/ld+json">
     {!! json_encode($listingSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
   </script>
+{{-- Hidden metadata for listing-detail.js --}}
+<input type="hidden" id="listingDetailId"    value="{{ $listing['id'] }}">
+<input type="hidden" id="listingDetailTitle" value="{{ esc_attr($listing['title']) }}">
+<input type="hidden" id="listingDetailPrice" value="{{ $listing['price'] }}">
+<input type="hidden" id="listingDetailUrl"   value="{{ esc_url($listing['permalink']) }}">
+
 @include('partials.breadcrumbs')
 
 @include('partials.page-hero', [
@@ -77,6 +93,21 @@
   ],
 ])
 
+{{-- Sticky CTA bar (visible after scrolling past hero) --}}
+<div id="listingStickyCta" class="listing-sticky-cta" aria-hidden="true" aria-live="off">
+  <div class="sticky-cta-inner wrap">
+    <div class="sticky-cta-info">
+      <span class="sticky-cta-price">{{ \App\Support\Catalog::formatMoney((int) $listing['price']) }}</span>
+      <span class="sticky-cta-title">{{ $listing['title'] }}</span>
+    </div>
+    <div class="sticky-cta-actions">
+      <button type="button" id="listingShareBtn" class="btn btn-ghost btn-sm">{{ __('Share', 'acreline') }}</button>
+      <button type="button" id="listingPrintBtn" class="btn btn-ghost btn-sm">{{ __('Print flyer', 'acreline') }}</button>
+      <a class="btn btn-primary btn-sm" href="{{ home_url('/book/') }}?listing_id={{ $listing['id'] }}">{{ __('Book a showing', 'acreline') }}</a>
+    </div>
+  </div>
+</div>
+
 {{-- ── Open house banner ──────────────────────────────────────────────────── --}}
 @if ($showOH && $listing['open_house_type'] && $listing['open_house_date'])
 <div class="listing-open-house" role="status">
@@ -85,7 +116,7 @@
 </div>
 @endif
 
-<section class="section">
+<section class="section listing-single-wrap">
   <div class="wrap listing-single">
     <div class="listing-single-main">
 
@@ -343,5 +374,46 @@
     @endif
   </div>
 </section>
+
+{{-- ── Nearby listings (same township) ────────────────────────────── --}}
+@if (count($nearbyListings) > 0)
+<section class="section section-alt listing-nearby" aria-labelledby="nearby-heading">
+  <div class="wrap">
+    <h2 id="nearby-heading" class="eyebrow-heading">
+      <span class="eyebrow">{{ $listing['township'] }} Township</span>
+      {{ __('More in this area', 'acreline') }}
+    </h2>
+    <div class="listing-grid listing-grid--nearby">
+      @foreach ($nearbyListings as $nearby)
+        <article class="card">
+          <a href="{{ $nearby['permalink'] }}" class="card-link-wrap" aria-label="{{ esc_attr($nearby['title']) }}">
+            <div class="card-photo" style="@if ($nearby['image']) background-image:url({{ $nearby['image'] }});background-size:cover;background-position:center;@else background:{{ $nearby['grad'] ?? 'var(--forest)' }};@endif">
+              <span class="status-tag status-{{ $nearby['status'] }}">{{ ucfirst($nearby['status']) }}</span>
+              <span class="card-tag">{{ $nearby['typeLabel'] }}</span>
+            </div>
+            <div class="card-body">
+              <span class="card-price">{{ \App\Support\Catalog::formatMoney((int) $nearby['price']) }}</span>
+              <h3 class="card-title">{{ $nearby['title'] }}</h3>
+              <p class="card-address">{{ $nearby['address'] }}</p>
+            </div>
+          </a>
+        </article>
+      @endforeach
+    </div>
+  </div>
+</section>
+@endif
+
+{{-- ── Recently viewed (populated by JS from localStorage) ─────────── --}}
+<section id="recentlyViewedWrap" class="section listing-recently-viewed" hidden>
+  <div class="wrap">
+    <h2 class="eyebrow-heading">
+      <span class="eyebrow">{{ __('Your session', 'acreline') }}</span>
+      {{ __('Recently viewed', 'acreline') }}
+    </h2>
+    <div id="recentlyViewedList" class="rv-list"></div>
+  </div>
+</section>
+
 @endif
 @endsection
