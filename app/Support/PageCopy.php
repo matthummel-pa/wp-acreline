@@ -106,6 +106,9 @@ class PageCopy
             'guide' => array_merge($hero('Buyer tools', 'A clearer path to <em>buying land or a home</em>', 'Short guides and demo calculators. Use with the showing scheduler for a full agent workflow.'), [
                 'intro_title' => ['label' => 'Intro title', 'type' => 'text', 'default' => 'What\'s different about buying land'],
                 'intro_text' => ['label' => 'Intro', 'type' => 'textarea', 'default' => 'When you buy an existing home, utilities are usually sorted. Out in the townships you often have to prove water, septic and access yourself — and those answers change the value of the ground.'],
+                'check_eyebrow' => ['label' => 'Scan-cards eyebrow', 'type' => 'text', 'default' => 'Before the calculators'],
+                'check_title' => ['label' => 'Scan-cards title', 'type' => 'text', 'default' => 'Four things that change what acreage is worth'],
+                'check_text' => ['label' => 'Scan-cards intro', 'type' => 'textarea', 'default' => 'Read these first, then run the demo numbers. A pretty parcel without water, septic, or a recorded lane is a different product than a turnkey farmhouse.'],
                 'tools_eyebrow' => ['label' => 'Tools eyebrow', 'type' => 'text', 'default' => 'Run Your Numbers'],
                 'tools_title' => ['label' => 'Tools title', 'type' => 'text', 'default' => 'Land-loan &amp; pre-qualification tools'],
                 'tools_text' => ['label' => 'Tools intro', 'type' => 'textarea', 'default' => 'Friendly estimates to help you plan — not loan offers. A licensed lender will verify everything with full documentation.'],
@@ -132,6 +135,9 @@ class PageCopy
                 'office_hours' => ['label' => 'Hours', 'type' => 'textarea', 'default' => "Mon–Fri: 8:30am – 5:30pm\nSaturday: 9:00am – 1:00pm\nSunday: By appointment"],
                 'form_title' => ['label' => 'Form title', 'type' => 'text', 'default' => 'Send us a message'],
                 'form_text' => ['label' => 'Form intro', 'type' => 'textarea', 'default' => 'Tell us what you\'re looking for — or what you\'re thinking of selling — and we\'ll be in touch.'],
+                'when_eyebrow' => ['label' => 'Reach-us eyebrow', 'type' => 'text', 'default' => 'How to reach us'],
+                'when_title' => ['label' => 'Reach-us title', 'type' => 'text', 'default' => 'Call, message, or book a walk'],
+                'when_text' => ['label' => 'Reach-us intro', 'type' => 'textarea', 'default' => 'Pick the path that matches the job. All three stay on this concept site — nothing is emailed or texted.'],
             ],
             'book' => $hero('Appointments', 'Book a house showing', 'Pick a listing, date and time. The request is saved as a Booking in Requested status — nothing is emailed.') + [
                 'book_note' => ['label' => 'Form note', 'type' => 'text', 'default' => 'Demo only — no emails, texts or calendar invites are sent. Staff can advance the booking in WP Admin → Bookings.'],

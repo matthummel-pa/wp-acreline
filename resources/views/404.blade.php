@@ -17,7 +17,7 @@
 
   <section class="section">
     <div class="wrap">
-      <div class="intent-grid">
+      <div class="intent-grid dest-grid">
         <a class="intent-card" href="{{ home_url('/') }}">
           <strong>Home</strong>
           <span>Search samples, price a demo home, or book a showing.</span>
@@ -32,6 +32,21 @@
           <strong>Book</strong>
           <span>Pick a sample address, date, and time slot.</span>
           <em>Request a showing →</em>
+        </a>
+        <a class="intent-card" href="{{ home_url('/guide') }}">
+          <strong>Buyer guide</strong>
+          <span>Wells, perc, access, and demo land-loan math.</span>
+          <em>Open buyer tools →</em>
+        </a>
+        <a class="intent-card" href="{{ home_url('/areas') }}">
+          <strong>Areas</strong>
+          <span>Township-by-township reads of rural Adams County.</span>
+          <em>Scan townships →</em>
+        </a>
+        <a class="intent-card" href="{{ home_url('/contact') }}">
+          <strong>Contact</strong>
+          <span>100 Concept Way · (555) 010-0455 · sample form.</span>
+          <em>Reach the office →</em>
         </a>
       </div>
     </div>
