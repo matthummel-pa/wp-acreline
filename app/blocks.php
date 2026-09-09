@@ -2069,6 +2069,7 @@ function ks_render_book_note(array $attrs): string
     $noteCls = match ($noteStyle) {
         'info' => 'ks-note--info',
         'warning' => 'ks-note--warning',
+        'banner' => 'ks-note--banner',
         default => '',
     };
 
