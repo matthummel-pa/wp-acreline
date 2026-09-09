@@ -63,6 +63,27 @@
         <li><strong>Header size</strong> — Standard or Compact (shorter bar on listing-heavy pages).</li>
         <li><strong>Stick the header while scrolling</strong> — on by default.</li>
       </ul>
+      <h3>Homepage hero motion</h3>
+      <p>Two independent checkboxes. They do not change listings, identity, or the hero photo itself.</p>
+      <table class="fields">
+        <thead>
+          <tr><th>Control</th><th>Setting key</th><th>Default</th><th>What it does</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Animate homepage hero image</th>
+            <td><code>ks_hero_ken_burns</code></td>
+            <td>On</td>
+            <td>Slow Ken Burns pan and zoom on the homepage hero <em>photo</em> only. Headlines, overlay, and listing search stay still. Uncheck for a static cover. Honors reduced motion.</td>
+          </tr>
+          <tr>
+            <th>Tilt listing search on mobile</th>
+            <td><code>ks_hero_search_tilt</code></td>
+            <td>Off</td>
+            <td>On phones, the listing search panel gently follows device tilt. Off for battery and privacy. No-op on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion. iPhone may ask for motion access.</td>
+          </tr>
+        </tbody>
+      </table>
       <h2>Typography</h2>
       <p>Sans-serif families loaded from Google Fonts when selected. Inter is the default for headings, body, nav, buttons, and labels. Base size 14–20px (16 default). Heading weight 500 / 600 / 700.</p>
       <p>Families: Inter, Plus Jakarta Sans, DM Sans, Manrope, Montserrat, Poppins, Source Sans 3, Nunito Sans, Outfit, Lato. All SIL OFL. No font files are vendored in the zip.</p>

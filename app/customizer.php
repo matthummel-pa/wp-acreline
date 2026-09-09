@@ -136,7 +136,7 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
 
     $wp_customize->add_section('ks_header', [
         'title' => __('Header', 'acreline'),
-        'description' => __('Sticky bar is the default. Compact shortens the bar on listing-heavy pages.', 'acreline'),
+        'description' => __('Sticky bar is the default. Compact shortens the bar on listing-heavy pages. Homepage hero motion (photo pan and optional phone tilt) lives here too.', 'acreline'),
         'priority' => 34,
     ]);
 
@@ -164,6 +164,30 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
     ]);
     $wp_customize->add_control('ks_header_sticky', [
         'label' => __('Stick the header while scrolling', 'acreline'),
+        'section' => 'ks_header',
+        'type' => 'checkbox',
+    ]);
+
+    $wp_customize->add_setting('ks_hero_ken_burns', [
+        'default' => true,
+        'sanitize_callback' => __NAMESPACE__.'\\sanitize_checkbox',
+        'transport' => 'postMessage',
+    ]);
+    $wp_customize->add_control('ks_hero_ken_burns', [
+        'label' => __('Animate homepage hero image', 'acreline'),
+        'description' => __('Slow Ken Burns pan and zoom on the homepage hero photo. Turn off for a static cover. Honors reduced-motion preferences.', 'acreline'),
+        'section' => 'ks_header',
+        'type' => 'checkbox',
+    ]);
+
+    $wp_customize->add_setting('ks_hero_search_tilt', [
+        'default' => false,
+        'sanitize_callback' => __NAMESPACE__.'\\sanitize_checkbox',
+        'transport' => 'postMessage',
+    ]);
+    $wp_customize->add_control('ks_hero_search_tilt', [
+        'label' => __('Tilt listing search on mobile', 'acreline'),
+        'description' => __('On phones, the homepage listing search panel gently follows device tilt. Off by default. Does nothing if sensors are missing, permission is denied, or the visitor prefers reduced motion. iPhone may ask for motion access.', 'acreline'),
         'section' => 'ks_header',
         'type' => 'checkbox',
     ]);

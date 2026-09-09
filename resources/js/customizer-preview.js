@@ -40,4 +40,17 @@
       document.documentElement.style.setProperty("--fw-heading", String(value));
     });
   });
+
+  wp.customize("ks_hero_ken_burns", function (setting) {
+    setting.bind(function (value) {
+      document.body.classList.toggle("ken-burns-enabled", !!value);
+    });
+  });
+
+  wp.customize("ks_hero_search_tilt", function (setting) {
+    setting.bind(function (value) {
+      document.body.classList.toggle("hero-search-tilt-enabled", !!value);
+      document.dispatchEvent(new CustomEvent("acreline:hero-tilt"));
+    });
+  });
 })();

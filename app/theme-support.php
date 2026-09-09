@@ -126,6 +126,10 @@ function render_support_page(): void
             'desc' => __('All image URL fields in listing and agent metaboxes use the native WordPress media library picker instead of a plain text input.', 'acreline')],
         ['icon' => '♿',  'title' => __('Accessibility improvements', 'acreline'),
             'desc' => __('WCAG 2.2 AA contrast across all components, 44px touch targets, skip-link focus, semantic heading hierarchy, and aria-live regions.', 'acreline')],
+        ['icon' => '🎬',  'title' => __('Homepage hero animation', 'acreline'),
+            'desc' => __('The homepage hero photo slowly pans and zooms. Turn it off under Customize → Header → Animate homepage hero image. Reduced-motion visitors see a still cover.', 'acreline')],
+        ['icon' => '📱',  'title' => __('Mobile listing-search tilt', 'acreline'),
+            'desc' => __('Optional: the homepage search panel gently follows device tilt on phones. Off by default. Does nothing without sensors or if permission is denied.', 'acreline')],
     ];
     foreach ($features as $f) { ?>
           <div class="kss-feature-card">
@@ -213,6 +217,10 @@ function render_support_page(): void
             __('No. It runs entirely in the browser using standard amortization math. No third-party service, no API key, no tracking.', 'acreline')],
         [__('How do I update the theme on a live host?', 'acreline'),
             __('The GitHub CI workflow publishes a ready-to-install zip on the "theme-latest" release. Enter your GitHub token in Customizer → GitHub Token, then click Update Theme.', 'acreline')],
+        [__('How do I turn off the homepage hero animation?', 'acreline'),
+            __('Appearance → Customize → Header → uncheck “Animate homepage hero image.” The photo stays; it no longer pans. Visitors who prefer reduced motion already see a still cover.', 'acreline')],
+        [__('How do I turn on listing-search tilt on phones?', 'acreline'),
+            __('Appearance → Customize → Header → check “Tilt listing search on mobile.” Off by default. It does nothing on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion.', 'acreline')],
         [__('Where are bookings stored?', 'acreline'),
             __('Showing requests become Booking CPT posts in WordPress Admin → Bookings. There is no external CRM connection by default — all data stays in your database.', 'acreline')],
         [__('Can I submit this theme to WordPress.org?', 'acreline'),
@@ -233,6 +241,11 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.4.3', [
+            __('Homepage hero photo slowly pans and zooms; headlines, overlay, and listing search stay still', 'acreline'),
+            __('Optional phone tilt on the homepage listing search — off by default; does nothing without sensors or permission', 'acreline'),
+            __('Customize → Header: “Animate homepage hero image” (on) and “Tilt listing search on mobile” (off)', 'acreline'),
+        ]],
         ['1.4.2', [
             __('Homepage hero shows a full-bleed rural farmhouse photo with a readable ink veil — change it from the Home Hero block image picker', 'acreline'),
             __('Seed and force-rebuild write the hero image URL onto the home page', 'acreline'),

@@ -152,7 +152,7 @@ input,select,textarea{font-family:inherit;font-size:1rem;}
 .reveal.in-view{opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none;}
-  .hero-media img,.hero-inner{animation:none !important;}
+  .hero-media img,.hero-inner{animation:none !important;transform:none;}
 }
 
 .visually-hidden{
@@ -569,6 +569,7 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
 }
 .hero-media{
   position:absolute;inset:0;z-index:0;margin:0;
+  overflow:hidden;
   background-color:#141210;
   background-image:var(--hero-photo, none);
   background-size:cover;
@@ -576,11 +577,24 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
 }
 .hero-media img{
   width:100%;height:100%;object-fit:cover;object-position:center 40%;
-  animation:heroKen 22s var(--ease) both;
+  display:block;
+}
+.ken-burns-enabled .hero-media img{
+  transform-origin:center center;
+  transform:scale(1.08) translate3d(-1.5%,1.2%,0);
+  animation:heroKen 32s ease-in-out infinite alternate;
+  will-change:transform;
 }
 @keyframes heroKen{
-  from{transform:scale(1.08) translate3d(0,2%,0);}
-  to{transform:scale(1) translate3d(0,0,0);}
+  from{transform:scale(1.08) translate3d(-1.5%,1.2%,0);}
+  to{transform:scale(1.14) translate3d(2%,-1.5%,0);}
+}
+@media(prefers-reduced-motion:reduce){
+  .ken-burns-enabled .hero-media img{
+    animation:none !important;
+    transform:none;
+    will-change:auto;
+  }
 }
 
 /* ── Image-position overrides (imagePosition block attr) ─────────────────── */
@@ -679,6 +693,15 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
   color:var(--ink);
   color-scheme:light;
   box-shadow:var(--shadow-lg);
+}
+.hero-search-tilt-enabled .hero .hero-search.is-tilt-active{
+  will-change:transform;
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-search-tilt-enabled .hero .hero-search{
+    transform:none !important;
+    will-change:auto;
+  }
 }
 .hero .hero-search-actions{
   display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;

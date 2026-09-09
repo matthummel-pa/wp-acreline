@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.3
+
+- **Homepage hero** — The hero photo slowly pans and zooms. Headlines, the dark overlay, and the listing search stay still so they stay readable. Visitors who prefer reduced motion see a still photo.
+- **Listing search on phones** — Optional: the search panel can gently follow the phone’s tilt. Off by default (battery and privacy). Does nothing if the device has no motion sensors or the visitor declines access.
+- **Customizer** — Appearance → Customize → Header: “Animate homepage hero image” (on) and “Tilt listing search on mobile” (off). The two checkboxes are independent.
+
 ## 1.4.2
 
 - **Home** — `acreline/home-hero` always paints a full-bleed rural farmhouse photo behind the copy and search form (theme default Unsplash still already used on the featured listing). Ink veil keeps white type readable; Gutenberg image picker still replaces it.
