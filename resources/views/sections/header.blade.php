@@ -84,6 +84,7 @@
     @php $tb = $identity['topBar'] ?? false; @endphp
     {{-- Top-bar content surfaces here on mobile when the bar is enabled --}}
     @if ($tb)
+      <div class="mnav-tb"@if (! empty($tb['cssVars'])) style="{{ esc_attr($tb['cssVars']) }}"@endif>
       {{-- Announcement --}}
       @if ($tb['message'])
         <div class="mnav-tb-announcement">
@@ -151,8 +152,9 @@
 
       {{-- CTA --}}
       @if ($tb['ctaLabel'] && $tb['ctaUrl'])
-        <a class="btn btn-outline btn-sm mnav-tb-cta" href="{{ esc_url($tb['ctaUrl']) }}">{{ $tb['ctaLabel'] }}</a>
+        <a class="top-bar-cta mnav-tb-cta" href="{{ esc_url($tb['ctaUrl']) }}">{{ $tb['ctaLabel'] }}</a>
       @endif
+      </div>
 
     @else
       {{-- Default: just phone + book CTA when top bar is off --}}

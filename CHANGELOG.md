@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.4
+
+- **Settings** — Homepage hero motion (Ken Burns and mobile search tilt) is on Appearance → Acreline Settings → General. Values stay saved when you leave and return. Customize → Header stays in sync.
+- **Top bar** — Desktop bar and the mobile-nav copy use the active color scheme (`ks_accent` / `ks_paper` / `ks_ink`). Text and icons auto-pick a readable pair when accent-on-paper would fail. Custom colors still override.
+
 ## 1.4.3
 
 - **Homepage hero** — The hero photo slowly pans and zooms. Headlines, the dark overlay, and the listing search stay still so they stay readable. Visitors who prefer reduced motion see a still photo.

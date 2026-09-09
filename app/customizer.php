@@ -169,9 +169,10 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
     ]);
 
     $wp_customize->add_setting('ks_hero_ken_burns', [
-        'default' => true,
+        'default' => (string) ks_setting('ks_hero_ken_burns') !== '0',
         'sanitize_callback' => __NAMESPACE__.'\\sanitize_checkbox',
         'transport' => 'postMessage',
+        'type' => 'theme_mod',
     ]);
     $wp_customize->add_control('ks_hero_ken_burns', [
         'label' => __('Animate homepage hero image', 'acreline'),
@@ -181,9 +182,10 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
     ]);
 
     $wp_customize->add_setting('ks_hero_search_tilt', [
-        'default' => false,
+        'default' => (string) ks_setting('ks_hero_search_tilt') !== '0',
         'sanitize_callback' => __NAMESPACE__.'\\sanitize_checkbox',
         'transport' => 'postMessage',
+        'type' => 'theme_mod',
     ]);
     $wp_customize->add_control('ks_hero_search_tilt', [
         'label' => __('Tilt listing search on mobile', 'acreline'),
@@ -460,7 +462,12 @@ function sanitize_font_key($value): string
 
 function sanitize_checkbox($value): bool
 {
-    return (bool) $value;
+    return $value === true
+        || $value === 1
+        || $value === '1'
+        || $value === 'true'
+        || $value === 'on'
+        || $value === 'yes';
 }
 
 add_action('wp_enqueue_scripts', function () {

@@ -66,7 +66,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 
 | Field | Value |
 | --- | --- |
-| **Version** | 1.4.3 |
+| **Version** | 1.4.4 |
 | **Software version** | WordPress 6.6, 6.7, 6.8, 7.0 (tested up to 7.0.1) |
 | **Compatible browsers** | Chrome, Firefox, Safari, Edge (current two versions) |
 | **Compatible with** | No page builder required. Optional: Yoast, Rank Math, SEOPress, AIOSEO |
@@ -113,8 +113,8 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
   <li><strong>Rich listing fields</strong>: open house date/time, virtual/video tour, floor plan URL, condition, garage, basement, utilities (water/sewer/heating/cooling), HOA, school district, flood zone, green features, smart-home chips, outbuildings, tillable/pasture acres</li>
 </ul>
 
-<h3>Homepage hero motion (1.4.3)</h3>
-<p>The homepage hero photo slowly pans and zooms. Headlines, the overlay, and the listing search stay still. Turn the animation off under Customize → Header → “Animate homepage hero image” (on by default). An optional phone-only tilt on the search panel is off by default (“Tilt listing search on mobile”) — it does nothing without sensors or if the visitor declines access.</p>
+<h3>Homepage hero motion (1.4.3 / 1.4.4)</h3>
+<p>The homepage hero photo slowly pans and zooms. Headlines, the overlay, and the listing search stay still. Turn the animation off under Customize → Header or Appearance → Acreline Settings → General (on by default). An optional phone-only tilt on the search panel is off by default (“Tilt listing search on mobile”) — it does nothing without sensors or if the visitor declines access. Both screens store the same saved values.</p>
 
 <h3>Top bar (new in 1.4.0)</h3>
 <p>A configurable slim bar above the header — desktop only (hidden below 900 px). All enabled content surfaces automatically at the foot of the mobile nav drawer.</p>

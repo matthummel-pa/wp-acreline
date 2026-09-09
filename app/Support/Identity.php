@@ -152,12 +152,20 @@ class Identity
 
     public static function heroKenBurns(): bool
     {
-        return (bool) get_theme_mod('ks_hero_ken_burns', true);
+        if (is_customize_preview()) {
+            return \App\ks_hero_value_on(get_theme_mod('ks_hero_ken_burns', true));
+        }
+
+        return (string) \App\ks_setting('ks_hero_ken_burns') !== '0';
     }
 
     public static function heroSearchTilt(): bool
     {
-        return (bool) get_theme_mod('ks_hero_search_tilt', false);
+        if (is_customize_preview()) {
+            return \App\ks_hero_value_on(get_theme_mod('ks_hero_search_tilt', false));
+        }
+
+        return (string) \App\ks_setting('ks_hero_search_tilt') !== '0';
     }
 
     public static function headerStyle(): string
@@ -234,10 +242,13 @@ class Identity
             }
         }
 
+        $tokens = self::topBarTokens($style);
+
         return [
             'style' => $style,
-            'bgColor' => $style === 'custom' ? (sanitize_hex_color((string) get_theme_mod('ks_top_bar_bg', '#141210')) ?: '#141210') : '',
-            'textColor' => $style === 'custom' ? (sanitize_hex_color((string) get_theme_mod('ks_top_bar_text_color', '#fffcf7')) ?: '#fffcf7') : '',
+            'bgColor' => $tokens['bg'],
+            'textColor' => $tokens['text'],
+            'cssVars' => $tokens['css'],
             'badge' => $badge,
             'message' => $message,
             'messageUrl' => $messageUrl,
@@ -326,6 +337,132 @@ class Identity
         $inkWash = sprintf('rgba(%d,%d,%d,.04)', $i[0], $i[1], $i[2]);
 
         return ':root{--accent:'.$accent.';--accent-dark:'.$dark.';--accent-soft:'.$soft.';--accent-glow:'.$glow.';--accent-wash:'.$wash.';--success:'.$accent.';--paper:'.$paper.';--paper-2:'.$paper2.';--paper-3:'.$paper3.';--line:'.$line.';--ink:'.$ink.';--ink-soft:'.$inkSoft.';--ink-faint:'.$inkFaint.';--field-text:'.$ink.';--header-bg:'.$headerBg.';--header-bg-scrolled:'.$headerBgScrolled.';--ink-wash:'.$inkWash.';}';
+    }
+
+    /**
+     * Theme-color tokens for the top bar (desktop + mobile) with WCAG AA text.
+     * Uses ks_accent / ks_paper / ks_ink (active color scheme). Custom override stays.
+     *
+     * @return array{bg:string,text:string,css:string}
+     */
+    public static function topBarTokens(string $style): array
+    {
+        $accent = self::accent();
+        $paper = self::paper();
+        $ink = self::ink();
+        $paper2 = self::mixHex($paper, $ink, 0.06);
+        $inkSoft = self::mixHex($ink, $paper, 0.28);
+
+        $customBg = sanitize_hex_color((string) get_theme_mod('ks_top_bar_bg', '#141210')) ?: $ink;
+        $customText = sanitize_hex_color((string) get_theme_mod('ks_top_bar_text_color', '#fffcf7')) ?: $paper;
+
+        if ($style === 'custom') {
+            $bg = $customBg;
+            $preferred = $customText;
+        } elseif ($style === 'accent') {
+            $bg = $accent;
+            $preferred = $paper;
+        } elseif ($style === 'light') {
+            $bg = $paper2;
+            $preferred = $inkSoft;
+        } else {
+            $bg = $ink;
+            $preferred = $paper;
+        }
+
+        $textStrong = self::readableOn($bg, $preferred);
+        $text = self::mixHex($textStrong, $bg, 0.12);
+        if (self::contrastRatio($bg, $text) < 4.5) {
+            $text = $textStrong;
+        }
+        $icon = self::readableIconOn($bg);
+        $line = self::mixHex($textStrong, $bg, 0.78);
+        $badgeBg = self::mixHex($textStrong, $bg, 0.84);
+        $ctaBg = self::mixHex($textStrong, $bg, 0.86);
+        $ctaHover = self::mixHex($textStrong, $bg, 0.74);
+
+        $css = '--tb-bg:'.$bg
+            .';--tb-text:'.$text
+            .';--tb-text-strong:'.$textStrong
+            .';--tb-icon:'.$icon
+            .';--tb-line:'.$line
+            .';--tb-badge-bg:'.$badgeBg
+            .';--tb-cta-bg:'.$ctaBg
+            .';--tb-cta-hover:'.$ctaHover;
+
+        return [
+            'bg' => $bg,
+            'text' => $textStrong,
+            'css' => $css,
+        ];
+    }
+
+    /**
+     * First theme color (preferred, then paper / ink / accent) that meets 4.5:1 on $bg.
+     */
+    public static function readableOn(string $bg, ?string $preferred = null): string
+    {
+        $candidates = [];
+        foreach ([$preferred, self::paper(), self::ink(), self::accent(), '#ffffff', '#141210'] as $hex) {
+            if (! is_string($hex) || $hex === '') {
+                continue;
+            }
+            $clean = sanitize_hex_color($hex);
+            if ($clean && ! in_array($clean, $candidates, true)) {
+                $candidates[] = $clean;
+            }
+        }
+
+        $best = $candidates[0] ?? '#ffffff';
+        $bestRatio = 0.0;
+        foreach ($candidates as $fg) {
+            $ratio = self::contrastRatio($bg, $fg);
+            if ($ratio >= 4.5) {
+                return $fg;
+            }
+            if ($ratio > $bestRatio) {
+                $bestRatio = $ratio;
+                $best = $fg;
+            }
+        }
+
+        return $best;
+    }
+
+    /**
+     * Accent on the bar when it contrasts; otherwise the readable text color.
+     * Covers accent-on-paper (light bar) and paper-on-accent (accent bar).
+     */
+    public static function readableIconOn(string $bg): string
+    {
+        $accent = self::accent();
+        if (self::contrastRatio($bg, $accent) >= 3.0) {
+            return $accent;
+        }
+
+        return self::readableOn($bg);
+    }
+
+    private static function hexLuminance(string $hex): float
+    {
+        [$r, $g, $b] = self::hexToRgb($hex);
+        $channel = static function (int $c): float {
+            $n = $c / 255;
+
+            return $n <= 0.03928 ? $n / 12.92 : (($n + 0.055) / 1.055) ** 2.4;
+        };
+
+        return 0.2126 * $channel($r) + 0.7152 * $channel($g) + 0.0722 * $channel($b);
+    }
+
+    private static function contrastRatio(string $a, string $b): float
+    {
+        $l1 = self::hexLuminance($a);
+        $l2 = self::hexLuminance($b);
+        $hi = max($l1, $l2);
+        $lo = min($l1, $l2);
+
+        return ($hi + 0.05) / ($lo + 0.05);
     }
 
     /**

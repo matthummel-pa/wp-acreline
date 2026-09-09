@@ -32,7 +32,7 @@ The theme zip is enough. Optional **Acreline Core** (listings survive a theme sw
 
 ## Custom fields and the block editor
 
-Identity, colors, header, typography, and logo: **Appearance → Customize**. Homepage Ken Burns photo animation and optional mobile listing-search tilt are under Customize → Header (`ks_hero_ken_burns` on, `ks_hero_search_tilt` off). Marketing pages and posts use the **Gutenberg block editor** (28 custom blocks). Listing, agent, and booking CPTs use classic metaboxes. Editing theme files does not change live posts.
+Identity, colors, header, typography, and logo: **Appearance → Customize**. Homepage Ken Burns photo animation and optional mobile listing-search tilt are under Customize → Header and **Appearance → Acreline Settings → General** (`ks_hero_ken_burns` on, `ks_hero_search_tilt` off) — both screens share the saved values. Marketing pages and posts use the **Gutenberg block editor** (28 custom blocks). Listing, agent, and booking CPTs use classic metaboxes. Editing theme files does not change live posts.
 
 ## Before you file an issue
 

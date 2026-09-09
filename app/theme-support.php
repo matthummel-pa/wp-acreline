@@ -182,7 +182,7 @@ function render_support_page(): void
               ['📅', __('Bookings', 'acreline'),   __('Optional fields on the showing request form: financing status, attendees, preferred contact method, and lead source.', 'acreline')],
               ['📊', __('Market', 'acreline'),     __('Median price, avg DOM, inventory months, and YoY change — powering the [acreline_market_snapshot] shortcode.', 'acreline')],
               ['✏️', __('Labels', 'acreline'),     __('Rename Township, Beds, Baths, Sq Ft, Acres, currency symbol, and the Listing and Agent labels sitewide.', 'acreline')],
-              ['⚙️', __('General', 'acreline'),    __('Mortgage calculator default rate and the fiction-only concept disclaimer banner.', 'acreline')],
+              ['⚙️', __('General', 'acreline'),    __('Homepage hero motion (Ken Burns and mobile search tilt), mortgage calculator default rate, and the fiction-only concept disclaimer banner.', 'acreline')],
           ];
     foreach ($settingsTabs as $t) { ?>
           <div class="kss-ref-row">
@@ -218,9 +218,9 @@ function render_support_page(): void
         [__('How do I update the theme on a live host?', 'acreline'),
             __('The GitHub CI workflow publishes a ready-to-install zip on the "theme-latest" release. Enter your GitHub token in Customizer → GitHub Token, then click Update Theme.', 'acreline')],
         [__('How do I turn off the homepage hero animation?', 'acreline'),
-            __('Appearance → Customize → Header → uncheck “Animate homepage hero image.” The photo stays; it no longer pans. Visitors who prefer reduced motion already see a still cover.', 'acreline')],
+            __('Appearance → Acreline Settings → General, or Customize → Header → uncheck “Animate homepage hero image.” The photo stays; it no longer pans. Visitors who prefer reduced motion already see a still cover. Both screens keep the same saved value.', 'acreline')],
         [__('How do I turn on listing-search tilt on phones?', 'acreline'),
-            __('Appearance → Customize → Header → check “Tilt listing search on mobile.” Off by default. It does nothing on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion.', 'acreline')],
+            __('Appearance → Acreline Settings → General, or Customize → Header → check “Tilt listing search on mobile.” Off by default. It does nothing on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion.', 'acreline')],
         [__('Where are bookings stored?', 'acreline'),
             __('Showing requests become Booking CPT posts in WordPress Admin → Bookings. There is no external CRM connection by default — all data stays in your database.', 'acreline')],
         [__('Can I submit this theme to WordPress.org?', 'acreline'),
@@ -241,6 +241,11 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.4.4', [
+            __('Homepage hero motion toggles on Appearance → Acreline Settings → General; values stay saved when you leave the page', 'acreline'),
+            __('Customize → Header stays in sync with Acreline Settings for Ken Burns and mobile search tilt', 'acreline'),
+            __('Top bar (desktop and mobile nav) uses the active color scheme; text and icons auto-pick a readable pair when accent-on-paper would fail', 'acreline'),
+        ]],
         ['1.4.3', [
             __('Homepage hero photo slowly pans and zooms; headlines, overlay, and listing search stay still', 'acreline'),
             __('Optional phone tilt on the homepage listing search — off by default; does nothing without sensors or permission', 'acreline'),
