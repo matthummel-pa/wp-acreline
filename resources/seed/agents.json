@@ -35,7 +35,11 @@
     "calendly": "https://calendly.com/concept",
     "bio_video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     "bio": "28 years walking Sample County fence lines. If it has acreage, Dale has probably sold a piece of it — from Grain Country cash-crop farms to Orchard Belt fruit ground. He handles perc evaluations, agricultural easements, and use-value tax enrollment day in, day out. Dale grew up on a diversified grain and beef operation two townships over and still farms 80 acres with his brother. Clients say he's the agent who will walk every acre with you before making a recommendation.",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=70"
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=70",
+    "rating": "4.9",
+    "review_snippet": "Dale walked every acre with us before we made an offer. He knew the soil, the drainage, and exactly what the farm could carry. Couldn't have done it without him.",
+    "review_author": "Sample Buyer — Oak Hollow farm",
+    "review_location": "Oak Hollow"
   },
   {
     "slug": "renee-musselman",
@@ -74,7 +78,11 @@
     "calendly": "https://calendly.com/concept",
     "bio_video": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     "bio": "Specializes in century farmhouses, historic in-town homes, and first-time buyers who want to understand exactly what they're buying. Renee knows stone foundations, log cores, and the honest cost of restoring an Oak Hollow homestead — she walks buyers through a pre-purchase checklist before they make an offer, not after. With 14 years in the market and more than 210 closings, she's the agent her past clients send their children to when it's time to buy.",
-    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=70"
+    "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=70",
+    "rating": "5.0",
+    "review_snippet": "Renee did a pre-purchase walkthrough on our 1880s homestead before we even made an offer. She caught two things our inspector missed. We'll never buy without her again.",
+    "review_author": "Sample Buyer — North Ridge homestead",
+    "review_location": "North Ridge"
   },
   {
     "slug": "trey-bushey",
@@ -111,6 +119,10 @@
     "calendly": "https://calendly.com/concept",
     "bio_video": "",
     "bio": "Grew up on a Mill Creek dairy farm and now helps first-time land buyers ask the right questions about wells, septic, and road access before they fall in love with a view. Trey has accompanied buyers on more than 80 perc evaluations and soil tests — he knows what a good site looks like and what a problem site is trying to hide. His clients are typically buying their first piece of land and want an agent who will slow down and explain the process. He genuinely enjoys that part of the job.",
-    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=70"
+    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=70",
+    "rating": "4.8",
+    "review_snippet": "We had no idea what questions to ask when buying raw land. Trey slowed down, explained everything, and joined us at the perc test. He turned a confusing process into a straightforward one.",
+    "review_author": "Sample Buyer — Mill Creek lot",
+    "review_location": "Mill Creek"
   }
 ]

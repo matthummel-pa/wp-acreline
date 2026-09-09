@@ -1486,6 +1486,14 @@ function ks_render_agent_list(array $attrs): string
     $text = wp_kses($attrs['text'] ?? '', ['em' => []]);
     $headClass = esc_attr(ks_head_class($attrs));
 
+    // Aggregate team stats from the agents array
+    $totalSold = array_sum(array_column($agents, 'homes_sold'));
+    $totalReviews = array_sum(array_column($agents, 'client_reviews_count'));
+    $allDom = array_filter(array_column($agents, 'avg_dom'));
+    $avgDom = $allDom ? (int) round(array_sum($allDom) / count($allDom)) : 0;
+
+    $starPath = 'M12 2.5l2.86 5.8 6.4.93-4.63 4.51 1.09 6.36L12 16.98 6.28 20.1l1.09-6.36L2.74 9.23l6.4-.93L12 2.5z';
+
     ob_start();
     ?>
     <section class="section" aria-labelledby="agent-list-heading">
@@ -1495,26 +1503,110 @@ function ks_render_agent_list(array $attrs): string
           <h2 id="agent-list-heading"><?php echo $title; ?></h2>
           <?php if ($text) { ?><p><?php echo $text; ?></p><?php } ?>
         </header>
+
+        <?php if ($totalSold || $totalReviews || $avgDom) { ?>
+          <ul class="agent-team-stats reveal" aria-label="<?php esc_attr_e('Team performance at a glance', 'acreline'); ?>">
+            <?php if (count($agents) > 0) { ?>
+              <li>
+                <strong><?php echo esc_html(count($agents)); ?></strong>
+                <span><?php esc_html_e('Specialists', 'acreline'); ?></span>
+              </li>
+            <?php } ?>
+            <?php if ($totalSold) { ?>
+              <li>
+                <strong><?php echo esc_html($totalSold); ?>+</strong>
+                <span><?php esc_html_e('Homes Closed', 'acreline'); ?></span>
+              </li>
+            <?php } ?>
+            <?php if ($avgDom) { ?>
+              <li>
+                <strong><?php echo esc_html($avgDom); ?></strong>
+                <span><?php esc_html_e('Avg Days on Market', 'acreline'); ?></span>
+              </li>
+            <?php } ?>
+            <?php if ($totalReviews) { ?>
+              <li>
+                <strong><?php echo esc_html($totalReviews); ?>+</strong>
+                <span><?php esc_html_e('Client Reviews', 'acreline'); ?></span>
+              </li>
+            <?php } ?>
+          </ul>
+        <?php } ?>
+
         <div class="agent-grid" role="list">
-          <?php foreach ($agents as $agent) { ?>
-            <article class="agent-card reveal" role="listitem">
-              <?php if ($agent['photo']) { ?>
-                <a href="<?php echo esc_url($agent['permalink']); ?>" class="agent-photo-link" tabindex="-1" aria-hidden="true">
-                  <img src="<?php echo esc_url($agent['photo']); ?>" width="120" height="120"
-                    alt="<?php echo esc_attr($agent['name']); ?>" loading="lazy" class="agent-avatar-photo">
-                </a>
-              <?php } else { ?>
-                <div class="agent-avatar" style="background:<?php echo esc_attr($agent['avatar_color']); ?>">
-                  <?php echo esc_html($agent['initials']); ?>
+          <?php foreach ($agents as $agent) {
+              $specialtyTags = array_filter(array_map('trim', explode(',', $agent['specialties'])));
+              $rating = (float) ($agent['rating'] ?? 0);
+              $ratingLabel = $rating > 0 ? number_format($rating, 1) : '';
+              $phone = $agent['phone'] ?? '';
+              $email = $agent['email'] ?? '';
+              $totalVol = $agent['total_volume'] ?? '';
+              $lsr = $agent['list_to_sale_ratio'] ?? '';
+              $badge = $agent['featured_badge'] ?? '';
+              ?>
+            <article class="agent-card reveal<?php echo $agent['featured'] ? ' is-featured' : ''; ?>" role="listitem">
+
+              <?php if ($agent['featured'] && $badge) { ?>
+                <p class="agent-featured-badge"><?php echo esc_html($badge); ?></p>
+              <?php } elseif ($agent['featured']) { ?>
+                <p class="agent-featured-badge"><?php esc_html_e('Featured', 'acreline'); ?></p>
+              <?php } ?>
+
+              <div class="agent-card__photo-row">
+                <?php if ($agent['photo']) { ?>
+                  <a href="<?php echo esc_url($agent['permalink']); ?>" class="agent-photo-link" tabindex="-1" aria-hidden="true">
+                    <img src="<?php echo esc_url($agent['photo']); ?>" width="96" height="96"
+                      alt="<?php echo esc_attr($agent['name']); ?>" loading="lazy" class="agent-avatar-photo">
+                  </a>
+                <?php } else { ?>
+                  <div class="agent-avatar" style="background:<?php echo esc_attr($agent['avatar_color']); ?>">
+                    <?php echo esc_html($agent['initials']); ?>
+                  </div>
+                <?php } ?>
+
+                <div class="agent-card__photo-meta">
+                  <h4 class="agent-card__name">
+                    <a href="<?php echo esc_url($agent['permalink']); ?>"><?php echo esc_html($agent['name']); ?></a>
+                  </h4>
+                  <p class="agent-title"><?php echo esc_html($agent['job_title']); ?></p>
+                  <?php if ($agent['designations']) { ?>
+                    <p class="agent-designations"><?php echo esc_html($agent['designations']); ?></p>
+                  <?php } ?>
+                </div>
+              </div>
+
+              <?php if ($ratingLabel) {
+                  $starCount = (int) floor($rating);
+                  $partial = $rating - $starCount;
+                  ?>
+                <div class="agent-star-row" aria-label="<?php echo esc_attr(sprintf(__('Sample rating: %s out of 5', 'acreline'), $ratingLabel)); ?>">
+                  <span class="agent-stars" aria-hidden="true">
+                    <?php for ($i = 1; $i <= 5; $i++) {
+                        $fill = max(0, min(1.0, $rating - ($i - 1)));
+                        $cls = $fill >= 1 ? 'is-full' : ($fill > 0 ? 'is-partial' : 'is-empty');
+                        $style = ($fill > 0 && $fill < 1) ? ' style="--star-fill:'.((int) round($fill * 100)).'%"' : '';
+                        ?>
+                      <span class="testi-star <?php echo esc_attr($cls); ?>"<?php echo $style; ?>>
+                        <svg viewBox="0 0 24 24" focusable="false"><path class="testi-star-empty" d="<?php echo esc_attr($starPath); ?>"/><path class="testi-star-fill" d="<?php echo esc_attr($starPath); ?>"/></svg>
+                      </span>
+                    <?php } ?>
+                  </span>
+                  <span class="agent-star-score"><?php echo esc_html($ratingLabel); ?></span>
+                  <?php if ($agent['client_reviews_count']) { ?>
+                    <span class="agent-star-count">(<?php echo esc_html($agent['client_reviews_count']); ?> <?php esc_html_e('reviews', 'acreline'); ?>)</span>
+                  <?php } ?>
                 </div>
               <?php } ?>
-              <h4><a href="<?php echo esc_url($agent['permalink']); ?>"><?php echo esc_html($agent['name']); ?></a></h4>
-              <p class="agent-title"><?php echo esc_html($agent['job_title']); ?></p>
-              <?php if ($agent['designations']) { ?>
-                <p class="agent-designations"><?php echo esc_html($agent['designations']); ?></p>
+
+              <?php if (count($specialtyTags) > 0) { ?>
+                <ul class="agent-specialty-tags" aria-label="<?php esc_attr_e('Specialties', 'acreline'); ?>">
+                  <?php foreach (array_slice($specialtyTags, 0, 4) as $tag) { ?>
+                    <li><?php echo esc_html($tag); ?></li>
+                  <?php } ?>
+                </ul>
               <?php } ?>
-              <p><?php echo esc_html($agent['specialties']); ?></p>
-              <?php if ($agent['homes_sold'] || $agent['avg_dom']) { ?>
+
+              <?php if ($agent['homes_sold'] || $agent['avg_dom'] || $totalVol || $lsr) { ?>
                 <dl class="agent-mini-stats">
                   <?php if ($agent['homes_sold']) { ?>
                     <div><dt><?php esc_html_e('Closed', 'acreline'); ?></dt><dd><?php echo esc_html($agent['homes_sold']); ?></dd></div>
@@ -1522,11 +1614,52 @@ function ks_render_agent_list(array $attrs): string
                   <?php if ($agent['avg_dom']) { ?>
                     <div><dt><?php esc_html_e('Avg DOM', 'acreline'); ?></dt><dd><?php echo esc_html($agent['avg_dom']); ?></dd></div>
                   <?php } ?>
+                  <?php if ($lsr) { ?>
+                    <div><dt><?php esc_html_e('List/Sale', 'acreline'); ?></dt><dd><?php echo esc_html($lsr); ?>%</dd></div>
+                  <?php } ?>
+                  <?php if ($totalVol) { ?>
+                    <div><dt><?php esc_html_e('Volume', 'acreline'); ?></dt><dd>$<?php echo esc_html(number_format((float) $totalVol / 1000000, 1)); ?>M</dd></div>
+                  <?php } ?>
                 </dl>
               <?php } ?>
-              <a href="<?php echo esc_url($agent['permalink']); ?>" class="btn btn-outline btn-sm">
-                <?php esc_html_e('View profile', 'acreline'); ?>
-              </a>
+
+              <?php if ($agent['review_snippet']) { ?>
+                <blockquote class="agent-review-snip">
+                  <p>"<?php echo esc_html($agent['review_snippet']); ?>"</p>
+                  <?php if ($agent['review_author']) { ?>
+                    <footer>— <cite><?php echo esc_html($agent['review_author']); ?></cite></footer>
+                  <?php } ?>
+                </blockquote>
+              <?php } ?>
+
+              <?php if ($phone || $email) { ?>
+                <div class="agent-contact-row">
+                  <?php if ($phone) { ?>
+                    <a href="tel:<?php echo esc_attr(preg_replace('/[^\d+]/', '', $phone)); ?>" class="agent-contact-link">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l1.63-1.63a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                      <?php echo esc_html($phone); ?>
+                    </a>
+                  <?php } ?>
+                  <?php if ($email) { ?>
+                    <a href="mailto:<?php echo esc_attr($email); ?>" class="agent-contact-link">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                      <?php echo esc_html($email); ?>
+                    </a>
+                  <?php } ?>
+                </div>
+              <?php } ?>
+
+              <div class="agent-card__actions">
+                <a href="<?php echo esc_url($agent['permalink']); ?>" class="btn btn-primary btn-sm">
+                  <?php esc_html_e('View profile', 'acreline'); ?>
+                </a>
+                <?php if ($agent['calendly']) { ?>
+                  <a href="<?php echo esc_url($agent['calendly']); ?>" class="btn btn-outline btn-sm" rel="noopener noreferrer" target="_blank">
+                    <?php esc_html_e('Book a call', 'acreline'); ?>
+                  </a>
+                <?php } ?>
+              </div>
+
             </article>
           <?php } ?>
         </div>
