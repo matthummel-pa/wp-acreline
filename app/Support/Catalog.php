@@ -234,6 +234,9 @@ class Catalog
             // Content
             'bio' => 'Bio',
             'bio_video' => 'Intro video URL',
+            'tag_line' => 'Tag line (short headline)',
+            'process_note' => 'How I work (1–2 sentences)',
+            'transaction_types' => 'Transaction types (e.g. Farms · Land · Historic Homes)',
             'specialties' => 'Specialties',
             'service_areas' => 'Service areas',
             'languages' => 'Languages',
@@ -600,6 +603,9 @@ class Catalog
             'review_snippet' => (string) self::getMeta($post->ID, 'review_snippet', ''),
             'review_author' => (string) self::getMeta($post->ID, 'review_author', ''),
             'review_location' => (string) self::getMeta($post->ID, 'review_location', ''),
+            'tag_line' => (string) self::getMeta($post->ID, 'tag_line', ''),
+            'process_note' => (string) self::getMeta($post->ID, 'process_note', ''),
+            'transaction_types' => (string) self::getMeta($post->ID, 'transaction_types', ''),
             'featured' => self::isFeaturedFlag(self::getMeta($post->ID, 'featured', '')),
         ];
     }
@@ -835,6 +841,9 @@ class Catalog
             'review_snippet' => (string) ($item['review_snippet'] ?? ''),
             'review_author' => (string) ($item['review_author'] ?? ''),
             'review_location' => (string) ($item['review_location'] ?? ''),
+            'tag_line' => (string) ($item['tag_line'] ?? ''),
+            'process_note' => (string) ($item['process_note'] ?? ''),
+            'transaction_types' => (string) ($item['transaction_types'] ?? ''),
             'featured' => self::isFeaturedFlag($item['featured'] ?? ''),
         ];
     }

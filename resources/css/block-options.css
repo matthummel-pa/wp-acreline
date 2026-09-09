@@ -294,6 +294,18 @@ p.ks-note--warning {
   margin-bottom: 24px;
 }
 
+p.ks-note--banner {
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 75%, #000));
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
 /* Book note: hide side photo */
 .booking-shell.ks-no-photo { grid-template-columns: 1fr; }
 
