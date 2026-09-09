@@ -10,8 +10,6 @@
 
 namespace App;
 
-use App\Support\Catalog;
-
 // ─── Option key & defaults ────────────────────────────────────────────────────
 
 define('KS_SETTINGS_OPTION', 'acreline_settings');
@@ -23,62 +21,62 @@ function ks_default_settings(): array
 {
     return [
         // ── Labels ──────────────────────────────────────────────────────────
-        'label_township'   => 'Township',
-        'label_listing'    => 'Listing',
-        'label_agent'      => 'Agent',
-        'label_beds'       => 'Beds',
-        'label_baths'      => 'Baths',
-        'label_sqft'       => 'Sq Ft',
-        'label_acres'      => 'Acres',
-        'currency_symbol'  => '$',
+        'label_township' => 'Township',
+        'label_listing' => 'Listing',
+        'label_agent' => 'Agent',
+        'label_beds' => 'Beds',
+        'label_baths' => 'Baths',
+        'label_sqft' => 'Sq Ft',
+        'label_acres' => 'Acres',
+        'currency_symbol' => '$',
         // ── Listing cards & grid ─────────────────────────────────────────────
-        'listing_grid_cols'           => '3',
-        'listing_show_price'          => '1',
-        'listing_show_beds'           => '1',
-        'listing_show_baths'          => '1',
-        'listing_show_sqft'           => '1',
-        'listing_show_acres'          => '1',
-        'listing_show_status_badge'   => '1',
-        'listing_show_type_badge'     => '1',
-        'listing_show_mls'            => '1',
+        'listing_grid_cols' => '3',
+        'listing_show_price' => '1',
+        'listing_show_beds' => '1',
+        'listing_show_baths' => '1',
+        'listing_show_sqft' => '1',
+        'listing_show_acres' => '1',
+        'listing_show_status_badge' => '1',
+        'listing_show_type_badge' => '1',
+        'listing_show_mls' => '1',
         'listing_show_days_on_market' => '1',
         'listing_show_price_per_sqft' => '0',
-        'listing_show_open_house'     => '1',
-        'listing_show_virtual_tour'   => '1',
-        'listing_show_video_tour'     => '1',
-        'listing_show_floor_plan'     => '1',
+        'listing_show_open_house' => '1',
+        'listing_show_virtual_tour' => '1',
+        'listing_show_video_tour' => '1',
+        'listing_show_floor_plan' => '1',
         'listing_show_property_details' => '1',
-        'listing_show_utilities'      => '1',
-        'listing_show_hoa'            => '1',
-        'listing_show_land_section'   => '1',
-        'listing_show_school_district'=> '1',
-        'listing_show_flood_zone'     => '1',
+        'listing_show_utilities' => '1',
+        'listing_show_hoa' => '1',
+        'listing_show_land_section' => '1',
+        'listing_show_school_district' => '1',
+        'listing_show_flood_zone' => '1',
         'listing_show_green_features' => '1',
-        'listing_show_smart_home'     => '1',
+        'listing_show_smart_home' => '1',
         // ── Agent features ───────────────────────────────────────────────────
-        'agent_show_stats'         => '1',
-        'agent_show_social'        => '1',
-        'agent_show_certifications'=> '1',
-        'agent_show_awards'        => '1',
-        'agent_show_bio_video'     => '1',
-        'agent_show_team'          => '1',
-        'agent_show_calendly'      => '1',
+        'agent_show_stats' => '1',
+        'agent_show_social' => '1',
+        'agent_show_certifications' => '1',
+        'agent_show_awards' => '1',
+        'agent_show_bio_video' => '1',
+        'agent_show_team' => '1',
+        'agent_show_calendly' => '1',
         // ── Booking form ─────────────────────────────────────────────────────
-        'booking_show_buyer_type'     => '1',
-        'booking_show_attendees'      => '1',
-        'booking_show_comm_preference'=> '1',
-        'booking_show_source'         => '0',
+        'booking_show_buyer_type' => '1',
+        'booking_show_attendees' => '1',
+        'booking_show_comm_preference' => '1',
+        'booking_show_source' => '0',
         // ── General ──────────────────────────────────────────────────────────
-        'show_mortgage_calc'    => '1',
+        'show_mortgage_calc' => '1',
         'mortgage_rate_default' => '7.0',
-        'show_concept_banner'   => '1',
+        'show_concept_banner' => '1',
         // ── Market snapshot ──────────────────────────────────────────────────
-        'market_show_snapshot'     => '1',
-        'market_median_price'      => '',
-        'market_avg_dom'           => '',
-        'market_inventory_months'  => '',
-        'market_yoy_change'        => '',
-        'market_as_of'             => '',
+        'market_show_snapshot' => '1',
+        'market_median_price' => '',
+        'market_avg_dom' => '',
+        'market_inventory_months' => '',
+        'market_yoy_change' => '',
+        'market_as_of' => '',
     ];
 }
 
@@ -86,7 +84,6 @@ function ks_default_settings(): array
  * Retrieve a setting value, falling back to the default.
  *
  * @param  mixed  $fallback  Extra fallback if not in defaults either.
- * @return mixed
  */
 function ks_setting(string $key, mixed $fallback = ''): mixed
 {
@@ -129,14 +126,15 @@ add_action('admin_post_ks_save_settings', function () {
     }
     check_admin_referer('ks_settings_save');
 
-    $raw      = isset($_POST['ks']) && is_array($_POST['ks']) ? $_POST['ks'] : [];
+    $raw = isset($_POST['ks']) && is_array($_POST['ks']) ? $_POST['ks'] : [];
     $defaults = ks_default_settings();
-    $clean    = [];
+    $clean = [];
 
     foreach ($defaults as $key => $default) {
         $posted = $raw[$key] ?? null;
         if (is_null($posted)) {
             $clean[$key] = '0';
+
             continue;
         }
         if (str_contains($key, 'url') || str_starts_with($key, 'social_')) {
@@ -156,9 +154,9 @@ add_action('admin_post_ks_save_settings', function () {
 
     $tab = isset($_POST['ks_active_tab']) ? sanitize_key((string) $_POST['ks_active_tab']) : 'listings';
     wp_safe_redirect(add_query_arg([
-        'page'     => 'acreline-settings',
+        'page' => 'acreline-settings',
         'ks_saved' => '1',
-        'tab'      => $tab,
+        'tab' => $tab,
     ], admin_url('themes.php')));
     exit;
 });
@@ -171,24 +169,24 @@ function render_settings_page(): void
         return;
     }
 
-    $saved      = isset($_GET['ks_saved']);
-    $activeTab  = sanitize_key((string) ($_GET['tab'] ?? 'listings'));
-    $validTabs  = ['labels', 'listings', 'agents', 'bookings', 'market', 'general'];
+    $saved = isset($_GET['ks_saved']);
+    $activeTab = sanitize_key((string) ($_GET['tab'] ?? 'listings'));
+    $validTabs = ['labels', 'listings', 'agents', 'bookings', 'market', 'general'];
     if (! in_array($activeTab, $validTabs, true)) {
         $activeTab = 'listings';
     }
 
     $tabs = [
-        'listings' => ['icon' => '🏡', 'label' => __('Listings',  'acreline')],
-        'agents'   => ['icon' => '👤', 'label' => __('Agents',    'acreline')],
-        'bookings' => ['icon' => '📅', 'label' => __('Bookings',  'acreline')],
-        'market'   => ['icon' => '📊', 'label' => __('Market',    'acreline')],
-        'labels'   => ['icon' => '✏️', 'label' => __('Labels',    'acreline')],
-        'general'  => ['icon' => '⚙️', 'label' => __('General',   'acreline')],
+        'listings' => ['icon' => '🏡', 'label' => __('Listings', 'acreline')],
+        'agents' => ['icon' => '👤', 'label' => __('Agents', 'acreline')],
+        'bookings' => ['icon' => '📅', 'label' => __('Bookings', 'acreline')],
+        'market' => ['icon' => '📊', 'label' => __('Market', 'acreline')],
+        'labels' => ['icon' => '✏️', 'label' => __('Labels', 'acreline')],
+        'general' => ['icon' => '⚙️', 'label' => __('General', 'acreline')],
     ];
 
     $supportUrl = admin_url('themes.php?page=acreline-support');
-    $themeVer   = wp_get_theme()->get('Version');
+    $themeVer = wp_get_theme()->get('Version');
     ?>
     <div class="ks-page">
 
@@ -246,20 +244,20 @@ function render_settings_page(): void
             <div class="ks-toggles">
               <?php
                 ks_sel('listing_grid_cols', __('Grid columns', 'acreline'), ['2' => '2', '3' => '3', '4' => '4'], __('Default columns on the listings page.', 'acreline'));
-              ?>
+            ?>
               <div class="ks-toggles-grid">
                 <?php
-                  ks_tog('listing_show_price',        __('List price', 'acreline'));
-                  ks_tog('listing_show_beds',          __('Beds', 'acreline'));
-                  ks_tog('listing_show_baths',         __('Baths', 'acreline'));
-                  ks_tog('listing_show_sqft',          __('Sq ft', 'acreline'));
-                  ks_tog('listing_show_acres',         __('Acres', 'acreline'));
-                  ks_tog('listing_show_status_badge',  __('Status badge', 'acreline'));
-                  ks_tog('listing_show_type_badge',    __('Type badge', 'acreline'));
-                  ks_tog('listing_show_mls',           __('MLS number', 'acreline'));
-                  ks_tog('listing_show_days_on_market',__('Days on market', 'acreline'));
-                  ks_tog('listing_show_price_per_sqft',__('Price / sq ft', 'acreline'));
-                ?>
+                ks_tog('listing_show_price', __('List price', 'acreline'));
+            ks_tog('listing_show_beds', __('Beds', 'acreline'));
+            ks_tog('listing_show_baths', __('Baths', 'acreline'));
+            ks_tog('listing_show_sqft', __('Sq ft', 'acreline'));
+            ks_tog('listing_show_acres', __('Acres', 'acreline'));
+            ks_tog('listing_show_status_badge', __('Status badge', 'acreline'));
+            ks_tog('listing_show_type_badge', __('Type badge', 'acreline'));
+            ks_tog('listing_show_mls', __('MLS number', 'acreline'));
+            ks_tog('listing_show_days_on_market', __('Days on market', 'acreline'));
+            ks_tog('listing_show_price_per_sqft', __('Price / sq ft', 'acreline'));
+            ?>
               </div>
             </div>
           </div>
@@ -274,19 +272,19 @@ function render_settings_page(): void
             </div>
             <div class="ks-toggles-grid">
               <?php
-                ks_tog('listing_show_open_house',      __('Open house banner', 'acreline'));
-                ks_tog('listing_show_virtual_tour',    __('Virtual tour button', 'acreline'));
-                ks_tog('listing_show_video_tour',      __('Video / drone tour', 'acreline'));
-                ks_tog('listing_show_floor_plan',      __('Floor plan image', 'acreline'));
-                ks_tog('listing_show_property_details',__('Property details panel', 'acreline'));
-                ks_tog('listing_show_utilities',       __('Utilities panel', 'acreline'));
-                ks_tog('listing_show_hoa',             __('HOA / dues info', 'acreline'));
-                ks_tog('listing_show_land_section',    __('Land & farm details', 'acreline'));
-                ks_tog('listing_show_school_district', __('School district', 'acreline'));
-                ks_tog('listing_show_flood_zone',      __('Flood zone', 'acreline'));
-                ks_tog('listing_show_green_features',  __('Green / eco features', 'acreline'));
-                ks_tog('listing_show_smart_home',      __('Smart home features', 'acreline'));
-              ?>
+            ks_tog('listing_show_open_house', __('Open house banner', 'acreline'));
+            ks_tog('listing_show_virtual_tour', __('Virtual tour button', 'acreline'));
+            ks_tog('listing_show_video_tour', __('Video / drone tour', 'acreline'));
+            ks_tog('listing_show_floor_plan', __('Floor plan image', 'acreline'));
+            ks_tog('listing_show_property_details', __('Property details panel', 'acreline'));
+            ks_tog('listing_show_utilities', __('Utilities panel', 'acreline'));
+            ks_tog('listing_show_hoa', __('HOA / dues info', 'acreline'));
+            ks_tog('listing_show_land_section', __('Land & farm details', 'acreline'));
+            ks_tog('listing_show_school_district', __('School district', 'acreline'));
+            ks_tog('listing_show_flood_zone', __('Flood zone', 'acreline'));
+            ks_tog('listing_show_green_features', __('Green / eco features', 'acreline'));
+            ks_tog('listing_show_smart_home', __('Smart home features', 'acreline'));
+            ?>
             </div>
           </div>
 
@@ -306,14 +304,14 @@ function render_settings_page(): void
             </div>
             <div class="ks-toggles-grid">
               <?php
-                ks_tog('agent_show_stats',          __('Performance stats (homes sold, volume, DOM)', 'acreline'));
-                ks_tog('agent_show_social',         __('Social media links', 'acreline'));
-                ks_tog('agent_show_certifications', __('Certifications & designations', 'acreline'));
-                ks_tog('agent_show_awards',         __('Awards & recognition', 'acreline'));
-                ks_tog('agent_show_bio_video',      __('Intro video link', 'acreline'));
-                ks_tog('agent_show_team',           __('Team name', 'acreline'));
-                ks_tog('agent_show_calendly',       __('Booking / calendar button', 'acreline'));
-              ?>
+              ks_tog('agent_show_stats', __('Performance stats (homes sold, volume, DOM)', 'acreline'));
+            ks_tog('agent_show_social', __('Social media links', 'acreline'));
+            ks_tog('agent_show_certifications', __('Certifications & designations', 'acreline'));
+            ks_tog('agent_show_awards', __('Awards & recognition', 'acreline'));
+            ks_tog('agent_show_bio_video', __('Intro video link', 'acreline'));
+            ks_tog('agent_show_team', __('Team name', 'acreline'));
+            ks_tog('agent_show_calendly', __('Booking / calendar button', 'acreline'));
+            ?>
             </div>
           </div>
         </div>
@@ -332,11 +330,11 @@ function render_settings_page(): void
             </div>
             <div class="ks-toggles-grid">
               <?php
-                ks_tog('booking_show_buyer_type',      __('Ask financing / buyer status', 'acreline'));
-                ks_tog('booking_show_attendees',       __('Ask number of attendees', 'acreline'));
-                ks_tog('booking_show_comm_preference', __('Ask preferred contact method', 'acreline'));
-                ks_tog('booking_show_source',          __('Ask how they heard about the listing', 'acreline'));
-              ?>
+              ks_tog('booking_show_buyer_type', __('Ask financing / buyer status', 'acreline'));
+            ks_tog('booking_show_attendees', __('Ask number of attendees', 'acreline'));
+            ks_tog('booking_show_comm_preference', __('Ask preferred contact method', 'acreline'));
+            ks_tog('booking_show_source', __('Ask how they heard about the listing', 'acreline'));
+            ?>
             </div>
           </div>
         </div>
@@ -379,20 +377,30 @@ function render_settings_page(): void
 
             <?php
             /* Live preview */
-            $mp  = ks_setting('market_median_price');
+            $mp = ks_setting('market_median_price');
             $dom = ks_setting('market_avg_dom');
             $inv = ks_setting('market_inventory_months');
             $yoy = ks_setting('market_yoy_change');
-            $ao  = ks_setting('market_as_of');
+            $ao = ks_setting('market_as_of');
             if ($mp || $dom || $inv || $yoy) { ?>
             <div class="ks-market-preview">
               <p class="ks-preview-label"><?php esc_html_e('Preview', 'acreline'); ?></p>
               <div class="ks-preview-band">
-                <?php if ($mp)  echo '<div class="ks-prev-stat"><strong>'.esc_html($mp).'</strong><span>'.esc_html__('Median price', 'acreline').'</span></div>'; ?>
-                <?php if ($dom) echo '<div class="ks-prev-stat"><strong>'.esc_html($dom).'<small>d</small></strong><span>'.esc_html__('Avg. DOM', 'acreline').'</span></div>'; ?>
-                <?php if ($inv) echo '<div class="ks-prev-stat"><strong>'.esc_html($inv).'<small>mo</small></strong><span>'.esc_html__('Inventory', 'acreline').'</span></div>'; ?>
-                <?php if ($yoy) echo '<div class="ks-prev-stat"><strong>'.esc_html($yoy).'</strong><span>'.esc_html__('YoY', 'acreline').'</span></div>'; ?>
-                <?php if ($ao)  echo '<p class="ks-prev-asof">'.esc_html__('As of', 'acreline').' '.esc_html($ao).'</p>'; ?>
+                <?php if ($mp) {
+                    echo '<div class="ks-prev-stat"><strong>'.esc_html($mp).'</strong><span>'.esc_html__('Median price', 'acreline').'</span></div>';
+                } ?>
+                <?php if ($dom) {
+                    echo '<div class="ks-prev-stat"><strong>'.esc_html($dom).'<small>d</small></strong><span>'.esc_html__('Avg. DOM', 'acreline').'</span></div>';
+                } ?>
+                <?php if ($inv) {
+                    echo '<div class="ks-prev-stat"><strong>'.esc_html($inv).'<small>mo</small></strong><span>'.esc_html__('Inventory', 'acreline').'</span></div>';
+                } ?>
+                <?php if ($yoy) {
+                    echo '<div class="ks-prev-stat"><strong>'.esc_html($yoy).'</strong><span>'.esc_html__('YoY', 'acreline').'</span></div>';
+                } ?>
+                <?php if ($ao) {
+                    echo '<p class="ks-prev-asof">'.esc_html__('As of', 'acreline').' '.esc_html($ao).'</p>';
+                } ?>
               </div>
             </div>
             <?php } ?>
@@ -757,7 +765,7 @@ function ks_tog(string $key, string $label): void
 function ks_txt(string $key, string $label, string $placeholder = ''): void
 {
     $value = (string) ks_setting($key);
-    $id    = 'ks_'.esc_attr($key);
+    $id = 'ks_'.esc_attr($key);
     echo '<div class="ks-field">';
     echo '<label for="'.esc_attr($id).'">'.esc_html($label).'</label>';
     echo '<input type="text" id="'.esc_attr($id).'" name="ks['.esc_attr($key).']" value="'.esc_attr($value).'" placeholder="'.esc_attr($placeholder).'">';
@@ -771,7 +779,7 @@ function ks_txt(string $key, string $label, string $placeholder = ''): void
 function ks_sel(string $key, string $label, array $options, string $hint = ''): void
 {
     $current = (string) ks_setting($key);
-    $id      = 'ks_'.esc_attr($key);
+    $id = 'ks_'.esc_attr($key);
     echo '<div class="ks-select-row">';
     echo '<label for="'.esc_attr($id).'">'.esc_html($label).'</label>';
     echo '<select id="'.esc_attr($id).'" name="ks['.esc_attr($key).']">';
@@ -788,10 +796,19 @@ function ks_sel(string $key, string $label, array $options, string $hint = ''): 
 /* ── Legacy helpers kept for backward compat (used nowhere externally, but
    defensive in case other plugins call them) ─────────────────────────────── */
 function ks_settings_section(string $title, string $desc): void {}
-function ks_toggle_field(string $key, string $label): void { ks_tog($key, $label); }
-function ks_text_field(string $key, string $label, string $desc): void { ks_txt($key, $label, $desc); }
+function ks_toggle_field(string $key, string $label): void
+{
+    ks_tog($key, $label);
+}
+function ks_text_field(string $key, string $label, string $desc): void
+{
+    ks_txt($key, $label, $desc);
+}
 /** @param array<string, string> $options */
-function ks_select_field(string $key, string $label, array $options): void { ks_sel($key, $label, $options); }
+function ks_select_field(string $key, string $label, array $options): void
+{
+    ks_sel($key, $label, $options);
+}
 
 // ─── Market snapshot shortcode ────────────────────────────────────────────────
 
@@ -801,10 +818,10 @@ add_shortcode('acreline_market_snapshot', function (): string {
     }
 
     $medianPrice = sanitize_text_field((string) ks_setting('market_median_price'));
-    $avgDom      = sanitize_text_field((string) ks_setting('market_avg_dom'));
-    $inventory   = sanitize_text_field((string) ks_setting('market_inventory_months'));
-    $yoy         = sanitize_text_field((string) ks_setting('market_yoy_change'));
-    $asOf        = sanitize_text_field((string) ks_setting('market_as_of'));
+    $avgDom = sanitize_text_field((string) ks_setting('market_avg_dom'));
+    $inventory = sanitize_text_field((string) ks_setting('market_inventory_months'));
+    $yoy = sanitize_text_field((string) ks_setting('market_yoy_change'));
+    $asOf = sanitize_text_field((string) ks_setting('market_as_of'));
 
     if (! $medianPrice && ! $avgDom && ! $inventory && ! $yoy) {
         return '';
@@ -812,16 +829,16 @@ add_shortcode('acreline_market_snapshot', function (): string {
 
     $stats = [];
     if ($medianPrice) {
-        $stats[] = ['value' => esc_html($medianPrice),                                                      'label' => esc_html__('Median sale price',    'acreline')];
+        $stats[] = ['value' => esc_html($medianPrice),                                                      'label' => esc_html__('Median sale price', 'acreline')];
     }
     if ($avgDom) {
-        $stats[] = ['value' => esc_html($avgDom).' <span>'.esc_html__('days', 'acreline').'</span>',       'label' => esc_html__('Avg. days on market',  'acreline')];
+        $stats[] = ['value' => esc_html($avgDom).' <span>'.esc_html__('days', 'acreline').'</span>',       'label' => esc_html__('Avg. days on market', 'acreline')];
     }
     if ($inventory) {
-        $stats[] = ['value' => esc_html($inventory).' <span>'.esc_html__('mo', 'acreline').'</span>',      'label' => esc_html__('Months of inventory',  'acreline')];
+        $stats[] = ['value' => esc_html($inventory).' <span>'.esc_html__('mo', 'acreline').'</span>',      'label' => esc_html__('Months of inventory', 'acreline')];
     }
     if ($yoy) {
-        $stats[] = ['value' => esc_html($yoy),                                                              'label' => esc_html__('Year-over-year',        'acreline')];
+        $stats[] = ['value' => esc_html($yoy),                                                              'label' => esc_html__('Year-over-year', 'acreline')];
     }
 
     $html = '<div class="market-snapshot market-snapshot--'.count($stats).'">';

@@ -38,9 +38,9 @@ function render_support_page(): void
         return;
     }
 
-    $themeVer    = wp_get_theme()->get('Version');
+    $themeVer = wp_get_theme()->get('Version');
     $settingsUrl = admin_url('themes.php?page=acreline-settings');
-    $siteUrl     = home_url('/');
+    $siteUrl = home_url('/');
     ?>
     <div class="kss-page">
 
@@ -68,22 +68,22 @@ function render_support_page(): void
           <?php
           $steps = [
               ['num' => '1', 'title' => __('Run the setup wizard', 'acreline'),
-               'desc'  => __('Go to Appearance → Acreline Setup and follow the five-step wizard to set your brand name, phone, email, color palette, and seed demo content.', 'acreline'),
-               'link'  => admin_url('themes.php?page=acreline-setup'), 'link_text' => __('Open setup wizard', 'acreline')],
+                  'desc' => __('Go to Appearance → Acreline Setup and follow the five-step wizard to set your brand name, phone, email, color palette, and seed demo content.', 'acreline'),
+                  'link' => admin_url('themes.php?page=acreline-setup'), 'link_text' => __('Open setup wizard', 'acreline')],
               ['num' => '2', 'title' => __('Add your listings', 'acreline'),
-               'desc'  => __('Every listing is a Listing CPT with full metaboxes: photos, MLS info, property details, utilities, land data, open house, virtual tour, floor plan, and smart home features.', 'acreline'),
-               'link'  => admin_url('edit.php?post_type=listing'), 'link_text' => __('View listings', 'acreline')],
+                  'desc' => __('Every listing is a Listing CPT with full metaboxes: photos, MLS info, property details, utilities, land data, open house, virtual tour, floor plan, and smart home features.', 'acreline'),
+                  'link' => admin_url('edit.php?post_type=listing'), 'link_text' => __('View listings', 'acreline')],
               ['num' => '3', 'title' => __('Create agent profiles', 'acreline'),
-               'desc'  => __('Each agent is an Agent CPT with a photo, bio, stats (homes sold, volume, DOM), certifications, social links, calendar URL, and team assignment.', 'acreline'),
-               'link'  => admin_url('edit.php?post_type=agent'), 'link_text' => __('View agents', 'acreline')],
+                  'desc' => __('Each agent is an Agent CPT with a photo, bio, stats (homes sold, volume, DOM), certifications, social links, calendar URL, and team assignment.', 'acreline'),
+                  'link' => admin_url('edit.php?post_type=agent'), 'link_text' => __('View agents', 'acreline')],
               ['num' => '4', 'title' => __('Customise Identity', 'acreline'),
-               'desc'  => __('Phone, email, address, hours, social handles, and color scheme live under Appearance → Customize → Identity. These drive the header, footer, and booking form.', 'acreline'),
-               'link'  => admin_url('customize.php?autofocus[section]=ks_identity'), 'link_text' => __('Open Identity', 'acreline')],
+                  'desc' => __('Phone, email, address, hours, social handles, and color scheme live under Appearance → Customize → Identity. These drive the header, footer, and booking form.', 'acreline'),
+                  'link' => admin_url('customize.php?autofocus[section]=ks_identity'), 'link_text' => __('Open Identity', 'acreline')],
               ['num' => '5', 'title' => __('Adjust feature toggles', 'acreline'),
-               'desc'  => __('Use Theme Settings (Appearance → Acreline Settings) to turn individual sections on or off — mortgage calculator, open house banners, agent stats, booking fields, and more.', 'acreline'),
-               'link'  => $settingsUrl, 'link_text' => __('Open settings', 'acreline')],
+                  'desc' => __('Use Theme Settings (Appearance → Acreline Settings) to turn individual sections on or off — mortgage calculator, open house banners, agent stats, booking fields, and more.', 'acreline'),
+                  'link' => $settingsUrl, 'link_text' => __('Open settings', 'acreline')],
           ];
-          foreach ($steps as $step) { ?>
+    foreach ($steps as $step) { ?>
           <div class="kss-step">
             <div class="kss-step-num" aria-hidden="true"><?php echo esc_html($step['num']); ?></div>
             <div class="kss-step-body">
@@ -101,33 +101,33 @@ function render_support_page(): void
         <h2 class="kss-section-title"><?php esc_html_e("What's new in 1.3.x", 'acreline'); ?></h2>
         <div class="kss-feature-grid">
           <?php
-          $features = [
-              ['icon' => '⚖️',  'title' => __('Listing comparison', 'acreline'),
-               'desc'  => __('Buyers can compare up to 3 listings side-by-side in a full-screen modal. Compare button appears on every card.', 'acreline')],
-              ['icon' => '❤️',  'title' => __('Saved listings drawer', 'acreline'),
-               'desc'  => __('Heart icon saves any listing to localStorage. A floating button opens the slide-out drawer without leaving the page.', 'acreline')],
-              ['icon' => '📌',  'title' => __('Sticky CTA bar', 'acreline'),
-               'desc'  => __('After the hero scrolls out of view, a slim bar with the price and "Book a showing" CTA sticks to the top of single listing pages.', 'acreline')],
-              ['icon' => '🔗',  'title' => __('Share & print flyer', 'acreline'),
-               'desc'  => __('Share button uses the Web Share API (mobile) with a clipboard-copy fallback. Print generates a clean one-page PDF-ready layout.', 'acreline')],
-              ['icon' => '🕐',  'title' => __('Recently viewed', 'acreline'),
-               'desc'  => __('The last 5 listings a visitor viewed are tracked in localStorage and shown as chips at the bottom of each listing page.', 'acreline')],
-              ['icon' => '📍',  'title' => __('Nearby listings', 'acreline'),
-               'desc'  => __('Server-rendered section shows up to 3 other active listings in the same township — no third-party API required.', 'acreline')],
-              ['icon' => '📊',  'title' => __('Market snapshot shortcode', 'acreline'),
-               'desc'  => __('Enter median price, avg DOM, inventory months, and YoY change in Theme Settings, then embed anywhere with [acreline_market_snapshot].', 'acreline')],
-              ['icon' => '🧮',  'title' => __('Mortgage calculator', 'acreline'),
-               'desc'  => __('Built-in calculator on every listing detail page. Rate, term, and down-payment are editable. No plugin or API required.', 'acreline')],
-              ['icon' => '🏡',  'title' => __('Rich listing fields', 'acreline'),
-               'desc'  => __('Property details, utilities, HOA, land & farm data, flood zone, school district, green features, and smart home chips.', 'acreline')],
-              ['icon' => '👤',  'title' => __('Advanced agent profiles', 'acreline'),
-               'desc'  => __('Performance stats grid, credentials, social links, intro video, calendar booking URL, mobile number, and team name.', 'acreline')],
-              ['icon' => '🖼️',  'title' => __('Media picker', 'acreline'),
-               'desc'  => __('All image URL fields in listing and agent metaboxes use the native WordPress media library picker instead of a plain text input.', 'acreline')],
-              ['icon' => '♿',  'title' => __('Accessibility improvements', 'acreline'),
-               'desc'  => __('WCAG 2.2 AA contrast across all components, 44px touch targets, skip-link focus, semantic heading hierarchy, and aria-live regions.', 'acreline')],
-          ];
-          foreach ($features as $f) { ?>
+    $features = [
+        ['icon' => '⚖️',  'title' => __('Listing comparison', 'acreline'),
+            'desc' => __('Buyers can compare up to 3 listings side-by-side in a full-screen modal. Compare button appears on every card.', 'acreline')],
+        ['icon' => '❤️',  'title' => __('Saved listings drawer', 'acreline'),
+            'desc' => __('Heart icon saves any listing to localStorage. A floating button opens the slide-out drawer without leaving the page.', 'acreline')],
+        ['icon' => '📌',  'title' => __('Sticky CTA bar', 'acreline'),
+            'desc' => __('After the hero scrolls out of view, a slim bar with the price and "Book a showing" CTA sticks to the top of single listing pages.', 'acreline')],
+        ['icon' => '🔗',  'title' => __('Share & print flyer', 'acreline'),
+            'desc' => __('Share button uses the Web Share API (mobile) with a clipboard-copy fallback. Print generates a clean one-page PDF-ready layout.', 'acreline')],
+        ['icon' => '🕐',  'title' => __('Recently viewed', 'acreline'),
+            'desc' => __('The last 5 listings a visitor viewed are tracked in localStorage and shown as chips at the bottom of each listing page.', 'acreline')],
+        ['icon' => '📍',  'title' => __('Nearby listings', 'acreline'),
+            'desc' => __('Server-rendered section shows up to 3 other active listings in the same township — no third-party API required.', 'acreline')],
+        ['icon' => '📊',  'title' => __('Market snapshot shortcode', 'acreline'),
+            'desc' => __('Enter median price, avg DOM, inventory months, and YoY change in Theme Settings, then embed anywhere with [acreline_market_snapshot].', 'acreline')],
+        ['icon' => '🧮',  'title' => __('Mortgage calculator', 'acreline'),
+            'desc' => __('Built-in calculator on every listing detail page. Rate, term, and down-payment are editable. No plugin or API required.', 'acreline')],
+        ['icon' => '🏡',  'title' => __('Rich listing fields', 'acreline'),
+            'desc' => __('Property details, utilities, HOA, land & farm data, flood zone, school district, green features, and smart home chips.', 'acreline')],
+        ['icon' => '👤',  'title' => __('Advanced agent profiles', 'acreline'),
+            'desc' => __('Performance stats grid, credentials, social links, intro video, calendar booking URL, mobile number, and team name.', 'acreline')],
+        ['icon' => '🖼️',  'title' => __('Media picker', 'acreline'),
+            'desc' => __('All image URL fields in listing and agent metaboxes use the native WordPress media library picker instead of a plain text input.', 'acreline')],
+        ['icon' => '♿',  'title' => __('Accessibility improvements', 'acreline'),
+            'desc' => __('WCAG 2.2 AA contrast across all components, 44px touch targets, skip-link focus, semantic heading hierarchy, and aria-live regions.', 'acreline')],
+    ];
+    foreach ($features as $f) { ?>
           <div class="kss-feature-card">
             <span class="kss-feature-icon" aria-hidden="true"><?php echo $f['icon']; ?></span>
             <h3><?php echo esc_html($f['title']); ?></h3>
@@ -151,11 +151,11 @@ function render_support_page(): void
             </thead>
             <tbody>
               <?php
-              $shortcodes = [
-                  ['[acreline_market_snapshot]', __('Any page or post', 'acreline'),
-                   __('Renders the market stats strip (median price, DOM, inventory, YoY). Values are set in Theme Settings → Market.', 'acreline')],
-              ];
-              foreach ($shortcodes as $sc) { ?>
+        $shortcodes = [
+            ['[acreline_market_snapshot]', __('Any page or post', 'acreline'),
+                __('Renders the market stats strip (median price, DOM, inventory, YoY). Values are set in Theme Settings → Market.', 'acreline')],
+        ];
+    foreach ($shortcodes as $sc) { ?>
               <tr>
                 <td><code class="kss-code"><?php echo esc_html($sc[0]); ?></code></td>
                 <td><?php echo esc_html($sc[1]); ?></td>
@@ -180,7 +180,7 @@ function render_support_page(): void
               ['✏️', __('Labels', 'acreline'),     __('Rename Township, Beds, Baths, Sq Ft, Acres, currency symbol, and the Listing and Agent labels sitewide.', 'acreline')],
               ['⚙️', __('General', 'acreline'),    __('Mortgage calculator default rate and the fiction-only concept disclaimer banner.', 'acreline')],
           ];
-          foreach ($settingsTabs as $t) { ?>
+    foreach ($settingsTabs as $t) { ?>
           <div class="kss-ref-row">
             <span class="kss-ref-icon" aria-hidden="true"><?php echo $t[0]; ?></span>
             <strong><?php echo esc_html($t[1]); ?></strong>
@@ -200,25 +200,25 @@ function render_support_page(): void
         <h2 class="kss-section-title"><?php esc_html_e('Frequently asked questions', 'acreline'); ?></h2>
         <div class="kss-faqs">
           <?php
-          $faqs = [
-              [__('Can I use this with real MLS listings?', 'acreline'),
-               __('Yes. Every listing is a WordPress CPT — enter your actual property data in the metaboxes. The fictional sample data is only pre-seeded for demo purposes. Remove it before going live.', 'acreline')],
-              [__('Why do I see "Vite manifest not found"?', 'acreline'),
-               __('Build assets have not been compiled. Run "npm run build" in the theme directory, or install the theme via the pre-built zip (from Appearance → Update Theme or the GitHub release), which ships with compiled assets.', 'acreline')],
-              [__('How do I clear the Blade template cache?', 'acreline'),
-               __('Run: wp acorn view:clear --path="~/wp" --allow-root (or wp acorn optimize:clear). Required after editing any .blade.php file on a live server.', 'acreline')],
-              [__('Can I rename "Township" to "County" or "Neighborhood"?', 'acreline'),
-               __('Yes — open Theme Settings → Labels and change the Township / area label. The new label appears on listing cards and detail pages immediately.', 'acreline')],
-              [__('Does the mortgage calculator require an API?', 'acreline'),
-               __('No. It runs entirely in the browser using standard amortization math. No third-party service, no API key, no tracking.', 'acreline')],
-              [__('How do I update the theme on a live host?', 'acreline'),
-               __('The GitHub CI workflow publishes a ready-to-install zip on the "theme-latest" release. Enter your GitHub token in Customizer → GitHub Token, then click Update Theme.', 'acreline')],
-              [__('Where are bookings stored?', 'acreline'),
-               __('Showing requests become Booking CPT posts in WordPress Admin → Bookings. There is no external CRM connection by default — all data stays in your database.', 'acreline')],
-              [__('Can I submit this theme to WordPress.org?', 'acreline'),
-               __('A lite version path is planned. The current build ships with Sage 11 + Gutenberg-off which will not pass wp.org first review without stripping Acorn. See docs/marketplace/SELLING.md for the current release strategy.', 'acreline')],
-          ];
-          foreach ($faqs as [$q, $a]) { ?>
+    $faqs = [
+        [__('Can I use this with real MLS listings?', 'acreline'),
+            __('Yes. Every listing is a WordPress CPT — enter your actual property data in the metaboxes. The fictional sample data is only pre-seeded for demo purposes. Remove it before going live.', 'acreline')],
+        [__('Why do I see "Vite manifest not found"?', 'acreline'),
+            __('Build assets have not been compiled. Run "npm run build" in the theme directory, or install the theme via the pre-built zip (from Appearance → Update Theme or the GitHub release), which ships with compiled assets.', 'acreline')],
+        [__('How do I clear the Blade template cache?', 'acreline'),
+            __('Run: wp acorn view:clear --path="~/wp" --allow-root (or wp acorn optimize:clear). Required after editing any .blade.php file on a live server.', 'acreline')],
+        [__('Can I rename "Township" to "County" or "Neighborhood"?', 'acreline'),
+            __('Yes — open Theme Settings → Labels and change the Township / area label. The new label appears on listing cards and detail pages immediately.', 'acreline')],
+        [__('Does the mortgage calculator require an API?', 'acreline'),
+            __('No. It runs entirely in the browser using standard amortization math. No third-party service, no API key, no tracking.', 'acreline')],
+        [__('How do I update the theme on a live host?', 'acreline'),
+            __('The GitHub CI workflow publishes a ready-to-install zip on the "theme-latest" release. Enter your GitHub token in Customizer → GitHub Token, then click Update Theme.', 'acreline')],
+        [__('Where are bookings stored?', 'acreline'),
+            __('Showing requests become Booking CPT posts in WordPress Admin → Bookings. There is no external CRM connection by default — all data stays in your database.', 'acreline')],
+        [__('Can I submit this theme to WordPress.org?', 'acreline'),
+            __('A lite version path is planned. The current build ships with Sage 11 + Gutenberg-off which will not pass wp.org first review without stripping Acorn. See docs/marketplace/SELLING.md for the current release strategy.', 'acreline')],
+    ];
+    foreach ($faqs as [$q, $a]) { ?>
           <details class="kss-faq">
             <summary><?php echo esc_html($q); ?></summary>
             <p><?php echo esc_html($a); ?></p>
@@ -232,37 +232,37 @@ function render_support_page(): void
         <h2 class="kss-section-title"><?php esc_html_e('Recent changelog', 'acreline'); ?></h2>
         <div class="kss-changelog">
           <?php
-          $changelog = [
-              ['1.3.3', [
-                  __('Redesigned Theme Settings page — tabbed UI, iOS-style toggles, sticky save bar, and unsaved-changes guard', 'acreline'),
-                  __('New Theme Support admin page (this page) with quick start, feature reference, shortcode cheatsheet, FAQ, and changelog', 'acreline'),
-                  __('Listing comparison modal — compare up to 3 listings side-by-side', 'acreline'),
-                  __('Persistent saved listings drawer using localStorage — heart icon on every card', 'acreline'),
-                  __('Sticky CTA bar on single listing pages — price + "Book a showing" after hero scrolls out', 'acreline'),
-                  __('Share button with Web Share API and URL-copy fallback', 'acreline'),
-                  __('Print-friendly property flyer layout', 'acreline'),
-                  __('Recently viewed listings (up to 5, localStorage) on single listing pages', 'acreline'),
-                  __('Nearby listings section — server-rendered, same township, no API', 'acreline'),
-                  __('Market snapshot shortcode [acreline_market_snapshot]', 'acreline'),
-                  __('Built-in mortgage calculator on listing detail pages', 'acreline'),
-                  __('Media picker for all image URL inputs in listing and agent metaboxes', 'acreline'),
-                  __('Rich listing fields: property details, utilities, HOA, land & farm, green/smart chips', 'acreline'),
-                  __('Advanced agent profiles: stats grid, social links, certifications, calendar URL', 'acreline'),
-                  __('Updated seeded blog post covering new differentiating features', 'acreline'),
-              ]],
-              ['1.3.2', [
-                  __('WCAG 2.2 AA contrast fixes across form notes, footer, testimonials, and hero search', 'acreline'),
-                  __('44px touch targets for mobile nav and concept badge', 'acreline'),
-                  __('Skip-link focus (tabindex="-1" on <main>)', 'acreline'),
-                  __('Semantic heading hierarchy correction in footer (h2 → h3)', 'acreline'),
-                  __('i18n: hardcoded strings in single listing, agent, blog, and footer templates wrapped in __()', 'acreline'),
-              ]],
-              ['1.3.0', [
-                  __('Setup wizard under Appearance → Acreline Setup', 'acreline'),
-                  __('Saves brand, phone, email, hours, color style, and optional demo seed', 'acreline'),
-              ]],
-          ];
-          foreach ($changelog as [$ver, $items]) { ?>
+    $changelog = [
+        ['1.3.3', [
+            __('Redesigned Theme Settings page — tabbed UI, iOS-style toggles, sticky save bar, and unsaved-changes guard', 'acreline'),
+            __('New Theme Support admin page (this page) with quick start, feature reference, shortcode cheatsheet, FAQ, and changelog', 'acreline'),
+            __('Listing comparison modal — compare up to 3 listings side-by-side', 'acreline'),
+            __('Persistent saved listings drawer using localStorage — heart icon on every card', 'acreline'),
+            __('Sticky CTA bar on single listing pages — price + "Book a showing" after hero scrolls out', 'acreline'),
+            __('Share button with Web Share API and URL-copy fallback', 'acreline'),
+            __('Print-friendly property flyer layout', 'acreline'),
+            __('Recently viewed listings (up to 5, localStorage) on single listing pages', 'acreline'),
+            __('Nearby listings section — server-rendered, same township, no API', 'acreline'),
+            __('Market snapshot shortcode [acreline_market_snapshot]', 'acreline'),
+            __('Built-in mortgage calculator on listing detail pages', 'acreline'),
+            __('Media picker for all image URL inputs in listing and agent metaboxes', 'acreline'),
+            __('Rich listing fields: property details, utilities, HOA, land & farm, green/smart chips', 'acreline'),
+            __('Advanced agent profiles: stats grid, social links, certifications, calendar URL', 'acreline'),
+            __('Updated seeded blog post covering new differentiating features', 'acreline'),
+        ]],
+        ['1.3.2', [
+            __('WCAG 2.2 AA contrast fixes across form notes, footer, testimonials, and hero search', 'acreline'),
+            __('44px touch targets for mobile nav and concept badge', 'acreline'),
+            __('Skip-link focus (tabindex="-1" on <main>)', 'acreline'),
+            __('Semantic heading hierarchy correction in footer (h2 → h3)', 'acreline'),
+            __('i18n: hardcoded strings in single listing, agent, blog, and footer templates wrapped in __()', 'acreline'),
+        ]],
+        ['1.3.0', [
+            __('Setup wizard under Appearance → Acreline Setup', 'acreline'),
+            __('Saves brand, phone, email, hours, color style, and optional demo seed', 'acreline'),
+        ]],
+    ];
+    foreach ($changelog as [$ver, $items]) { ?>
           <div class="kss-cl-block">
             <div class="kss-cl-ver"><?php echo esc_html($ver); ?></div>
             <ul class="kss-cl-list">

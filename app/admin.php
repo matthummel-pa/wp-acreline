@@ -184,10 +184,10 @@ function listing_metabox(\WP_Post $post): void
         <td>
           <?php
             $fpMeta = (string) Catalog::getMeta($post->ID, 'floor_plan', '');
-            $fpId = ctype_digit($fpMeta) ? (int) $fpMeta : 0;
-            $fpUrl = $fpId > 0 ? ((string) (wp_get_attachment_image_url($fpId, 'medium') ?: '')) : $fpMeta;
-            render_media_field('ks_floor_plan', $fpUrl, $fpId, __('Select floor plan', 'acreline'));
-          ?>
+    $fpId = ctype_digit($fpMeta) ? (int) $fpMeta : 0;
+    $fpUrl = $fpId > 0 ? ((string) (wp_get_attachment_image_url($fpId, 'medium') ?: '')) : $fpMeta;
+    render_media_field('ks_floor_plan', $fpUrl, $fpId, __('Select floor plan', 'acreline'));
+    ?>
         </td>
       </tr>
       <?php render_meta_inputs($post->ID, ['virtual_tour', 'video_tour'], Catalog::listingFields()); ?>
