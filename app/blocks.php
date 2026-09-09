@@ -78,7 +78,7 @@ function ks_register_blocks(): void
                 'eyebrow' => ['type' => 'string', 'default' => 'Farms, land, and historic homes'],
                 'title' => ['type' => 'string', 'default' => 'Homes worth <em>walking through.</em>'],
                 'text' => ['type' => 'string', 'default' => 'Sample farms, historic houses, and acreage across three demo areas. Filter by type and township, then schedule a showing.'],
-                'imageUrl' => ['type' => 'string', 'default' => ''],
+                'imageUrl' => ['type' => 'string', 'default' => HeroImage::DEFAULT],
                 'primaryLabel' => ['type' => 'string', 'default' => 'Show matches'],
                 'secondaryLabel' => ['type' => 'string', 'default' => 'Browse all listings'],
             ]),
@@ -523,7 +523,7 @@ function ks_hero_class(array $attrs, string $base = 'hero'): string
 }
 
 /**
- * Resolve hero image URL: try stored URL, then attachment ID, then featured image.
+ * Resolve hero image URL: stored URL, attachment ID, featured image, then theme default.
  */
 function ks_hero_image_url(array $attrs, int $postId = 0): string
 {
@@ -543,11 +543,24 @@ function ks_hero_image_url(array $attrs, int $postId = 0): string
     $thumbId = $postId > 0 ? get_post_thumbnail_id($postId) : get_post_thumbnail_id();
     if ($thumbId) {
         $fromThumb = wp_get_attachment_image_url((int) $thumbId, 'full');
-
-        return is_string($fromThumb) ? $fromThumb : '';
+        if (is_string($fromThumb) && $fromThumb !== '') {
+            return $fromThumb;
+        }
     }
 
-    return '';
+    $bundled = $postId > 0 ? HeroImage::bundledUrl((string) get_post_field('post_name', $postId)) : '';
+
+    return $bundled !== '' ? $bundled : HeroImage::url();
+}
+
+/**
+ * URL + srcset for a hero <img>. Always returns a usable photo (theme default if unset).
+ *
+ * @return array{url: string, srcset: string, alt: string}
+ */
+function ks_hero_media(array $attrs, int $postId = 0, string $context = ''): array
+{
+    return HeroImage::forRequest(ks_hero_image_url($attrs, $postId), $context);
 }
 
 /**
@@ -939,7 +952,9 @@ function ks_render_home_hero(array $attrs): string
     $text = wp_kses($attrs['text'] ?? '', ['em' => [], 'strong' => [], 'br' => []]);
     $primary = esc_html($attrs['primaryLabel'] ?? 'Show matches');
     $secondary = esc_html($attrs['secondaryLabel'] ?? 'Browse all listings');
-    $imgUrl = esc_url(ks_hero_image_url($attrs));
+    $heroImg = ks_hero_media($attrs, (int) get_the_ID(), 'home');
+    $imgUrl = esc_url($heroImg['url']);
+    $imgSrcset = esc_attr($heroImg['srcset']);
     $heroClass = esc_attr(ks_hero_class($attrs, 'hero'));
     $veilStyle = ks_veil_style($attrs);
     $primaryBtnClass = esc_attr(ks_btn_class(sanitize_key((string) ($attrs['primaryBtnStyle'] ?? 'primary'))));
@@ -950,9 +965,9 @@ function ks_render_home_hero(array $attrs): string
     ob_start();
     ?>
     <?php echo $ldjson; // already escaped?>
-    <section class="<?php echo $heroClass; ?>" id="top" aria-labelledby="hero-heading">
+    <section class="<?php echo $heroClass; ?>" id="top" aria-labelledby="hero-heading" style="--hero-photo:url('<?php echo $imgUrl; ?>')">
       <figure class="hero-media">
-        <img src="<?php echo $imgUrl ?: esc_url(get_theme_file_uri('public/images/hero.jpg')); ?>" width="1600" height="900" alt="" fetchpriority="high" loading="eager" decoding="sync">
+        <img src="<?php echo $imgUrl; ?>" srcset="<?php echo $imgSrcset; ?>" sizes="100vw" width="1600" height="900" alt="" fetchpriority="high" loading="eager" decoding="sync">
       </figure>
       <div class="hero-veil" aria-hidden="true"<?php if ($veilStyle) { ?> style="<?php echo esc_attr($veilStyle); ?>"<?php } ?>></div>
       <div class="hero-inner">
@@ -1021,7 +1036,10 @@ function ks_render_page_hero(array $attrs): string
     $pUrl = esc_url($attrs['primaryUrl'] ?? '') ?: esc_url(home_url('/book/'));
     $secondary = esc_html($attrs['secondaryLabel'] ?? '');
     $sUrl = esc_url($attrs['secondaryUrl'] ?? '');
-    $thumbUrl = esc_url(ks_hero_image_url($attrs, (int) get_the_ID()));
+    $pageId = (int) get_the_ID();
+    $heroImg = ks_hero_media($attrs, $pageId, $pageId > 0 ? (string) get_post_field('post_name', $pageId) : '');
+    $thumbUrl = esc_url($heroImg['url']);
+    $thumbSrcset = esc_attr($heroImg['srcset']);
     $heroClass = esc_attr(ks_hero_class($attrs, 'page-hero page-hero--photo'));
     $veilStyle = ks_veil_style($attrs);
     $primaryBtnClass = esc_attr(ks_btn_class(sanitize_key((string) ($attrs['primaryBtnStyle'] ?? 'primary'))));
@@ -1029,9 +1047,9 @@ function ks_render_page_hero(array $attrs): string
 
     ob_start();
     ?>
-    <section class="<?php echo $heroClass; ?>" aria-labelledby="page-hero-heading">
+    <section class="<?php echo $heroClass; ?>" aria-labelledby="page-hero-heading" style="--hero-photo:url('<?php echo $thumbUrl; ?>')">
       <figure class="page-hero-media">
-        <img src="<?php echo $thumbUrl ?: esc_url(get_theme_file_uri('public/images/hero.jpg')); ?>" width="1600" height="900" alt="" fetchpriority="high" loading="eager" decoding="sync">
+        <img src="<?php echo $thumbUrl; ?>" srcset="<?php echo $thumbSrcset; ?>" sizes="100vw" width="1600" height="900" alt="" fetchpriority="high" loading="eager" decoding="sync">
       </figure>
       <div class="page-hero-veil" aria-hidden="true"<?php if ($veilStyle) { ?> style="<?php echo esc_attr($veilStyle); ?>"<?php } ?>></div>
       <div class="page-hero-inner">

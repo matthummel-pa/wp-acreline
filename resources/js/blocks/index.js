@@ -219,7 +219,7 @@ registerBlockType('acreline/home-hero', {
         eyebrow:        { type: 'string',  default: 'Farms, land, and historic homes' },
         title:          { type: 'string',  default: 'Homes worth <em>walking through.</em>' },
         text:           { type: 'string',  default: '' },
-        imageUrl:       { type: 'string',  default: '' },
+        imageUrl:       { type: 'string',  default: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be' },
         imageId:        { type: 'integer', default: 0 },
         imagePosition:  { type: 'string',  default: 'center' },
         primaryLabel:   { type: 'string',  default: 'Show matches' },

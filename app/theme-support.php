@@ -233,6 +233,10 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.4.2', [
+            __('Homepage hero shows a full-bleed rural farmhouse photo with a readable ink veil — change it from the Home Hero block image picker', 'acreline'),
+            __('Seed and force-rebuild write the hero image URL onto the home page', 'acreline'),
+        ]],
         ['1.4.1', [
             __('Full Gutenberg stacks on every marketing page — agent list, FAQ, stats, reviews, checklists, compare table, and a richer Blog page', 'acreline'),
             __('New blocks: Trust Strip, Buyer Checklist, Showing Prep, Area Compare Table, Topic Cards, Post Grid', 'acreline'),

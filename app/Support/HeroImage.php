@@ -17,6 +17,7 @@ class HeroImage
      * @var array<string, string>
      */
     public const BUNDLED_ALTS = [
+        'home' => 'White farmhouse and porch across a rural pasture',
         'listings' => 'Gravel lane to a white farmhouse and bank barn',
         'areas' => 'Apple orchard rows on a rural ridge',
         'guide' => 'Farm table with a township map beside a pasture window',
@@ -71,11 +72,13 @@ class HeroImage
 
         if (str_contains($url, 'images.unsplash.com')) {
             $base = preg_replace('/\?.*$/', '', $url) ?: $url;
+            $sized = $base.'?auto=format&fit=crop&w=1600&q=75';
 
             return [
-                'url' => $url,
+                'url' => $sized,
                 'srcset' => $base.'?auto=format&fit=crop&w=800&q=70 800w, '
-                    .$base.'?auto=format&fit=crop&w=1600&q=75 1600w',
+                    .$sized.' 1600w, '
+                    .$base.'?auto=format&fit=crop&w=2400&q=75 2400w',
             ];
         }
 
@@ -155,7 +158,7 @@ class HeroImage
             'contact' => 'contact',
             'book' => 'book',
             'blog' => 'blog',
-            'home' => '',
+            'home' => 'home',
             'simple' => 'blog',
         ];
 
