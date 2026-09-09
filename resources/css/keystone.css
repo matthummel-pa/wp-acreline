@@ -37,7 +37,7 @@
   --ff-mono:"Inter",system-ui,sans-serif;
   --field-bg:#fff;
   --field-text:#141210;
-  --field-border:#6f685e;
+  --field-border:#595349; /* darkened: ~6.5:1 on white — WCAG AA */
   --font-size-base:16px;
   --fw-heading:700;
   --maxw:80rem;
@@ -842,15 +842,55 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
 }
 
 .alert-panel{
-  background:var(--ink);color:#fff;border-radius:var(--radius);padding:28px;
+  background:var(--accent);color:#fff;border-radius:var(--radius);padding:28px;
+  /* accent changes with Customize → Colors, panel follows automatically */
 }
-.alert-panel h3{color:#fff;}
-.alert-panel p{color:rgba(255,255,255,.7);}
-.alert-panel .field label{color:rgba(255,255,255,.55);}
-.alert-panel .field input,.alert-panel .field select{
-  background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18);color:#fff;
+.alert-panel h3{color:#fff;font-size:1.55rem;margin-bottom:.35em;}
+.alert-panel > p{color:rgba(255,255,255,.85);}
+/* ── Labels: full-white at .92 — passes WCAG AA (≥4.5:1) on all accent shades ── */
+.alert-panel .field label{
+  color:rgba(255,255,255,.92);font-weight:600;
 }
-.alert-panel .field input::placeholder{color:rgba(255,255,255,.4);}
+/* ── Inputs: dark-overlay bg so white text reads cleanly; visible border ── */
+.alert-panel .field input,
+.alert-panel .field select{
+  background:rgba(0,0,0,.22);
+  border:1.5px solid rgba(255,255,255,.45);
+  color:#fff;
+  border-radius:var(--radius-sm);
+  padding:12px 12px;
+}
+.alert-panel .field input:focus,
+.alert-panel .field select:focus{
+  border-color:rgba(255,255,255,.9);
+  outline:2px solid rgba(255,255,255,.35);
+  outline-offset:2px;
+  background:rgba(0,0,0,.28);
+}
+/* ── Placeholder: .65 opacity ≈ 3.5:1 on dark accent ── */
+.alert-panel .field input::placeholder{color:rgba(255,255,255,.65);}
+/* ── Override color-scheme so selects render dark inside the accent panel ── */
+.alert-panel .field select,
+.alert-panel .field input{color-scheme:dark;}
+/* ── Select option dropdown falls back to system chrome; keep it readable ── */
+.alert-panel .field select option{background:var(--ink);color:var(--white);}
+/* ── Submit button: inverted (white bg, accent text) so it stands out ──────── */
+.alert-panel .btn-primary{
+  background:#fff;
+  color:var(--accent);
+  box-shadow:0 4px 16px rgba(0,0,0,.18);
+  border:none;
+}
+.alert-panel .btn-primary:hover{
+  background:rgba(255,255,255,.92);
+  box-shadow:0 6px 20px rgba(0,0,0,.24);
+}
+/* ── Confirm message: semi-transparent white, readable on any accent ──────── */
+.alert-panel .confirm-msg{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.3);
+  color:#fff;
+}
 
 /* Explore editorial */
 .explore-list{display:grid;gap:0;border-top:1px solid var(--line);}
