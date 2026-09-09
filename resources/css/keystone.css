@@ -855,6 +855,34 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
 .tool-panel h3{
   font-size:1.55rem;margin-bottom:.35em;
 }
+
+/* Layout variants */
+.tools-grid--stack{grid-template-columns:1fr !important;max-width:640px;}
+
+/* Panel style variants */
+.tool-panel--flat{
+  box-shadow:none;border-color:transparent;background:transparent;padding:28px 0;
+  border-radius:0;border-top:1px solid var(--line);
+}
+.tool-panel--flat:first-child{border-top:none;}
+.tool-panel--outline{
+  box-shadow:none;border-width:2px;border-color:var(--accent);
+}
+
+/* Dark section variant */
+.ks-section--dark{background:var(--ink);}
+.ks-section--dark .section-head h2,.ks-section--dark h2,.ks-section--dark h3{color:#fff;}
+.ks-section--dark .eyebrow{color:color-mix(in srgb,var(--accent) 80%,#fff);}
+.ks-section--dark p{color:rgba(255,255,255,.72);}
+.ks-section--dark .tool-panel{
+  background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);
+}
+.ks-section--dark .tool-panel h3{color:#fff;}
+.ks-section--dark .tool-panel .lede{color:rgba(255,255,255,.6);}
+.ks-section--dark .tool-panel .field label{color:rgba(255,255,255,.8);}
+.ks-section--dark .tool-panel input,.ks-section--dark .tool-panel select{
+  background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff;
+}
 .form-grid{display:grid;gap:14px;margin-top:16px;}
 @media(min-width:520px){.form-grid.two{grid-template-columns:1fr 1fr;}}
 .form-note{font-size:.78rem;color:var(--ink-soft);margin-top:10px;}

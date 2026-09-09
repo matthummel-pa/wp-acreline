@@ -192,6 +192,11 @@ function ks_register_blocks(): void
                 'faqStyle' => ['type' => 'string', 'default' => 'dl'],
                 'listIcon' => ['type' => 'string', 'default' => 'none'],
                 'showNumbers' => ['type' => 'boolean', 'default' => false],
+                // Custom FAQ items stored directly in the block.
+                'useCustomFaqs' => ['type' => 'boolean', 'default' => false],
+                'faqs' => ['type' => 'array', 'default' => [], 'items' => ['type' => 'object']],
+                // Accordion: which items start open.
+                'accordionDefaultOpen' => ['type' => 'string', 'default' => 'first'],
             ]),
         ],
         'acreline/cta-band' => [
@@ -264,13 +269,29 @@ function ks_register_blocks(): void
         'acreline/tools-section' => [
             'render_callback' => __NAMESPACE__.'\\ks_render_tools_section',
             'attributes' => array_merge($typo, [
-                'introTitle' => ['type' => 'string', 'default' => "What's different about buying land"],
-                'introText' => ['type' => 'string', 'default' => 'When you buy an existing home, utilities are usually sorted. Out in the townships you often have to prove water, septic and access yourself — and those answers change the value of the ground.'],
-                'eyebrow' => ['type' => 'string', 'default' => 'Run Your Numbers'],
-                'title' => ['type' => 'string', 'default' => 'Land-loan &amp; pre-qualification tools'],
-                'text' => ['type' => 'string', 'default' => 'Friendly estimates to help you plan — not loan offers. A licensed lender will verify everything with full documentation.'],
-                'showLoanTool' => ['type' => 'boolean', 'default' => true],
+                // Intro paragraph (above the tools cards)
+                'showIntro'    => ['type' => 'boolean', 'default' => true],
+                'introTitle'   => ['type' => 'string',  'default' => "What's different about buying land"],
+                'introText'    => ['type' => 'string',  'default' => 'When you buy an existing home, utilities are usually sorted. Out in the townships you often have to prove water, septic and access yourself — and those answers change the value of the ground.'],
+                // Tools header
+                'eyebrow'      => ['type' => 'string',  'default' => 'Run Your Numbers'],
+                'title'        => ['type' => 'string',  'default' => 'Land-loan &amp; pre-qualification tools'],
+                'text'         => ['type' => 'string',  'default' => 'Friendly estimates to help you plan — not loan offers. A licensed lender will verify everything with full documentation.'],
+                // Which tools to show
+                'showLoanTool'    => ['type' => 'boolean', 'default' => true],
                 'showPrequalTool' => ['type' => 'boolean', 'default' => true],
+                // Loan estimator labels
+                'loanTitle'    => ['type' => 'string',  'default' => 'Land loan estimator'],
+                'loanLede'     => ['type' => 'string',  'default' => 'Sample monthly payment — not a loan offer.'],
+                'loanBtn'      => ['type' => 'string',  'default' => 'Estimate payment'],
+                // Pre-qual labels
+                'prequalTitle' => ['type' => 'string',  'default' => 'Pre-qualification check'],
+                'prequalLede'  => ['type' => 'string',  'default' => 'Rough income check for land loans. Not a lender quote.'],
+                'prequalBtn'   => ['type' => 'string',  'default' => 'Check eligibility'],
+                // Design
+                'sectionStyle' => ['type' => 'string',  'default' => 'alt'],
+                'panelStyle'   => ['type' => 'string',  'default' => 'card'],
+                'toolsLayout'  => ['type' => 'string',  'default' => 'side'],
             ]),
         ],
         'acreline/how-we-work' => [
@@ -1925,8 +1946,21 @@ function ks_render_tools_section(array $attrs): string
 {
     $a = $attrs;
 
+    $showIntro    = (bool) ($a['showIntro'] ?? true);
+    $sectionStyle = sanitize_key((string) ($a['sectionStyle'] ?? 'alt'));
+    $headClass    = esc_attr(ks_head_class($a));
+
+    $toolsSectionClass = 'section';
+    if ($sectionStyle === 'alt') {
+        $toolsSectionClass .= ' section-alt';
+    } elseif ($sectionStyle === 'dark') {
+        $toolsSectionClass .= ' ks-section--dark';
+    }
+
     ob_start();
-    ?>
+
+    if ($showIntro) {
+        ?>
     <section class="section">
       <div class="wrap">
         <div class="guide-intro reveal">
@@ -1935,14 +1969,17 @@ function ks_render_tools_section(array $attrs): string
         </div>
       </div>
     </section>
-    <section class="section section-alt" aria-labelledby="guide-tools-heading">
+        <?php
+    }
+    ?>
+    <section class="<?php echo esc_attr($toolsSectionClass); ?>" aria-labelledby="guide-tools-heading">
       <div class="wrap">
-        <header class="section-head left reveal">
+        <header class="<?php echo $headClass; ?>">
           <p class="eyebrow"><?php echo esc_html($a['eyebrow'] ?? 'Run Your Numbers'); ?></p>
           <h2 id="guide-tools-heading"><?php echo wp_kses($a['title'] ?? 'Land-loan &amp; pre-qualification tools', ['em' => [], 'strong' => []]); ?></h2>
           <p><?php echo wp_kses($a['text'] ?? '', ['em' => [], 'strong' => []]); ?></p>
         </header>
-        <?php echo ks_guide_tools_html(); ?>
+        <?php echo ks_guide_tools_html($a); ?>
       </div>
     </section>
     <?php
@@ -2254,36 +2291,69 @@ function ks_booking_photo_html(): string
     return (string) ob_get_clean();
 }
 
-function ks_guide_tools_html(): string
+function ks_guide_tools_html(array $a = []): string
 {
+    $showLoan    = (bool) ($a['showLoanTool']    ?? true);
+    $showPrequal = (bool) ($a['showPrequalTool'] ?? true);
+
+    if (! $showLoan && ! $showPrequal) {
+        return '';
+    }
+
+    $loanTitle    = esc_html($a['loanTitle']    ?? 'Land loan estimator');
+    $loanLede     = esc_html($a['loanLede']     ?? 'Sample monthly payment — not a loan offer.');
+    $loanBtn      = esc_html($a['loanBtn']      ?? 'Estimate payment');
+    $prequalTitle = esc_html($a['prequalTitle'] ?? 'Pre-qualification check');
+    $prequalLede  = esc_html($a['prequalLede']  ?? 'Rough income check for land loans. Not a lender quote.');
+    $prequalBtn   = esc_html($a['prequalBtn']   ?? 'Check eligibility');
+
+    $panelStyle = sanitize_key((string) ($a['panelStyle'] ?? 'card'));
+    $layout     = sanitize_key((string) ($a['toolsLayout'] ?? 'side'));
+
+    $gridClass  = 'tools-grid';
+    if ($layout === 'stack') {
+        $gridClass .= ' tools-grid--stack';
+    }
+
+    $panelClass = 'tool-panel reveal';
+    if ($panelStyle === 'flat') {
+        $panelClass .= ' tool-panel--flat';
+    } elseif ($panelStyle === 'outline') {
+        $panelClass .= ' tool-panel--outline';
+    }
+
     ob_start();
     ?>
-    <div class="tools-grid">
-      <div class="tool-panel reveal">
-        <h3><?php esc_html_e('Land loan estimator', 'acreline'); ?></h3>
-        <p class="lede"><?php esc_html_e('Sample monthly payment — not a loan offer.', 'acreline'); ?></p>
+    <div class="<?php echo esc_attr($gridClass); ?>">
+      <?php if ($showLoan) { ?>
+      <div class="<?php echo esc_attr($panelClass); ?>">
+        <h3><?php echo $loanTitle; ?></h3>
+        <p class="lede"><?php echo $loanLede; ?></p>
         <form id="loanForm" class="form-grid two">
           <div class="field"><label for="lPrice"><?php esc_html_e('Property price', 'acreline'); ?></label><input type="number" id="lPrice" name="price" min="50000" step="5000" value="400000" required></div>
           <div class="field"><label for="lDown"><?php esc_html_e('Down payment %', 'acreline'); ?></label><select id="lDown"><option value="10">10%</option><option value="20" selected>20%</option><option value="30">30%</option></select></div>
           <div class="field"><label for="lRate"><?php esc_html_e('Interest rate %', 'acreline'); ?></label><input type="number" id="lRate" min="1" max="20" step="0.25" value="7.25" required></div>
           <div class="field"><label for="lTerm"><?php esc_html_e('Loan term', 'acreline'); ?></label><select id="lTerm"><option value="15">15 years</option><option value="20">20 years</option><option value="25" selected>25 years</option><option value="30">30 years</option></select></div>
-          <div class="field field-span"><button type="submit" class="btn btn-primary btn-block"><?php esc_html_e('Estimate payment', 'acreline'); ?></button></div>
+          <div class="field field-span"><button type="submit" class="btn btn-primary btn-block"><?php echo $loanBtn; ?></button></div>
         </form>
         <div id="loanResult" role="status" aria-live="polite"></div>
       </div>
-      <div class="tool-panel reveal">
-        <h3><?php esc_html_e('Pre-qualification check', 'acreline'); ?></h3>
-        <p class="lede"><?php esc_html_e('Rough income check for land loans. Not a lender quote.', 'acreline'); ?></p>
+      <?php } ?>
+      <?php if ($showPrequal) { ?>
+      <div class="<?php echo esc_attr($panelClass); ?>">
+        <h3><?php echo $prequalTitle; ?></h3>
+        <p class="lede"><?php echo $prequalLede; ?></p>
         <form id="prequalForm" class="form-grid two">
           <div class="field"><label for="pqIncome"><?php esc_html_e('Annual household income', 'acreline'); ?></label><input type="number" id="pqIncome" min="20000" step="1000" value="95000" required></div>
           <div class="field"><label for="pqDebt"><?php esc_html_e('Monthly debt payments', 'acreline'); ?></label><input type="number" id="pqDebt" min="0" step="50" value="500"></div>
           <div class="field"><label for="pqCredit"><?php esc_html_e('Credit score range', 'acreline'); ?></label>
             <select id="pqCredit"><option value="620-649">620–649</option><option value="650-699">650–699</option><option value="700-749" selected>700–749</option><option value="750+">750+</option></select></div>
           <div class="field"><label for="pqDown"><?php esc_html_e('Cash available for down', 'acreline'); ?></label><input type="number" id="pqDown" min="0" step="1000" value="80000"></div>
-          <div class="field field-span"><button type="submit" class="btn btn-primary btn-block"><?php esc_html_e('Check eligibility', 'acreline'); ?></button></div>
+          <div class="field field-span"><button type="submit" class="btn btn-primary btn-block"><?php echo $prequalBtn; ?></button></div>
         </form>
         <div id="prequalResult" role="status" aria-live="polite"></div>
       </div>
+      <?php } ?>
     </div>
     <?php
     return (string) ob_get_clean();
