@@ -851,10 +851,10 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
 .alert-panel .field label{
   color:rgba(255,255,255,.92);font-weight:600;
 }
-/* ── Inputs: dark-overlay bg so white text reads cleanly; visible border ── */
+/* ── Inputs: light-overlay bg — a brighter tint of the panel accent ── */
 .alert-panel .field input,
 .alert-panel .field select{
-  background:rgba(0,0,0,.22);
+  background:rgba(255,255,255,.18);
   border:1.5px solid rgba(255,255,255,.45);
   color:#fff;
   border-radius:var(--radius-sm);
@@ -865,7 +865,7 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
   border-color:rgba(255,255,255,.9);
   outline:2px solid rgba(255,255,255,.35);
   outline-offset:2px;
-  background:rgba(0,0,0,.28);
+  background:rgba(255,255,255,.26);
 }
 /* ── Placeholder: .65 opacity ≈ 3.5:1 on dark accent ── */
 .alert-panel .field input::placeholder{color:rgba(255,255,255,.65);}
