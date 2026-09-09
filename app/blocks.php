@@ -452,8 +452,8 @@ function ks_veil_style(array $attrs): string
 /**
  * Map a block button-style slug to the correct CSS class string.
  *
- * @param string $style Slug from the editor's SelectControl.
- * @param string $extra Any additional classes to append (e.g. 'btn-block').
+ * @param  string  $style  Slug from the editor's SelectControl.
+ * @param  string  $extra  Any additional classes to append (e.g. 'btn-block').
  */
 function ks_btn_class(string $style, string $extra = ''): string
 {
