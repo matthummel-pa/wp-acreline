@@ -13,11 +13,11 @@
   'heroBrand' => $identity['brand'] ?? 'Acreline',
   'heroEyebrow' => $agent['job_title'],
   'heroTitle' => $agent['name'],
-  'heroText' => trim($agent['office'].($agent['years_experience'] ? ' · '.$agent['years_experience'].' years' : '')),
+  'heroText' => trim($agent['office'].($agent['years_experience'] ? ' · '.$agent['years_experience'].' '.esc_html__('years', 'acreline') : '')),
   'headingId' => 'agent-hero-heading',
   'heroActions' => [
-    ['href' => home_url('/book/'), 'label' => 'Book a showing', 'class' => 'btn btn-primary'],
-    ['href' => home_url('/contact'), 'label' => 'Contact the office', 'class' => 'btn btn-outline light'],
+    ['href' => home_url('/book/'), 'label' => __('Book a showing', 'acreline'), 'class' => 'btn btn-primary'],
+    ['href' => home_url('/contact'), 'label' => __('Contact the office', 'acreline'), 'class' => 'btn btn-outline light'],
   ],
 ])
 
@@ -27,37 +27,37 @@
       <p>{{ $agent['bio'] }}</p>
       <dl class="agent-facts">
         @if ($agent['license_number'])
-          <div><dt>License</dt><dd>{{ $agent['license_state'] }} {{ $agent['license_number'] }}</dd></div>
+          <div><dt>{{ __('License', 'acreline') }}</dt><dd>{{ $agent['license_state'] }} {{ $agent['license_number'] }}</dd></div>
         @endif
         @if ($agent['mls_id'])
-          <div><dt>MLS ID</dt><dd>{{ $agent['mls_id'] }}</dd></div>
+          <div><dt>{{ __('MLS ID', 'acreline') }}</dt><dd>{{ $agent['mls_id'] }}</dd></div>
         @endif
         @if ($agent['nrds_id'])
-          <div><dt>NRDS</dt><dd>{{ $agent['nrds_id'] }}</dd></div>
+          <div><dt>{{ __('NRDS', 'acreline') }}</dt><dd>{{ $agent['nrds_id'] }}</dd></div>
         @endif
         @if ($agent['specialties'])
-          <div><dt>Specialties</dt><dd>{{ $agent['specialties'] }}</dd></div>
+          <div><dt>{{ __('Specialties', 'acreline') }}</dt><dd>{{ $agent['specialties'] }}</dd></div>
         @endif
         @if ($agent['service_areas'])
-          <div><dt>Service areas</dt><dd>{{ $agent['service_areas'] }}</dd></div>
+          <div><dt>{{ __('Service areas', 'acreline') }}</dt><dd>{{ $agent['service_areas'] }}</dd></div>
         @endif
         @if ($agent['languages'])
-          <div><dt>Languages</dt><dd>{{ $agent['languages'] }}</dd></div>
+          <div><dt>{{ __('Languages', 'acreline') }}</dt><dd>{{ $agent['languages'] }}</dd></div>
         @endif
         @if ($agent['designations'])
-          <div><dt>Designations</dt><dd>{{ $agent['designations'] }}</dd></div>
+          <div><dt>{{ __('Designations', 'acreline') }}</dt><dd>{{ $agent['designations'] }}</dd></div>
         @endif
       </dl>
     </div>
     <aside class="listing-agent-card">
-      <p class="eyebrow">Contact</p>
+      <p class="eyebrow">{{ __('Contact', 'acreline') }}</p>
       @if ($agent['phone'])
         <a class="agent-phone" href="{{ \App\Support\Catalog::telHref($agent['phone']) }}">{{ $agent['phone'] }}</a>
       @endif
       @if ($agent['email'])
         <a class="agent-phone" href="mailto:{{ $agent['email'] }}">{{ $agent['email'] }}</a>
       @endif
-      <a class="btn btn-primary" href="{{ home_url('/book/') }}" style="margin-top:16px">Book a showing</a>
+      <a class="btn btn-primary" href="{{ home_url('/book/') }}" style="margin-top:16px">{{ __('Book a showing', 'acreline') }}</a>
     </aside>
   </div>
 </section>
@@ -65,14 +65,14 @@
 @if ($listings)
 <section class="section section-alt">
   <div class="wrap">
-    <h2>Listings with {{ $agent['name'] }}</h2>
+    <h2>{{ sprintf(__('Listings with %s', 'acreline'), $agent['name']) }}</h2>
     <div class="listing-mini-grid reveal" style="margin-top:24px">
       @foreach ($listings as $listing)
-        <a class="listing-mini" href="{{ $listing['permalink'] }}">
+        <a class="listing-mini" href="{{ $listing['permalink'] }}" aria-label="{{ esc_attr($listing['title']) }}">
           @if ($listing['image'])
-            <img src="{{ $listing['image'] }}" width="800" height="500" alt="" loading="lazy">
+            <img src="{{ $listing['image'] }}" width="800" height="500" alt="{{ esc_attr($listing['title']) }}" loading="lazy">
           @else
-            <div class="listing-mini-photo" style="background:{{ $listing['grad'] }};height:150px"></div>
+            <div class="listing-mini-photo" role="img" aria-hidden="true" style="background:{{ $listing['grad'] }};height:150px"></div>
           @endif
           <div>
             <strong>{{ \App\Support\Catalog::formatMoney((int) $listing['price']) }}</strong>

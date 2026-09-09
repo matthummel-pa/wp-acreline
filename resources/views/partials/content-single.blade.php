@@ -9,8 +9,8 @@
     'headingId' => 'post-hero-heading',
     'heroClass' => 'page-hero--article',
     'heroActions' => [
-      ['href' => home_url('/listings'), 'label' => 'Browse listings', 'class' => 'btn btn-primary'],
-      ['href' => home_url('/book/'), 'label' => 'Book a showing', 'class' => 'btn btn-outline light'],
+      ['href' => home_url('/listings'), 'label' => __('Browse listings', 'acreline'), 'class' => 'btn btn-primary'],
+      ['href' => home_url('/book/'), 'label' => __('Book a showing', 'acreline'), 'class' => 'btn btn-outline light'],
     ],
   ])
 
@@ -30,13 +30,13 @@
         @if ($adjacentPosts)
           <nav class="post-nav" aria-label="More posts">
             @if (! empty($adjacentPosts['prev']))
-              <a href="{{ $adjacentPosts['prev']['url'] }}">← {{ $adjacentPosts['prev']['title'] }}</a>
+              <a href="{{ $adjacentPosts['prev']['url'] }}" rel="prev">← {{ $adjacentPosts['prev']['title'] }}</a>
             @else
               <span></span>
             @endif
-            <a href="{{ home_url('/blog') }}">All posts</a>
+            <a href="{{ home_url('/blog') }}">{{ __('All posts', 'acreline') }}</a>
             @if (! empty($adjacentPosts['next']))
-              <a href="{{ $adjacentPosts['next']['url'] }}">{{ $adjacentPosts['next']['title'] }} →</a>
+              <a href="{{ $adjacentPosts['next']['url'] }}" rel="next">{{ $adjacentPosts['next']['title'] }} →</a>
             @else
               <span></span>
             @endif
@@ -44,22 +44,22 @@
         @endif
       </div>
 
-      <aside class="post-aside" aria-label="Next steps">
+      <aside class="post-aside" aria-label="{{ esc_attr__('Next steps', 'acreline') }}">
         <div class="listing-agent-card">
-          <p class="eyebrow">Next step</p>
-          <h2>Walk a sample property</h2>
-          <p>This note is for buyers comparing farms, historic houses, and acreage. Use the same tools a working realtor site would put next to the article.</p>
-          <a class="btn btn-primary" href="{{ home_url('/book/') }}">Book a showing</a>
-          <a class="btn btn-outline" href="{{ home_url('/listings') }}">Browse listings</a>
-          <a class="agent-phone" href="{{ home_url('/guide') }}">Buyer tools →</a>
+          <p class="eyebrow">{{ __('Next step', 'acreline') }}</p>
+          <h2>{{ __('Walk a sample property', 'acreline') }}</h2>
+          <p>{{ __('This note is for buyers comparing farms, historic houses, and acreage. Use the same tools a working realtor site would put next to the article.', 'acreline') }}</p>
+          <a class="btn btn-primary" href="{{ home_url('/book/') }}">{{ __('Book a showing', 'acreline') }}</a>
+          <a class="btn btn-outline" href="{{ home_url('/listings') }}">{{ __('Browse listings', 'acreline') }}</a>
+          <a class="agent-phone" href="{{ home_url('/guide') }}">{{ __('Buyer tools →', 'acreline') }}</a>
         </div>
         <div class="scan-card">
-          <span class="num">In this note</span>
+          <span class="num">{{ __('In this note', 'acreline') }}</span>
           <h3>{{ $postEyebrow }}</h3>
           <ul>
-            <li>{{ $readingMinutes }} min read</li>
-            <li>Published {{ get_the_date() }}</li>
-            <li>Sample-market concept copy</li>
+            <li>{{ sprintf(__('%d min read', 'acreline'), $readingMinutes) }}</li>
+            <li>{{ sprintf(__('Published %s', 'acreline'), get_the_date()) }}</li>
+            <li>{{ __('Sample-market concept copy', 'acreline') }}</li>
           </ul>
         </div>
       </aside>
@@ -70,9 +70,9 @@
   <section class="section section-alt" aria-labelledby="related-posts-heading">
     <div class="wrap">
       <div class="section-head left reveal">
-        <p class="eyebrow">Keep reading</p>
-        <h2 id="related-posts-heading">More notes for buyers</h2>
-        <p>Short posts you can adapt for local SEO — showings, checklists, and land vs home search.</p>
+        <p class="eyebrow">{{ __('Keep reading', 'acreline') }}</p>
+        <h2 id="related-posts-heading">{{ __('More notes for buyers', 'acreline') }}</h2>
+        <p>{{ __('Short posts you can adapt for local SEO — showings, checklists, and land vs home search.', 'acreline') }}</p>
       </div>
       <div class="blog-grid reveal">
         @foreach ($relatedPosts as $related)
@@ -82,7 +82,7 @@
               <span class="blog-meta">{{ $related['meta'] }}</span>
               <h3>{!! $related['title'] !!}</h3>
               <p>{{ $related['excerpt'] }}</p>
-              <span class="teaser-link">Read post →</span>
+              <span class="teaser-link">{{ __('Read post →', 'acreline') }}</span>
             </div>
           </a>
         @endforeach
@@ -94,11 +94,11 @@
   <section class="section">
     <div class="wrap">
       <div class="cta-band reveal">
-        <h2>Tour a sample home next.</h2>
-        <p>Pick an address, choose a slot, and see how a modern realtor booking flow feels.</p>
+        <h2>{{ __('Tour a sample home next.', 'acreline') }}</h2>
+        <p>{{ __('Pick an address, choose a slot, and see how a modern realtor booking flow feels.', 'acreline') }}</p>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="{{ home_url('/book/') }}">Book a showing</a>
-          <a class="btn btn-outline light" href="{{ home_url('/listings') }}">Browse listings</a>
+          <a class="btn btn-primary" href="{{ home_url('/book/') }}">{{ __('Book a showing', 'acreline') }}</a>
+          <a class="btn btn-outline light" href="{{ home_url('/listings') }}">{{ __('Browse listings', 'acreline') }}</a>
         </div>
       </div>
     </div>
