@@ -52,6 +52,14 @@ Paste-ready ThemeForest title, excerpt, long description, and attributes: `docs/
 5. Footer credit is optional and `rel="nofollow"`.
 6. Theme Check on a stock WP install (warnings on Sage/vendor are expected — document them).
 
+### 1.4.3 demo notes
+
+Public release notes: `CHANGELOG.md`, `readme.txt`, and `docs/marketplace/changelog.html`. Paste store copy from `themeforest-listing.md`.
+
+- **Animate homepage hero image** (`ks_hero_ken_burns`) is **on** by default. Leave it on for cinematic homepage screenshots. Headlines and the search form do not move.
+- **Tilt listing search on mobile** (`ks_hero_search_tilt`) is **off** by default (battery / privacy). Turn it on only for a phone recording. It no-ops on desktop, without sensors, or if the visitor declines motion access. iPhone may prompt.
+- Both checkboxes live under Customize → Header and are independent. They do not change listings or Identity.
+
 ## WP.org remaining blockers (do not paper over)
 
 - Sage / Blade / `vendor` (Acorn) is not what the Themes Team usually ships

@@ -251,4 +251,147 @@
       });
     });
   }
+
+  /* Homepage listing search: subtle device-tilt on phones (Customizer, default off). */
+  (function initHeroSearchTilt(){
+    var form = document.getElementById("heroSearchForm");
+    if(!form) return;
+
+    var reduceMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var mobileMq = window.matchMedia("(max-width: 899px)");
+    var listening = false;
+    var raf = 0;
+    var originBeta = null;
+    var originGamma = null;
+    var curX = 0;
+    var curY = 0;
+    var curR = 0;
+    var tgtX = 0;
+    var tgtY = 0;
+    var tgtR = 0;
+    var permissionDenied = false;
+    var gestureBound = false;
+
+    function settingOn(){
+      return document.body.classList.contains("hero-search-tilt-enabled");
+    }
+
+    function canRun(){
+      return settingOn() && !reduceMq.matches && mobileMq.matches && !permissionDenied;
+    }
+
+    function clamp(n, min, max){
+      return Math.max(min, Math.min(max, n));
+    }
+
+    function resetPose(){
+      originBeta = null;
+      originGamma = null;
+      curX = curY = curR = 0;
+      tgtX = tgtY = tgtR = 0;
+      form.classList.remove("is-tilt-active");
+      form.style.transform = "";
+    }
+
+    function applyFrame(){
+      raf = 0;
+      if(!canRun()){
+        resetPose();
+        return;
+      }
+      curX += (tgtX - curX) * 0.12;
+      curY += (tgtY - curY) * 0.12;
+      curR += (tgtR - curR) * 0.12;
+      if(Math.abs(curX) < 0.02 && Math.abs(curY) < 0.02 && Math.abs(curR) < 0.01){
+        curX = tgtX;
+        curY = tgtY;
+        curR = tgtR;
+      }
+      form.classList.add("is-tilt-active");
+      form.style.transform = "translate3d(" + curX.toFixed(2) + "px," + curY.toFixed(2) + "px,0) rotate(" + curR.toFixed(3) + "deg)";
+      if(Math.abs(tgtX - curX) > 0.02 || Math.abs(tgtY - curY) > 0.02 || Math.abs(tgtR - curR) > 0.01){
+        raf = window.requestAnimationFrame(applyFrame);
+      }
+    }
+
+    function onOrient(e){
+      if(!canRun() || e.beta == null || e.gamma == null) return;
+      if(originBeta == null){
+        originBeta = e.beta;
+        originGamma = e.gamma;
+      }
+      var dBeta = clamp(e.beta - originBeta, -22, 22);
+      var dGamma = clamp(e.gamma - originGamma, -22, 22);
+      tgtX = (dGamma / 22) * 7;
+      tgtY = (dBeta / 22) * 5;
+      tgtR = (dGamma / 22) * 0.7;
+      if(!raf) raf = window.requestAnimationFrame(applyFrame);
+    }
+
+    function startListening(){
+      if(listening || !canRun()) return;
+      listening = true;
+      window.addEventListener("deviceorientation", onOrient, { passive: true });
+    }
+
+    function stopListening(){
+      if(!listening) return;
+      listening = false;
+      window.removeEventListener("deviceorientation", onOrient);
+      if(raf){
+        window.cancelAnimationFrame(raf);
+        raf = 0;
+      }
+      resetPose();
+    }
+
+    function requestAndStart(){
+      if(!canRun() || listening) return;
+      var DOE = window.DeviceOrientationEvent;
+      if(!DOE) return;
+      if(typeof DOE.requestPermission === "function"){
+        DOE.requestPermission().then(function(state){
+          if(state === "granted") startListening();
+          else permissionDenied = true;
+        }).catch(function(){
+          permissionDenied = true;
+        });
+      } else {
+        startListening();
+      }
+    }
+
+    function bindGesture(){
+      if(gestureBound) return;
+      gestureBound = true;
+      document.addEventListener("touchstart", function onFirstTouch(){
+        document.removeEventListener("touchstart", onFirstTouch);
+        gestureBound = false;
+        requestAndStart();
+      }, { passive: true, once: true });
+    }
+
+    function sync(){
+      if(!canRun() || typeof DeviceOrientationEvent === "undefined"){
+        stopListening();
+        return;
+      }
+      if(typeof DeviceOrientationEvent.requestPermission === "function"){
+        bindGesture();
+      } else {
+        startListening();
+      }
+    }
+
+    document.addEventListener("acreline:hero-tilt", sync);
+    document.addEventListener("visibilitychange", function(){
+      if(document.hidden) stopListening();
+      else sync();
+    });
+    if(reduceMq.addEventListener) reduceMq.addEventListener("change", sync);
+    else if(reduceMq.addListener) reduceMq.addListener(sync);
+    if(mobileMq.addEventListener) mobileMq.addEventListener("change", sync);
+    else if(mobileMq.addListener) mobileMq.addListener(sync);
+    sync();
+  })();
 })();

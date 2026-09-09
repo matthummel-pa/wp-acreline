@@ -150,6 +150,16 @@ class Identity
         return (bool) get_theme_mod('ks_header_sticky', true);
     }
 
+    public static function heroKenBurns(): bool
+    {
+        return (bool) get_theme_mod('ks_hero_ken_burns', true);
+    }
+
+    public static function heroSearchTilt(): bool
+    {
+        return (bool) get_theme_mod('ks_hero_search_tilt', false);
+    }
+
     public static function headerStyle(): string
     {
         $style = sanitize_key((string) get_theme_mod('ks_header_style', 'standard'));
@@ -270,6 +280,8 @@ class Identity
             'social' => self::social(),
             'hasLogo' => has_custom_logo(),
             'headerSticky' => self::headerSticky(),
+            'heroKenBurns' => self::heroKenBurns(),
+            'heroSearchTilt' => self::heroSearchTilt(),
             'headerStyle' => self::headerStyle(),
             'headerClass' => implode(' ', self::headerClasses()),
             'colorScheme' => ColorSchemes::currentKey(),

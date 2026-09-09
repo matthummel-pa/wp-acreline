@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -43,7 +43,7 @@ House mark and wordmark (original SVG, GPLv2) ship in public/images/brand/. Supp
 * Customizer identity: brand, phone, email, address, hours, header button, removable author credit
 * Custom logo under Site Identity (replaces the Acreline house mark)
 * Eight color styles (Forest, Clay, Navy, Burgundy, Harvest, Lake, Orchard, Charcoal) plus accent, paper, and ink
-* Header size and sticky toggle
+* Header size, sticky toggle, homepage Ken Burns hero animation (on by default), and optional mobile listing-search tilt (off by default)
 * Demo color switcher on the concept preview (mid-right)
 * Inter-based typography with font choices
 * WordPress menus (Primary + Footer) with a concept-page fallback
@@ -85,6 +85,14 @@ Appearance → Customize → Identity.
 = How do I hide the concept demo banner? =
 
 Customize → Identity → uncheck “Show concept demo banner and author badge.” Uncheck the credit box to drop the footer author line (WordPress.org requires the buyer’s copyright only).
+
+= How do I turn off the homepage hero animation? =
+
+Customize → Header → uncheck “Animate homepage hero image.” The photo stays; it no longer pans. Reduced-motion visitors already see a still cover.
+
+= How do I turn on listing-search tilt on phones? =
+
+Customize → Header → check “Tilt listing search on mobile.” Off by default. The homepage search panel gently follows device tilt. It does nothing on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion. iPhone may ask for motion access.
 
 = Where do listings live? =
 
@@ -130,6 +138,11 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.4.3 =
+* Homepage hero photo slowly pans and zooms. Headlines, overlay, and listing search stay still.
+* Optional: on phones, the listing search panel can gently follow device tilt. Off by default. Does nothing without sensors or permission.
+* Customize → Header: “Animate homepage hero image” (on) and “Tilt listing search on mobile” (off).
 
 = 1.4.2 =
 * Homepage hero now shows a full-bleed rural farmhouse photo (the theme’s existing default listing still) with the ink veil so white type stays readable. Buyers can replace it from the Home Hero block’s image picker.
