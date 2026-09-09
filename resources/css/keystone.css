@@ -944,8 +944,6 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
   box-shadow:var(--shadow-rest, var(--shadow));
   display:flex;flex-direction:column;min-width:0;
 }
-.stars{display:flex;gap:3px;margin-bottom:12px;}
-.stars svg{width:16px;height:16px;fill:var(--accent);}
 .testi blockquote{margin:0 0 16px;}
 .testi blockquote p,.testi-quote{
   font-family:var(--ff-display);font-style:italic;font-size:clamp(1.2rem,2vw,1.4rem);
