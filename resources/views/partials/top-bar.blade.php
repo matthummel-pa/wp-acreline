@@ -22,11 +22,7 @@
   $closeSvg   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>';
   $arrowSvg   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9,18 15,12 9,6"/></svg>';
 
-  /* Inline custom-color style override. */
-  $styleAttr = '';
-  if ($tb['style'] === 'custom') {
-    $styleAttr = 'style="--tb-bg:'.esc_attr($tb['bgColor']).';--tb-text:'.esc_attr($tb['textColor']).';"';
-  }
+  $styleAttr = ! empty($tb['cssVars']) ? 'style="'.esc_attr($tb['cssVars']).'"' : '';
 @endphp
 
 <div class="top-bar top-bar--{{ $tb['style'] }}" id="topBar" role="complementary" aria-label="{{ esc_attr__('Site-wide announcement and contact bar', 'acreline') }}" {!! $styleAttr !!}>

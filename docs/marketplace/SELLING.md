@@ -58,7 +58,7 @@ Public release notes: `CHANGELOG.md`, `readme.txt`, and `docs/marketplace/change
 
 - **Animate homepage hero image** (`ks_hero_ken_burns`) is **on** by default. Leave it on for cinematic homepage screenshots. Headlines and the search form do not move.
 - **Tilt listing search on mobile** (`ks_hero_search_tilt`) is **off** by default (battery / privacy). Turn it on only for a phone recording. It no-ops on desktop, without sensors, or if the visitor declines motion access. iPhone may prompt.
-- Both checkboxes live under Customize → Header and are independent. They do not change listings or Identity.
+- Both checkboxes live under Customize → Header and Appearance → Acreline Settings → General (1.4.4). They stay in sync and do not change listings or Identity.
 
 ## WP.org remaining blockers (do not paper over)
 

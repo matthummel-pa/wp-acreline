@@ -41,15 +41,19 @@
     });
   });
 
+  function settingOn(value) {
+    return value === true || value === 1 || value === "1" || value === "true" || value === "on";
+  }
+
   wp.customize("ks_hero_ken_burns", function (setting) {
     setting.bind(function (value) {
-      document.body.classList.toggle("ken-burns-enabled", !!value);
+      document.body.classList.toggle("ken-burns-enabled", settingOn(value));
     });
   });
 
   wp.customize("ks_hero_search_tilt", function (setting) {
     setting.bind(function (value) {
-      document.body.classList.toggle("hero-search-tilt-enabled", !!value);
+      document.body.classList.toggle("hero-search-tilt-enabled", settingOn(value));
       document.dispatchEvent(new CustomEvent("acreline:hero-tilt"));
     });
   });

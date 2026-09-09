@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -88,11 +88,11 @@ Customize → Identity → uncheck “Show concept demo banner and author badge.
 
 = How do I turn off the homepage hero animation? =
 
-Customize → Header → uncheck “Animate homepage hero image.” The photo stays; it no longer pans. Reduced-motion visitors already see a still cover.
+Appearance → Acreline Settings → General, or Customize → Header → uncheck “Animate homepage hero image.” The photo stays; it no longer pans. Reduced-motion visitors already see a still cover. Both screens store the same value.
 
 = How do I turn on listing-search tilt on phones? =
 
-Customize → Header → check “Tilt listing search on mobile.” Off by default. The homepage search panel gently follows device tilt. It does nothing on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion. iPhone may ask for motion access.
+Appearance → Acreline Settings → General, or Customize → Header → check “Tilt listing search on mobile.” Off by default. The homepage search panel gently follows device tilt. It does nothing on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion. iPhone may ask for motion access.
 
 = Where do listings live? =
 
@@ -138,6 +138,11 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.4.4 =
+* Homepage hero motion toggles (Ken Burns and mobile search tilt) now live in Appearance → Acreline Settings → General and stay saved when you leave the page.
+* Customize → Header shows the same saved values after you save either screen.
+* Top bar (desktop and mobile nav) uses theme colors with readable contrast.
 
 = 1.4.3 =
 * Homepage hero photo slowly pans and zooms. Headlines, overlay, and listing search stay still.

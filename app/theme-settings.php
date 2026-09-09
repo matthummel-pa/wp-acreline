@@ -70,6 +70,8 @@ function ks_default_settings(): array
         'show_mortgage_calc' => '1',
         'mortgage_rate_default' => '7.0',
         'show_concept_banner' => '1',
+        'ks_hero_ken_burns' => '1',
+        'ks_hero_search_tilt' => '0',
         // ── Market snapshot ──────────────────────────────────────────────────
         'market_show_snapshot' => '1',
         'market_median_price' => '',
@@ -93,7 +95,138 @@ function ks_setting(string $key, mixed $fallback = ''): mixed
     }
     $defaults = ks_default_settings();
 
-    return $all[$key] ?? $defaults[$key] ?? $fallback;
+    if (array_key_exists($key, $all)) {
+        return $all[$key];
+    }
+
+    if ($key === 'ks_hero_ken_burns' || $key === 'ks_hero_search_tilt') {
+        $fromMod = ks_hero_theme_mod_as_setting($key);
+        if ($fromMod !== null) {
+            return $fromMod;
+        }
+    }
+
+    return $defaults[$key] ?? $fallback;
+}
+
+/**
+ * Keys rendered (and therefore posted) on each Acreline Settings tab.
+ *
+ * @return array<string, list<string>>
+ */
+function ks_settings_tab_keys(): array
+{
+    return [
+        'listings' => [
+            'listing_grid_cols',
+            'listing_show_price',
+            'listing_show_beds',
+            'listing_show_baths',
+            'listing_show_sqft',
+            'listing_show_acres',
+            'listing_show_status_badge',
+            'listing_show_type_badge',
+            'listing_show_mls',
+            'listing_show_days_on_market',
+            'listing_show_price_per_sqft',
+            'listing_show_open_house',
+            'listing_show_virtual_tour',
+            'listing_show_video_tour',
+            'listing_show_floor_plan',
+            'listing_show_property_details',
+            'listing_show_utilities',
+            'listing_show_hoa',
+            'listing_show_land_section',
+            'listing_show_school_district',
+            'listing_show_flood_zone',
+            'listing_show_green_features',
+            'listing_show_smart_home',
+        ],
+        'agents' => [
+            'agent_show_stats',
+            'agent_show_social',
+            'agent_show_certifications',
+            'agent_show_awards',
+            'agent_show_bio_video',
+            'agent_show_team',
+            'agent_show_calendly',
+        ],
+        'bookings' => [
+            'booking_show_buyer_type',
+            'booking_show_attendees',
+            'booking_show_comm_preference',
+            'booking_show_source',
+        ],
+        'market' => [
+            'market_show_snapshot',
+            'market_median_price',
+            'market_avg_dom',
+            'market_inventory_months',
+            'market_yoy_change',
+            'market_as_of',
+        ],
+        'labels' => [
+            'label_township',
+            'label_listing',
+            'label_agent',
+            'label_beds',
+            'label_baths',
+            'label_sqft',
+            'label_acres',
+            'currency_symbol',
+        ],
+        'general' => [
+            'show_mortgage_calc',
+            'mortgage_rate_default',
+            'show_concept_banner',
+            'ks_hero_ken_burns',
+            'ks_hero_search_tilt',
+        ],
+    ];
+}
+
+/**
+ * Theme_mod stored by Customizer, mapped to the settings '1'/'0' string.
+ * Null when that theme_mod has never been saved (so defaults still apply).
+ */
+function ks_hero_theme_mod_as_setting(string $key): ?string
+{
+    $mods = get_theme_mods();
+    if (! is_array($mods) || ! array_key_exists($key, $mods)) {
+        return null;
+    }
+
+    return ks_hero_value_on($mods[$key]) ? '1' : '0';
+}
+
+function ks_hero_value_on(mixed $value): bool
+{
+    return $value === true
+        || $value === 1
+        || $value === '1'
+        || $value === 'true'
+        || $value === 'on'
+        || $value === 'yes';
+}
+
+/**
+ * @param  array<string, mixed>  $settings
+ */
+function ks_sync_hero_theme_mods(array $settings): void
+{
+    set_theme_mod('ks_hero_ken_burns', (string) ($settings['ks_hero_ken_burns'] ?? '1') !== '0');
+    set_theme_mod('ks_hero_search_tilt', (string) ($settings['ks_hero_search_tilt'] ?? '0') !== '0');
+}
+
+function ks_sync_hero_settings_from_theme_mods(): void
+{
+    $all = get_option(KS_SETTINGS_OPTION, []);
+    if (! is_array($all)) {
+        $all = [];
+    }
+    $all['ks_hero_ken_burns'] = ks_hero_value_on(get_theme_mod('ks_hero_ken_burns', true)) ? '1' : '0';
+    $all['ks_hero_search_tilt'] = ks_hero_value_on(get_theme_mod('ks_hero_search_tilt', false)) ? '1' : '0';
+    update_option(KS_SETTINGS_OPTION, $all);
 }
 
 // ─── Menu registration ────────────────────────────────────────────────────────
@@ -128,12 +261,24 @@ add_action('admin_post_ks_save_settings', function () {
 
     $raw = isset($_POST['ks']) && is_array($_POST['ks']) ? $_POST['ks'] : [];
     $defaults = ks_default_settings();
+    $existing = get_option(KS_SETTINGS_OPTION, []);
+    if (! is_array($existing)) {
+        $existing = [];
+    }
+    $tab = isset($_POST['ks_active_tab']) ? sanitize_key((string) $_POST['ks_active_tab']) : 'listings';
+    $tabKeys = ks_settings_tab_keys()[$tab] ?? [];
     $clean = [];
 
     foreach ($defaults as $key => $default) {
         $posted = $raw[$key] ?? null;
         if (is_null($posted)) {
-            $clean[$key] = '0';
+            // Unchecked checkboxes on this tab are missing from POST → off.
+            // Keys on other tabs are not in the form — keep the saved value.
+            if (in_array($key, $tabKeys, true)) {
+                $clean[$key] = '0';
+            } else {
+                $clean[$key] = $existing[$key] ?? $default;
+            }
 
             continue;
         }
@@ -151,14 +296,18 @@ add_action('admin_post_ks_save_settings', function () {
     }
 
     update_option(KS_SETTINGS_OPTION, $clean);
+    ks_sync_hero_theme_mods($clean);
 
-    $tab = isset($_POST['ks_active_tab']) ? sanitize_key((string) $_POST['ks_active_tab']) : 'listings';
     wp_safe_redirect(add_query_arg([
         'page' => 'acreline-settings',
         'ks_saved' => '1',
         'tab' => $tab,
     ], admin_url('themes.php')));
     exit;
+});
+
+add_action('customize_save_after', function () {
+    ks_sync_hero_settings_from_theme_mods();
 });
 
 // ─── Render ───────────────────────────────────────────────────────────────────
@@ -461,6 +610,22 @@ function render_settings_page(): void
         <!-- ── GENERAL ── -->
         <?php if ($activeTab === 'general') { ?>
         <div class="ks-panels">
+          <div class="ks-card">
+            <div class="ks-card-head">
+              <span class="ks-card-icon" aria-hidden="true">🎬</span>
+              <div>
+                <h2 class="ks-card-title"><?php esc_html_e('Homepage hero', 'acreline'); ?></h2>
+                <p class="ks-card-desc"><?php esc_html_e('Motion on the homepage hero photo and listing search. Same options as Customize → Header — saving here keeps both in sync.', 'acreline'); ?></p>
+              </div>
+            </div>
+            <div class="ks-fields">
+              <?php
+                ks_tog('ks_hero_ken_burns', __('Animate homepage hero image (Ken Burns)', 'acreline'));
+            ks_tog('ks_hero_search_tilt', __('Tilt listing search on mobile', 'acreline'));
+            ?>
+            </div>
+          </div>
+
           <div class="ks-card">
             <div class="ks-card-head">
               <span class="ks-card-icon" aria-hidden="true">🧮</span>

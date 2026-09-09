@@ -170,15 +170,15 @@ input,select,textarea{font-family:inherit;font-size:1rem;}
 
 /* ── Top Bar ──────────────────────────────────────────────────────────────── */
 
-/* Custom-color properties (overridden via style attr when style=custom) */
+/* Theme-color properties (ink / paper / accent). PHP writes contrast-safe values on the bar. */
 :root{
-  --tb-bg:#141210;
-  --tb-text:rgba(255,252,247,.82);
-  --tb-text-strong:rgba(255,252,247,1);
-  --tb-line:rgba(255,252,247,.12);
-  --tb-badge-bg:rgba(255,252,247,.14);
-  --tb-cta-bg:rgba(255,252,247,.12);
-  --tb-cta-hover:rgba(255,252,247,.22);
+  --tb-bg:var(--ink);
+  --tb-text:var(--paper);
+  --tb-text-strong:var(--paper);
+  --tb-line:var(--line);
+  --tb-badge-bg:var(--accent-wash);
+  --tb-cta-bg:var(--accent-wash);
+  --tb-cta-hover:var(--accent-soft);
 }
 
 .top-bar{
@@ -189,15 +189,24 @@ input,select,textarea{font-family:inherit;font-size:1rem;}
   line-height:1;
 }
 
-/* Style presets */
+/* Style presets — theme tokens; inline --tb-* from Identity win when present */
+.top-bar--dark{
+  --tb-bg:var(--ink);
+  --tb-text:var(--paper);
+  --tb-text-strong:var(--paper);
+  --tb-line:color-mix(in srgb, var(--paper) 18%, var(--ink));
+  --tb-badge-bg:color-mix(in srgb, var(--paper) 16%, var(--ink));
+  --tb-cta-bg:color-mix(in srgb, var(--paper) 14%, var(--ink));
+  --tb-cta-hover:color-mix(in srgb, var(--paper) 24%, var(--ink));
+}
 .top-bar--accent{
   --tb-bg:var(--accent);
-  --tb-text:rgba(255,255,255,.88);
-  --tb-text-strong:#fff;
-  --tb-line:rgba(255,255,255,.2);
-  --tb-badge-bg:rgba(255,255,255,.18);
-  --tb-cta-bg:rgba(255,255,255,.15);
-  --tb-cta-hover:rgba(255,255,255,.28);
+  --tb-text:var(--paper);
+  --tb-text-strong:var(--paper);
+  --tb-line:color-mix(in srgb, var(--paper) 22%, var(--accent));
+  --tb-badge-bg:color-mix(in srgb, var(--paper) 18%, var(--accent));
+  --tb-cta-bg:color-mix(in srgb, var(--paper) 16%, var(--accent));
+  --tb-cta-hover:color-mix(in srgb, var(--paper) 28%, var(--accent));
 }
 .top-bar--light{
   --tb-bg:var(--paper-2);
@@ -317,17 +326,19 @@ body.has-top-bar .site-header.is-sticky{
 }
 
 /* ── Mobile nav: top-bar content slot ───────────────────────────────────────*/
+.mnav-tb{width:100%;}
 .mnav-tb-announcement{
   width:100%;padding:10px 20px;
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid var(--tb-line, var(--line));
+  background:var(--tb-bg, var(--paper-2));
   display:flex;align-items:center;gap:8px;
-  font-size:.875rem;font-weight:500;color:var(--ink);
+  font-size:.875rem;font-weight:500;color:var(--tb-text-strong, var(--ink));
   flex-wrap:wrap;
 }
 .mnav-tb-msg-link{
-  color:var(--accent);font-weight:600;text-decoration:none;
+  color:var(--tb-text-strong, var(--accent));font-weight:600;text-decoration:none;
 }
-.mnav-tb-msg-link:hover{text-decoration:underline;}
+.mnav-tb-msg-link:hover{text-decoration:underline;opacity:.85;}
 .mnav-tb-contacts{
   display:flex;flex-direction:column;gap:2px;
   padding:6px 20px;border-bottom:1px solid var(--line);width:100%;
