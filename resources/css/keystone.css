@@ -854,26 +854,24 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
 /* ── Inputs: light-overlay bg — a brighter tint of the panel accent ── */
 .alert-panel .field input,
 .alert-panel .field select{
-  background:rgba(255,255,255,.18);
-  border:1.5px solid rgba(255,255,255,.45);
-  color:#fff;
+  background:rgba(255,255,255,.92);   /* near-white — light & on-theme tint  */
+  border:1.5px solid rgba(255,255,255,.7);
+  color:var(--ink);                   /* dark ink on light bg — ~15:1 contrast */
+  color-scheme:light;                 /* browser selects render in light mode   */
   border-radius:var(--radius-sm);
   padding:12px 12px;
 }
 .alert-panel .field input:focus,
 .alert-panel .field select:focus{
-  border-color:rgba(255,255,255,.9);
-  outline:2px solid rgba(255,255,255,.35);
+  background:#fff;
+  border-color:#fff;
+  outline:2px solid rgba(255,255,255,.5);
   outline-offset:2px;
-  background:rgba(255,255,255,.26);
 }
-/* ── Placeholder: .65 opacity ≈ 3.5:1 on dark accent ── */
-.alert-panel .field input::placeholder{color:rgba(255,255,255,.65);}
-/* ── Override color-scheme so selects render dark inside the accent panel ── */
-.alert-panel .field select,
-.alert-panel .field input{color-scheme:dark;}
-/* ── Select option dropdown falls back to system chrome; keep it readable ── */
-.alert-panel .field select option{background:var(--ink);color:var(--white);}
+/* ── Placeholder: dark at .45 — readable on near-white bg ── */
+.alert-panel .field input::placeholder{color:rgba(20,18,16,.45);}
+/* ── Select options: light chrome ── */
+.alert-panel .field select option{background:#fff;color:var(--ink);}
 /* ── Submit button: inverted (white bg, accent text) so it stands out ──────── */
 .alert-panel .btn-primary{
   background:#fff;
