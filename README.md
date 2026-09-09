@@ -13,7 +13,6 @@
 | **Live demo** | [acreline.matthummel.com](https://acreline.matthummel.com/) |
 | **Product page** | [matthummel.com/projects/acreline/](https://matthummel.com/projects/acreline/) |
 | **Buy / checkout** | [matthummel.com/product/acreline/](https://matthummel.com/product/acreline/) |
-| **ThemeForest** | [themeforest.net/item/acreline](https://themeforest.net/user/matthummel) *(listing in review)* |
 | **GitHub** | [`matthummel-pa/wp-acreline`](https://github.com/matthummel-pa/wp-acreline) |
 | **Support** | [SUPPORT.md](SUPPORT.md) · [GitHub Issues](https://github.com/matthummel-pa/wp-acreline/issues) |
 | **Author** | [Matt Hummel](https://matthummel.com/) |
@@ -24,32 +23,74 @@
 
 ---
 
+<!--  ──────────────────────────── TAB NAVIGATION ──────────────────────────── -->
+<div align="center">
+
+[📸 Screenshots](#screenshots) &nbsp;·&nbsp;
+[✨ Features](#features) &nbsp;·&nbsp;
+[🏠 Listings & Agents](#listings-agents-and-showings) &nbsp;·&nbsp;
+[🎨 Customizer](#customizer-appearance--customize) &nbsp;·&nbsp;
+[🧱 Blocks](#gutenberg-block-system-22-custom-blocks) &nbsp;·&nbsp;
+[⚙️ Admin](#admin-pages) &nbsp;·&nbsp;
+[🛒 Buying](#purchasing-on-matthummelcom) &nbsp;·&nbsp;
+[💻 Dev Setup](#local-development-this-git-repo) &nbsp;·&nbsp;
+[📖 Docs](#documentation)
+
+</div>
+
+---
+
 ## Screenshots
 
-> Captured from the seeded concept demo. The same images are used on the [matthummel.com Acreline product page](https://matthummel.com/projects/acreline/).
+> Captured from the seeded concept demo at full 1400 px desktop width. The same images are used on the [matthummel.com Acreline product page](https://matthummel.com/projects/acreline/).
+
+### Pages
 
 | | |
-|---|---|
-| ![Homepage](docs/marketplace/screenshots/01-homepage.png) | ![Listings](docs/marketplace/screenshots/02-listings.png) |
-| **Homepage** — Hero search, Intent cards, Featured listings | **Listings** — Filter bar (type, price, acreage, area), grid + map |
-| ![Listing detail](docs/marketplace/screenshots/03-listing.png) | ![Agents](docs/marketplace/screenshots/04-agents.png) |
-| **Listing detail** — Photo, stats, calculator, agent, book CTA | **Agents** — Stats grid, designations, social links |
-| ![Contact](docs/marketplace/screenshots/05-contact.png) | ![Areas](docs/marketplace/screenshots/06-areas.png) |
-| **Contact** — Office info from Customizer + message form | **Areas** — Numbered cards, local market copy |
-| ![Book a Showing](docs/marketplace/screenshots/07-book.png) | |
-| **Book a Showing** — Showing request form, agent selector | |
+|:---:|:---:|
+| [![Homepage](docs/marketplace/screenshots/01-homepage.png)](docs/marketplace/screenshots/01-homepage.png) | [![Listings](docs/marketplace/screenshots/02-listings.png)](docs/marketplace/screenshots/02-listings.png) |
+| **Homepage** — Hero search · Intent cards · Featured listings | **Listings** — Filter bar (type, price, acreage, area) · Grid view |
+| [![Listing detail](docs/marketplace/screenshots/03-listing.png)](docs/marketplace/screenshots/03-listing.png) | [![Listing detail scroll](docs/marketplace/screenshots/09-listing-detail.png)](docs/marketplace/screenshots/09-listing-detail.png) |
+| **Listing detail** — Photo, stats, sticky CTA | **Listing detail (scrolled)** — Calculator, agent card, book CTA |
+| [![Agents](docs/marketplace/screenshots/04-agents.png)](docs/marketplace/screenshots/04-agents.png) | [![Contact](docs/marketplace/screenshots/05-contact.png)](docs/marketplace/screenshots/05-contact.png) |
+| **Agents** — Stats grid · Designations · Social links | **Contact** — Office info from Customizer + message form |
+| [![Areas](docs/marketplace/screenshots/06-areas.png)](docs/marketplace/screenshots/06-areas.png) | [![Book a Showing](docs/marketplace/screenshots/07-book.png)](docs/marketplace/screenshots/07-book.png) |
+| **Areas** — Numbered sample market cards | **Book a Showing** — Request form · Agent selector |
 
-*Full-resolution screenshots and brand assets: `docs/marketplace/screenshots/` and `public/images/brand/`.*
+### Top bar (new in 1.4.0)
+
+[![Top bar desktop](docs/marketplace/screenshots/08-topbar-desktop.png)](docs/marketplace/screenshots/08-topbar-desktop.png)
+
+**Desktop top bar** — Announcement badge · Message · Phone · Social icons · CTA pill · Dismiss button. Hidden below 900 px; all items surface in the mobile nav drawer instead.
+
+*Full-resolution screenshots and brand assets: [`docs/marketplace/screenshots/`](docs/marketplace/screenshots/) and [`public/images/brand/`](public/images/brand/).*
 
 ---
 
-## What it is
+## Features
 
-A WordPress theme that gives a land or farm real estate office everything it needs in one zip — no page builder, no ACF, no IDX plugin required. Buyers customize identity, colors, and content from the WordPress admin. Developers get a clean [Sage 11](https://roots.io/sage/) codebase with Blade, Tailwind v4, and Vite 8.
+A WordPress theme that gives a land or farm real estate office everything it needs in one zip — no page builder, no ACF, no IDX plugin required.
 
----
+### What makes Acreline different
 
-## Built with
+| Feature | Acreline | Generic real-estate themes |
+| --- | :---: | :---: |
+| No page builder required | ✅ | Page builder license often required |
+| No ACF required | ✅ | ACF Pro often bundled or required |
+| No IDX/MLS plugin | ✅ | IDX subscription often needed |
+| 22 custom server-side Gutenberg blocks | ✅ | Most use Classic or shortcodes only |
+| Block Generator (no-code custom blocks) | ✅ | Unique to Acreline |
+| Listing comparison modal | ✅ | Rare without premium add-ons |
+| Saved listings in localStorage | ✅ | Usually requires a plugin or login |
+| Built-in mortgage calculator | ✅ | Usually a plugin |
+| Market snapshot shortcode | ✅ | Usually a plugin |
+| Open house date + virtual tour fields | ✅ | Often paid add-ons |
+| Agent performance stats | ✅ | Rarely included |
+| Desktop-only top bar with mobile fallback | ✅ | Rarely included |
+| Clean Sage 11 codebase | ✅ | Most themes use custom OOP or Classic |
+| Fiction-only concept demo | ✅ | Required for honest marketplace sales |
+
+### Built with
 
 | Layer | Technology |
 | --- | --- |
@@ -63,9 +104,7 @@ A WordPress theme that gives a land or farm real estate office everything it nee
 
 ---
 
-## What's included
-
-### Gutenberg block system (22 custom blocks)
+## Gutenberg block system (22 custom blocks)
 
 All marketing pages are built with WordPress blocks. Every block renders server-side so the editor canvas matches the live page exactly.
 
@@ -94,26 +133,15 @@ All marketing pages are built with WordPress blocks. Every block renders server-
 | `Agent List` | Agent grid with photo, stats, designations, and social links |
 | `Custom Block` | Renders blocks created in the Block Generator |
 
-**Block Generator** (Tools → Block Generator) lets admins create new custom blocks — name, fields, icon — without writing PHP or JavaScript. Field types: text, textarea, URL, image (media picker), toggle.
+**Block Generator** (Tools → Block Generator) — create new custom blocks without writing PHP or JavaScript. Field types: text, textarea, URL, image (media picker), toggle.
 
-**Migrate to Blocks** (Tools → Migrate to Blocks) converts any existing page copy from the legacy `ks_*` meta format to block content in one click.
+**Migrate to Blocks** (Tools → Migrate to Blocks) — converts legacy `ks_*` meta page copy to block content in one click.
 
-### Block customization
+Every block exposes **Inspector Controls**: typography (size/weight/alignment), image picker, hero overlay, CTA style, FAQ format, column count, and per-block show/hide toggles.
 
-Every block has a live **ServerSideRender** preview in the editor so what you see in the canvas matches what visitors see. The **Inspector Controls** sidebar exposes:
+---
 
-- **Typography** — heading size (sm / default / lg / xl), heading weight, body text size, alignment
-- **Images** — WordPress media library picker with thumbnail preview and remove button
-- **Hero options** — focal point, overlay strength (slider + preset), hero height, text alignment
-- **CTA Band** — background (light / forest accent / dark ink), content alignment
-- **FAQ List** — format (definition list / flat / accordion with details/summary), list icon, numbered questions
-- **Area Grid** — column count (2 / 3 / 4), show/hide card numbers
-- **Spotlight** — listing count, grid columns
-- **Reviews** — column count, show/hide star rating, show/hide photo
-- **How We Work** — step marker style (numbered / checkmark / arrow / dot), vertical or horizontal layout
-- Per-block show/hide toggles for optional sub-sections
-
-### Pages and templates
+## Pages and templates
 
 | Page | Blocks pre-built on install |
 | --- | --- |
@@ -126,7 +154,9 @@ Every block has a live **ServerSideRender** preview in the editor so what you se
 | **Book a showing** | Page Hero · Booking Note + Form · FAQ |
 | **Blog** | Page Hero · CTA Band |
 
-### Listings, agents, and showings
+---
+
+## Listings, agents, and showings
 
 - **Listing** CPT — type, price, beds, baths, sqft, acres, township, MLS, status; plus property details, utilities (water, sewer, heating, cooling), HOA, land & farm fields (tillable/pasture acres, outbuildings), flood zone, school district, virtual tour, video tour, floor plan, open house date/time, green/eco features, smart home chips
 - **Agent** CPT — photo, bio, performance stats (homes sold, volume, avg DOM, list-to-sale ratio, review count), certifications/designations, social links (Facebook, Instagram, LinkedIn, YouTube), intro video URL, calendar booking URL, mobile number, awards, team name
@@ -142,7 +172,9 @@ Every block has a live **ServerSideRender** preview in the editor so what you se
 - **Mortgage calculator** — built-in, no plugin or API; editable rate, term, and down payment
 - **Media picker** — native WP media library picker for all image URL fields (listing photos, floor plans, agent photos)
 
-### Customizer (Appearance → Customize)
+---
+
+## Customizer (Appearance → Customize)
 
 | Section | Controls |
 | --- | --- |
@@ -156,7 +188,7 @@ Every block has a live **ServerSideRender** preview in the editor so what you se
 
 ### Top bar
 
-Acreline 1.4.0 adds a configurable slim bar above the header for desktop visitors (hidden at < 900 px via CSS). On mobile, every enabled item — announcement, contact details, social icons, and CTA — surfaces automatically at the foot of the slide-out mobile nav so nothing is hidden on small screens.
+A configurable slim bar above the header — desktop only (hidden at < 900 px). On mobile, all enabled items surface at the foot of the slide-out nav drawer.
 
 | Slot | What it can show |
 | --- | --- |
@@ -167,44 +199,15 @@ Acreline 1.4.0 adds a configurable slim bar above the header for desktop visitor
 
 Color style presets: **Dark** (ink bg), **Accent** (brand green), **Light** (paper bg), **Custom** (pick any bg + text colors). The sticky header shifts its `top` offset automatically so it sits flush below the bar.
 
+---
 
-### Admin pages
+## Admin pages
 
 | Page | Path | Description |
 | --- | --- | --- |
 | **Acreline Setup** | Appearance → Acreline Setup | Five-step wizard: brand, phone, colors, demo content |
 | **Acreline Settings** | Appearance → Acreline Settings | Tabbed settings page — listing, agent, booking, market, labels, and general options with iOS-style toggles |
 | **Acreline Support** | Appearance → Acreline Support | Quick start, feature reference, shortcode cheatsheet, FAQ accordion, and changelog |
-
-### Other features
-
-- Native `<title>`, `<meta name="description">`, canonical, Open Graph, and Twitter tags — no SEO plugin required; yields automatically when Yoast, Rank Math, SEOPress, or AIOSEO is active
-- Eight named color schemes; live preview in Customizer
-- WordPress Primary + Footer nav menus, custom logo, footer widgets, breadcrumbs
-- BreadcrumbList JSON-LD structured data
-- Translation-ready `acreline` text domain
-- GPLv2+ license; Sage / Acorn remain MIT
-
----
-
-## What makes Acreline different
-
-| Feature | Acreline | Generic real-estate themes |
-| --- | --- | --- |
-| No page builder required | ✅ | Page builder license often required |
-| No ACF required | ✅ | ACF Pro often bundled or required |
-| No IDX/MLS plugin | ✅ | IDX subscription often needed |
-| Listing comparison modal | ✅ | Rare without premium add-ons |
-| Saved listings in localStorage | ✅ | Usually requires a plugin or login |
-| Built-in mortgage calculator | ✅ | Usually a plugin |
-| Market snapshot shortcode | ✅ | Usually a plugin |
-| Open house date + virtual tour fields | ✅ | Often paid add-ons |
-| Agent performance stats | ✅ | Rarely included |
-| Desktop-only top bar with mobile fallback | ✅ | Rarely included |
-| Block Generator (no-code custom blocks) | ✅ | Unique to Acreline |
-| Clean Sage 11 codebase | ✅ | Most themes use custom OOP or Classic |
-| 22 custom server-side Gutenberg blocks | ✅ | Most use Classic or shortcodes only |
-| Fiction-only concept demo | ✅ | Required for honest marketplace sales |
 
 ---
 
@@ -250,7 +253,7 @@ Full walkthrough, screenshots, and field reference: open `Documentation/index.ht
 
 ## Purchasing on matthummel.com
 
-The Acreline product page at [matthummel.com/projects/acreline/](https://matthummel.com/projects/acreline/) shows the same screenshot set used in this README (`docs/marketplace/screenshots/01–07`). The checkout is at [matthummel.com/product/acreline/](https://matthummel.com/product/acreline/).
+The Acreline product page at [matthummel.com/projects/acreline/](https://matthummel.com/projects/acreline/) shows the same screenshot set used in this README (`docs/marketplace/screenshots/01–09`). The checkout is at [matthummel.com/product/acreline/](https://matthummel.com/product/acreline/).
 
 After purchase you receive the full seller pack (`acreline-<version>.zip`) — the same file built by `bin/build-install-pack.sh`. This contains:
 
@@ -263,7 +266,7 @@ After purchase you receive the full seller pack (`acreline-<version>.zip`) — t
 | `Demos/` | Seed notes (Tools → Seed Acreline demo) |
 | `Licensing/` | GPLv2 notice and credits |
 
-The product page screenshots are generated from the live concept demo and stored in `docs/marketplace/screenshots/`. If you embed them in your own site or store listing, use the paths from that folder — they are updated with every release.
+The product page screenshots are generated from the live concept demo and stored in `docs/marketplace/screenshots/`. They are updated with every release.
 
 ---
 
@@ -354,7 +357,7 @@ wp acorn view:clear --path="$HOME/wp" --allow-root
 | [`docs/marketplace/index.html`](docs/marketplace/index.html) | Buyer docs hub — open this first |
 | [`docs/marketplace/buyer-guide.html`](docs/marketplace/buyer-guide.html) | Install, Customizer, top bar, fields, menus, FAQ |
 | [`docs/marketplace/themeforest-listing.md`](docs/marketplace/themeforest-listing.md) | Paste-ready store listing copy |
-| [`docs/marketplace/screenshots/`](docs/marketplace/screenshots/) | 01–07 item images used on matthummel.com |
+| [`docs/marketplace/screenshots/`](docs/marketplace/screenshots/) | 01–09 item images used on matthummel.com |
 | [`public/images/brand/`](public/images/brand/) | House mark + horizontal lockup (SVG, GPLv2) |
 
 ---

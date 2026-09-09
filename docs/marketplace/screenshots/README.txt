@@ -1,24 +1,17 @@
-Acreline — documentation screenshots
-====================================
+Acreline theme screenshots
+==========================
+Captured at 1400 × 900 px from the seeded concept demo.
+These images are used in README.md and on matthummel.com/projects/acreline/.
 
-Desktop captures of the seeded concept site (1440×900). Use as ThemeForest /
-TemplateMonster extra item images, and on the product concept page
-https://matthummel.com/projects/acreline/. The wp-admin theme thumbnail is
-screenshot.png in acreline.zip (1200×900), not these files.
+01-homepage.png         Homepage — hero search, Intent cards, Featured listings spotlight
+02-listings.png         Listings — filter bar (type, price, acreage, area), grid view
+03-listing.png          Listing detail — hero, stats, sticky CTA
+04-agents.png           Agents page — stats grid, designations, social links
+05-contact.png          Contact — office info + message form
+06-areas.png            Areas — numbered sample market cards
+07-book.png             Book a Showing — request form, agent selector
+08-topbar-desktop.png   Desktop top bar — announcement badge, phone, social icons, CTA pill (new in 1.4.0)
+09-listing-detail.png   Listing detail scrolled — mortgage calculator, agent card, book CTA
 
-  01-homepage.png   Search, house mark, path from listing to showing
-  02-listings.png   Sample inventory with filters
-  03-listing.png    Land / farmhouse single
-  04-agents.png     Team page
-  05-contact.png    Office identity from Customizer
-  06-areas.png      Sample markets
-  07-book.png       Showing request form
-
-.webp siblings are optional lighter copies for web use (same crop).
-
-Photos visible in these captures are Unsplash hotlinks on the demo, not
-files inside acreline.zip. Recapture after a visual change:
-
-  google-chrome --headless --no-sandbox --window-size=1440,900 \
-    --screenshot=docs/marketplace/screenshots/01-homepage.png \
-    http://127.0.0.1:8080/
+Re-capture: run `python3 /tmp/capture.py` from the workspace root with
+`wp server` running on port 8080.
