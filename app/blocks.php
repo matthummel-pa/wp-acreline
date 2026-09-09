@@ -272,28 +272,28 @@ function ks_register_blocks(): void
             'render_callback' => __NAMESPACE__.'\\ks_render_tools_section',
             'attributes' => array_merge($typo, [
                 // Intro paragraph (above the tools cards)
-                'showIntro'    => ['type' => 'boolean', 'default' => true],
-                'introTitle'   => ['type' => 'string',  'default' => "What's different about buying land"],
-                'introText'    => ['type' => 'string',  'default' => 'When you buy an existing home, utilities are usually sorted. Out in the townships you often have to prove water, septic and access yourself — and those answers change the value of the ground.'],
+                'showIntro' => ['type' => 'boolean', 'default' => true],
+                'introTitle' => ['type' => 'string', 'default' => "What's different about buying land"],
+                'introText' => ['type' => 'string', 'default' => 'When you buy an existing home, utilities are usually sorted. Out in the townships you often have to prove water, septic and access yourself — and those answers change the value of the ground.'],
                 // Tools header
-                'eyebrow'      => ['type' => 'string',  'default' => 'Run Your Numbers'],
-                'title'        => ['type' => 'string',  'default' => 'Land-loan &amp; pre-qualification tools'],
-                'text'         => ['type' => 'string',  'default' => 'Friendly estimates to help you plan — not loan offers. A licensed lender will verify everything with full documentation.'],
+                'eyebrow' => ['type' => 'string', 'default' => 'Run Your Numbers'],
+                'title' => ['type' => 'string', 'default' => 'Land-loan &amp; pre-qualification tools'],
+                'text' => ['type' => 'string', 'default' => 'Friendly estimates to help you plan — not loan offers. A licensed lender will verify everything with full documentation.'],
                 // Which tools to show
-                'showLoanTool'    => ['type' => 'boolean', 'default' => true],
+                'showLoanTool' => ['type' => 'boolean', 'default' => true],
                 'showPrequalTool' => ['type' => 'boolean', 'default' => true],
                 // Loan estimator labels
-                'loanTitle'    => ['type' => 'string',  'default' => 'Land loan estimator'],
-                'loanLede'     => ['type' => 'string',  'default' => 'Sample monthly payment — not a loan offer.'],
-                'loanBtn'      => ['type' => 'string',  'default' => 'Estimate payment'],
+                'loanTitle' => ['type' => 'string', 'default' => 'Land loan estimator'],
+                'loanLede' => ['type' => 'string', 'default' => 'Sample monthly payment — not a loan offer.'],
+                'loanBtn' => ['type' => 'string', 'default' => 'Estimate payment'],
                 // Pre-qual labels
-                'prequalTitle' => ['type' => 'string',  'default' => 'Pre-qualification check'],
-                'prequalLede'  => ['type' => 'string',  'default' => 'Rough income check for land loans. Not a lender quote.'],
-                'prequalBtn'   => ['type' => 'string',  'default' => 'Check eligibility'],
+                'prequalTitle' => ['type' => 'string', 'default' => 'Pre-qualification check'],
+                'prequalLede' => ['type' => 'string', 'default' => 'Rough income check for land loans. Not a lender quote.'],
+                'prequalBtn' => ['type' => 'string', 'default' => 'Check eligibility'],
                 // Design
-                'sectionStyle' => ['type' => 'string',  'default' => 'alt'],
-                'panelStyle'   => ['type' => 'string',  'default' => 'card'],
-                'toolsLayout'  => ['type' => 'string',  'default' => 'side'],
+                'sectionStyle' => ['type' => 'string', 'default' => 'alt'],
+                'panelStyle' => ['type' => 'string', 'default' => 'card'],
+                'toolsLayout' => ['type' => 'string', 'default' => 'side'],
             ]),
         ],
         'acreline/how-we-work' => [
@@ -1972,9 +1972,9 @@ function ks_render_tools_section(array $attrs): string
 {
     $a = $attrs;
 
-    $showIntro    = (bool) ($a['showIntro'] ?? true);
+    $showIntro = (bool) ($a['showIntro'] ?? true);
     $sectionStyle = sanitize_key((string) ($a['sectionStyle'] ?? 'alt'));
-    $headClass    = esc_attr(ks_head_class($a));
+    $headClass = esc_attr(ks_head_class($a));
 
     $toolsSectionClass = 'section';
     if ($sectionStyle === 'alt') {
@@ -2319,24 +2319,24 @@ function ks_booking_photo_html(): string
 
 function ks_guide_tools_html(array $a = []): string
 {
-    $showLoan    = (bool) ($a['showLoanTool']    ?? true);
+    $showLoan = (bool) ($a['showLoanTool'] ?? true);
     $showPrequal = (bool) ($a['showPrequalTool'] ?? true);
 
     if (! $showLoan && ! $showPrequal) {
         return '';
     }
 
-    $loanTitle    = esc_html($a['loanTitle']    ?? 'Land loan estimator');
-    $loanLede     = esc_html($a['loanLede']     ?? 'Sample monthly payment — not a loan offer.');
-    $loanBtn      = esc_html($a['loanBtn']      ?? 'Estimate payment');
+    $loanTitle = esc_html($a['loanTitle'] ?? 'Land loan estimator');
+    $loanLede = esc_html($a['loanLede'] ?? 'Sample monthly payment — not a loan offer.');
+    $loanBtn = esc_html($a['loanBtn'] ?? 'Estimate payment');
     $prequalTitle = esc_html($a['prequalTitle'] ?? 'Pre-qualification check');
-    $prequalLede  = esc_html($a['prequalLede']  ?? 'Rough income check for land loans. Not a lender quote.');
-    $prequalBtn   = esc_html($a['prequalBtn']   ?? 'Check eligibility');
+    $prequalLede = esc_html($a['prequalLede'] ?? 'Rough income check for land loans. Not a lender quote.');
+    $prequalBtn = esc_html($a['prequalBtn'] ?? 'Check eligibility');
 
     $panelStyle = sanitize_key((string) ($a['panelStyle'] ?? 'card'));
-    $layout     = sanitize_key((string) ($a['toolsLayout'] ?? 'side'));
+    $layout = sanitize_key((string) ($a['toolsLayout'] ?? 'side'));
 
-    $gridClass  = 'tools-grid';
+    $gridClass = 'tools-grid';
     if ($layout === 'stack') {
         $gridClass .= ' tools-grid--stack';
     }
