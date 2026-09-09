@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -25,9 +25,21 @@ House mark and wordmark (original SVG, GPLv2) ship in public/images/brand/. Supp
 = Features =
 
 * Appearance → Acreline Setup wizard (identity, colors, optional demo content)
+* Appearance → Acreline Settings: tabbed admin page with iOS-style toggles for every listing, agent, booking, and display option
+* Appearance → Acreline Support: getting-started guide, feature reference, shortcode cheatsheet, FAQ, and changelog in one screen
 * Almost no plugins — theme zip is enough; optional Acreline Core and child theme
 * Gutenberg block editor for pages and posts (21 custom dynamic blocks, no page builder or shortcodes)
 * Classic metaboxes for listings, agents, and bookings (no ACF required)
+* Rich listing fields: property details, utilities, HOA, land & farm, flood zone, school district, green/eco features, smart home chips
+* Built-in mortgage calculator on listing detail pages — no plugin or API required
+* Listing comparison modal: compare up to 3 listings side-by-side
+* Saved listings drawer: heart icon saves to localStorage; floating button opens the slide-out panel
+* Sticky CTA bar on single listing pages (price + book) after hero scrolls out
+* Share button with Web Share API and URL clipboard-copy fallback; print-friendly property flyer
+* Recently viewed listings and nearby listings sections on listing detail pages
+* Market snapshot shortcode [acreline_market_snapshot] — enter stats in Theme Settings, embed anywhere
+* Advanced agent profiles: stats grid, social links, certifications, intro video, calendar booking URL
+* Media picker for all image URL inputs (listing photos, floor plans, agent photos)
 * Customizer identity: brand, phone, email, address, hours, header button, removable author credit
 * Custom logo under Site Identity (replaces the Acreline house mark)
 * Eight color styles (Forest, Clay, Navy, Burgundy, Harvest, Lake, Orchard, Charcoal) plus accent, paper, and ink
@@ -118,6 +130,24 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.3.3 =
+* Admin: Theme Settings completely redesigned — tabbed UI (Listings, Agents, Bookings, Market, Labels, General), iOS-style toggle switches, sticky save bar, and unsaved-changes guard.
+* Admin: New Theme Support page (Appearance → Acreline Support) with quick start, feature reference cards, shortcode cheatsheet, FAQ accordion, and changelog.
+* Feature: Listing comparison modal — compare up to 3 listings side-by-side from the grid page.
+* Feature: Persistent saved listings drawer — heart icon on every card saves to localStorage; floating button opens the slide-out panel.
+* Feature: Sticky CTA bar on single listing pages — price + "Book a showing" appears after the hero scrolls out of view.
+* Feature: Share button with Web Share API and URL clipboard-copy fallback.
+* Feature: Print-friendly property flyer layout.
+* Feature: Recently viewed listings (up to 5 in localStorage) shown as chips on single listing pages.
+* Feature: Nearby listings section — server-rendered same-township listings, no API required.
+* Feature: Market snapshot shortcode [acreline_market_snapshot] with dedicated Market tab in Theme Settings.
+* Feature: Built-in mortgage calculator on listing detail pages — no plugin or API.
+* Feature: Media picker for all image URL inputs in listing and agent metaboxes.
+* Feature: Rich listing fields — property details, utilities, HOA, land & farm, flood zone, school district, green/eco features, smart home chips.
+* Feature: Advanced agent profiles — performance stats grid, social links, certifications, intro video, calendar booking URL, mobile number.
+* Content: Updated seeded blog post covering all new differentiating features.
+* Docs: README.md and readme.txt updated with new feature list.
 
 = 1.3.2 =
 * Accessibility: mobile nav close button raised to 44×44 px touch target (WCAG 2.2 Target Size).

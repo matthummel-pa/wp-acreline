@@ -4,14 +4,21 @@
 @php
   $agent = \App\Support\Catalog::agent((int) get_the_ID());
   $listings = $agent ? \App\Support\Catalog::listingsForAgent($agent['id']) : [];
+
+  $showStats    = \App\ks_setting('agent_show_stats') !== '0';
+  $showSocial   = \App\ks_setting('agent_show_social') !== '0';
+  $showCerts    = \App\ks_setting('agent_show_certifications') !== '0';
+  $showAwards   = \App\ks_setting('agent_show_awards') !== '0';
+  $showVideo    = \App\ks_setting('agent_show_bio_video') !== '0';
+  $showTeam     = \App\ks_setting('agent_show_team') !== '0';
+  $showCalendly = \App\ks_setting('agent_show_calendly') !== '0';
 @endphp
 @if ($agent)
 @include('partials.breadcrumbs')
 
-
 @include('partials.page-hero', [
   'heroBrand' => $identity['brand'] ?? 'Acreline',
-  'heroEyebrow' => $agent['job_title'],
+  'heroEyebrow' => $agent['job_title'].($showTeam && $agent['team_name'] ? ' · '.$agent['team_name'] : ''),
   'heroTitle' => $agent['name'],
   'heroText' => trim($agent['office'].($agent['years_experience'] ? ' · '.$agent['years_experience'].' '.esc_html__('years', 'acreline') : '')),
   'headingId' => 'agent-hero-heading',
@@ -24,7 +31,53 @@
 <section class="section">
   <div class="wrap listing-single">
     <div class="listing-single-main prose">
+
+      {{-- ── Photo & badge row ──────────────────────────────────────────────── --}}
+      @if ($agent['photo'] || $agent['featured_badge'])
+      <div class="agent-profile-row">
+        @if ($agent['photo'])
+          <img class="agent-profile-photo" src="{{ $agent['photo'] }}" width="140" height="140" alt="{{ esc_attr($agent['name']) }}" loading="lazy">
+        @endif
+        <div class="agent-profile-meta">
+          @if ($agent['featured_badge'])
+            <span class="agent-badge">{{ $agent['featured_badge'] }}</span>
+          @endif
+        </div>
+      </div>
+      @endif
+
+      {{-- ── Bio ────────────────────────────────────────────────────────────── --}}
       <p>{{ $agent['bio'] }}</p>
+
+      {{-- ── Intro video ─────────────────────────────────────────────────────── --}}
+      @if ($showVideo && $agent['bio_video'])
+      <p><a class="btn btn-outline btn-sm" href="{{ $agent['bio_video'] }}" target="_blank" rel="noopener">&#x25B6; {{ __('Watch intro video', 'acreline') }}</a></p>
+      @endif
+
+      {{-- ── Performance stats ───────────────────────────────────────────────── --}}
+      @if ($showStats)
+      @php
+        $stats = array_filter([
+          __('Homes sold', 'acreline') => $agent['homes_sold'],
+          __('Avg. days on market', 'acreline') => $agent['avg_dom'],
+          __('List-to-sale ratio', 'acreline') => $agent['list_to_sale_ratio'] ? $agent['list_to_sale_ratio'].'%' : '',
+          __('Closed volume', 'acreline') => $agent['total_volume'],
+          __('Client reviews', 'acreline') => $agent['client_reviews_count'],
+        ]);
+      @endphp
+      @if (!empty($stats))
+      <div class="agent-stats-grid">
+        @foreach ($stats as $statLabel => $statValue)
+          <div class="agent-stat">
+            <strong>{{ $statValue }}</strong>
+            <span>{{ $statLabel }}</span>
+          </div>
+        @endforeach
+      </div>
+      @endif
+      @endif
+
+      {{-- ── Credentials & facts ─────────────────────────────────────────────── --}}
       <dl class="agent-facts">
         @if ($agent['license_number'])
           <div><dt>{{ __('License', 'acreline') }}</dt><dd>{{ $agent['license_state'] }} {{ $agent['license_number'] }}</dd></div>
@@ -44,20 +97,58 @@
         @if ($agent['languages'])
           <div><dt>{{ __('Languages', 'acreline') }}</dt><dd>{{ $agent['languages'] }}</dd></div>
         @endif
-        @if ($agent['designations'])
+        @if ($showCerts && $agent['designations'])
           <div><dt>{{ __('Designations', 'acreline') }}</dt><dd>{{ $agent['designations'] }}</dd></div>
         @endif
+        @if ($showCerts && $agent['certifications'])
+          <div><dt>{{ __('Certifications', 'acreline') }}</dt><dd>{{ $agent['certifications'] }}</dd></div>
+        @endif
+        @if ($showAwards && $agent['awards'])
+          <div><dt>{{ __('Awards', 'acreline') }}</dt><dd>{{ $agent['awards'] }}</dd></div>
+        @endif
       </dl>
+
+      {{-- ── Social media ─────────────────────────────────────────────────────── --}}
+      @if ($showSocial)
+      @php
+        $socials = array_filter([
+          'Facebook' => $agent['facebook'],
+          'Instagram' => $agent['instagram'],
+          'LinkedIn' => $agent['linkedin'],
+          'X / Twitter' => $agent['twitter'],
+          'YouTube' => $agent['youtube'],
+        ]);
+      @endphp
+      @if (!empty($socials))
+      <div class="agent-social-row">
+        @foreach ($socials as $platform => $url)
+          <a class="agent-social-link" href="{{ $url }}" target="_blank" rel="noopener noreferrer">{{ $platform }}</a>
+        @endforeach
+      </div>
+      @endif
+      @endif
+
     </div>
+
+    {{-- ── Sidebar: contact ────────────────────────────────────────────────── --}}
     <aside class="listing-agent-card">
       <p class="eyebrow">{{ __('Contact', 'acreline') }}</p>
       @if ($agent['phone'])
         <a class="agent-phone" href="{{ \App\Support\Catalog::telHref($agent['phone']) }}">{{ $agent['phone'] }}</a>
       @endif
+      @if ($agent['mobile'] && $agent['mobile'] !== $agent['phone'])
+        <a class="agent-phone" href="{{ \App\Support\Catalog::telHref($agent['mobile']) }}">{{ $agent['mobile'] }} ({{ __('mobile', 'acreline') }})</a>
+      @endif
       @if ($agent['email'])
         <a class="agent-phone" href="mailto:{{ $agent['email'] }}">{{ $agent['email'] }}</a>
       @endif
+      @if ($agent['website'])
+        <a class="agent-website-link" href="{{ $agent['website'] }}" target="_blank" rel="noopener">{{ __('Personal website', 'acreline') }}</a>
+      @endif
       <a class="btn btn-primary" href="{{ home_url('/book/') }}" style="margin-top:16px">{{ __('Book a showing', 'acreline') }}</a>
+      @if ($showCalendly && $agent['calendly'])
+        <a class="btn btn-outline" href="{{ $agent['calendly'] }}" target="_blank" rel="noopener" style="margin-top:8px">{{ __('Schedule a call', 'acreline') }}</a>
+      @endif
     </aside>
   </div>
 </section>

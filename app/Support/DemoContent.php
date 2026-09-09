@@ -195,6 +195,13 @@ class DemoContent
                 'file' => $seed.'/land-vs-home-search.html',
                 'category' => ['name' => 'Search', 'slug' => 'search'],
             ],
+            [
+                'slug' => 'acreline-features-guide',
+                'title' => 'What makes Acreline different: built-in tools for land and farm offices',
+                'excerpt' => 'Listing comparison, saved properties, mortgage calculator, market snapshot, and more — everything included, no extra plugins.',
+                'file' => $seed.'/acreline-features-guide.html',
+                'category' => ['name' => 'Features', 'slug' => 'features'],
+            ],
         ];
 
         foreach ($posts as $post) {

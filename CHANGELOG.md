@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.3.3
+
+- **Admin** — Theme Settings page completely redesigned: tabbed navigation (Listings, Agents, Bookings, Market, Labels, General), iOS-style toggle switches, sticky save bar, unsaved-changes guard, and live Market snapshot preview
+- **Admin** — New Theme Support page (Appearance → Acreline Support) with quick-start guide, feature reference cards, shortcode cheatsheet, FAQ accordion, and changelog
+- **Feature** — Listing comparison modal: compare up to 3 listings side-by-side from the listings grid
+- **Feature** — Persistent saved listings drawer: heart icon on every card saves to `localStorage`; floating button opens the slide-out panel
+- **Feature** — Sticky CTA bar on single listing pages: price + "Book a showing" appears after hero scrolls out of view
+- **Feature** — Share button with Web Share API (mobile) and URL clipboard-copy fallback
+- **Feature** — Print-friendly property flyer layout (`window.print()` with clean print CSS)
+- **Feature** — Recently viewed listings (up to 5 in `localStorage`) rendered as chips at the bottom of each listing page
+- **Feature** — Nearby listings section on single listing pages: server-rendered, same township, no API required
+- **Feature** — Market snapshot shortcode `[acreline_market_snapshot]` with Market tab in Theme Settings
+- **Feature** — Built-in mortgage calculator on listing detail pages: editable rate, term, and down payment
+- **Feature** — Media picker for all image URL inputs in listing and agent metaboxes (native WP media library)
+- **Feature** — Rich listing fields: property details, utilities, HOA, land & farm, flood zone, school district, green/eco features, smart home feature chips
+- **Feature** — Advanced agent profiles: stats grid, social links, certifications/designations, intro video link, calendar booking URL, mobile number
+- **Content** — Updated seeded blog post "Acreline features" covering all new differentiating capabilities
+- **Docs** — `README.md` updated with new feature summary and admin screenshots section
+- **Docs** — `DEVELOPMENT.md` updated with new file locations and JS module descriptions
+
 ## 1.3.2
 
 - **Accessibility** — mobile nav close button is now a full 44×44 px touch target (WCAG 2.2 Target Size)

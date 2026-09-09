@@ -103,10 +103,18 @@ Every block has a live **ServerSideRender** preview in the editor so what you se
 
 ### Listings, agents, and showings
 
-- **Listing** CPT — type (home / farm / land / historic), price, beds, baths, sqft, acres, township, MLS, virtual tour, map pin, status (active / pending / sold)
-- **Agent** CPT — job title, license state + number, MLS/NRDS, phone, email, bio, specialties, service areas, social links
-- **Booking** CPT — showing type (in-person / virtual), date, time, assigned agent, client contact; pipeline (Requested → Confirmed → Completed); WP-CLI and list-row advance actions
+- **Listing** CPT — type, price, beds, baths, sqft, acres, township, MLS, status; plus property details, utilities, HOA, land & farm, flood zone, school district, virtual tour, video tour, floor plan, open house, green/eco features, smart home chips
+- **Agent** CPT — photo, bio, performance stats (homes sold, volume, DOM), certifications/designations, social links, intro video URL, calendar booking URL, mobile number, awards, team name
+- **Booking** CPT — showing type, date, time, assigned agent, client contact; buyer type, attendees, comm preference; pipeline (Requested → Confirmed → Completed)
 - Listing filter: type, price, acreage, area, status, sort; grid and map views
+- **Listing comparison** — compare up to 3 listings side-by-side in a full-screen modal
+- **Saved listings** — heart icon saves to `localStorage`; floating button opens slide-out drawer
+- **Sticky CTA bar** — price + "Book a showing" after hero scrolls out of view on single listing pages
+- **Share & print** — Web Share API with clipboard fallback; print-friendly property flyer layout
+- **Recently viewed** — up to 5 listings tracked in `localStorage`, shown as chips on detail pages
+- **Nearby listings** — server-rendered same-township listings, no API required
+- **Market snapshot** — `[acreline_market_snapshot]` shortcode powered by Theme Settings → Market tab
+- **Mortgage calculator** — built-in, no plugin or API; editable rate, term, and down payment
 
 ### Customizer (Appearance → Customize)
 
@@ -118,6 +126,14 @@ Every block has a live **ServerSideRender** preview in the editor so what you se
 | **Typography** | Five font families for display, body, nav, button, mono; base size (14–20 px); heading weight (500 / 600 / 700) |
 | **Social links** | Facebook, Instagram, YouTube, LinkedIn, X |
 | **GitHub** | Token for the one-click theme updater |
+
+### Admin pages
+
+| Page | Path | Description |
+| --- | --- | --- |
+| **Acreline Setup** | Appearance → Acreline Setup | Five-step wizard: brand, phone, colors, demo content |
+| **Acreline Settings** | Appearance → Acreline Settings | Tabbed settings page — listing, agent, booking, and market options with iOS-style toggles |
+| **Acreline Support** | Appearance → Acreline Support | Quick start, feature reference, shortcode cheatsheet, FAQ, and changelog |
 
 ### Other included features
 

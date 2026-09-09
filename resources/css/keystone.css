@@ -1614,3 +1614,389 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
 .e-content li::before{
   content:"";position:absolute;left:0;top:.7em;width:7px;height:7px;border-radius:1px;background:var(--accent);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Advanced listing features
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Open house banner */
+.listing-open-house{
+  display:flex;align-items:center;gap:12px;padding:10px 24px;
+  background:var(--accent);color:#fff;font-weight:600;font-size:.95rem;
+}
+.listing-oh-badge{
+  background:#fff;color:var(--accent);padding:2px 10px;border-radius:20px;
+  font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  white-space:nowrap;
+}
+
+/* Price per sq ft */
+.listing-pppsf{font-size:.7em;color:var(--ink-soft);font-weight:400;}
+
+/* Tour buttons row */
+.listing-tour-row{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0;}
+.btn-sm{padding:8px 16px;font-size:.875rem;min-height:40px;}
+
+/* Floor plan */
+.listing-floor-plan{margin:28px 0;}
+.listing-floor-plan h3{font-size:1rem;font-weight:700;margin:0 0 10px;color:var(--ink);}
+.listing-floor-plan-img{
+  width:100%;max-width:680px;border-radius:var(--radius);
+  border:1px solid var(--line);display:block;
+}
+
+/* Detail panels */
+.listing-detail-panel{
+  margin:24px 0;padding:20px;border:1px solid var(--line);
+  border-radius:var(--radius);background:var(--paper-2);
+}
+.listing-detail-panel h3{
+  font-size:.95rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--ink-soft);margin:0 0 14px;
+}
+.listing-detail-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:10px 20px;margin:0;
+}
+.listing-detail-grid div{display:contents;}
+.listing-detail-grid dt{
+  font-size:.82rem;font-weight:600;color:var(--ink-soft);
+  text-transform:uppercase;letter-spacing:.04em;
+}
+.listing-detail-grid dd{
+  font-size:.95rem;color:var(--ink);margin:0 0 4px;
+}
+
+/* Feature chips */
+.listing-feature-chips{
+  display:flex;flex-wrap:wrap;gap:8px;margin:20px 0;
+}
+.listing-chip{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 12px;border-radius:20px;font-size:.82rem;font-weight:600;
+}
+.listing-chip-green{background:#e8f5e9;color:#2e7d32;}
+.listing-chip-smart{background:#e3f2fd;color:#1565c0;}
+
+/* Mortgage calculator */
+.listing-calc{
+  margin:28px 0;padding:24px;border:1px solid var(--line);
+  border-radius:var(--radius);background:var(--paper-2);
+}
+.listing-calc h3{font-size:1rem;font-weight:700;margin:0 0 4px;}
+.listing-calc-disclaimer{font-size:.8rem;color:var(--ink-soft);margin:0 0 16px;}
+.listing-calc-row{
+  display:grid;grid-template-columns:160px 1fr;
+  gap:8px;align-items:center;margin:8px 0;
+}
+.listing-calc-row label{font-size:.875rem;font-weight:600;color:var(--ink-soft);}
+.calc-input{
+  padding:6px 10px;border:1px solid var(--line);border-radius:6px;
+  font-size:.9rem;background:#fff;max-width:200px;
+}
+.listing-calc-result{
+  display:flex;align-items:baseline;gap:12px;margin-top:16px;
+  padding:12px 16px;background:var(--accent);border-radius:var(--radius);
+  color:#fff;
+}
+.listing-calc-result span{font-size:.875rem;opacity:.9;}
+.listing-calc-result strong{font-size:1.5rem;font-weight:800;}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Advanced agent features
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Agent profile row (photo + badge) */
+.agent-profile-row{
+  display:flex;align-items:flex-start;gap:20px;margin-bottom:20px;
+}
+.agent-profile-photo{
+  width:120px;height:120px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--line);flex-shrink:0;
+}
+.agent-avatar-photo{
+  width:80px;height:80px;border-radius:50%;object-fit:cover;
+  border:2px solid var(--line);margin-bottom:8px;
+}
+.agent-badge{
+  display:inline-block;padding:3px 10px;border-radius:12px;
+  background:var(--accent);color:#fff;font-size:.75rem;
+  font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;
+}
+
+/* Performance stats grid */
+.agent-stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+  gap:12px;margin:24px 0;
+}
+.agent-stat{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:16px 8px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--paper-2);
+}
+.agent-stat strong{font-size:1.5rem;font-weight:800;color:var(--accent);}
+.agent-stat span{font-size:.78rem;color:var(--ink-soft);font-weight:600;margin-top:4px;text-transform:uppercase;letter-spacing:.04em;}
+
+/* Social links row */
+.agent-social-row{
+  display:flex;flex-wrap:wrap;gap:10px;margin:20px 0;
+}
+.agent-social-link{
+  display:inline-flex;align-items:center;padding:6px 14px;
+  border:1px solid var(--line);border-radius:20px;
+  font-size:.85rem;font-weight:600;color:var(--ink-soft);
+  text-decoration:none;transition:border-color .15s,color .15s;
+}
+.agent-social-link:hover{border-color:var(--accent);color:var(--accent);}
+
+/* Agent website link */
+.agent-website-link{
+  display:block;font-size:.875rem;color:var(--accent);font-weight:600;
+  text-decoration:none;padding:4px 0;
+}
+.agent-website-link:hover{text-decoration:underline;}
+
+/* ==========================================================================
+   NEW FEATURES — listings page comparison, saved drawer, modal fixes,
+   sticky CTA, recently viewed, nearby listings, market snapshot, print flyer
+   ========================================================================== */
+
+/* ── Listing detail modal ─────────────────────────────────────────────────── */
+.listing-modal-overlay{
+  position:fixed;inset:0;z-index:1200;
+  background:rgba(0,0,0,.6);
+  display:flex;align-items:flex-end;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.listing-modal-overlay.open{opacity:1;pointer-events:auto;}
+.listing-modal-overlay[hidden]{display:none;}
+.listing-modal{
+  background:var(--paper);border-radius:16px 16px 0 0;
+  width:100%;max-width:680px;max-height:92vh;overflow-y:auto;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.modal-header{
+  display:flex;justify-content:flex-end;padding:12px 16px 0;position:sticky;top:0;background:var(--paper);z-index:2;
+}
+.modal-gallery{
+  display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;
+  height:260px;gap:4px;
+}
+.modal-gallery-main{grid-row:1/-1;}
+.modal-body{padding:20px 24px 32px;}
+.modal-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px;}
+.modal-tag{font-size:.8rem;font-weight:700;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase;}
+.modal-title{font-size:1.3rem;font-weight:700;margin:0 0 8px;color:var(--ink);}
+.modal-address{display:flex;gap:6px;align-items:flex-start;font-size:.875rem;color:var(--ink-soft);margin:0 0 12px;}
+.modal-address svg{width:16px;height:16px;flex-shrink:0;margin-top:2px;}
+.modal-price{font-size:1.5rem;font-weight:800;color:var(--ink);margin:0 0 12px;}
+.modal-specs{display:flex;flex-wrap:wrap;gap:12px 20px;margin:0 0 16px;}
+.modal-specs div{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.modal-specs div strong{font-size:1.1rem;font-weight:700;color:var(--ink);}
+.modal-specs div span{font-size:.75rem;color:var(--ink-soft);font-weight:600;text-transform:uppercase;}
+.modal-desc{font-size:.9rem;color:var(--ink-soft);line-height:1.6;margin:0 0 20px;}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
+.modal-calc{background:var(--paper-alt,#f5f3ee);border-radius:10px;padding:18px 20px;}
+.modal-calc-heading{font-size:.9rem;font-weight:700;margin:0 0 12px;color:var(--ink);}
+.modal-calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.modal-calc-result{font-size:1.25rem;font-weight:800;color:var(--accent);margin:0 0 6px;background:none;border:none;padding:0;}
+.modal-calc-note{font-size:.75rem;color:var(--ink-faint);margin:0;}
+.modal-close{
+  background:none;border:none;padding:6px;cursor:pointer;
+  color:var(--ink-soft);border-radius:8px;
+  min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;
+}
+.modal-close svg{width:22px;height:22px;}
+.modal-close:hover{background:var(--line);color:var(--ink);}
+.modal-close:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+@media(min-width:600px){
+  .listing-modal-overlay{align-items:center;}
+  .listing-modal{border-radius:16px;max-height:88vh;}
+}
+
+/* ── Listing map ──────────────────────────────────────────────────────────── */
+.listing-map-wrap{width:100%;margin-top:24px;}
+.listing-map-stage{position:relative;width:100%;aspect-ratio:4/3;max-height:440px;background:var(--paper-alt,#f5f3ee);border-radius:12px;overflow:hidden;}
+.listing-empty{text-align:center;padding:48px 24px;color:var(--ink-soft);}
+.listing-empty svg{width:48px;height:48px;margin-bottom:12px;opacity:.35;}
+.listing-empty p{margin:0 0 16px;font-size:1rem;}
+
+/* ── Saved FAB (floating action button) ──────────────────────────────────── */
+.saved-fab{
+  position:fixed;bottom:80px;right:20px;z-index:1100;
+  display:flex;align-items:center;gap:6px;
+  padding:10px 18px;border-radius:40px;
+  background:var(--forest);color:#fff;border:none;cursor:pointer;
+  font-size:.875rem;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.18);
+  transition:transform .15s,box-shadow .15s;
+}
+.saved-fab[hidden]{display:none;}
+.saved-fab:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.24);}
+.saved-fab:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
+.saved-fab svg{width:18px;height:18px;fill:currentColor;}
+
+/* ── Saved drawer ─────────────────────────────────────────────────────────── */
+.saved-drawer{
+  position:fixed;inset:0 0 0 auto;z-index:1150;width:360px;max-width:100vw;
+  background:var(--paper);box-shadow:-4px 0 24px rgba(0,0,0,.12);
+  display:flex;flex-direction:column;overflow:hidden;
+  transform:translateX(100%);transition:transform .25s cubic-bezier(.4,0,.2,1);
+}
+.saved-drawer:not([hidden]){transform:translateX(0);}
+.saved-drawer[hidden]{display:none;}
+body.drawer-open .saved-drawer{transform:translateX(0);}
+.saved-drawer-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 20px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--paper);z-index:2;
+}
+.saved-drawer-title{font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);}
+.saved-count-badge{font-size:.85rem;font-weight:600;color:var(--ink-soft);}
+.saved-drawer-list{flex:1;overflow-y:auto;padding:12px 0;}
+.saved-drawer-empty{padding:40px 20px;text-align:center;color:var(--ink-soft);font-size:.9rem;}
+.saved-drawer-item{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:12px 20px;border-bottom:1px solid var(--line);
+}
+.saved-item-photo{width:64px;height:56px;border-radius:8px;flex-shrink:0;}
+.saved-item-body{flex:1;min-width:0;}
+.saved-item-price{font-size:.95rem;font-weight:700;color:var(--ink);margin:0 0 2px;}
+.saved-item-title{font-size:.85rem;font-weight:600;color:var(--ink);margin:0 0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.saved-item-addr{font-size:.78rem;color:var(--ink-soft);margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.saved-item-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0;}
+
+/* ── Compare bar ──────────────────────────────────────────────────────────── */
+.compare-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:1100;
+  background:var(--ink);color:#fff;
+  display:flex;align-items:center;gap:12px;padding:12px 20px;
+  box-shadow:0 -2px 16px rgba(0,0,0,.15);
+  transform:translateY(100%);transition:transform .22s;
+}
+.compare-bar:not([hidden]){transform:translateY(0);}
+.compare-bar[hidden]{transform:translateY(100%);}
+#compareBarLabel{flex:1;font-size:.9rem;font-weight:600;}
+.compare-btn[aria-pressed="true"]{color:var(--accent);border-color:var(--accent);}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink-soft);}
+.btn-ghost:hover{border-color:var(--ink-soft);color:var(--ink);}
+
+/* ── Comparison modal ─────────────────────────────────────────────────────── */
+.compare-modal-overlay{
+  position:fixed;inset:0;z-index:1300;
+  background:rgba(0,0,0,.65);display:flex;align-items:flex-start;justify-content:center;
+  overflow-y:auto;padding:24px 16px;
+}
+.compare-modal-overlay[hidden]{display:none;}
+.compare-modal{
+  background:var(--paper);border-radius:16px;
+  width:100%;max-width:880px;padding:0 0 32px;
+}
+.compare-modal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 24px 12px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--paper);border-radius:16px 16px 0 0;z-index:2;
+}
+.compare-modal-header h2{font-size:1.15rem;font-weight:700;margin:0;}
+.compare-table-wrap{overflow-x:auto;padding:0 12px;}
+.compare-table{width:100%;border-collapse:collapse;font-size:.875rem;}
+.compare-table th,.compare-table td{
+  padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;
+  vertical-align:middle;
+}
+.compare-table thead th{
+  font-size:.8rem;font-weight:700;color:var(--ink-soft);
+  text-transform:uppercase;letter-spacing:.06em;
+  position:sticky;top:0;background:var(--paper);
+}
+.compare-table tbody th{font-size:.8rem;color:var(--ink-soft);font-weight:600;white-space:nowrap;}
+.compare-table .ct-photo{height:100px;width:100%;min-width:140px;border-radius:8px;}
+.compare-table .ct-actions-row td{padding-top:16px;}
+
+/* ── Card compare button ──────────────────────────────────────────────────── */
+.card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;}
+
+/* ── Sticky CTA bar ───────────────────────────────────────────────────────── */
+.listing-sticky-cta{
+  position:fixed;bottom:0;left:0;right:0;z-index:900;
+  background:var(--paper);border-top:1px solid var(--line);
+  box-shadow:0 -2px 12px rgba(0,0,0,.08);
+  transform:translateY(100%);transition:transform .22s cubic-bezier(.4,0,.2,1);
+  padding:10px 0;
+}
+.listing-sticky-cta.is-visible{transform:translateY(0);}
+@media(prefers-reduced-motion:reduce){.listing-sticky-cta{transition:none;}}
+.sticky-cta-inner{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap;}
+.sticky-cta-info{display:flex;gap:10px;align-items:baseline;min-width:0;}
+.sticky-cta-price{font-size:1.1rem;font-weight:800;color:var(--ink);white-space:nowrap;}
+.sticky-cta-title{font-size:.875rem;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px;}
+.sticky-cta-actions{display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0;}
+@media(max-width:480px){.sticky-cta-info{display:none;}.sticky-cta-actions{width:100%;justify-content:center;}}
+
+/* ── Nearby listings section ──────────────────────────────────────────────── */
+.listing-nearby .eyebrow-heading{margin-bottom:24px;}
+.listing-nearby .eyebrow-heading .eyebrow{display:block;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+.listing-grid--nearby{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;}
+.listing-grid--nearby .card-link-wrap{display:block;text-decoration:none;color:inherit;}
+.listing-grid--nearby .card-link-wrap:hover .card-title{color:var(--accent);}
+.listing-grid--nearby .card-link-wrap:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:12px;}
+
+/* ── Recently viewed ──────────────────────────────────────────────────────── */
+.listing-recently-viewed{border-top:1px solid var(--line);}
+.listing-recently-viewed .eyebrow-heading{margin-bottom:20px;}
+.listing-recently-viewed .eyebrow-heading .eyebrow{display:block;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;}
+.rv-list{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;}
+.rv-item{
+  display:flex;flex-direction:column;gap:4px;flex-shrink:0;
+  padding:12px 16px;background:var(--paper);border:1px solid var(--line);
+  border-radius:10px;text-decoration:none;color:inherit;min-width:180px;max-width:220px;
+  transition:border-color .15s;
+}
+.rv-item:hover{border-color:var(--accent);}
+.rv-item:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:10px;}
+.rv-price{font-size:.95rem;font-weight:700;color:var(--ink);}
+.rv-title{font-size:.8rem;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+/* ── Market snapshot shortcode ────────────────────────────────────────────── */
+.market-snapshot{
+  display:flex;flex-wrap:wrap;gap:4px;
+  background:var(--forest);border-radius:14px;padding:28px 32px;
+  margin:32px 0;
+}
+.market-stat{
+  flex:1;min-width:120px;display:flex;flex-direction:column;gap:6px;
+  padding:12px 16px;
+}
+.market-stat strong{font-size:1.6rem;font-weight:800;color:#fff;line-height:1.1;}
+.market-stat strong span{font-size:.9rem;font-weight:500;opacity:.8;}
+.market-stat span{font-size:.78rem;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:.06em;text-transform:uppercase;}
+.market-as-of{
+  width:100%;padding:10px 16px 0;
+  font-size:.78rem;color:rgba(255,255,255,.5);
+  border-top:1px solid rgba(255,255,255,.15);margin-top:8px;
+}
+@media(max-width:560px){.market-stat{min-width:calc(50% - 4px);}}
+
+/* ── Print property flyer ─────────────────────────────────────────────────── */
+@media print {
+  .site-header,.site-footer,.listing-sticky-cta,.listing-nearby,
+  .listing-recently-viewed,.breadcrumbs,.concept-badge,.chat-fab,
+  .page-hero-cta,.btn,.cta-actions,.listing-tour-row,.booking-form-wrap,
+  #listingStickyCta,nav,.nav-backdrop{display:none !important;}
+
+  body{background:#fff;color:#000;font-size:11pt;font-family:Georgia,serif;}
+  .page-hero{min-height:auto;padding:12pt 0;background:#fff !important;}
+  .page-hero-inner{padding:0;}
+  .hero-brand,.hero-eyebrow{font-size:9pt;color:#555;}
+  .page-hero h1{font-size:18pt;color:#000;margin:4pt 0 6pt;}
+  .page-hero p{font-size:10pt;color:#333;}
+  .listing-single-main{max-width:100%;}
+  .listing-single-photo{height:220pt;border-radius:0;page-break-after:avoid;}
+  .modal-price{font-size:16pt;font-weight:bold;margin:8pt 0;}
+  .modal-specs{gap:16pt;}
+  .modal-specs div strong{font-size:13pt;}
+  .listing-detail-panel,.listing-floor-plan,.listing-calc{page-break-inside:avoid;}
+  a[href]:after{content:" ("attr(href)")";font-size:8pt;color:#555;}
+  .listing-agent-card{border:1pt solid #ccc;padding:8pt;}
+}
