@@ -167,6 +167,7 @@ Acreline 1.4.0 adds a configurable slim bar above the header for desktop visitor
 
 Color style presets: **Dark** (ink bg), **Accent** (brand green), **Light** (paper bg), **Custom** (pick any bg + text colors). The sticky header shifts its `top` offset automatically so it sits flush below the bar.
 
+
 ### Admin pages
 
 | Page | Path | Description |

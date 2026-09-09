@@ -340,9 +340,17 @@ class BlockMigration
             'primaryLabel' => $m['cta_primary'] ?? 'Book a showing',
         ];
 
+        $agentListAttrs = [
+            'eyebrow' => 'The sample team',
+            'title' => 'Agents who know this ground',
+            'text' => '',
+            'align' => 'left',
+        ];
+
         return [
             self::block('acreline/page-hero', $heroAttrs),
             self::block('acreline/intro-section', $introAttrs),
+            self::block('acreline/agent-list', $agentListAttrs),
             self::block('acreline/how-we-work', $howAttrs),
             self::block('acreline/cta-band', $ctaAttrs),
         ];
