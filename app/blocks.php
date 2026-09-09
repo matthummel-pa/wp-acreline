@@ -452,18 +452,18 @@ function ks_veil_style(array $attrs): string
 /**
  * Map a block button-style slug to the correct CSS class string.
  *
- * @param string $style  Slug from the editor's SelectControl.
- * @param string $extra  Any additional classes to append (e.g. 'btn-block').
+ * @param string $style Slug from the editor's SelectControl.
+ * @param string $extra Any additional classes to append (e.g. 'btn-block').
  */
 function ks_btn_class(string $style, string $extra = ''): string
 {
     $map = [
-        'primary'       => 'btn btn-primary',
+        'primary' => 'btn btn-primary',
         'outline-light' => 'btn btn-outline light',
-        'outline'       => 'btn btn-outline',
-        'white'         => 'btn btn-white',
-        'gold'          => 'btn btn-gold',
-        'ghost'         => 'btn btn-ghost',
+        'outline' => 'btn btn-outline',
+        'white' => 'btn btn-white',
+        'gold' => 'btn btn-gold',
+        'ghost' => 'btn btn-ghost',
     ];
     $cls = $map[$style] ?? 'btn btn-primary';
 
@@ -865,7 +865,7 @@ function ks_render_page_hero(array $attrs): string
     $thumbUrl = esc_url(ks_hero_image_url($attrs, (int) get_the_ID()));
     $heroClass = esc_attr(ks_hero_class($attrs, 'page-hero page-hero--photo'));
     $veilStyle = ks_veil_style($attrs);
-    $primaryBtnClass   = esc_attr(ks_btn_class(sanitize_key((string) ($attrs['primaryBtnStyle']   ?? 'primary'))));
+    $primaryBtnClass = esc_attr(ks_btn_class(sanitize_key((string) ($attrs['primaryBtnStyle'] ?? 'primary'))));
     $secondaryBtnClass = esc_attr(ks_btn_class(sanitize_key((string) ($attrs['secondaryBtnStyle'] ?? 'outline-light'))));
 
     ob_start();
