@@ -27,14 +27,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Build minimal site folder
+        run: |
+          mkdir -p _site/docs/marketplace/screenshots
+          cp index.html _site/index.html
+          touch _site/.nojekyll
+          # Copy documentation and screenshot assets only
+          cp -r docs/marketplace _site/docs/
+          # Copy brand images if present
+          if [ -d public/images/brand ]; then
+            mkdir -p _site/public/images/brand
+            cp -r public/images/brand _site/public/images/
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Serve from repo root: index.html + docs/ + public/images/brand/
-          path: .
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
