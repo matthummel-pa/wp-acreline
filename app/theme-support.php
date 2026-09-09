@@ -98,7 +98,7 @@ function render_support_page(): void
 
       <!-- What's new / features -->
       <section class="kss-section">
-        <h2 class="kss-section-title"><?php esc_html_e("What's new in 1.3.x", 'acreline'); ?></h2>
+        <h2 class="kss-section-title"><?php esc_html_e("What's new in 1.4.x", 'acreline'); ?></h2>
         <div class="kss-feature-grid">
           <?php
     $features = [
@@ -233,6 +233,16 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.4.0', [
+            __('Top bar (Customize → Top Bar) — desktop-only, four color presets, announcement badge + message + link, CTA pill, contact item toggles, social icon toggles, optional dismiss', 'acreline'),
+            __('Mobile nav fallback — all active top-bar items surface in the slide-out nav on mobile', 'acreline'),
+            __('Agent List Gutenberg block — photo, stats, designations, and social links from the Agent CPT', 'acreline'),
+            __('Accessibility — focus trap on listing modal, saved drawer, and compare modal; aria-live announcements for save/compare actions', 'acreline'),
+            __('Responsive — listing detail grid, compare table, compare bar, mortgage calc grid all stack or scroll on narrow phones', 'acreline'),
+            __('Seed listings enriched with open house dates, virtual tour, utilities, HOA, school district, outbuildings, and land acres', 'acreline'),
+            __('Seed agents enriched with performance stats, social links, bio video, certifications, and awards', 'acreline'),
+            __('README, readme.txt, and marketplace docs updated for v1.4.0', 'acreline'),
+        ]],
         ['1.3.3', [
             __('Redesigned Theme Settings page — tabbed UI, iOS-style toggles, sticky save bar, and unsaved-changes guard', 'acreline'),
             __('New Theme Support admin page (this page) with quick start, feature reference, shortcode cheatsheet, FAQ, and changelog', 'acreline'),
@@ -248,7 +258,6 @@ function render_support_page(): void
             __('Media picker for all image URL inputs in listing and agent metaboxes', 'acreline'),
             __('Rich listing fields: property details, utilities, HOA, land & farm, green/smart chips', 'acreline'),
             __('Advanced agent profiles: stats grid, social links, certifications, calendar URL', 'acreline'),
-            __('Updated seeded blog post covering new differentiating features', 'acreline'),
         ]],
         ['1.3.2', [
             __('WCAG 2.2 AA contrast fixes across form notes, footer, testimonials, and hero search', 'acreline'),
@@ -272,6 +281,55 @@ function render_support_page(): void
             </ul>
           </div>
           <?php } ?>
+        </div>
+      </section>
+
+      <!-- About card -->
+      <section class="kss-section kss-about-card">
+        <div class="kss-about-inner">
+          <div class="kss-about-brand">
+            <span class="kss-logo-mark kss-logo-mark--lg" aria-hidden="true">A</span>
+            <div>
+              <h2 class="kss-about-title">Acreline</h2>
+              <p class="kss-about-tagline"><?php esc_html_e('Farms · land · historic homes', 'acreline'); ?></p>
+              <p class="kss-about-meta">
+                <?php echo esc_html(sprintf(__('Version %s · WordPress theme by Matt Hummel', 'acreline'), $themeVer)); ?>
+              </p>
+            </div>
+          </div>
+          <div class="kss-about-links">
+            <a href="https://matthummel.com/projects/acreline/" target="_blank" rel="noopener noreferrer" class="kss-about-link">
+              <span class="kss-about-link-icon" aria-hidden="true">🏡</span>
+              <span>
+                <strong><?php esc_html_e('Product page', 'acreline'); ?></strong>
+                <small>matthummel.com/projects/acreline/</small>
+              </span>
+            </a>
+            <a href="https://matthummel.com/support/acreline/" target="_blank" rel="noopener noreferrer" class="kss-about-link">
+              <span class="kss-about-link-icon" aria-hidden="true">🙋</span>
+              <span>
+                <strong><?php esc_html_e('Support', 'acreline'); ?></strong>
+                <small>matthummel.com/support/acreline/</small>
+              </span>
+            </a>
+            <a href="https://acreline.matthummel.com/" target="_blank" rel="noopener noreferrer" class="kss-about-link">
+              <span class="kss-about-link-icon" aria-hidden="true">🌐</span>
+              <span>
+                <strong><?php esc_html_e('Live demo', 'acreline'); ?></strong>
+                <small>acreline.matthummel.com</small>
+              </span>
+            </a>
+            <a href="https://github.com/matthummel-pa/wp-acreline/issues" target="_blank" rel="noopener noreferrer" class="kss-about-link">
+              <span class="kss-about-link-icon" aria-hidden="true">🐛</span>
+              <span>
+                <strong><?php esc_html_e('Bug reports', 'acreline'); ?></strong>
+                <small>github.com/matthummel-pa/wp-acreline/issues</small>
+              </span>
+            </a>
+          </div>
+          <p class="kss-about-license">
+            <?php esc_html_e('Released under GPLv2 or later. Sage / Acorn remain MIT. Sample listing, agent, and booking data is fiction only — not a live MLS or licensed brokerage.', 'acreline'); ?>
+          </p>
         </div>
       </section>
 
@@ -423,5 +481,30 @@ function ks_support_css(): string
 }
 .kss-cl-list { margin: 0; padding: 0 0 0 18px; }
 .kss-cl-list li { font-size: .85rem; color: #444; margin-bottom: 4px; line-height: 1.5; }
+
+/* About card */
+.kss-about-card { background: linear-gradient(135deg, #f0f7f4 0%, #e8f4ed 100%); border: 1px solid #c8e0d4; }
+.kss-about-inner { display: flex; flex-direction: column; gap: 22px; }
+.kss-about-brand { display: flex; align-items: flex-start; gap: 18px; }
+.kss-logo-mark--lg { width: 52px; height: 52px; font-size: 1.6rem; border-radius: 14px; flex-shrink: 0; }
+.kss-about-title { font-size: 1.25rem; font-weight: 800; color: #141210; margin: 0 0 2px; }
+.kss-about-tagline { font-size: .9rem; color: #155539; font-weight: 600; margin: 0 0 4px; letter-spacing: .02em; }
+.kss-about-meta { font-size: .82rem; color: #666; margin: 0; }
+.kss-about-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.kss-about-link {
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; border: 1px solid #d6e8de; border-radius: 10px;
+  padding: 12px 14px; text-decoration: none; color: inherit;
+  transition: border-color .15s, box-shadow .15s;
+}
+.kss-about-link:hover { border-color: #155539; box-shadow: 0 2px 8px rgba(21,85,57,.10); }
+.kss-about-link-icon { font-size: 1.3rem; flex-shrink: 0; }
+.kss-about-link strong { display: block; font-size: .85rem; color: #1a1a1a; font-weight: 700; }
+.kss-about-link small { display: block; font-size: .78rem; color: #777; margin-top: 1px; }
+.kss-about-license { font-size: .8rem; color: #777; margin: 0; line-height: 1.6; }
 ';
 }
