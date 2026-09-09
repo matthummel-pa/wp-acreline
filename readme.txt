@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -28,7 +28,7 @@ House mark and wordmark (original SVG, GPLv2) ship in public/images/brand/. Supp
 * Appearance → Acreline Settings: tabbed admin page with iOS-style toggles for every listing, agent, booking, and display option
 * Appearance → Acreline Support: getting-started guide, feature reference, shortcode cheatsheet, FAQ, and changelog in one screen
 * Almost no plugins — theme zip is enough; optional Acreline Core and child theme
-* Gutenberg block editor for pages and posts (21 custom dynamic blocks, no page builder or shortcodes)
+* Gutenberg block editor for pages and posts (28 custom dynamic blocks, no page builder or shortcodes)
 * Classic metaboxes for listings, agents, and bookings (no ACF required)
 * Rich listing fields: property details, utilities, HOA, land & farm, flood zone, school district, green/eco features, smart home chips
 * Built-in mortgage calculator on listing detail pages — no plugin or API required
@@ -130,6 +130,12 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.4.1 =
+* Marketing pages now seed the full Gutenberg stacks: agent list on Agents, stats/reviews/FAQ on Listings, how-it-works + checklist on Guide, and a richer Blog page.
+* New blocks: Trust Strip, Buyer Checklist, Showing Prep Checklist, Area Compare Table, Topic Cards, Post Grid. Agent List is registered in the editor inserter.
+* Re-seed (`wp ks seed` / Tools → Seed) and Tools → Migrate to Blocks → Force rebuild overwrite page stacks so older thin content is replaced.
+* Blog template renders the Blog page’s block content (`the_content`) instead of a hardcoded Blade subset.
 
 = 1.4.0 =
 * Feature: Top bar (Appearance → Customize → Top Bar) — desktop-only slim bar above the header. Four color styles (Dark / Accent / Light / Custom), custom colors, announcement badge + message + link, CTA pill, show/hide for phone/email/address/hours, social icon toggles, dismissible mode.

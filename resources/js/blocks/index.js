@@ -1004,7 +1004,42 @@ registerBlockType('acreline/listing-grid', {
 });
 
 // ---------------------------------------------------------------------------
-// 15. Area Grid
+// 15. Agent List
+// ---------------------------------------------------------------------------
+registerBlockType('acreline/agent-list', {
+    title: __('Agent List', 'acreline'),
+    description: __('Grid of sample agents with photos, stats, and contact links.', 'acreline'),
+    category: 'acreline',
+    icon: 'groups',
+    supports: { html: false, multiple: true },
+    attributes: {
+        eyebrow:       { type: 'string', default: 'The sample team' },
+        title:         { type: 'string', default: 'Agents who know this ground' },
+        text:          { type: 'string', default: 'Three demo profiles — one for farm & land, one for historic homes, one for first-time land buyers.' },
+        headingSize:   { type: 'string', default: 'default' },
+        headingWeight: { type: 'string', default: 'default' },
+        bodySize:      { type: 'string', default: 'default' },
+        headingAlign:  { type: 'string', default: 'left' },
+    },
+    edit({ attributes: a, setAttributes: s }) {
+        return el(SsrEdit, {
+            blockName: 'acreline/agent-list',
+            attributes: a,
+            sidebarFn: () => el(Fragment, null,
+                el(PanelBody, { title: __('Section header', 'acreline'), initialOpen: true },
+                    el(TextControl,     { label: __('Eyebrow', 'acreline'), value: a.eyebrow, onChange: (v) => s({ eyebrow: v }) }),
+                    el(TextControl,     { label: __('Title',   'acreline'), value: a.title,   onChange: (v) => s({ title: v }) }),
+                    el(TextareaControl, { label: __('Text',    'acreline'), value: a.text,    onChange: (v) => s({ text: v }) }),
+                ),
+                el(TypographyPanel, { attrs: a, s }),
+            ),
+        });
+    },
+    save: () => null,
+});
+
+// ---------------------------------------------------------------------------
+// 16. Area Grid
 // ---------------------------------------------------------------------------
 registerBlockType('acreline/area-grid', {
     title: __('Area Grid', 'acreline'),
@@ -1374,8 +1409,285 @@ registerBlockType('acreline/book-note', {
     save: () => null,
 });
 
+function itemFieldPanels(a, s, count, prefix, heading) {
+    return Array.from({ length: count }, (_, i) => {
+        const n = i + 1;
+        const titleVal = a[`${prefix}${n}Title`] || '';
+        return el(PanelBody, {
+            key: `${prefix}-${n}`,
+            title: `${heading} ${n}${titleVal ? `: ${titleVal}` : ''}`,
+            initialOpen: n === 1,
+        },
+            el(TextControl,     { label: __('Title', 'acreline'), value: titleVal, onChange: (v) => s({ [`${prefix}${n}Title`]: v }) }),
+            el(TextareaControl, { label: __('Text',  'acreline'), value: a[`${prefix}${n}Text`] || '', onChange: (v) => s({ [`${prefix}${n}Text`]: v }) }),
+        );
+    });
+}
+
+function itemPairAttrs(count, prefix) {
+    const attrs = {};
+    for (let i = 1; i <= count; i += 1) {
+        attrs[`${prefix}${i}Title`] = { type: 'string', default: '' };
+        attrs[`${prefix}${i}Text`] = { type: 'string', default: '' };
+    }
+    return attrs;
+}
+
 // ---------------------------------------------------------------------------
-// 21. Custom Block (acreline/custom — from Block Generator)
+// 22. Trust Strip
+// ---------------------------------------------------------------------------
+registerBlockType('acreline/trust-strip', {
+    title: __('Trust Strip', 'acreline'),
+    description: __('Four contact commitments — reply time, specialist match, no obligation, privacy.', 'acreline'),
+    category: 'acreline',
+    icon: 'shield',
+    supports: { html: false, multiple: false },
+    attributes: {
+        ...itemPairAttrs(4, 'item'),
+        headingSize:   { type: 'string', default: 'default' },
+        headingWeight: { type: 'string', default: 'default' },
+        bodySize:      { type: 'string', default: 'default' },
+        headingAlign:  { type: 'string', default: 'left' },
+    },
+    edit({ attributes: a, setAttributes: s }) {
+        return el(SsrEdit, {
+            blockName: 'acreline/trust-strip',
+            attributes: a,
+            sidebarFn: () => el(Fragment, null,
+                ...itemFieldPanels(a, s, 4, 'item', __('Promise', 'acreline')),
+            ),
+        });
+    },
+    save: () => null,
+});
+
+// ---------------------------------------------------------------------------
+// 23. Checklist
+// ---------------------------------------------------------------------------
+registerBlockType('acreline/checklist', {
+    title: __('Buyer Checklist', 'acreline'),
+    description: __('Numbered rural-property checklist with optional CTAs.', 'acreline'),
+    category: 'acreline',
+    icon: 'editor-ol',
+    supports: { html: false, multiple: false },
+    attributes: {
+        eyebrow:         { type: 'string', default: 'Before you make an offer' },
+        title:           { type: 'string', default: 'The rural property checklist' },
+        text:            { type: 'string', default: '' },
+        primaryLabel:    { type: 'string', default: 'Book a showing' },
+        primaryUrl:      { type: 'string', default: '' },
+        secondaryLabel:  { type: 'string', default: 'Browse listings' },
+        secondaryUrl:    { type: 'string', default: '' },
+        headingSize:     { type: 'string', default: 'default' },
+        headingWeight:   { type: 'string', default: 'default' },
+        bodySize:        { type: 'string', default: 'default' },
+        headingAlign:    { type: 'string', default: 'left' },
+        ...itemPairAttrs(8, 'item'),
+    },
+    edit({ attributes: a, setAttributes: s }) {
+        return el(SsrEdit, {
+            blockName: 'acreline/checklist',
+            attributes: a,
+            sidebarFn: () => el(Fragment, null,
+                el(PanelBody, { title: __('Section header', 'acreline'), initialOpen: true },
+                    el(TextControl,     { label: __('Eyebrow', 'acreline'), value: a.eyebrow, onChange: (v) => s({ eyebrow: v }) }),
+                    el(TextControl,     { label: __('Title',   'acreline'), value: a.title,   onChange: (v) => s({ title: v }) }),
+                    el(TextareaControl, { label: __('Text',    'acreline'), value: a.text,    onChange: (v) => s({ text: v }) }),
+                ),
+                ...itemFieldPanels(a, s, 8, 'item', __('Step', 'acreline')),
+                el(PanelBody, { title: __('Buttons', 'acreline'), initialOpen: false },
+                    el(TextControl, { label: __('Primary label',   'acreline'), value: a.primaryLabel,   onChange: (v) => s({ primaryLabel: v }) }),
+                    el(TextControl, { label: __('Primary URL',     'acreline'), value: a.primaryUrl,     onChange: (v) => s({ primaryUrl: v }) }),
+                    el(TextControl, { label: __('Secondary label', 'acreline'), value: a.secondaryLabel, onChange: (v) => s({ secondaryLabel: v }) }),
+                    el(TextControl, { label: __('Secondary URL',   'acreline'), value: a.secondaryUrl,   onChange: (v) => s({ secondaryUrl: v }) }),
+                ),
+                el(TypographyPanel, { attrs: a, s }),
+            ),
+        });
+    },
+    save: () => null,
+});
+
+// ---------------------------------------------------------------------------
+// 24. Prep Checklist
+// ---------------------------------------------------------------------------
+registerBlockType('acreline/prep-checklist', {
+    title: __('Showing Prep Checklist', 'acreline'),
+    description: __('Two-column buyer / agent prep lists for the booking page.', 'acreline'),
+    category: 'acreline',
+    icon: 'yes-alt',
+    supports: { html: false, multiple: false },
+    attributes: {
+        leftHeading:   { type: 'string', default: 'Come prepared' },
+        leftLead:      { type: 'string', default: '' },
+        rightHeading:  { type: 'string', default: 'What your agent brings' },
+        rightLead:     { type: 'string', default: '' },
+        headingSize:   { type: 'string', default: 'default' },
+        headingWeight: { type: 'string', default: 'default' },
+        bodySize:      { type: 'string', default: 'default' },
+        headingAlign:  { type: 'string', default: 'left' },
+        ...itemPairAttrs(5, 'left'),
+        ...itemPairAttrs(4, 'right'),
+    },
+    edit({ attributes: a, setAttributes: s }) {
+        return el(SsrEdit, {
+            blockName: 'acreline/prep-checklist',
+            attributes: a,
+            sidebarFn: () => el(Fragment, null,
+                el(PanelBody, { title: __('Buyer column', 'acreline'), initialOpen: true },
+                    el(TextControl,     { label: __('Heading', 'acreline'), value: a.leftHeading, onChange: (v) => s({ leftHeading: v }) }),
+                    el(TextareaControl, { label: __('Lead',    'acreline'), value: a.leftLead,    onChange: (v) => s({ leftLead: v }) }),
+                ),
+                ...itemFieldPanels(a, s, 5, 'left', __('Buyer item', 'acreline')),
+                el(PanelBody, { title: __('Agent column', 'acreline'), initialOpen: false },
+                    el(TextControl,     { label: __('Heading', 'acreline'), value: a.rightHeading, onChange: (v) => s({ rightHeading: v }) }),
+                    el(TextareaControl, { label: __('Lead',    'acreline'), value: a.rightLead,    onChange: (v) => s({ rightLead: v }) }),
+                ),
+                ...itemFieldPanels(a, s, 4, 'right', __('Agent item', 'acreline')),
+            ),
+        });
+    },
+    save: () => null,
+});
+
+// ---------------------------------------------------------------------------
+// 25. Compare Table
+// ---------------------------------------------------------------------------
+registerBlockType('acreline/compare-table', {
+    title: __('Area Compare Table', 'acreline'),
+    description: __('Side-by-side sample-market comparison table.', 'acreline'),
+    category: 'acreline',
+    icon: 'editor-table',
+    supports: { html: false, multiple: false },
+    attributes: {
+        eyebrow:       { type: 'string', default: 'Side-by-side' },
+        title:         { type: 'string', default: 'Area comparison at a glance' },
+        text:          { type: 'string', default: '' },
+        disclaimer:    { type: 'string', default: 'All figures are sample ranges for concept demonstration only. Not real MLS data or licensed appraisal values.' },
+        col1:          { type: 'string', default: 'Area' },
+        col2:          { type: 'string', default: 'Primary land type' },
+        col3:          { type: 'string', default: 'Typical price range' },
+        col4:          { type: 'string', default: 'Well / septic' },
+        col5:          { type: 'string', default: 'Best for' },
+        row1Col1: { type: 'string', default: 'Oak Hollow' },    row1Col2: { type: 'string', default: 'Century homesteads, orchards' }, row1Col3: { type: 'string', default: '$290K–$620K' }, row1Col4: { type: 'string', default: 'Well + private septic' },     row1Col5: { type: 'string', default: 'Historic homes, orchard buyers' },
+        row2Col1: { type: 'string', default: 'Orchard Belt' },  row2Col2: { type: 'string', default: 'Fruit ground, cold storage' },     row2Col3: { type: 'string', default: '$380K–$1.1M' }, row2Col4: { type: 'string', default: 'Irrigation well, farm septic' }, row2Col5: { type: 'string', default: 'Working farm operators' },
+        row3Col1: { type: 'string', default: 'Mill Creek' },    row3Col2: { type: 'string', default: 'Mixed farmland, quiet lots' },      row3Col3: { type: 'string', default: '$195K–$480K' }, row3Col4: { type: 'string', default: 'Well + perc required (raw)' },  row3Col5: { type: 'string', default: 'Value buyers, first-time land' },
+        row4Col1: { type: 'string', default: 'Grain Country' }, row4Col2: { type: 'string', default: 'Tillable, cash-crop tracts' },      row4Col3: { type: 'string', default: '$420K–$2.2M' }, row4Col4: { type: 'string', default: 'Farm well, grain-yard septic' }, row4Col5: { type: 'string', default: 'Farm investors, ag operators' },
+        row5Col1: { type: 'string', default: 'Hill Country' },  row5Col2: { type: 'string', default: 'Timber, hunting, cabins' },        row5Col3: { type: 'string', default: '$110K–$390K' }, row5Col4: { type: 'string', default: 'Spring or well, outhouse/perc' }, row5Col5: { type: 'string', default: 'Recreational buyers' },
+        row6Col1: { type: 'string', default: 'Border Farms' },  row6Col2: { type: 'string', default: 'Small farms, pasture' },           row6Col3: { type: 'string', default: '$165K–$440K' }, row6Col4: { type: 'string', default: 'Well + private septic' },     row6Col5: { type: 'string', default: 'First-time farm buyers' },
+        headingSize:   { type: 'string', default: 'default' },
+        headingWeight: { type: 'string', default: 'default' },
+        bodySize:      { type: 'string', default: 'default' },
+        headingAlign:  { type: 'string', default: 'left' },
+    },
+    edit({ attributes: a, setAttributes: s }) {
+        return el(SsrEdit, {
+            blockName: 'acreline/compare-table',
+            attributes: a,
+            sidebarFn: () => el(Fragment, null,
+                el(PanelBody, { title: __('Section header', 'acreline'), initialOpen: true },
+                    el(TextControl,     { label: __('Eyebrow',    'acreline'), value: a.eyebrow,    onChange: (v) => s({ eyebrow: v }) }),
+                    el(TextControl,     { label: __('Title',      'acreline'), value: a.title,      onChange: (v) => s({ title: v }) }),
+                    el(TextareaControl, { label: __('Text',       'acreline'), value: a.text,       onChange: (v) => s({ text: v }) }),
+                    el(TextareaControl, { label: __('Disclaimer', 'acreline'), value: a.disclaimer, onChange: (v) => s({ disclaimer: v }) }),
+                ),
+                el(PanelBody, { title: __('Column labels', 'acreline'), initialOpen: false },
+                    [1, 2, 3, 4, 5].map((n) =>
+                        el(TextControl, { key: n, label: `${__('Column', 'acreline')} ${n}`, value: a[`col${n}`], onChange: (v) => s({ [`col${n}`]: v }) }),
+                    ),
+                ),
+                ...[1, 2, 3, 4, 5, 6].map((n) =>
+                    el(PanelBody, { key: `row-${n}`, title: `${__('Row', 'acreline')} ${n}: ${a[`row${n}Col1`] || ''}`, initialOpen: n === 1 },
+                        [1, 2, 3, 4, 5].map((c) =>
+                            el(TextControl, { key: c, label: a[`col${c}`] || `${__('Col', 'acreline')} ${c}`, value: a[`row${n}Col${c}`] || '', onChange: (v) => s({ [`row${n}Col${c}`]: v }) }),
+                        ),
+                    ),
+                ),
+                el(TypographyPanel, { attrs: a, s }),
+            ),
+        });
+    },
+    save: () => null,
+});
+
+// ---------------------------------------------------------------------------
+// 26. Topic Cards
+// ---------------------------------------------------------------------------
+registerBlockType('acreline/topic-cards', {
+    title: __('Topic Cards', 'acreline'),
+    description: __('Three scan cards for the blog index (showings, checklists, search).', 'acreline'),
+    category: 'acreline',
+    icon: 'screenoptions',
+    supports: { html: false, multiple: false },
+    attributes: {
+        eyebrow:       { type: 'string', default: 'What these notes cover' },
+        title:         { type: 'string', default: 'Short reads you can adapt for your market' },
+        text:          { type: 'string', default: '' },
+        card1Kicker:   { type: 'string', default: 'Showings' },
+        card1Title:    { type: 'string', default: 'How a tour should feel' },
+        card1Text:     { type: 'string', default: 'What to book, what to wear, and why a rural slot is not a 20-minute condo walk-through.' },
+        card2Kicker:   { type: 'string', default: 'Checklists' },
+        card2Title:    { type: 'string', default: 'First-time buyers' },
+        card2Text:     { type: 'string', default: 'Payment, inspection, and well/septic questions in an order you can scan before you call.' },
+        card3Kicker:   { type: 'string', default: 'Search' },
+        card3Title:    { type: 'string', default: 'Land vs home' },
+        card3Text:     { type: 'string', default: 'Different card hierarchy so acreage shoppers and house shoppers do not share one muddy filter.' },
+        headingSize:   { type: 'string', default: 'default' },
+        headingWeight: { type: 'string', default: 'default' },
+        bodySize:      { type: 'string', default: 'default' },
+        headingAlign:  { type: 'string', default: 'left' },
+    },
+    edit({ attributes: a, setAttributes: s }) {
+        return el(SsrEdit, {
+            blockName: 'acreline/topic-cards',
+            attributes: a,
+            sidebarFn: () => el(Fragment, null,
+                el(PanelBody, { title: __('Section header', 'acreline'), initialOpen: true },
+                    el(TextControl,     { label: __('Eyebrow', 'acreline'), value: a.eyebrow, onChange: (v) => s({ eyebrow: v }) }),
+                    el(TextControl,     { label: __('Title',   'acreline'), value: a.title,   onChange: (v) => s({ title: v }) }),
+                    el(TextareaControl, { label: __('Text',    'acreline'), value: a.text,    onChange: (v) => s({ text: v }) }),
+                ),
+                ...[1, 2, 3].map((n) =>
+                    el(PanelBody, { key: n, title: `${__('Card', 'acreline')} ${n}`, initialOpen: n === 1 },
+                        el(TextControl,     { label: __('Kicker', 'acreline'), value: a[`card${n}Kicker`], onChange: (v) => s({ [`card${n}Kicker`]: v }) }),
+                        el(TextControl,     { label: __('Title',  'acreline'), value: a[`card${n}Title`],  onChange: (v) => s({ [`card${n}Title`]: v }) }),
+                        el(TextareaControl, { label: __('Text',   'acreline'), value: a[`card${n}Text`],   onChange: (v) => s({ [`card${n}Text`]: v }) }),
+                    ),
+                ),
+                el(TypographyPanel, { attrs: a, s }),
+            ),
+        });
+    },
+    save: () => null,
+});
+
+// ---------------------------------------------------------------------------
+// 27. Post Grid
+// ---------------------------------------------------------------------------
+registerBlockType('acreline/post-grid', {
+    title: __('Post Grid', 'acreline'),
+    description: __('Blog post cards pulled from published posts, with pagination.', 'acreline'),
+    category: 'acreline',
+    icon: 'grid-view',
+    supports: { html: false, multiple: false },
+    attributes: {
+        emptyText: { type: 'string', default: 'Sample posts load with Tools → Seed Acreline demo.' },
+    },
+    edit({ attributes: a, setAttributes: s }) {
+        return el(SsrEdit, {
+            blockName: 'acreline/post-grid',
+            attributes: a,
+            sidebarFn: () =>
+                el(PanelBody, { title: __('Empty state', 'acreline'), initialOpen: true },
+                    el(TextareaControl, { label: __('Message when no posts exist', 'acreline'), value: a.emptyText, onChange: (v) => s({ emptyText: v }) }),
+                ),
+        });
+    },
+    save: () => null,
+});
+
+// ---------------------------------------------------------------------------
+// 28. Custom Block (acreline/custom — from Block Generator)
 // ---------------------------------------------------------------------------
 registerBlockType('acreline/custom', {
     title: __('Custom Block', 'acreline'),

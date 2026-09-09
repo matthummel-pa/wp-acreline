@@ -233,6 +233,12 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.4.1', [
+            __('Full Gutenberg stacks on every marketing page — agent list, FAQ, stats, reviews, checklists, compare table, and a richer Blog page', 'acreline'),
+            __('New blocks: Trust Strip, Buyer Checklist, Showing Prep, Area Compare Table, Topic Cards, Post Grid', 'acreline'),
+            __('Agent List now appears in the block inserter', 'acreline'),
+            __('Re-seed and Tools → Migrate to Blocks → Force rebuild overwrite thin legacy page content', 'acreline'),
+        ]],
         ['1.4.0', [
             __('Top bar (Customize → Top Bar) — desktop-only, four color presets, announcement badge + message + link, CTA pill, contact item toggles, social icon toggles, optional dismiss', 'acreline'),
             __('Mobile nav fallback — all active top-bar items surface in the slide-out nav on mobile', 'acreline'),

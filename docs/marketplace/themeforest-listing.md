@@ -23,7 +23,7 @@ Acreline — Rural Real Estate WordPress Theme
 ## Excerpt / short description
 
 ```
-Acreline is a WordPress theme for farms, land, and historic homes — searchable listings, agents, and showing requests. Customizer identity, eight color styles, 22 custom Gutenberg blocks, top bar, no page builder. Concept demo by Matt Hummel.
+Acreline is a WordPress theme for farms, land, and historic homes — searchable listings, agents, and showing requests. Customizer identity, eight color styles, 28 custom Gutenberg blocks, top bar, no page builder. Concept demo by Matt Hummel.
 ```
 
 ---
@@ -89,7 +89,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 
 <p><strong>Fiction only.</strong> The live preview uses 555 phone numbers and <code>@acreline-concept.test</code> emails. It is not a live MLS, licensed brokerage, or booking desk. Replace every field from the WordPress admin.</p>
 
-<h3>22 custom Gutenberg blocks</h3>
+<h3>28 custom Gutenberg blocks</h3>
 <p>All marketing pages are built with actual WordPress blocks (not Classic Editor shortcodes or HTML blocks). Every block renders server-side, so the editor canvas matches the live page exactly. Inspector Controls expose typography, image picker, hero overlay, CTA styles, FAQ format, column count, and per-block show/hide toggles — no coding needed.</p>
 <ul>
   <li>Home Hero with live listing search (type, price, acreage, area)</li>
@@ -180,7 +180,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 
 ## Key features (bullet form for the store form)
 
-- 22 custom server-side Gutenberg blocks, no page builder
+- 28 custom server-side Gutenberg blocks, no page builder
 - Block Generator: create new blocks without PHP or JS
 - Customizer identity (brand, phone, email, hours, removable footer credit)
 - Eight named color styles + accent / paper / ink pickers
