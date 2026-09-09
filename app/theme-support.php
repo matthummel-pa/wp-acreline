@@ -241,6 +241,10 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.4.5', [
+            __('Primary menu, hamburger, and mobile drawer follow the active color scheme', 'acreline'),
+            __('Link, hover, and current menu colors stay readable on the header background', 'acreline'),
+        ]],
         ['1.4.4', [
             __('Homepage hero motion toggles on Appearance → Acreline Settings → General; values stay saved when you leave the page', 'acreline'),
             __('Customize → Header stays in sync with Acreline Settings for Ken Burns and mobile search tilt', 'acreline'),

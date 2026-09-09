@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.5
+
+- **Header** — Primary menu, hamburger, and mobile drawer follow the active color scheme (`ks_accent` / `ks_paper` / `ks_ink`). Link, hover, and current colors stay readable on the header.
+
 ## 1.4.4
 
 - **Settings** — Homepage hero motion (Ken Burns and mobile search tilt) is on Appearance → Acreline Settings → General. Values stay saved when you leave and return. Customize → Header stays in sync.

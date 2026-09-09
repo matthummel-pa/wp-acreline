@@ -332,11 +332,23 @@ class Identity
         $line = self::mixHex($paper, $ink, 0.22);
         $inkSoft = self::mixHex($ink, $paper, 0.28);
         $inkFaint = self::mixHex($ink, $paper, 0.48);
-        $headerBg = sprintf('rgba(%d,%d,%d,.88)', min(255, $p[0] + 8), min(255, $p[1] + 8), min(255, $p[2] + 6));
-        $headerBgScrolled = sprintf('rgba(%d,%d,%d,.96)', min(255, $p[0] + 8), min(255, $p[1] + 8), min(255, $p[2] + 6));
+        $headerR = min(255, $p[0] + 8);
+        $headerG = min(255, $p[1] + 8);
+        $headerB = min(255, $p[2] + 6);
+        $headerSolid = sprintf('#%02x%02x%02x', $headerR, $headerG, $headerB);
+        $headerBg = sprintf('rgba(%d,%d,%d,.88)', $headerR, $headerG, $headerB);
+        $headerBgScrolled = sprintf('rgba(%d,%d,%d,.96)', $headerR, $headerG, $headerB);
         $inkWash = sprintf('rgba(%d,%d,%d,.04)', $i[0], $i[1], $i[2]);
 
-        return ':root{--accent:'.$accent.';--accent-dark:'.$dark.';--accent-soft:'.$soft.';--accent-glow:'.$glow.';--accent-wash:'.$wash.';--success:'.$accent.';--paper:'.$paper.';--paper-2:'.$paper2.';--paper-3:'.$paper3.';--line:'.$line.';--ink:'.$ink.';--ink-soft:'.$inkSoft.';--ink-faint:'.$inkFaint.';--field-text:'.$ink.';--header-bg:'.$headerBg.';--header-bg-scrolled:'.$headerBgScrolled.';--ink-wash:'.$inkWash.';}';
+        $palette = ['accent' => $accent, 'paper' => $paper, 'ink' => $ink];
+        $navHoverBg = $paper2;
+        $navCurrentBg = self::mixHex($headerSolid, $accent, 0.18);
+        $navText = self::readableOn($headerSolid, $accent, $palette);
+        $navHover = self::readableOn($navHoverBg, $ink, $palette);
+        $navCurrent = self::readableOn($navCurrentBg, $dark, $palette);
+        $navIcon = self::readableIconOn($headerSolid, $palette);
+
+        return ':root{--accent:'.$accent.';--accent-dark:'.$dark.';--accent-soft:'.$soft.';--accent-glow:'.$glow.';--accent-wash:'.$wash.';--success:'.$accent.';--paper:'.$paper.';--paper-2:'.$paper2.';--paper-3:'.$paper3.';--line:'.$line.';--ink:'.$ink.';--ink-soft:'.$inkSoft.';--ink-faint:'.$inkFaint.';--field-text:'.$ink.';--header-bg:'.$headerBg.';--header-bg-scrolled:'.$headerBgScrolled.';--ink-wash:'.$inkWash.';--nav-text:'.$navText.';--nav-hover:'.$navHover.';--nav-hover-bg:'.$navHoverBg.';--nav-current:'.$navCurrent.';--nav-current-bg:'.$navCurrentBg.';--nav-icon:'.$navIcon.';--nav-surface:'.$headerSolid.';--nav-drawer-bg:'.$paper.';}';
     }
 
     /**
@@ -399,11 +411,17 @@ class Identity
 
     /**
      * First theme color (preferred, then paper / ink / accent) that meets 4.5:1 on $bg.
+     *
+     * @param  array{accent?: string, paper?: string, ink?: string}|null  $palette
      */
-    public static function readableOn(string $bg, ?string $preferred = null): string
+    public static function readableOn(string $bg, ?string $preferred = null, ?array $palette = null): string
     {
+        $accent = sanitize_hex_color((string) ($palette['accent'] ?? '')) ?: self::accent();
+        $paper = sanitize_hex_color((string) ($palette['paper'] ?? '')) ?: self::paper();
+        $ink = sanitize_hex_color((string) ($palette['ink'] ?? '')) ?: self::ink();
+
         $candidates = [];
-        foreach ([$preferred, self::paper(), self::ink(), self::accent(), '#ffffff', '#141210'] as $hex) {
+        foreach ([$preferred, $paper, $ink, $accent, '#ffffff', '#141210'] as $hex) {
             if (! is_string($hex) || $hex === '') {
                 continue;
             }
@@ -432,15 +450,17 @@ class Identity
     /**
      * Accent on the bar when it contrasts; otherwise the readable text color.
      * Covers accent-on-paper (light bar) and paper-on-accent (accent bar).
+     *
+     * @param  array{accent?: string, paper?: string, ink?: string}|null  $palette
      */
-    public static function readableIconOn(string $bg): string
+    public static function readableIconOn(string $bg, ?array $palette = null): string
     {
-        $accent = self::accent();
+        $accent = sanitize_hex_color((string) ($palette['accent'] ?? '')) ?: self::accent();
         if (self::contrastRatio($bg, $accent) >= 3.0) {
             return $accent;
         }
 
-        return self::readableOn($bg);
+        return self::readableOn($bg, null, $palette);
     }
 
     private static function hexLuminance(string $hex): float
