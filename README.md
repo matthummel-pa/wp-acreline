@@ -44,18 +44,18 @@
 
 | | |
 |:---:|:---:|
-| [![Homepage](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/01-homepage.png)](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/01-homepage.png) | [![Listings](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/02-listings.png)](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/02-listings.png) |
+| [![Homepage](docs/marketplace/screenshots/01-homepage.png)](docs/marketplace/screenshots/01-homepage.png) | [![Listings](docs/marketplace/screenshots/02-listings.png)](docs/marketplace/screenshots/02-listings.png) |
 | **Homepage** — Hero search · Intent cards · Featured listings | **Listings** — Filter bar (type, price, acreage, area) · Grid view |
-| [![Listing detail](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/03-listing.png)](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/03-listing.png) | [![Listing detail scroll](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/09-listing-detail.png)](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/09-listing-detail.png) |
+| [![Listing detail](docs/marketplace/screenshots/03-listing.png)](docs/marketplace/screenshots/03-listing.png) | [![Listing detail scroll](docs/marketplace/screenshots/09-listing-detail.png)](docs/marketplace/screenshots/09-listing-detail.png) |
 | **Listing** — Photo, price, stats, sticky CTA | **Listing (scrolled)** — Mortgage calculator · Agent card · Book CTA |
-| [![Agents](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/04-agents.png)](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/04-agents.png) | [![Contact](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/05-contact.png)](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/05-contact.png) |
+| [![Agents](docs/marketplace/screenshots/04-agents.png)](docs/marketplace/screenshots/04-agents.png) | [![Contact](docs/marketplace/screenshots/05-contact.png)](docs/marketplace/screenshots/05-contact.png) |
 | **Agents** — Stats · Designations · Social links | **Contact** — Office info from Customizer + message form |
-| [![Areas](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/06-areas.png)](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/06-areas.png) | [![Book a Showing](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/07-book.png)](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/07-book.png) |
+| [![Areas](docs/marketplace/screenshots/06-areas.png)](docs/marketplace/screenshots/06-areas.png) | [![Book a Showing](docs/marketplace/screenshots/07-book.png)](docs/marketplace/screenshots/07-book.png) |
 | **Areas** — Sample market cards | **Book a Showing** — Request form · Agent selector |
 
 ### Top bar
 
-[![Top bar desktop](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/08-topbar-desktop.png)](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/08-topbar-desktop.png)
+[![Top bar desktop](docs/marketplace/screenshots/08-topbar-desktop.png)](docs/marketplace/screenshots/08-topbar-desktop.png)
 
 **Desktop top bar (1.4.0)** — Announcement badge · Phone · Social icons · CTA pill. Hidden on mobile; content surfaces in the slide-out nav drawer instead.
 
@@ -272,7 +272,7 @@ Upload your own logo under **Appearance → Customize → Site Identity**. Eight
 | [`BRAND.md`](BRAND.md) | Brand kit — palette, logo marks |
 | [`docs/marketplace/index.html`](docs/marketplace/index.html) | Buyer docs hub — open first |
 | [`docs/marketplace/buyer-guide.html`](docs/marketplace/buyer-guide.html) | Install, Customizer, top bar, fields, FAQ |
-| [`docs/marketplace/screenshots/`](https://raw.githubusercontent.com/matthummel-pa/wp-acreline/main/docs/marketplace/screenshots/) | 01–09 screenshots used on matthummel.com |
+| [`docs/marketplace/screenshots/`](docs/marketplace/screenshots/) | 01–09 screenshots used on matthummel.com |
 | [`public/images/brand/`](public/images/brand/) | House mark + lockup (SVG, GPLv2) |
 
 > **Developer documentation** (local setup, Vite build, PHP lint, template map, build scripts): see [`DEVELOPMENT.md`](DEVELOPMENT.md) and [`AGENTS.md`](AGENTS.md).
