@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.3.3
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -130,6 +130,17 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.4.0 =
+* Feature: Top bar (Appearance → Customize → Top Bar) — desktop-only slim bar above the header. Four color styles (Dark / Accent / Light / Custom), custom colors, announcement badge + message + link, CTA pill, show/hide for phone/email/address/hours, social icon toggles, dismissible mode.
+* Feature: Mobile nav fallback — all active top-bar items (announcement, contacts, social icons, CTA) surface at the foot of the mobile nav so no information is hidden on small screens.
+* Accessibility: focus trap and aria-live announcements on listing modal, saved drawer, and compare modal.
+* Accessibility: screen-reader announcer for save and compare actions; dynamic aria-label on each button.
+* Responsive: listing detail grid, compare table, compare bar, mortgage calc grid, and saved drawer all stack or scroll gracefully below 380–600 px.
+* Content: seed listings enriched with open house dates, virtual tour, utilities, HOA, school district, flood zone, outbuildings, and land acreage breakdowns.
+* Content: seed agents enriched with performance stats, social links, bio video, certifications, and awards.
+* Block: new acreline/agent-list block renders the agent grid on the Agents page.
+* Docs: README.md, readme.txt, CHANGELOG.md, themeforest-listing.md, and buyer-guide.html updated for 1.4.0.
 
 = 1.3.3 =
 * Admin: Theme Settings completely redesigned — tabbed UI (Listings, Agents, Bookings, Market, Labels, General), iOS-style toggle switches, sticky save bar, and unsaved-changes guard.
