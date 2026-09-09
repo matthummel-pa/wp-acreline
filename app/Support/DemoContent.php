@@ -502,22 +502,13 @@ class DemoContent
      */
     public static function buildPageBlocks(): void
     {
-        $slugs = ['home', 'listings', 'areas', 'guide', 'agents', 'contact', 'book', 'blog'];
-        foreach ($slugs as $slug) {
+        BlockMigration::forceRebuildAll();
+
+        foreach (['home', 'listings', 'areas', 'guide', 'agents', 'contact', 'book', 'blog'] as $slug) {
             $id = self::findId('page', $slug);
-            if ($id <= 0) {
-                continue;
+            if ($id > 0) {
+                BlockMigration::markMigrated($id);
             }
-            $post = get_post($id);
-            if (! $post instanceof \WP_Post) {
-                continue;
-            }
-            // Skip pages that already have block content (idempotent).
-            if (str_contains($post->post_content, '<!-- wp:')) {
-                continue;
-            }
-            BlockMigration::migrate($id);
-            BlockMigration::markMigrated($id);
         }
     }
 }

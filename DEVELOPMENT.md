@@ -12,7 +12,7 @@ This file covers everything you need to work on the theme **source** locally, bu
 | Templating | Blade |
 | CSS | Tailwind CSS v4 + `resources/css/keystone.css` design system |
 | Build tool | Vite 8 |
-| Block editor | Core Gutenberg — 21 custom dynamic blocks registered in `app/blocks.php` |
+| Block editor | Core Gutenberg — 28 custom dynamic blocks registered in `app/blocks.php` |
 | Block editor JS | `resources/js/blocks/index.js` (separate Vite entry) |
 | PHP style | Laravel Pint (`./vendor/bin/pint`) |
 | WordPress | 6.6+, PHP 8.3+, SQLite (local) or MySQL (host) |
@@ -163,7 +163,7 @@ wp ks seed --path="$HOME/wp" --allow-root
 
 Or from wp-admin: **Tools → Seed Acreline demo**. Idempotent — existing posts are updated, not duplicated.
 
-`DemoContent::seed()` now calls `buildPageBlocks()` after `attachHeroImages()`, which writes serialized Gutenberg block markup into `post_content` for every marketing page. Re-seeding preserves existing block content (it skips pages that already contain `<!-- wp:` markup).
+`DemoContent::seed()` calls `buildPageBlocks()` after `attachHeroImages()`, which force-rebuilds serialized Gutenberg block markup into `post_content` for every marketing page (`BlockMigration::forceRebuildAll()`). Re-seeding overwrites page stacks so they match the current sequences. Use `wp ks rebuild-blocks` or Tools → Migrate to Blocks → Force rebuild to refresh stacks without a full seed.
 
 ---
 

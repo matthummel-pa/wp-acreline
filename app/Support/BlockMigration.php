@@ -338,6 +338,7 @@ class BlockMigration
             self::block('acreline/page-hero', $heroAttrs),
             self::block('acreline/intro-section', $introAttrs),
             self::block('acreline/area-grid', $gridAttrs),
+            self::block('acreline/compare-table', []),
             self::block('acreline/how-we-work', $howAttrs),
             self::block('acreline/market-stats', []),
             self::block('acreline/reviews', [
@@ -386,6 +387,7 @@ class BlockMigration
             self::block('acreline/page-hero', $heroAttrs),
             self::block('acreline/tools-section', $toolsAttrs),
             self::block('acreline/how-it-works', $howAttrs),
+            self::block('acreline/checklist', []),
             self::block('acreline/faq-list', [
                 'title' => 'Common buyer questions',
                 'headClass' => 'left',
@@ -420,7 +422,7 @@ class BlockMigration
             'eyebrow' => 'The sample team',
             'title' => 'Specialists, not generalists',
             'text' => 'Each agent focuses on a specific type of rural property. Pick the specialist whose background matches what you are buying.',
-            'align' => 'left',
+            'headingAlign' => 'left',
         ];
 
         $reviewsAttrs = [
@@ -492,13 +494,14 @@ class BlockMigration
             self::block('acreline/page-hero', $heroAttrs),
             self::block('acreline/contact-form', $formAttrs),
             self::block('acreline/office-info', ['showMap' => true]),
+            self::block('acreline/trust-strip', []),
             self::block('acreline/intro-section', $introAttrs),
             self::block('acreline/how-we-work', $howAttrs),
             self::block('acreline/agent-list', [
                 'eyebrow' => 'Direct contacts',
                 'title' => 'Reach the right specialist',
                 'text' => 'Skip the contact form — call or email the agent who covers the area you are buying in.',
-                'align' => 'left',
+                'headingAlign' => 'left',
             ]),
             self::block('acreline/cta-band', $ctaAttrs),
         ];
@@ -536,6 +539,7 @@ class BlockMigration
                 'showSidePhoto' => true,
             ]),
             self::block('acreline/intro-section', $introAttrs),
+            self::block('acreline/prep-checklist', []),
             self::block('acreline/faq-list', [
                 'title' => 'Showing FAQ',
                 'headClass' => 'left',
@@ -556,6 +560,17 @@ class BlockMigration
 
         return [
             self::block('acreline/page-hero', $heroAttrs),
+            self::block('acreline/topic-cards', [
+                'eyebrow' => 'What these notes cover',
+                'title' => 'Short reads you can adapt for your market',
+                'text' => 'Showings, first-time checklists, and land vs home search — the three posts buyers actually ask for. Use them as local SEO starters, then link back to listings and the booking form.',
+            ]),
+            self::block('acreline/post-grid', []),
+            self::block('acreline/reviews', [
+                'eyebrow' => 'From the notes',
+                'title' => 'What readers take into a showing',
+                'text' => 'Sample quotes for layout — not reviews from a licensed brokerage.',
+            ]),
             self::block('acreline/cta-band', [
                 'title' => $m['cta_title'] ?? 'Ready to put these notes to use?',
                 'text' => $m['cta_text'] ?? 'Browse the current sample inventory or book a showing to walk a parcel with a specialist.',
