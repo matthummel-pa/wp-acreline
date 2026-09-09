@@ -6,6 +6,7 @@
 
 namespace App;
 
+use App\Support\BlockMigration;
 use App\Support\DemoContent;
 use App\Support\DemoPages;
 
@@ -80,7 +81,7 @@ if (defined('WP_CLI') && WP_CLI) {
     });
 
     \WP_CLI::add_command('ks rebuild-blocks', function (): void {
-        $result = \App\Support\BlockMigration::forceRebuildAll();
+        $result = BlockMigration::forceRebuildAll();
         foreach ($result['errors'] as $error) {
             \WP_CLI::warning($error);
         }
