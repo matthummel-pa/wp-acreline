@@ -37,6 +37,8 @@ Fonts are Customizer-driven (`app/customizer.php`, default Inter). Do not hard-c
 
 Booking preselect is `?listing_id=` (not `?listing=` — that 404s `/book/` against the listing CPT).
 
+Booking preselect is `?listing_id=` (not `?listing=` — that 404s `/book/` against the listing CPT).
+
 ## UI changes
 
 Verify the changed route in a browser (or local `wp server` at `:8080`) — homepage, listings, and any page that shares the same composer data. Check desktop and a ~390px viewport when layout changes.
