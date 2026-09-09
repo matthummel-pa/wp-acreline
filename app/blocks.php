@@ -2247,7 +2247,7 @@ function ks_booking_photo_html(): string
     ob_start();
     ?>
     <div class="booking-photo" aria-hidden="true">
-      <img src="<?php echo $themeUri; ?>/public/images/booking-side.jpg" width="800" height="1000" alt="" loading="lazy" decoding="async">
+      <img src="<?php echo $themeUri; ?>/public/images/booking-showing.jpg" width="800" height="1000" alt="" loading="lazy" decoding="async">
     </div>
     <?php
     return (string) ob_get_clean();
