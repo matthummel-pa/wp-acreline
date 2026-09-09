@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.2
+
+- **Home** — `acreline/home-hero` always paints a full-bleed rural farmhouse photo behind the copy and search form (theme default Unsplash still already used on the featured listing). Ink veil keeps white type readable; Gutenberg image picker still replaces it.
+- **Seed** — `wp ks seed` / Tools → Seed / force-rebuild write `imageUrl` on the home page so older installs without a hero attachment pick up the photo.
+
 ## 1.4.1
 
 - **Content** — Marketing pages seed the full Gutenberg stacks that `BlockMigration` already defined: agent-list + reviews on Agents; market-stats, reviews, and FAQ on Listings; how-it-works + reviews on Guide; richer Blog (topic cards, post grid, reviews).

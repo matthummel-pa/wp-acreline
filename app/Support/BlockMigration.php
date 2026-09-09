@@ -638,10 +638,17 @@ class BlockMigration
         $thumbId = get_post_thumbnail_id($postId);
         if ($thumbId) {
             $url = wp_get_attachment_image_url((int) $thumbId, 'full');
-
-            return is_string($url) ? $url : '';
+            if (is_string($url) && $url !== '') {
+                return $url;
+            }
         }
 
-        return '';
+        $slug = (string) get_post_field('post_name', $postId);
+        $bundled = HeroImage::bundledUrl($slug !== '' ? $slug : 'home');
+        if ($bundled !== '') {
+            return $bundled;
+        }
+
+        return HeroImage::url();
     }
 }

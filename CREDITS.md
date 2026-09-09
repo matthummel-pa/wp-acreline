@@ -33,6 +33,7 @@ No font files are vendored in the zip.
   - Docs pack: `docs/marketplace/assets/` (same files)
 - Header / footer house mark — original SVG language, GPLv2 or later
 - `screenshot.png` — capture of the concept homepage (1200×900); Unsplash photo is hotlinked on the live demo, not copied into `public/`
+- Homepage / listing default still — `HeroImage::DEFAULT` (`images.unsplash.com/photo-1570129477492-45c003edd2be`). Hotlinked at render and seed time; **do not** copy the binary into `public/`
 - Documentation screenshots (`docs/marketplace/screenshots/`) — captures of the seeded concept site for ThemeForest extra item images
 - Listing / blog Unsplash URLs — preview only. **Do not** bundle those binaries in `acreline.zip`
 

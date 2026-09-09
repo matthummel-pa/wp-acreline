@@ -24,9 +24,10 @@ class DemoContent
             if (! get_option(self::OPTION)) {
                 update_option(self::OPTION, '1');
             }
-            if (! get_option('ks_demo_heroes_v1')) {
+            if (! get_option('ks_demo_heroes_v1') || ! get_option('ks_demo_heroes_v2')) {
                 self::attachHeroImages();
                 update_option('ks_demo_heroes_v1', '1');
+                update_option('ks_demo_heroes_v2', '1');
             }
 
             return;
@@ -45,6 +46,7 @@ class DemoContent
             self::seed();
             update_option(self::OPTION, '1');
             update_option('ks_demo_heroes_v1', '1');
+            update_option('ks_demo_heroes_v2', '1');
         } finally {
             delete_option(self::LOCK);
         }
@@ -275,6 +277,7 @@ class DemoContent
     public static function attachHeroImages(): void
     {
         $pages = [
+            'home' => 'home',
             'listings' => 'listings',
             'areas' => 'areas',
             'guide' => 'guide',
@@ -316,6 +319,10 @@ class DemoContent
 
         $attachmentId = self::importBundledHero($key, $postId);
         if ($attachmentId <= 0) {
+            if ($setCopy && (string) Catalog::getMeta($postId, 'hero_image', '') === '') {
+                Catalog::updateMeta($postId, 'hero_image', HeroImage::url());
+            }
+
             return;
         }
         set_post_thumbnail($postId, $attachmentId);

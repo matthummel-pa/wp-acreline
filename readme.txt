@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -130,6 +130,10 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.4.2 =
+* Homepage hero now shows a full-bleed rural farmhouse photo (the theme’s existing default listing still) with the ink veil so white type stays readable. Buyers can replace it from the Home Hero block’s image picker.
+* Seed and Tools → Migrate to Blocks → Force rebuild write that image URL onto the home page so older installs pick it up.
 
 = 1.4.1 =
 * Marketing pages now seed the full Gutenberg stacks: agent list on Agents, stats/reviews/FAQ on Listings, how-it-works + checklist on Guide, and a richer Blog page.
