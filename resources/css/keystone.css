@@ -1685,25 +1685,27 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
   content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:1px;background:var(--accent);
 }
 
+/* From search to showing — stacked on phone, 2-up tablet, 4-up desktop.
+   Side-by-side photo+copy on narrow widths crushes copy; 4 columns at 800px
+   is too tight on iPad. Keep large grey step numbers (card-lock). */
 .step-grid{
   display:grid;gap:14px;grid-template-columns:1fr;counter-reset:step;
   list-style:none;margin:0;padding:0;
 }
-@media(min-width:800px){
+@media(min-width:640px){
+  .step-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+}
+@media(min-width:1100px){
   .step-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;}
 }
 .step{
   position:relative;
   counter-increment:step;
-  display:grid;
-  grid-template-columns:minmax(100px,30%) minmax(0,1fr);
-  grid-template-rows:auto auto auto;
-  column-gap:14px;
-  row-gap:2px;
-  align-items:start;
+  display:flex;
+  flex-direction:column;
   min-width:0;
   margin:0;
-  padding:12px;
+  padding:12px 12px 14px;
   background:#fff;
   border:1px solid var(--line);
   border-radius:var(--radius);
@@ -1718,8 +1720,7 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
 .step::before{
   content:counter(step, decimal-leading-zero);
   display:block;
-  grid-column:2;
-  grid-row:1;
+  order:2;
   font-family:var(--ff-display);
   font-size:clamp(2.15rem, 6.4vw, 2.75rem);
   font-weight:800;
@@ -1727,16 +1728,15 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
   line-height:.85;
   color:var(--ink-faint);
   font-variant-numeric:tabular-nums;
-  margin:0 0 2px;
+  margin:10px 0 6px;
 }
 .step-photo{
-  grid-column:1;
-  grid-row:1 / 3;
+  order:1;
+  width:100%;
+  max-width:100%;
+  min-width:0;
   margin:0;
-  aspect-ratio:4 / 3;
-  height:auto;
-  min-height:96px;
-  align-self:stretch;
+  aspect-ratio:16 / 10;
   border-radius:var(--radius-sm);
   overflow:hidden;
   background:var(--paper-2);
@@ -1749,24 +1749,22 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
 .step:nth-child(3) .step-photo img{object-position:center 28%;}
 .step:nth-child(4) .step-photo img{object-position:center 40%;}
 .step-copy{
-  grid-column:2;
-  grid-row:2;
+  order:3;
   min-width:0;
   display:grid;
   gap:6px;
   align-content:start;
 }
 .step h3{
-  font-size:1.08rem;margin:0;letter-spacing:-.02em;line-height:1.2;
+  font-size:1.12rem;margin:0;letter-spacing:-.02em;line-height:1.25;
 }
 .step p{
-  margin:0;color:var(--ink-soft);font-size:.86rem;line-height:1.5;
+  margin:0;color:var(--ink-soft);font-size:.9rem;line-height:1.55;
 }
 .step > .btn{
-  grid-column:1 / -1;
-  grid-row:3;
+  order:4;
   width:100%;
-  margin-top:6px;
+  margin-top:12px;
   white-space:normal;
 }
 /* Last step is the destination — same chrome, one louder action. */
@@ -1776,39 +1774,36 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
 .step:last-child:hover{
   box-shadow:var(--shadow-lg);
 }
-@media(min-width:800px){
+@media(min-width:640px){
   .step{
-    display:flex;
-    flex-direction:column;
-    padding:16px 16px 18px;
+    padding:14px 14px 16px;
     min-height:100%;
   }
-  .step-photo{
-    order:1;
-    width:100%;
-    aspect-ratio:3 / 2;
-    min-height:0;
-    margin:0 0 14px;
-  }
-  .step::before{
-    order:2;
-    font-size:3.15rem;
-    margin:0 0 10px;
-  }
   .step-copy{
-    order:3;
     display:flex;
     flex-direction:column;
     gap:8px;
     flex:1;
   }
+  .step > .btn{
+    margin-top:auto;
+    padding-top:12px;
+  }
+}
+@media(min-width:1100px){
+  .step{
+    padding:16px 16px 18px;
+  }
+  .step-photo{
+    aspect-ratio:3 / 2;
+    margin:0 0 4px;
+  }
+  .step::before{
+    font-size:3.15rem;
+    margin:10px 0 6px;
+  }
   .step h3{font-size:1.18rem;}
   .step p{font-size:.88rem;}
-  .step > .btn{
-    order:4;
-    width:100%;
-    margin-top:14px;
-  }
 }
 @media(prefers-reduced-motion:reduce){
   .step,.step:hover{
