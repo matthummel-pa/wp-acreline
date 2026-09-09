@@ -30,6 +30,10 @@ Live concept site: https://acreline.matthummel.com/
 
 CI **does not FTP** to the host. Do not assume a theme PR is live until the zip is installed.
 
+## License
+
+Acreline is **GPLv2 or later** so it can list on WordPress.org and ThemeForest. Sage / Acorn stay MIT (`LICENSE.md`). Do not switch this product to a proprietary license.
+
 ## CSS that must not disappear
 
 Card chrome is locked in `resources/css/card-lock.css` (imported last from `app.css`). White faces, thin `--shadow-rest`, no green bars, large grey tour-step numbers. Edit a component in `keystone.css` if you need layout — do not delete the lock, and do not re-open older PRs that rewrite the whole sheet from a pre-#23 `main`.

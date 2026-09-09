@@ -1,7 +1,7 @@
 {
   "name": "matthummel-pa/wp-acreline",
   "type": "wordpress-theme",
-  "license": "MIT",
+  "license": "GPL-2.0-or-later",
   "description": "Acreline — Sage 11 WordPress theme for rural listings, agents, and showing requests",
   "homepage": "https://github.com/matthummel-pa/wp-acreline",
   "authors": [
