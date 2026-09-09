@@ -117,6 +117,37 @@ input,select,textarea{font-family:inherit;font-size:1rem;}
 .section-head h2{font-size:clamp(1.5rem,3vw,1.875rem);}
 .section-head p{color:var(--ink-soft);font-size:1.05rem;}
 
+/* ── Block typography modifier classes ──────────────────────────────────────
+   Applied by ks_head_class() when a block's Typography panel is changed.
+   Heading size: affects h1–h4 inside the section-head.
+   Heading weight: affects h1–h4 font-weight.
+   Body size: affects paragraph font-size inside the section.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Heading size */
+.ks-head--size-sm h1,.ks-head--size-sm h2,.ks-head--size-sm h3,.ks-head--size-sm h4{
+  font-size:clamp(1.1rem,2vw,1.375rem) !important;
+}
+.ks-head--size-lg h1,.ks-head--size-lg h2,.ks-head--size-lg h3,.ks-head--size-lg h4{
+  font-size:clamp(1.75rem,3.5vw,2.5rem) !important;
+}
+.ks-head--size-xl h1,.ks-head--size-xl h2,.ks-head--size-xl h3,.ks-head--size-xl h4{
+  font-size:clamp(2rem,4.5vw,3.25rem) !important;
+}
+
+/* Heading weight */
+.ks-head--weight-medium h1,.ks-head--weight-medium h2,
+.ks-head--weight-medium h3,.ks-head--weight-medium h4{font-weight:500 !important;}
+.ks-head--weight-semibold h1,.ks-head--weight-semibold h2,
+.ks-head--weight-semibold h3,.ks-head--weight-semibold h4{font-weight:600 !important;}
+.ks-head--weight-bold h1,.ks-head--weight-bold h2,
+.ks-head--weight-bold h3,.ks-head--weight-bold h4{font-weight:700 !important;}
+
+/* Body size */
+.ks-body--sm p{font-size:.875rem !important;}
+.ks-body--lg p{font-size:1.125rem !important;}
+.ks-body--xl p{font-size:1.25rem !important;}
+
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
 .reveal.in-view{opacity:1;transform:none;}
 @media(prefers-reduced-motion:reduce){
