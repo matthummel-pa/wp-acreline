@@ -38,7 +38,7 @@
     @include('sections.footer')
     @include('partials.chat')
 
-    @if (! empty($identity['showDemoChrome']))
+    @if (! empty($identity['showStyleSwitcher']))
       @include('partials.style-switcher')
     @endif
 

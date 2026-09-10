@@ -141,6 +141,8 @@ Upload your office logo under Customize → Site Identity. Colors: Forest sample
 
 = 1.4.7 =
 * The homepage and marketing CTA band follows the active color scheme. Text and buttons stay readable.
+* The desktop top bar follows the active color scheme. Custom top-bar colors still override.
+* Appearance → Acreline Settings → General: set the site color style and hide the front-end color chip if you want.
 
 = 1.4.6 =
 * The mobile-menu contact, social, and new-listing panel follows the active color scheme. Text and icons stay readable.

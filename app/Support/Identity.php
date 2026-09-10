@@ -109,6 +109,18 @@ class Identity
         return (bool) get_theme_mod('ks_show_credit', true);
     }
 
+    /**
+     * Floating front-end color style switcher. On by default (concept demo).
+     */
+    public static function showStyleSwitcher(): bool
+    {
+        if (is_customize_preview()) {
+            return \App\ks_hero_value_on(get_theme_mod('ks_show_style_switcher', true));
+        }
+
+        return (string) \App\ks_setting('ks_show_style_switcher') !== '0';
+    }
+
     public static function creditText(): string
     {
         $text = trim((string) get_theme_mod('ks_credit_text', ''));
@@ -282,6 +294,7 @@ class Identity
             'ctaLabel' => self::ctaLabel(),
             'bookUrl' => self::bookUrl(),
             'showDemoChrome' => self::showDemoChrome(),
+            'showStyleSwitcher' => self::showStyleSwitcher(),
             'showCredit' => self::showCredit(),
             'creditText' => self::creditText(),
             'creditUrl' => self::creditUrl(),

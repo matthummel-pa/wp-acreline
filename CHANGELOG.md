@@ -3,6 +3,8 @@
 ## 1.4.7
 
 - **Home** — The marketing CTA band follows the active color scheme (`ks_accent` / `ks_paper` / `ks_ink`). Text and buttons stay readable on that surface.
+- **Header** — The desktop top bar follows the active color scheme. Custom top-bar colors still override.
+- **Settings** — Appearance → Acreline Settings → General: pick the site color style (same eight styles as Customize → Colors) and optionally hide the front-end color chip. On by default for the concept demo.
 
 ## 1.4.6
 

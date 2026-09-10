@@ -198,34 +198,8 @@ input,select,textarea{font-family:inherit;font-size:1rem;}
   line-height:1;
 }
 
-/* Style presets — theme tokens; inline --tb-* from Identity win when present */
-.top-bar--dark{
-  --tb-bg:var(--ink);
-  --tb-text:var(--paper);
-  --tb-text-strong:var(--paper);
-  --tb-line:color-mix(in srgb, var(--paper) 18%, var(--ink));
-  --tb-badge-bg:color-mix(in srgb, var(--paper) 16%, var(--ink));
-  --tb-cta-bg:color-mix(in srgb, var(--paper) 14%, var(--ink));
-  --tb-cta-hover:color-mix(in srgb, var(--paper) 24%, var(--ink));
-}
-.top-bar--accent{
-  --tb-bg:var(--accent);
-  --tb-text:var(--paper);
-  --tb-text-strong:var(--paper);
-  --tb-line:color-mix(in srgb, var(--paper) 22%, var(--accent));
-  --tb-badge-bg:color-mix(in srgb, var(--paper) 18%, var(--accent));
-  --tb-cta-bg:color-mix(in srgb, var(--paper) 16%, var(--accent));
-  --tb-cta-hover:color-mix(in srgb, var(--paper) 28%, var(--accent));
-}
-.top-bar--light{
-  --tb-bg:var(--paper-2);
-  --tb-text:var(--ink-soft);
-  --tb-text-strong:var(--ink);
-  --tb-line:var(--line);
-  --tb-badge-bg:var(--accent-wash);
-  --tb-cta-bg:var(--accent-wash);
-  --tb-cta-hover:var(--accent-soft);
-}
+/* Dark / Accent / Light / Custom resolve in Identity::topBarTokens() on :root.
+   Do not re-set --tb-* here — element or class hex would freeze the bar past the style switcher. */
 
 /* Show on desktop only */
 @media(min-width:900px){
