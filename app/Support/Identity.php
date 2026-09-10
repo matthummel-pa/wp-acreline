@@ -472,8 +472,10 @@ class Identity
             $muted = $text;
         }
 
+        // The lighter stop is mixed with accent, so it always looks close.
+        // Only invert the fill when accent disappears into the darker stop (e.g. Charcoal).
         $btnBg = $accent;
-        if (self::contrastRatio($from, $accent) < 3.0 && self::contrastRatio($to, $accent) < 3.0) {
+        if (self::contrastRatio($from, $accent) < 1.6) {
             $btnBg = $paper;
         }
         $btnPreferred = ($btnBg === $paper) ? $ink : $paper;
