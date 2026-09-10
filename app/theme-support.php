@@ -77,7 +77,7 @@ function render_support_page(): void
                   'desc' => __('Each agent is an Agent CPT with a photo, bio, stats (homes sold, volume, DOM), certifications, social links, calendar URL, and team assignment.', 'acreline'),
                   'link' => admin_url('edit.php?post_type=agent'), 'link_text' => __('View agents', 'acreline')],
               ['num' => '4', 'title' => __('Customise Identity', 'acreline'),
-                  'desc' => __('Phone, email, address, hours, social handles, and color scheme live under Appearance → Customize → Identity. These drive the header, footer, and booking form.', 'acreline'),
+                  'desc' => __('Phone, email, address, hours, and social handles live under Appearance → Customize → Identity. Color style is Customize → Colors or Appearance → Acreline Settings → General.', 'acreline'),
                   'link' => admin_url('customize.php?autofocus[section]=ks_identity'), 'link_text' => __('Open Identity', 'acreline')],
               ['num' => '5', 'title' => __('Adjust feature toggles', 'acreline'),
                   'desc' => __('Use Theme Settings (Appearance → Acreline Settings) to turn individual sections on or off — mortgage calculator, open house banners, agent stats, booking fields, and more.', 'acreline'),
@@ -217,6 +217,10 @@ function render_support_page(): void
             __('No. It runs entirely in the browser using standard amortization math. No third-party service, no API key, no tracking.', 'acreline')],
         [__('How do I update the theme on a live host?', 'acreline'),
             __('The GitHub CI workflow publishes a ready-to-install zip on the "theme-latest" release. Enter your GitHub token in Customizer → GitHub Token, then click Update Theme.', 'acreline')],
+        [__('How do I change the site colors?', 'acreline'),
+            __('Appearance → Acreline Settings → General, or Customize → Colors. Named styles (Forest, Harvest, and the rest) set accent, paper, and ink together. You can still tweak the three colors after you pick a style.', 'acreline')],
+        [__('How do I hide the front-end color chip?', 'acreline'),
+            __('Appearance → Acreline Settings → General, or Customize → Colors → uncheck “Show front-end color style switcher.” On by default for the concept demo. Both screens keep the same saved value.', 'acreline')],
         [__('How do I turn off the homepage hero animation?', 'acreline'),
             __('Appearance → Acreline Settings → General, or Customize → Header → uncheck “Animate homepage hero image.” The photo stays; it no longer pans. Visitors who prefer reduced motion already see a still cover. Both screens keep the same saved value.', 'acreline')],
         [__('How do I turn on listing-search tilt on phones?', 'acreline'),
@@ -241,6 +245,11 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.4.7', [
+            __('The marketing CTA band follows the active color scheme', 'acreline'),
+            __('The desktop top bar follows the active color scheme; custom top-bar colors still override', 'acreline'),
+            __('Appearance → Acreline Settings → General: set the color style and hide the front-end color chip', 'acreline'),
+        ]],
         ['1.4.6', [
             __('The mobile-menu contact, social, and new-listing panel follows the active color scheme', 'acreline'),
             __('Text and icons on that panel stay readable when the accent is pale', 'acreline'),

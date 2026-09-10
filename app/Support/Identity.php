@@ -109,6 +109,18 @@ class Identity
         return (bool) get_theme_mod('ks_show_credit', true);
     }
 
+    /**
+     * Floating front-end color style switcher. On by default (concept demo).
+     */
+    public static function showStyleSwitcher(): bool
+    {
+        if (is_customize_preview()) {
+            return \App\ks_hero_value_on(get_theme_mod('ks_show_style_switcher', true));
+        }
+
+        return (string) \App\ks_setting('ks_show_style_switcher') !== '0';
+    }
+
     public static function creditText(): string
     {
         $text = trim((string) get_theme_mod('ks_credit_text', ''));
@@ -282,6 +294,7 @@ class Identity
             'ctaLabel' => self::ctaLabel(),
             'bookUrl' => self::bookUrl(),
             'showDemoChrome' => self::showDemoChrome(),
+            'showStyleSwitcher' => self::showStyleSwitcher(),
             'showCredit' => self::showCredit(),
             'creditText' => self::creditText(),
             'creditUrl' => self::creditUrl(),
@@ -345,8 +358,9 @@ class Identity
         $navCurrent = self::readableOn($navCurrentBg, $dark, $palette);
         $navIcon = self::readableIconOn($headerSolid, $palette);
         $tb = self::topBarTokens(self::topBarStyle(), $accent, $paper, $ink);
+        $cta = self::ctaBandCss($accent, $paper, $ink, $dark);
 
-        return ':root{--accent:'.$accent.';--accent-dark:'.$dark.';--accent-soft:'.$soft.';--accent-glow:'.$glow.';--accent-wash:'.$wash.';--success:'.$accent.';--paper:'.$paper.';--paper-2:'.$paper2.';--paper-3:'.$paper3.';--line:'.$line.';--ink:'.$ink.';--ink-soft:'.$inkSoft.';--ink-faint:'.$inkFaint.';--field-text:'.$ink.';--header-bg:'.$headerBg.';--header-bg-scrolled:'.$headerBgScrolled.';--ink-wash:'.$inkWash.';--nav-text:'.$navText.';--nav-hover:'.$navHover.';--nav-hover-bg:'.$navHoverBg.';--nav-current:'.$navCurrent.';--nav-current-bg:'.$navCurrentBg.';--nav-icon:'.$navIcon.';--nav-surface:'.$headerSolid.';--nav-drawer-bg:'.$paper.';'.$tb['css'].';}';
+        return ':root{--accent:'.$accent.';--accent-dark:'.$dark.';--accent-soft:'.$soft.';--accent-glow:'.$glow.';--accent-wash:'.$wash.';--success:'.$accent.';--paper:'.$paper.';--paper-2:'.$paper2.';--paper-3:'.$paper3.';--line:'.$line.';--ink:'.$ink.';--ink-soft:'.$inkSoft.';--ink-faint:'.$inkFaint.';--field-text:'.$ink.';--header-bg:'.$headerBg.';--header-bg-scrolled:'.$headerBgScrolled.';--ink-wash:'.$inkWash.';--nav-text:'.$navText.';--nav-hover:'.$navHover.';--nav-hover-bg:'.$navHoverBg.';--nav-current:'.$navCurrent.';--nav-current-bg:'.$navCurrentBg.';--nav-icon:'.$navIcon.';--nav-surface:'.$headerSolid.';--nav-drawer-bg:'.$paper.';'.$tb['css'].';'.$cta.';}';
     }
 
     /**
@@ -418,6 +432,94 @@ class Identity
         return [
             'bg' => $bg,
             'text' => $textStrong,
+            'css' => $css,
+        ];
+    }
+
+    /**
+     * Marketing CTA band tokens (default gradient, accent fill, ink fill).
+     * Text and buttons use readableOn() so pale / custom accents stay AA.
+     */
+    public static function ctaBandCss(string $accent, string $paper, string $ink, string $dark): string
+    {
+        $accent = sanitize_hex_color($accent) ?: '#1f6b4a';
+        $paper = sanitize_hex_color($paper) ?: '#f5f4f1';
+        $ink = sanitize_hex_color($ink) ?: '#141210';
+        $dark = sanitize_hex_color($dark) ?: self::shadeHex($accent, 0.82);
+        $palette = ['accent' => $accent, 'paper' => $paper, 'ink' => $ink];
+        $a = self::hexToRgb($accent);
+        $glow = sprintf('rgba(%d,%d,%d,.45)', $a[0], $a[1], $a[2]);
+        $glowSoft = sprintf('rgba(%d,%d,%d,.28)', $a[0], $a[1], $a[2]);
+
+        $default = self::ctaSurfaceVars('', $ink, self::mixHex($ink, $accent, 0.48), $glow, $accent, $paper, $ink, $dark, $palette);
+        $accentSurf = self::ctaSurfaceVars('accent', $accent, $accent, $glowSoft, $accent, $paper, $ink, $dark, $palette);
+        $darkSurf = self::ctaSurfaceVars('dark', $ink, $ink, $glowSoft, $accent, $paper, $ink, $dark, $palette);
+
+        return $default['css'].';'.$accentSurf['css'].';'.$darkSurf['css'];
+    }
+
+    /**
+     * Contrast-safe colors for one CTA surface. Empty $prefix → --cta-*; else --cta-{prefix}-*.
+     *
+     * @param  array{accent: string, paper: string, ink: string}  $palette
+     * @return array{from: string, to: string, text: string, css: string}
+     */
+    private static function ctaSurfaceVars(
+        string $prefix,
+        string $from,
+        string $to,
+        string $glow,
+        string $accent,
+        string $paper,
+        string $ink,
+        string $dark,
+        array $palette,
+    ): array {
+        $text = self::readableOn($from, $paper, $palette);
+        if (self::contrastRatio($to, $text) < 4.5) {
+            $text = self::readableOn($to, $text, $palette);
+        }
+
+        $muted = self::mixHex($text, $from, 0.28);
+        if (self::contrastRatio($from, $muted) < 4.5 || self::contrastRatio($to, $muted) < 4.5) {
+            $muted = $text;
+        }
+
+        // The lighter stop is mixed with accent, so it always looks close.
+        // Only invert the fill when accent disappears into the darker stop (e.g. Charcoal).
+        $btnBg = $accent;
+        if (self::contrastRatio($from, $accent) < 1.6) {
+            $btnBg = $paper;
+        }
+        $btnPreferred = ($btnBg === $paper) ? $ink : $paper;
+        $btnText = self::readableOn($btnBg, $btnPreferred, $palette);
+        $btnHover = ($btnBg === $accent) ? $dark : self::mixHex($btnBg, $ink, 0.14);
+        $btnHoverText = self::readableOn($btnHover, $btnText, $palette);
+
+        $outline = $text;
+        $outlineBorder = self::mixHex($text, $from, 0.35);
+        $outlineHoverBg = $text;
+        $outlineHoverText = self::readableOn($outlineHoverBg, $ink, $palette);
+
+        $p = $prefix === '' ? '--cta-' : '--cta-'.$prefix.'-';
+        $css = $p.'from:'.$from
+            .';'.$p.'to:'.$to
+            .';'.$p.'glow:'.$glow
+            .';'.$p.'text:'.$text
+            .';'.$p.'muted:'.$muted
+            .';'.$p.'btn-bg:'.$btnBg
+            .';'.$p.'btn-text:'.$btnText
+            .';'.$p.'btn-hover:'.$btnHover
+            .';'.$p.'btn-hover-text:'.$btnHoverText
+            .';'.$p.'outline:'.$outline
+            .';'.$p.'outline-border:'.$outlineBorder
+            .';'.$p.'outline-hover-bg:'.$outlineHoverBg
+            .';'.$p.'outline-hover-text:'.$outlineHoverText;
+
+        return [
+            'from' => $from,
+            'to' => $to,
+            'text' => $text,
             'css' => $css,
         ];
     }

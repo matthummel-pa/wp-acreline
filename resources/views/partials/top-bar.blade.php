@@ -21,11 +21,9 @@
   $clockSvg   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>';
   $closeSvg   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>';
   $arrowSvg   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9,18 15,12 9,6"/></svg>';
-
-  $styleAttr = ! empty($tb['cssVars']) ? 'style="'.esc_attr($tb['cssVars']).'"' : '';
 @endphp
 
-<div class="top-bar top-bar--{{ $tb['style'] }}" id="topBar" role="complementary" aria-label="{{ esc_attr__('Site-wide announcement and contact bar', 'acreline') }}" {!! $styleAttr !!}>
+<div class="top-bar top-bar--{{ $tb['style'] }}" id="topBar" role="complementary" aria-label="{{ esc_attr__('Site-wide announcement and contact bar', 'acreline') }}">
   <div class="top-bar-inner">
 
     {{-- ── Left: social icons ──────────────────────────────────────────────── --}}

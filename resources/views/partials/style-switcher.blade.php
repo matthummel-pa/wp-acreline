@@ -22,6 +22,6 @@
         </button>
       @endforeach
     </div>
-    <p class="style-switcher-hint">{{ __('Buyers set a style under Customize → Colors.', 'acreline') }}</p>
+    <p class="style-switcher-hint">{{ __('Set a style under Customize → Colors or Appearance → Acreline Settings.', 'acreline') }}</p>
   </div>
 </aside>

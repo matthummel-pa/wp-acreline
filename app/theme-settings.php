@@ -10,6 +10,9 @@
 
 namespace App;
 
+use App\Support\ColorSchemes;
+use App\Support\Identity;
+
 // ─── Option key & defaults ────────────────────────────────────────────────────
 
 define('KS_SETTINGS_OPTION', 'acreline_settings');
@@ -72,6 +75,11 @@ function ks_default_settings(): array
         'show_concept_banner' => '1',
         'ks_hero_ken_burns' => '1',
         'ks_hero_search_tilt' => '0',
+        'ks_show_style_switcher' => '1',
+        'ks_color_scheme' => ColorSchemes::defaultKey(),
+        'ks_accent' => '#1f6b4a',
+        'ks_paper' => '#f5f4f1',
+        'ks_ink' => '#141210',
         // ── Market snapshot ──────────────────────────────────────────────────
         'market_show_snapshot' => '1',
         'market_median_price' => '',
@@ -99,8 +107,15 @@ function ks_setting(string $key, mixed $fallback = ''): mixed
         return $all[$key];
     }
 
-    if ($key === 'ks_hero_ken_burns' || $key === 'ks_hero_search_tilt') {
+    if ($key === 'ks_hero_ken_burns' || $key === 'ks_hero_search_tilt' || $key === 'ks_show_style_switcher') {
         $fromMod = ks_hero_theme_mod_as_setting($key);
+        if ($fromMod !== null) {
+            return $fromMod;
+        }
+    }
+
+    if (in_array($key, ['ks_color_scheme', 'ks_accent', 'ks_paper', 'ks_ink'], true)) {
+        $fromMod = ks_color_theme_mod_as_setting($key);
         if ($fromMod !== null) {
             return $fromMod;
         }
@@ -181,6 +196,11 @@ function ks_settings_tab_keys(): array
             'show_concept_banner',
             'ks_hero_ken_burns',
             'ks_hero_search_tilt',
+            'ks_show_style_switcher',
+            'ks_color_scheme',
+            'ks_accent',
+            'ks_paper',
+            'ks_ink',
         ],
     ];
 }
@@ -197,6 +217,23 @@ function ks_hero_theme_mod_as_setting(string $key): ?string
     }
 
     return ks_hero_value_on($mods[$key]) ? '1' : '0';
+}
+
+function ks_color_theme_mod_as_setting(string $key): ?string
+{
+    $mods = get_theme_mods();
+    if (! is_array($mods) || ! array_key_exists($key, $mods)) {
+        return null;
+    }
+
+    $raw = $mods[$key];
+    if ($key === 'ks_color_scheme') {
+        return ColorSchemes::sanitizeKey((string) $raw);
+    }
+
+    $hex = sanitize_hex_color((string) $raw);
+
+    return $hex ?: null;
 }
 
 function ks_hero_value_on(mixed $value): bool
@@ -218,6 +255,20 @@ function ks_sync_hero_theme_mods(array $settings): void
     set_theme_mod('ks_hero_search_tilt', (string) ($settings['ks_hero_search_tilt'] ?? '0') !== '0');
 }
 
+/**
+ * @param  array<string, mixed>  $settings
+ */
+function ks_sync_color_theme_mods(array $settings): void
+{
+    $key = ColorSchemes::sanitizeKey((string) ($settings['ks_color_scheme'] ?? ColorSchemes::defaultKey()));
+    $scheme = ColorSchemes::all()[$key];
+    set_theme_mod('ks_color_scheme', $key);
+    set_theme_mod('ks_accent', sanitize_hex_color((string) ($settings['ks_accent'] ?? '')) ?: $scheme['accent']);
+    set_theme_mod('ks_paper', sanitize_hex_color((string) ($settings['ks_paper'] ?? '')) ?: $scheme['paper']);
+    set_theme_mod('ks_ink', sanitize_hex_color((string) ($settings['ks_ink'] ?? '')) ?: $scheme['ink']);
+    set_theme_mod('ks_show_style_switcher', (string) ($settings['ks_show_style_switcher'] ?? '1') !== '0');
+}
+
 function ks_sync_hero_settings_from_theme_mods(): void
 {
     $all = get_option(KS_SETTINGS_OPTION, []);
@@ -226,6 +277,11 @@ function ks_sync_hero_settings_from_theme_mods(): void
     }
     $all['ks_hero_ken_burns'] = ks_hero_value_on(get_theme_mod('ks_hero_ken_burns', true)) ? '1' : '0';
     $all['ks_hero_search_tilt'] = ks_hero_value_on(get_theme_mod('ks_hero_search_tilt', false)) ? '1' : '0';
+    $all['ks_show_style_switcher'] = ks_hero_value_on(get_theme_mod('ks_show_style_switcher', true)) ? '1' : '0';
+    $all['ks_color_scheme'] = ColorSchemes::currentKey();
+    $all['ks_accent'] = Identity::accent();
+    $all['ks_paper'] = Identity::paper();
+    $all['ks_ink'] = Identity::ink();
     update_option(KS_SETTINGS_OPTION, $all);
 }
 
@@ -290,6 +346,10 @@ add_action('admin_post_ks_save_settings', function () {
             $clean[$key] = (string) round((float) $posted, 2);
         } elseif ($key === 'listing_grid_cols') {
             $clean[$key] = in_array((string) $posted, ['2', '3', '4'], true) ? (string) $posted : '3';
+        } elseif ($key === 'ks_color_scheme') {
+            $clean[$key] = ColorSchemes::sanitizeKey($posted);
+        } elseif (in_array($key, ['ks_accent', 'ks_paper', 'ks_ink'], true)) {
+            $clean[$key] = sanitize_hex_color((string) $posted) ?: (string) $default;
         } else {
             $clean[$key] = sanitize_text_field((string) $posted);
         }
@@ -297,6 +357,9 @@ add_action('admin_post_ks_save_settings', function () {
 
     update_option(KS_SETTINGS_OPTION, $clean);
     ks_sync_hero_theme_mods($clean);
+    if ($tab === 'general') {
+        ks_sync_color_theme_mods($clean);
+    }
 
     wp_safe_redirect(add_query_arg([
         'page' => 'acreline-settings',
@@ -612,6 +675,17 @@ function render_settings_page(): void
         <div class="ks-panels">
           <div class="ks-card">
             <div class="ks-card-head">
+              <span class="ks-card-icon" aria-hidden="true">🎨</span>
+              <div>
+                <h2 class="ks-card-title"><?php esc_html_e('Color style', 'acreline'); ?></h2>
+                <p class="ks-card-desc"><?php esc_html_e('Same styles as Customize → Colors. Pick a named style, then tweak accent, paper, or ink. Saving here updates the public site.', 'acreline'); ?></p>
+              </div>
+            </div>
+            <?php ks_render_color_scheme_fields(); ?>
+          </div>
+
+          <div class="ks-card">
+            <div class="ks-card-head">
               <span class="ks-card-icon" aria-hidden="true">🎬</span>
               <div>
                 <h2 class="ks-card-title"><?php esc_html_e('Homepage hero', 'acreline'); ?></h2>
@@ -841,6 +915,32 @@ function ks_settings_css(): string
 .ks-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 @media (max-width: 640px) { .ks-field-row { grid-template-columns: 1fr; } }
 .ks-field label { display: block; font-size: .82rem; font-weight: 600; color: #555; margin-bottom: 5px; }
+.ks-schemes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: 10px;
+  padding: 16px 24px 8px;
+}
+.ks-scheme {
+  position: relative;
+  display: flex; flex-direction: column; gap: 8px;
+  border: 2px solid #e5e5e5; border-radius: 10px;
+  padding: 10px 10px 12px; background: #fff;
+  cursor: pointer;
+}
+.ks-scheme input { position: absolute; opacity: 0; pointer-events: none; }
+.ks-scheme:has(input:checked),
+.ks-scheme:has(input:focus-visible) { border-color: #155539; box-shadow: 0 0 0 1px #155539; }
+.ks-scheme-swatch { display: flex; height: 28px; border-radius: 6px; overflow: hidden; border: 1px solid #eee; }
+.ks-scheme-swatch span { flex: 1; }
+.ks-scheme strong { font-size: .8rem; font-weight: 650; color: #222; }
+.ks-color-row { display: flex; align-items: center; gap: 8px; }
+.ks-color-row input[type="color"] {
+  width: 44px; height: 36px; padding: 0; border: 1px solid #ddd;
+  border-radius: 7px; background: #fff; cursor: pointer;
+}
+.ks-color-hex { width: 7.5rem !important; font-family: ui-monospace, monospace; }
+
 .ks-field input[type="text"],
 .ks-field input[type="number"] {
   width: 100%; border: 1px solid #ddd; border-radius: 7px;
@@ -897,7 +997,9 @@ function ks_settings_css(): string
 
 function ks_settings_js(): string
 {
-    return '
+    $schemes = wp_json_encode(ColorSchemes::all());
+
+    return 'var ACRELINE_SETTINGS_SCHEMES = '.$schemes.';
 jQuery(function($){
   /* Auto-dismiss saved toast */
   var toast = document.getElementById("ksSavedToast");
@@ -908,11 +1010,79 @@ jQuery(function($){
   $("#ksSettingsForm").on("change input","input,select",function(){ dirty=true; $("#ksSaveStatus").text("Unsaved changes"); });
   $("#ksSettingsForm").on("submit",function(){ dirty=false; });
   $(window).on("beforeunload",function(e){ if(dirty){ e.preventDefault(); return "You have unsaved changes."; } });
+
+  function fillHex($color){
+    $color.closest(".ks-color-row").find(".ks-color-hex").val($color.val());
+  }
+  $(".ks-field--color input[type=color]").each(function(){ fillHex($(this)); });
+  $("#ksSettingsForm").on("input", ".ks-field--color input[type=color]", function(){ fillHex($(this)); });
+  $("#ksSettingsForm").on("input", ".ks-color-hex", function(){
+    var v = String(this.value || "");
+    if(/^#[0-9A-Fa-f]{6}$/.test(v)){
+      $(this).closest(".ks-color-row").find("input[type=color]").val(v);
+    }
+  });
+  $("#ksSettingsForm").on("change", "input[name=\'ks[ks_color_scheme]\']", function(){
+    var s = ACRELINE_SETTINGS_SCHEMES[this.value];
+    if(!s) return;
+    $("#ks_ks_accent").val(s.accent).trigger("input");
+    $("#ks_ks_paper").val(s.paper).trigger("input");
+    $("#ks_ks_ink").val(s.ink).trigger("input");
+  });
 });
 ';
 }
 
 // ─── Render helpers (internal) ────────────────────────────────────────────────
+
+function ks_render_color_scheme_fields(): void
+{
+    $current = ColorSchemes::sanitizeKey((string) ks_setting('ks_color_scheme', ColorSchemes::defaultKey()));
+    echo '<div class="ks-schemes" role="radiogroup" aria-label="'.esc_attr__('Color styles', 'acreline').'">';
+    foreach (ColorSchemes::all() as $key => $scheme) {
+        $id = 'ks_scheme_'.esc_attr($key);
+        echo '<label class="ks-scheme" for="'.esc_attr($id).'">';
+        printf(
+            '<input type="radio" id="%1$s" name="ks[ks_color_scheme]" value="%2$s"%3$s>',
+            esc_attr($id),
+            esc_attr($key),
+            checked($key, $current, false)
+        );
+        echo '<span class="ks-scheme-swatch" aria-hidden="true">';
+        echo '<span style="background:'.esc_attr($scheme['accent']).'"></span>';
+        echo '<span style="background:'.esc_attr($scheme['paper']).'"></span>';
+        echo '<span style="background:'.esc_attr($scheme['ink']).'"></span>';
+        echo '</span>';
+        echo '<strong>'.esc_html($scheme['label']).'</strong>';
+        echo '</label>';
+    }
+    echo '</div>';
+    echo '<div class="ks-fields">';
+    echo '<div class="ks-field-row">';
+    ks_color('ks_accent', __('Accent', 'acreline'));
+    ks_color('ks_paper', __('Paper', 'acreline'));
+    echo '</div>';
+    echo '<div class="ks-field-row">';
+    ks_color('ks_ink', __('Ink', 'acreline'));
+    echo '<div></div>';
+    echo '</div>';
+    ks_tog('ks_show_style_switcher', __('Show front-end color style switcher', 'acreline'));
+    echo '<p class="ks-field-hint">'.esc_html__('The floating “Colors” chip. On by default for the concept demo. Turn off on a buyer site. Same control as Customize → Colors.', 'acreline').'</p>';
+    echo '</div>';
+}
+
+function ks_color(string $key, string $label): void
+{
+    $value = sanitize_hex_color((string) ks_setting($key)) ?: '#1f6b4a';
+    $id = 'ks_'.esc_attr($key);
+    echo '<div class="ks-field ks-field--color">';
+    echo '<label for="'.esc_attr($id).'">'.esc_html($label).'</label>';
+    echo '<div class="ks-color-row">';
+    echo '<input type="color" id="'.esc_attr($id).'" name="ks['.esc_attr($key).']" value="'.esc_attr($value).'">';
+    echo '<input type="text" class="ks-color-hex" value="'.esc_attr($value).'" maxlength="7" spellcheck="false" aria-label="'.esc_attr($label.' hex').'">';
+    echo '</div>';
+    echo '</div>';
+}
 
 /** Render a visual toggle switch row. */
 function ks_tog(string $key, string $label): void

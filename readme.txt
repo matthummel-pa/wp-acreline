@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -138,6 +138,11 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.4.7 =
+* The homepage and marketing CTA band follows the active color scheme. Text and buttons stay readable.
+* The desktop top bar follows the active color scheme. Custom top-bar colors still override.
+* Appearance → Acreline Settings → General: set the site color style and hide the front-end color chip if you want.
 
 = 1.4.6 =
 * The mobile-menu contact, social, and new-listing panel follows the active color scheme. Text and icons stay readable.

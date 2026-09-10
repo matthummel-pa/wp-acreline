@@ -134,6 +134,19 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
         ]));
     }
 
+    $wp_customize->add_setting('ks_show_style_switcher', [
+        'default' => (string) ks_setting('ks_show_style_switcher') !== '0',
+        'sanitize_callback' => __NAMESPACE__.'\\sanitize_checkbox',
+        'transport' => 'refresh',
+        'type' => 'theme_mod',
+    ]);
+    $wp_customize->add_control('ks_show_style_switcher', [
+        'label' => __('Show front-end color style switcher', 'acreline'),
+        'description' => __('The floating “Colors” chip on the public site. On by default for the concept demo. Turn off for a buyer site. Same control as Appearance → Acreline Settings → General.', 'acreline'),
+        'section' => 'ks_colors',
+        'type' => 'checkbox',
+    ]);
+
     $wp_customize->add_section('ks_header', [
         'title' => __('Header', 'acreline'),
         'description' => __('Sticky bar is the default. Compact shortens the bar on listing-heavy pages. Homepage hero motion (photo pan and optional phone tilt) lives here too.', 'acreline'),
@@ -221,7 +234,7 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
     // ── Top Bar ──────────────────────────────────────────────────────────────
     $wp_customize->add_section('ks_top_bar', [
         'title' => __('Top Bar', 'acreline'),
-        'description' => __('A slim bar above the header. Toggle items on/off; style and colors apply when "Custom" is chosen.', 'acreline'),
+        'description' => __('A slim bar above the header. Dark, Accent, and Light follow the active color style (Customize → Colors). Custom background and text stay until you change them.', 'acreline'),
         'priority' => 38,
     ]);
 

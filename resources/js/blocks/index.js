@@ -882,7 +882,7 @@ registerBlockType('acreline/cta-band', {
                         value: a.bandStyle || 'light',
                         options: [
                             { value: 'light',  label: __('Light (default)', 'acreline') },
-                            { value: 'accent', label: __('Accent (forest)', 'acreline') },
+                            { value: 'accent', label: __('Accent', 'acreline') },
                             { value: 'dark',   label: __('Dark (ink)',       'acreline') },
                         ],
                         onChange: (v) => s({ bandStyle: v }),
