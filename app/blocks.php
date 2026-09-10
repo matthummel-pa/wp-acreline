@@ -3416,6 +3416,56 @@ function ks_newsletter_beds_label(float $beds): string
 }
 
 /**
+ * Prefer one live listing per sample township so the digest matches the chips.
+ *
+ * @return list<array<string, mixed>>
+ */
+function ks_newsletter_featured_spread(): array
+{
+    $picked = [];
+    $usedTowns = [];
+
+    foreach (Catalog::listings() as $item) {
+        if (($item['status'] ?? '') === 'sold') {
+            continue;
+        }
+        $type = (string) ($item['type'] ?? 'home');
+        if ($type === 'land' || (float) ($item['beds'] ?? 0) <= 0) {
+            continue;
+        }
+        $town = (string) ($item['township'] ?? '');
+        if ($town === '' || isset($usedTowns[$town])) {
+            continue;
+        }
+        $usedTowns[$town] = true;
+        $picked[] = $item;
+        if (count($picked) >= 3) {
+            return $picked;
+        }
+    }
+
+    foreach (Catalog::featuredListings(6) as $item) {
+        if (count($picked) >= 3) {
+            break;
+        }
+        $key = (string) (($item['id'] ?? '') !== '' ? $item['id'] : ($item['slug'] ?? ''));
+        $already = false;
+        foreach ($picked as $row) {
+            $rowKey = (string) (($row['id'] ?? '') !== '' ? $row['id'] : ($row['slug'] ?? ''));
+            if ($key !== '' && $key === $rowKey) {
+                $already = true;
+                break;
+            }
+        }
+        if (! $already) {
+            $picked[] = $item;
+        }
+    }
+
+    return array_slice($picked, 0, 3);
+}
+
+/**
  * Digest listing teasers — custom inspector rows, or featured listings.
  *
  * @return list<array{title: string, meta: string, price: string, url: string, image: string}>
@@ -3427,7 +3477,7 @@ function ks_newsletter_teasers(array $attrs): array
         $source = 'featured';
     }
 
-    $featured = $source === 'featured' ? Catalog::featuredListings(3) : [];
+    $featured = $source === 'featured' ? ks_newsletter_featured_spread() : [];
     $teasers = [];
 
     foreach ([1, 2, 3] as $i) {
