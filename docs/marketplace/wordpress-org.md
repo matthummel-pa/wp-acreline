@@ -66,7 +66,7 @@ Keep `screenshot.png` at 1200×900. Recapture if the homepage layout changes. Do
 Use `readme.txt` Description as the directory blurb. Short:
 
 ```
-Acreline is a WordPress theme for real estate offices: searchable listings, agents, and showing requests. Gutenberg marketing pages, Customizer identity, and eight color styles. Concept demo — not a live MLS.
+Acreline is a WordPress theme for real estate agents: searchable listings, showing requests, and Gutenberg marketing pages. Customizer identity and eight color styles. Concept demo — not a live MLS.
 ```
 
 ## Honest blockers (do not paper over)

@@ -4,7 +4,7 @@
 
 - **Home & Areas** — New Region Coverage block: split map + neighborhood cards, or a bento/grid layout. Neighborhoods, methods, and CTAs are editable in the block inspector. Section bands follow the active color scheme.
 - **Blocks** — Pricing plans, logo strip, and a newsletter signup (demo form — nothing is emailed). Area Grid now supports photos, card styles, and a section CTA. How We Work steps are editable.
-- **Copy** — Marketing pages and FAQs speak to a general real-estate office: homes, neighborhoods, and local agents.
+- **Copy** — Marketing pages, FAQs, and seller docs position Acreline as a WordPress theme for real estate agents (homes, listings, showings) — not a luxury portal kit and not a farms/land niche.
 - **Seed** — Home, Areas, Agents, Listings, Guide, and Blog stacks include the new blocks. After you install the zip, run Tools → Migrate to Blocks → Force rebuild so existing pages pick them up.
 
 ## 1.4.7

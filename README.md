@@ -1,4 +1,4 @@
-# Acreline — WordPress Theme for Real Estate
+# Acreline — WordPress Theme for Real Estate Agents
 
 [![Deploy theme zip](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml/badge.svg)](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml)
 [![Version](https://img.shields.io/badge/version-1.5.0-155539?style=flat-square)](CHANGELOG.md)
@@ -6,12 +6,13 @@
 [![PHP 8.3+](https://img.shields.io/badge/PHP-8.3%2B-777bb4?style=flat-square)](https://www.php.net/)
 [![WordPress 6.6+](https://img.shields.io/badge/WordPress-6.6%2B-21759b?style=flat-square)](https://wordpress.org/)
 
-**Acreline** is a WordPress theme for real estate offices — searchable listings, agent profiles, and showing requests for homes, neighborhoods, and local agents.
+**Acreline** is a WordPress theme for **solo agents and small teams** — featured homes, agent bios, and showing requests on Gutenberg marketing pages. No page builder, no ACF, and no IDX plugin required on day one.
 
 |  |  |
 | --- | --- |
 | **Live demo** | [acreline.matthummel.com](https://acreline.matthummel.com/) |
 | **Product page** | [matthummel.com/projects/acreline/](https://matthummel.com/projects/acreline/) |
+| **Shop** | [matthummel.com/shop](https://matthummel.com/shop/) |
 | **Buy / checkout** | [matthummel.com/product/acreline/](https://matthummel.com/product/acreline/) |
 | **Support** | [matthummel.com/support/acreline/](https://matthummel.com/support/acreline/) · [GitHub Issues](https://github.com/matthummel-pa/wp-acreline/issues) |
 | **Author** | [Matt Hummel](https://matthummel.com/) |
@@ -45,7 +46,7 @@
 | | |
 |:---:|:---:|
 | [![Homepage](docs/marketplace/screenshots/01-homepage.png)](docs/marketplace/screenshots/01-homepage.png) | [![Listings](docs/marketplace/screenshots/02-listings.png)](docs/marketplace/screenshots/02-listings.png) |
-| **Homepage** — Hero search · Intent cards · Featured listings | **Listings** — Filter bar (type, price, acreage, area) · Grid view |
+| **Homepage** — Hero search · Intent cards · Featured listings | **Listings** — Filter bar (type, price, area) · Grid view |
 | [![Listing detail](docs/marketplace/screenshots/03-listing.png)](docs/marketplace/screenshots/03-listing.png) | [![Listing detail scroll](docs/marketplace/screenshots/09-listing-detail.png)](docs/marketplace/screenshots/09-listing-detail.png) |
 | **Listing** — Photo, price, stats, sticky CTA | **Listing (scrolled)** — Mortgage calculator · Agent card · Book CTA |
 | [![Agents](docs/marketplace/screenshots/04-agents.png)](docs/marketplace/screenshots/04-agents.png) | [![Contact](docs/marketplace/screenshots/05-contact.png)](docs/marketplace/screenshots/05-contact.png) |
@@ -63,7 +64,7 @@
 
 ## What's included
 
-Everything a real estate office needs in **one zip** — no page builder, no ACF, no IDX plugin.
+Day-one inventory, agent bios, and lead capture in **one zip** — no page builder, no ACF, no IDX subscription. Houzez, RealHomes, and WPResidence are built as listing portals. Acreline is built for an agent site.
 
 ### Why Acreline is different
 
@@ -71,7 +72,7 @@ Everything a real estate office needs in **one zip** — no page builder, no ACF
 | --- | :---: | :---: |
 | No page builder required | ✅ | Page builder license often needed |
 | No ACF required | ✅ | ACF Pro often bundled |
-| No IDX/MLS plugin | ✅ | IDX subscription often required |
+| No IDX/MLS required | ✅ | IDX subscription often required |
 | 32 custom Gutenberg blocks | ✅ | Most use shortcodes or Classic |
 | Block Generator (no-code blocks) | ✅ | Unique to Acreline |
 | Listing comparison modal | ✅ | Rare without paid add-ons |
@@ -146,7 +147,7 @@ Every marketing page is built with WordPress blocks that render server-side — 
 - **Listing** — type, price, beds, baths, sqft, acres, township, MLS, status; utilities (water/sewer/heating/cooling), HOA, school district, flood zone, open house date/time, virtual + video tour, floor plan, green/eco features, smart home chips, outbuildings, tillable/pasture acres
 - **Agent** — photo, bio, performance stats (homes sold, volume, avg DOM, list-to-sale ratio, review count), certifications/designations, social links (Facebook, Instagram, LinkedIn, YouTube), intro video URL, calendar URL, mobile, awards, team name
 - **Booking** — showing type, date, time, assigned agent, client contact; buyer type, attendees, comm preference; pipeline (Requested → Confirmed → Completed)
-- **Listing grid** — filter by type, price, acreage, area, status; grid and map views
+- **Listing grid** — filter by type, price, area, and status; grid and map views
 - **Comparison modal** — compare up to 3 listings side-by-side
 - **Saved listings drawer** — heart icon saves to `localStorage`; floating button opens the slide-out panel
 - **Sticky CTA bar** — price + "Book a showing" after the hero scrolls out on single listing pages

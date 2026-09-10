@@ -4,15 +4,17 @@ This is the seller brief — not buyer docs. Buyer HTML is `buyer-guide.html`.
 
 ## What actually sells
 
-Realtor themes on Envato move when the demo looks like a working office: search → listings → agent → book a showing. You already have that. Buyers pay for **identity Customizer, menus, a child theme, and a plugin that keeps listings after they switch themes** — not for another “luxury brokerage” skin.
+Realtor themes on Envato move when the demo looks like a working agent site: search → listings → agent → book a showing. You already have that. Buyers pay for **identity Customizer, Gutenberg marketing pages, a child theme, and a plugin that keeps listings after they switch themes** — not for another portal megakit.
 
-Price band for a general real-estate theme: **$39–$69** on ThemeForest, **$79** on your own checkout ([matthummel.com/product/acreline/](https://matthummel.com/product/acreline/)). Product landing / ads: [matthummel.com/projects/acreline/](https://matthummel.com/projects/acreline/) (legacy `/concept/acreline/` redirects here). Keep the own-site price higher; Envato takes a large cut.
+Position against Houzez, RealHomes, and WPResidence as **overshoot for a solo agent**: those kits solve MLS-first portals. Acreline is the middle path — featured homes first, IDX optional later. Do not trash them.
+
+Price band for an agent theme: **$39–$69** on ThemeForest, **$79** on your own checkout ([matthummel.com/product/acreline/](https://matthummel.com/product/acreline/), also listed on [matthummel.com/shop](https://matthummel.com/shop/)). Product landing / ads: [matthummel.com/projects/acreline/](https://matthummel.com/projects/acreline/) (legacy `/concept/acreline/` redirects here). Keep the own-site price higher; Envato takes a large cut. Do **not** invent a second product URL.
 
 ## Channel by channel
 
 | Channel | Ship | Do not claim |
 | --- | --- | --- |
-| **Own site** | Full pack + WooCommerce on matthummel.com | Nothing. Best margin. Landing: `/projects/acreline/`. |
+| **Own site** | Full pack + WooCommerce on matthummel.com/shop | Nothing. Best margin. Checkout: `/product/acreline/`. Landing: `/projects/acreline/`. |
 | **ThemeForest / Creative Market** | Same pack + live preview URL | “#1 realtor theme.” Show the sample-county real-estate concept honestly. |
 | **WordPress.org** | Theme zip only. No plugin inside the theme. CPTs off (`KS_DISABLE_THEME_CPTS`). `readme.txt` + 1200×900 screenshot | “Approved” or “in the picker” until a reviewer says so. Sage + Acorn is a common rejection. Use WP.org later as a **lite** traffic listing, or list **Acreline Core** as a free plugin and sell setup. |
 
@@ -76,7 +78,7 @@ GitHub repo is **`matthummel-pa/wp-acreline`**. Paste these on https://github.co
 **Description** (under 350 characters; this is the search snippet):
 
 ```
-Acreline is a WordPress theme for real estate offices — searchable listings, agents, and showing requests. Customizer identity, eight color styles, Gutenberg marketing pages, Sage 11. Demo and support by Matt Hummel.
+Acreline is a WordPress theme for real estate agents — searchable listings, showing requests, and Gutenberg marketing pages. Customizer identity, eight color styles, Sage 11. Demo and support by Matt Hummel.
 ```
 
 **Website** (product landing + support):

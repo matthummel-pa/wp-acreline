@@ -1,6 +1,6 @@
 # Support — Acreline
 
-Acreline is a **concept** WordPress theme for real estate offices. Sample listings, agents, phones, and showing requests are fiction — not a live MLS, licensed brokerage, or booking desk.
+Acreline is a **concept** WordPress theme for real estate agents. Sample listings, agents, phones, and showing requests are fiction — not a live MLS, licensed brokerage, or booking desk. IDX is optional later; the zip ships featured homes first.
 
 Created by [Matt Hummel](https://matthummel.com/). House mark and lockup: `public/images/brand/` (GPLv2).
 

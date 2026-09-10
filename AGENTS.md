@@ -1,6 +1,6 @@
 # Acreline — WordPress Theme
 
-A [Roots Sage 11](https://roots.io/sage/) theme (Blade + Tailwind CSS v4 + Vite 8, powered by Acorn) for a general real-estate realtor concept. GitHub repo: [`matthummel-pa/wp-acreline`](https://github.com/matthummel-pa/wp-acreline). The visual design is ported from the static concept in [`matthummel-pa/realtor-keystone-homes-and-land-theme`](https://github.com/matthummel-pa/realtor-keystone-homes-and-land-theme).
+A [Roots Sage 11](https://roots.io/sage/) theme (Blade + Tailwind CSS v4 + Vite 8, powered by Acorn) for **real estate agents** — solo agents and small teams, not luxury listing portals. GitHub repo: [`matthummel-pa/wp-acreline`](https://github.com/matthummel-pa/wp-acreline). The visual design is ported from the static concept in [`matthummel-pa/realtor-keystone-homes-and-land-theme`](https://github.com/matthummel-pa/realtor-keystone-homes-and-land-theme).
 
 ## Project rules (Cursor Agent)
 

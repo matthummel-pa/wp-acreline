@@ -60,7 +60,7 @@ Canonical Acreline header (do **not** revert to Keystone Homes / `keystone-homes
 /*
 Theme Name:         Acreline
 Theme URI:          https://acreline.matthummel.com/
-Description:        WordPress theme for real estate offices — searchable listings, agents, and showing requests. Customizer identity, eight color styles, and Gutenberg marketing pages. Blade + Tailwind + Vite (Sage 11).
+Description:        WordPress theme for real estate agents — searchable listings, showing requests, and Gutenberg marketing pages. Customizer identity and eight color styles. Blade + Tailwind + Vite (Sage 11).
 Version:            1.2.3
 Author:             Matt Hummel
 Author URI:         https://matthummel.com/
@@ -81,7 +81,7 @@ Rules when editing this header:
 | --- | --- |
 | Theme Name | **Acreline** (folder is still `acreline`) |
 | Theme URI | Live concept demo, not a dead GitHub slug |
-| Description | General real estate — homes, neighborhoods, local agents — not “custom home builders” or generic luxury |
+| Description | WordPress theme for real estate agents — homes, listings, showings — not portal megakits or farms/land |
 | Version | Must match `readme.txt` Stable tag. Bump only with a real shipping change |
 | Author / Author URI | Matt Hummel / https://matthummel.com/ (not `github.com/matthummel-pa`) |
 | Text Domain | **`acreline`** — same as install folder |
@@ -149,7 +149,7 @@ Also:
 `readme.txt` is the **store parser** file (Stable tag, Requires at least, Tested up to, Requires PHP, License GPLv2+, tags). Keep it in WP.org format even if we are not submitting yet.
 
 - Stable tag matches `style.css` Version
-- Description: general real estate (homes, neighborhoods, local agents) — not generic luxury brokerage
+- Description: WordPress theme for real estate agents (homes, listings, showings) — not generic luxury brokerage
 - Installation: upload **`acreline.zip`**, folder name `acreline`, Customize → Identity, optional Seed + Core + child
 - FAQ: phone in Customizer; demo banner off; listings are a CPT (Core or theme fallback)
 - Changelog: user-facing, short; no agent jargon

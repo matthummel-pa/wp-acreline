@@ -206,7 +206,7 @@ function ks_register_blocks(): void
             'render_callback' => __NAMESPACE__.'\\ks_render_faq_list',
             'attributes' => array_merge($typo, [
                 'title' => ['type' => 'string', 'default' => 'Questions buyers ask first'],
-                'text' => ['type' => 'string', 'default' => 'Practical answers for house and acreage shoppers.'],
+                'text' => ['type' => 'string', 'default' => 'Practical answers for house and neighborhood shoppers.'],
                 'headClass' => ['type' => 'string', 'default' => 'left'],
                 'faqStyle' => ['type' => 'string', 'default' => 'dl'],
                 'listIcon' => ['type' => 'string', 'default' => 'none'],
@@ -411,7 +411,7 @@ function ks_register_blocks(): void
                 ks_item_pair_attrs(4, 'right'),
                 [
                     'leftHeading' => ['type' => 'string', 'default' => 'Come prepared'],
-                    'leftLead' => ['type' => 'string', 'default' => 'A rural showing is not a quick drive-through. Here is what makes yours worth the trip.'],
+                    'leftLead' => ['type' => 'string', 'default' => 'A showing is not a photo scroll. Here is what makes yours worth the trip.'],
                     'rightHeading' => ['type' => 'string', 'default' => 'What your agent brings'],
                     'rightLead' => ['type' => 'string', 'default' => 'Preparation goes both ways. Your assigned specialist arrives ready.'],
                 ]
@@ -1774,7 +1774,7 @@ function ks_render_reviews(array $attrs): string
 function ks_render_faq_list(array $attrs): string
 {
     $title = wp_kses($attrs['title'] ?? 'Questions buyers ask first', ['em' => [], 'strong' => []]);
-    $text = wp_kses($attrs['text'] ?? 'Practical answers for house and acreage shoppers.', ['em' => []]);
+    $text = wp_kses($attrs['text'] ?? 'Practical answers for house and neighborhood shoppers.', ['em' => []]);
     $headClass = esc_attr(ks_head_class($attrs));
     $faqs = Faqs::forContext();
     $faqStyle = sanitize_key((string) ($attrs['faqStyle'] ?? 'dl'));
@@ -2683,8 +2683,8 @@ function ks_default_guide_items(): array
         ['title' => __('Septic — existing system or percolation required?', 'acreline'), 'text' => __('An existing septic has records on file with the county. Raw land needs a perc test before you can pull a permit. Perc results control what you can build and where.', 'acreline')],
         ['title' => __('Road access — deeded or by permission?', 'acreline'), 'text' => __('A private lane that crosses a neighbour\'s land needs a recorded easement in the deed. "We\'ve always used that road" is not legal access and will show up in a title search.', 'acreline')],
         ['title' => __('Zoning and agricultural enrollments', 'acreline'), 'text' => __('Land enrolled in a use-value or preferential farmland tax program, or under an agricultural conservation easement, has use restrictions. Rollback taxes can be triggered by certain improvements. Verify enrollment status with the county before closing.', 'acreline')],
-        ['title' => __('Survey — does one exist?', 'acreline'), 'text' => __('Many rural parcels have never been surveyed. Boundary pins may be missing or disputed. If the parcel shape or acreage matters to your use plan, budget for a fresh survey.', 'acreline')],
-        ['title' => __('Flood zone and drainage', 'acreline'), 'text' => __('Check the FEMA flood map. Creek-bottom and low-lying fields may be in Zone A. Flood insurance is required for federally-backed loans on Zone A parcels and premiums can be significant.', 'acreline')],
+        ['title' => __('Survey — does one exist?', 'acreline'), 'text' => __('Many lots have never been resurveyed. Boundary pins may be missing or disputed. If the lot shape or fence line matters to your plan, budget for a fresh survey.', 'acreline')],
+        ['title' => __('Flood zone and drainage', 'acreline'), 'text' => __('Check the FEMA flood map. Low-lying streets and creek lots may be in Zone A. Flood insurance is required for federally-backed loans on Zone A properties and premiums can be significant.', 'acreline')],
         ['title' => __('Mineral rights — included or severed?', 'acreline'), 'text' => __('Mineral rights can be owned separately from the surface. Ask the seller whether oil, gas, and mineral rights are included in the sale and request a title opinion.', 'acreline')],
         ['title' => __('Financing — land loan or conventional?', 'acreline'), 'text' => __('Standard home mortgages are not available for raw land. Farm Credit, USDA, or local community banks handle most rural loans. Down payment requirements are typically 20–35% and loan terms are shorter than residential.', 'acreline')],
     ];
@@ -2696,7 +2696,7 @@ function ks_default_prep_left_items(): array
     return [
         ['title' => __('Boots or waterproof shoes', 'acreline'), 'text' => __('Farm ground, creek fields, and wooded lots are often wet. A good pair of boots is the single most useful thing you can bring.', 'acreline')],
         ['title' => __('Your priority list', 'acreline'), 'text' => __('Write down the three things that would make or break the purchase. Your agent will address them on site, not in a follow-up email.', 'acreline')],
-        ['title' => __('Financing status', 'acreline'), 'text' => __('Know roughly what you are approved for — or what you plan to pay cash. It shapes which parcels make sense to walk.', 'acreline')],
+        ['title' => __('Financing status', 'acreline'), 'text' => __('Know roughly what you are approved for — or what you plan to pay cash. It shapes which homes make sense to walk.', 'acreline')],
         ['title' => __('Your timeline', 'acreline'), 'text' => __('Are you buying in the next 60 days or researching for next year? Your agent will calibrate the conversation accordingly.', 'acreline')],
         ['title' => __('All decision-makers', 'acreline'), 'text' => __('If a partner, parent, or business partner will be part of the purchase, bring them. An extra showing costs everyone time.', 'acreline')],
     ];

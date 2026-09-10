@@ -14,7 +14,7 @@ Retired demo name **Keystone** (and `@keystone-concept.test`) must never appear 
 
 Short header line under the wordmark. Alternate for long-form:
 
-> WordPress theme for real estate offices — searchable listings, agents, and showing requests.
+> WordPress theme for real estate agents — searchable listings, showing requests, Gutenberg pages.
 
 ## Voice
 
@@ -54,7 +54,8 @@ Live theme: **Inter** (SIL OFL). Documentation wordmark may use Georgia for the 
 | Live demo | [acreline.matthummel.com](https://acreline.matthummel.com/) → Customize → Identity |
 | Buyer installs | **Appearance → Customize → Identity** (+ Site Identity logo) |
 | Product landing | [matthummel.com/projects/acreline/](https://matthummel.com/projects/acreline/) |
-| Own-site checkout | WooCommerce product **Acreline WordPress Theme** on matthummel.com |
+| Shop | [matthummel.com/shop](https://matthummel.com/shop/) |
+| Own-site checkout | [matthummel.com/product/acreline/](https://matthummel.com/product/acreline/) |
 
 ## Do not
 

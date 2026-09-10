@@ -47,7 +47,7 @@ class Seo
 
         if (is_front_page()) {
             return [
-                'title' => self::siteName().' | Homes, Farms & Land',
+                'title' => self::siteName().' | Homes, listings & showings',
                 'tagline' => '',
                 'site' => '',
             ];
@@ -190,7 +190,7 @@ class Seo
     public static function ogTitle(array $copy): string
     {
         if (is_front_page()) {
-            return self::siteName().' | Homes, Farms & Land';
+            return self::siteName().' | Homes, listings & showings';
         }
         if (is_singular()) {
             return self::clip(self::plain((string) get_the_title()).' | '.self::siteName(), 70);

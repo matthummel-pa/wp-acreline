@@ -276,7 +276,7 @@ class BlockMigration
 
         $ctaAttrs = [
             'title' => $m['cta_title'] ?? 'Found a property worth a closer look?',
-            'text' => $m['cta_text'] ?? 'Book a sample showing or reach out directly — a specialist will confirm availability, answer questions about the parcel, and walk you through the next steps.',
+            'text' => $m['cta_text'] ?? 'Book a sample showing or reach out directly — a specialist will confirm availability, answer questions about the home, and walk you through the next steps.',
             'primaryLabel' => $m['cta_primary'] ?? 'Book a showing',
             'secondaryLabel' => $m['cta_secondary'] ?? 'Run the numbers',
         ];
@@ -396,7 +396,7 @@ class BlockMigration
 
         $ctaAttrs = [
             'title' => $m['cta_title'] ?? 'Ready to put this guide to use?',
-            'text' => $m['cta_text'] ?? 'Browse the current sample inventory, or book a showing to walk a parcel with a specialist who can answer the on-the-ground questions.',
+            'text' => $m['cta_text'] ?? 'Browse the current sample inventory, or book a showing to walk a home with a specialist who can answer the on-the-ground questions.',
             'primaryLabel' => $m['cta_primary'] ?? 'Book a showing',
             'secondaryLabel' => $m['cta_secondary'] ?? 'Browse listings',
         ];
@@ -489,7 +489,7 @@ class BlockMigration
 
         $formAttrs = [
             'formTitle' => $m['form_title'] ?? 'Send a message',
-            'formText' => $m['form_text'] ?? "Tell us what you're looking for — or what you're thinking of selling — and the right specialist will be in touch. Buyers: mention the area and approximate price range. Sellers: mention the property type and acreage.",
+            'formText' => $m['form_text'] ?? "Tell us what you're looking for — or what you're thinking of selling — and the right specialist will be in touch. Buyers: mention the neighborhood and approximate price range. Sellers: mention the property type and beds.",
         ];
 
         $introAttrs = [
@@ -595,7 +595,7 @@ class BlockMigration
             self::block('acreline/newsletter', []),
             self::block('acreline/cta-band', [
                 'title' => $m['cta_title'] ?? 'Ready to put these notes to use?',
-                'text' => $m['cta_text'] ?? 'Browse the current sample inventory or book a showing to walk a parcel with a specialist.',
+                'text' => $m['cta_text'] ?? 'Browse the current sample inventory or book a showing to walk a home with a specialist.',
                 'primaryLabel' => $m['cta_primary'] ?? 'Browse listings',
                 'primaryUrl' => home_url('/listings'),
                 'secondaryLabel' => $m['cta_secondary'] ?? 'Book a showing',

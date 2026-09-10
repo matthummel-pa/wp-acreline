@@ -192,14 +192,14 @@ class DemoContent
             ],
             [
                 'slug' => 'land-vs-home-search',
-                'title' => 'Land vs home search',
-                'excerpt' => 'What to filter first when shoppers are comparing acreage parcels with turnkey houses.',
+                'title' => 'House vs condo search',
+                'excerpt' => 'What to filter first when shoppers are comparing houses, condos, and townhomes.',
                 'file' => $seed.'/land-vs-home-search.html',
                 'category' => ['name' => 'Search', 'slug' => 'search'],
             ],
             [
                 'slug' => 'acreline-features-guide',
-                'title' => 'What makes Acreline different: built-in tools for land and farm offices',
+                'title' => 'What makes Acreline different: built-in tools for real estate agents',
                 'excerpt' => 'Listing comparison, saved properties, mortgage calculator, market snapshot, and more — everything included, no extra plugins.',
                 'file' => $seed.'/acreline-features-guide.html',
                 'category' => ['name' => 'Features', 'slug' => 'features'],

@@ -119,7 +119,7 @@ function render_support_page(): void
         ['icon' => '🧮',  'title' => __('Mortgage calculator', 'acreline'),
             'desc' => __('Built-in calculator on every listing detail page. Rate, term, and down-payment are editable. No plugin or API required.', 'acreline')],
         ['icon' => '🏡',  'title' => __('Rich listing fields', 'acreline'),
-            'desc' => __('Property details, utilities, HOA, land & farm data, flood zone, school district, green features, and smart home chips.', 'acreline')],
+            'desc' => __('Property details, utilities, HOA, flood zone, school district, green features, and smart home chips.', 'acreline')],
         ['icon' => '👤',  'title' => __('Advanced agent profiles', 'acreline'),
             'desc' => __('Performance stats grid, credentials, social links, intro video, calendar booking URL, mobile number, and team name.', 'acreline')],
         ['icon' => '🖼️',  'title' => __('Media picker', 'acreline'),
@@ -249,7 +249,7 @@ function render_support_page(): void
             __('New Region Coverage block: split map + neighborhood cards, or bento/grid', 'acreline'),
             __('New blocks: Pricing plans, logo strip, and newsletter signup (demo form — nothing is emailed)', 'acreline'),
             __('Area Grid photos and card styles; How We Work steps are editable', 'acreline'),
-            __('Marketing pages and FAQs speak to a general real-estate office', 'acreline'),
+            __('Marketing pages and FAQs speak to real estate agents: homes, listings, and showings', 'acreline'),
             __('After you install the zip, run Tools → Migrate to Blocks → Force rebuild so existing pages pick up the new stacks', 'acreline'),
         ]],
         ['1.4.7', [

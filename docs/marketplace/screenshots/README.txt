@@ -4,7 +4,7 @@ Captured at 1400 × 900 px from the seeded concept demo.
 These images are used in README.md and on matthummel.com/projects/acreline/.
 
 01-homepage.png         Homepage — hero search, Intent cards, Featured listings spotlight
-02-listings.png         Listings — filter bar (type, price, acreage, area), grid view
+02-listings.png         Listings — filter bar (type, price, area), grid view
 03-listing.png          Listing detail — hero, stats, sticky CTA
 04-agents.png           Agents page — stats grid, designations, social links
 05-contact.png          Contact — office info + message form

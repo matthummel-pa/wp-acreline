@@ -8,11 +8,11 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
 
-WordPress theme for real estate offices — listings, agents, showing requests. Gutenberg marketing pages. Almost no plugins.
+WordPress theme for real estate agents — listings, showing requests, Gutenberg pages. Almost no plugins.
 
 == Description ==
 
-Acreline is a Sage 11 WordPress theme for real estate offices: searchable listings, agents, and showing requests. Marketing pages use Gutenberg (32 custom blocks). Listings, agents, and bookings use classic metaboxes.
+Acreline is a Sage 11 WordPress theme for solo agents and small teams: searchable listings, agent bios, and showing requests. Marketing pages use Gutenberg (32 custom blocks). Listings, agents, and bookings use classic metaboxes. IDX/MLS is optional later — featured homes first.
 
 It is meant to set up with almost no plugins. The theme zip alone runs the office. You do not need Advanced Custom Fields, Elementor, or an IDX plugin. Buyers change brand, phone, and colors from the Customizer; marketing copy from the block editor; inventory from custom-field metaboxes.
 
@@ -30,7 +30,7 @@ House mark and wordmark (original SVG, GPLv2) ship in public/images/brand/. Supp
 * Almost no plugins — theme zip is enough; optional Acreline Core and child theme
 * Gutenberg block editor for pages and posts (32 custom dynamic blocks, no page builder or shortcodes)
 * Classic metaboxes for listings, agents, and bookings (no ACF required)
-* Rich listing fields: property details, utilities, HOA, land & farm, flood zone, school district, green/eco features, smart home chips
+* Rich listing fields: property details, utilities, HOA, flood zone, school district, green/eco features, smart home chips
 * Built-in mortgage calculator on listing detail pages — no plugin or API required
 * Listing comparison modal: compare up to 3 listings side-by-side
 * Saved listings drawer: heart icon saves to localStorage; floating button opens the slide-out panel
@@ -119,7 +119,7 @@ Appearance → Update Theme. Fine-grained PAT: Contents: Read. Add Actions: Read
 Desktop captures of the seeded concept demo (also used on https://matthummel.com/projects/acreline/):
 
 1. Homepage — search, Acreline house mark, and the path from listing to showing. (`docs/marketplace/screenshots/01-homepage.png`)
-2. Listings — sample inventory with type, price, acreage, and area filters. (`02-listings.png`)
+2. Listings — sample inventory with type, price, and area filters. (`02-listings.png`)
 3. Listing single — property example with agent card and book-a-showing. (`03-listing.png`)
 4. Agents — license, specialties, and contact fields (not a live MLS roster). (`04-agents.png`)
 5. Contact — office phone and address from Customize → Identity. (`05-contact.png`)
@@ -143,7 +143,7 @@ Upload your office logo under Customize → Site Identity. Colors: Forest sample
 * New Region Coverage block — split map + neighborhood cards, or bento/grid. Neighborhoods, methods, and CTAs are editable.
 * New blocks: Pricing plans, logo strip, and newsletter signup (demo form — nothing is emailed).
 * Area Grid supports photos, card styles, and a section CTA. How We Work steps are editable.
-* Marketing pages and FAQs speak to a general real-estate office: homes, neighborhoods, and local agents.
+* Marketing pages and FAQs speak to real estate agents: homes, listings, and showings — not a luxury portal kit and not a farms/land niche.
 * After you install the zip, run Tools → Migrate to Blocks → Force rebuild so existing pages pick up the new stacks.
 
 = 1.4.7 =
