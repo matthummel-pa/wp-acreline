@@ -1,7 +1,7 @@
 # Acreline — WordPress Theme for Real Estate Agents
 
 [![Deploy theme zip](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml/badge.svg)](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml)
-[![Version](https://img.shields.io/badge/version-1.5.0-155539?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.5.1-155539?style=flat-square)](CHANGELOG.md)
 [![License: GPLv2+](https://img.shields.io/badge/license-GPLv2%2B-3c763d?style=flat-square)](license.txt)
 [![PHP 8.3+](https://img.shields.io/badge/PHP-8.3%2B-777bb4?style=flat-square)](https://www.php.net/)
 [![WordPress 6.6+](https://img.shields.io/badge/WordPress-6.6%2B-21759b?style=flat-square)](https://wordpress.org/)
@@ -16,7 +16,7 @@
 | **Buy / checkout** | [matthummel.com/product/acreline/](https://matthummel.com/product/acreline/) |
 | **Support** | [matthummel.com/support/acreline/](https://matthummel.com/support/acreline/) · [GitHub Issues](https://github.com/matthummel-pa/wp-acreline/issues) |
 | **Author** | [Matt Hummel](https://matthummel.com/) |
-| **Version** | 1.5.0 |
+| **Version** | 1.5.1 |
 
 > **Fiction only.** The demo uses sample data — `555` phone numbers, `@acreline-concept.test` emails, concept listings. Not a live MLS, licensed brokerage, or booking system.
 

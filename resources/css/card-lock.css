@@ -20,6 +20,7 @@
 .ks-region-card,
 .how-step,
 .pricing-card,
+.ks-team-card,
 .logo-chip,
 .listing-mini,
 .blog-card,
@@ -92,6 +93,7 @@
 .ks-region-card:hover,
 .how-step:hover,
 .pricing-card:hover,
+.ks-team-card:hover,
 .logo-chip:hover,
 .nearby-card:hover{
   box-shadow:var(--shadow-lg);
