@@ -593,10 +593,20 @@ function ks_register_blocks(): void
             'attributes' => array_merge($typo, [
                 'eyebrow' => ['type' => 'string', 'default' => 'New listings'],
                 'title' => ['type' => 'string', 'default' => 'Get the weekly sample market note'],
-                'text' => ['type' => 'string', 'default' => 'A short digest of new addresses in North Ridge, Mill Creek, and Oak Hollow. Demo only — nothing is emailed.'],
+                'text' => ['type' => 'string', 'default' => 'A short digest of new addresses in North Ridge, Mill Creek, and Oak Hollow.'],
                 'placeholder' => ['type' => 'string', 'default' => 'you@acreline-concept.test'],
                 'buttonLabel' => ['type' => 'string', 'default' => 'Join the list'],
-                'note' => ['type' => 'string', 'default' => 'Concept capture — confirmation stays on this page.'],
+                'note' => ['type' => 'string', 'default' => 'Concept capture — confirmation stays on this page. Nothing is emailed.'],
+                'emailLabel' => ['type' => 'string', 'default' => 'Email'],
+                'formEyebrow' => ['type' => 'string', 'default' => 'Weekly digest'],
+                'formTitle' => ['type' => 'string', 'default' => ''],
+                'highlightsLabel' => ['type' => 'string', 'default' => 'Covered this week'],
+                'highlight1' => ['type' => 'string', 'default' => 'North Ridge'],
+                'highlight2' => ['type' => 'string', 'default' => 'Mill Creek'],
+                'highlight3' => ['type' => 'string', 'default' => 'Oak Hollow'],
+                'layout' => ['type' => 'string', 'default' => 'split'],
+                'showHighlights' => ['type' => 'boolean', 'default' => true],
+                'showDisclaimer' => ['type' => 'boolean', 'default' => true],
                 'bandStyle' => ['type' => 'string', 'default' => 'accent'],
                 'headingLevel' => ['type' => 'string', 'default' => 'h2'],
                 'sectionPad' => ['type' => 'string', 'default' => 'default'],
@@ -3368,33 +3378,90 @@ function ks_render_newsletter(array $attrs): string
     $placeholder = esc_attr((string) ($a['placeholder'] ?? 'you@acreline-concept.test'));
     $buttonLabel = esc_html((string) ($a['buttonLabel'] ?? 'Join the list'));
     $note = esc_html((string) ($a['note'] ?? ''));
+    $emailLabel = trim((string) ($a['emailLabel'] ?? ''));
+    if ($emailLabel === '') {
+        $emailLabel = __('Email', 'acreline');
+    }
+    $emailLabel = esc_html($emailLabel);
+    $formEyebrow = esc_html((string) ($a['formEyebrow'] ?? ''));
+    $formTitle = wp_kses((string) ($a['formTitle'] ?? ''), ['em' => [], 'strong' => []]);
+    $highlightsLabel = esc_html((string) ($a['highlightsLabel'] ?? ''));
+
     $band = sanitize_key((string) ($a['bandStyle'] ?? 'accent'));
     if (! in_array($band, ['paper', 'alt', 'accent', 'dark'], true)) {
         $band = 'accent';
     }
+
+    $layout = sanitize_key((string) ($a['layout'] ?? 'split'));
+    if (! in_array($layout, ['split', 'center', 'compact'], true)) {
+        $layout = 'split';
+    }
+
+    $showHighlights = ($a['showHighlights'] ?? true) !== false;
+    $showDisclaimer = ($a['showDisclaimer'] ?? true) !== false;
+
+    $highlights = [];
+    foreach ([1, 2, 3] as $i) {
+        $label = trim((string) ($a["highlight{$i}"] ?? ''));
+        if ($label !== '') {
+            $highlights[] = $label;
+        }
+    }
+
     $sectionClass = ks_band_section_class(array_merge($a, ['bandStyle' => 'paper']), 'section');
-    $hid = function_exists('wp_unique_id') ? wp_unique_id('ks-news-') : 'ks-news-heading';
-    $fid = function_exists('wp_unique_id') ? wp_unique_id('ks-news-email-') : 'ksNewsletterEmail';
+    $copyClass = ks_head_class($a, 'ks-newsletter__copy');
+    $newsClass = 'ks-newsletter ks-newsletter--'.$layout.' ks-band--'.$band;
+    $uid = function_exists('wp_unique_id') ? wp_unique_id('ks-news-') : 'ks-news-';
+    $hid = $uid.'heading';
+    $fid = $uid.'email';
+    $nid = $uid.'status';
+    $formId = $uid.'form';
+
+    $markSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M4 7.5l8 6.2 8-6.2"/></svg>';
 
     ob_start();
     ?>
     <section class="<?php echo esc_attr($sectionClass); ?>">
       <div class="wrap">
-        <div class="ks-newsletter ks-band--<?php echo esc_attr($band); ?>">
+        <div class="<?php echo esc_attr($newsClass); ?>">
+          <span class="ks-newsletter__mark" aria-hidden="true"><?php echo $markSvg; ?></span>
           <div class="ks-newsletter__inner">
-            <div class="ks-newsletter__copy">
-              <?php if ($eyebrow !== '') { ?><p class="eyebrow"><?php echo $eyebrow; ?></p><?php } ?>
+            <div class="<?php echo esc_attr($copyClass); ?>">
+              <?php if ($eyebrow !== '') { ?>
+                <p class="eyebrow ks-newsletter__eyebrow">
+                  <span class="ks-newsletter__badge" aria-hidden="true"><?php echo $markSvg; ?></span>
+                  <?php echo $eyebrow; ?>
+                </p>
+              <?php } ?>
               <<?php echo $hTag; ?> id="<?php echo esc_attr($hid); ?>"><?php echo $title; ?></<?php echo $hTag; ?>>
-              <?php if ($text !== '') { ?><p><?php echo $text; ?></p><?php } ?>
+              <?php if ($text !== '') { ?><p class="ks-newsletter__lede"><?php echo $text; ?></p><?php } ?>
+              <?php if ($showHighlights && $highlights !== []) { ?>
+                <div class="ks-newsletter__highlights">
+                  <?php if ($highlightsLabel !== '') { ?>
+                    <p class="ks-newsletter__highlights-label"><?php echo $highlightsLabel; ?></p>
+                  <?php } ?>
+                  <ul class="ks-newsletter__chips">
+                    <?php foreach ($highlights as $chip) { ?>
+                      <li><?php echo esc_html($chip); ?></li>
+                    <?php } ?>
+                  </ul>
+                </div>
+              <?php } ?>
             </div>
-            <form class="ks-newsletter__form" id="ksNewsletterForm" aria-labelledby="<?php echo esc_attr($hid); ?>">
-              <div class="field">
-                <label for="<?php echo esc_attr($fid); ?>"><?php esc_html_e('Email', 'acreline'); ?></label>
-                <input type="email" id="<?php echo esc_attr($fid); ?>" name="email" autocomplete="email" required placeholder="<?php echo $placeholder; ?>">
-              </div>
-              <button type="submit" class="btn btn-primary btn-block"><?php echo $buttonLabel; ?></button>
-              <p class="ks-newsletter__note" id="ksNewsletterConfirm" role="status" aria-live="polite"><?php echo $note; ?></p>
-            </form>
+            <div class="ks-newsletter__panel">
+              <form class="ks-newsletter__form" id="<?php echo esc_attr($formId); ?>" aria-labelledby="<?php echo esc_attr($hid); ?>">
+                <?php if ($formEyebrow !== '') { ?><p class="ks-newsletter__form-kicker"><?php echo $formEyebrow; ?></p><?php } ?>
+                <?php if ($formTitle !== '') { ?><p class="ks-newsletter__form-title"><?php echo $formTitle; ?></p><?php } ?>
+                <div class="ks-newsletter__row">
+                  <div class="field">
+                    <label for="<?php echo esc_attr($fid); ?>"><?php echo $emailLabel; ?></label>
+                    <input type="email" id="<?php echo esc_attr($fid); ?>" name="email" autocomplete="email" required placeholder="<?php echo $placeholder; ?>">
+                  </div>
+                  <button type="submit" class="btn btn-primary"><?php echo $buttonLabel; ?></button>
+                </div>
+                <p class="ks-newsletter__note" id="<?php echo esc_attr($nid); ?>" role="status" aria-live="polite"><?php echo $showDisclaimer ? $note : ''; ?></p>
+              </form>
+            </div>
           </div>
         </div>
       </div>

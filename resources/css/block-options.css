@@ -59,14 +59,14 @@
 .ks-head--center .help-links { justify-content: center; }
 
 /* Heading size */
-.ks-head--size-sm h1, .ks-head--size-sm h2 { font-size: clamp(1rem, 1.8vw, 1.375rem) !important; }
-.ks-head--size-lg h1, .ks-head--size-lg h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem) !important; }
-.ks-head--size-xl h1, .ks-head--size-xl h2 { font-size: clamp(2.25rem, 5vw, 3.5rem) !important; }
+.ks-head--size-sm h1, .ks-head--size-sm h2, .ks-head--size-sm h3, .ks-head--size-sm h4 { font-size: clamp(1rem, 1.8vw, 1.375rem) !important; }
+.ks-head--size-lg h1, .ks-head--size-lg h2, .ks-head--size-lg h3, .ks-head--size-lg h4 { font-size: clamp(1.75rem, 3.5vw, 2.5rem) !important; }
+.ks-head--size-xl h1, .ks-head--size-xl h2, .ks-head--size-xl h3, .ks-head--size-xl h4 { font-size: clamp(2.25rem, 5vw, 3.5rem) !important; }
 
 /* Heading weight */
-.ks-head--weight-medium h1, .ks-head--weight-medium h2 { font-weight: 500 !important; }
-.ks-head--weight-semibold h1, .ks-head--weight-semibold h2 { font-weight: 600 !important; }
-.ks-head--weight-bold h1, .ks-head--weight-bold h2 { font-weight: 700 !important; }
+.ks-head--weight-medium h1, .ks-head--weight-medium h2, .ks-head--weight-medium h3, .ks-head--weight-medium h4 { font-weight: 500 !important; }
+.ks-head--weight-semibold h1, .ks-head--weight-semibold h2, .ks-head--weight-semibold h3, .ks-head--weight-semibold h4 { font-weight: 600 !important; }
+.ks-head--weight-bold h1, .ks-head--weight-bold h2, .ks-head--weight-bold h3, .ks-head--weight-bold h4 { font-weight: 700 !important; }
 
 /* Body size */
 .ks-body--sm p, .ks-body--sm li { font-size: 0.875rem; }

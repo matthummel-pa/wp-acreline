@@ -72,7 +72,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 
 | Field | Value |
 | --- | --- |
-| **Version** | 1.5.0 |
+| **Version** | 1.5.1 |
 | **Software version** | WordPress 6.6, 6.7, 6.8, 7.0 (tested up to 7.0.1) |
 | **Compatible browsers** | Chrome, Firefox, Safari, Edge (current two versions) |
 | **Compatible with** | No page builder required. Optional: Yoast, Rank Math, SEOPress, AIOSEO |
@@ -101,7 +101,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 <ul>
   <li>Home Hero with live listing search (type, price, area), cinematic photo pan (on by default), and optional phone tilt on the search panel (off by default)</li>
   <li>Region Coverage — split map + neighborhood cards, or bento/grid; editable methods and CTAs</li>
-  <li>Pricing plans, logo strip, and newsletter signup (demo form — nothing is emailed)</li>
+  <li>Pricing plans, logo strip, and newsletter / new-listings digest (split, centered, or compact — demo form, nothing is emailed)</li>
   <li>Featured Listings Spotlight — dynamic, pulls from WP</li>
   <li>Listing Grid with filter toolbar and map view</li>
   <li>Agent List block — photo, stats, designations, social links</li>

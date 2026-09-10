@@ -26,7 +26,8 @@
 
   function showStatus(el, message, isError){
     if(!el) return;
-    el.className = "confirm-msg show";
+    el.classList.add("confirm-msg", "show");
+    el.classList.toggle("is-error", !!isError);
     if(isError){
       el.style.background = "#fff7ed";
       el.style.borderColor = "#fdba74";

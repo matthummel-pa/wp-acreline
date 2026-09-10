@@ -256,7 +256,20 @@ class BlockMigration
             self::block('acreline/faq-list', []),
             self::block('acreline/reviews', []),
             self::block('acreline/logo-strip', []),
-            self::block('acreline/newsletter', []),
+            self::block('acreline/newsletter', [
+                'layout' => 'split',
+                'bandStyle' => 'accent',
+                'eyebrow' => 'New listings',
+                'title' => 'Get the weekly sample market note',
+                'text' => 'A short digest of new addresses in North Ridge, Mill Creek, and Oak Hollow.',
+                'formEyebrow' => 'Weekly digest',
+                'buttonLabel' => 'Join the list',
+                'note' => 'Concept capture — confirmation stays on this page. Nothing is emailed.',
+                'highlightsLabel' => 'Covered this week',
+                'highlight1' => 'North Ridge',
+                'highlight2' => 'Mill Creek',
+                'highlight3' => 'Oak Hollow',
+            ]),
             self::block('acreline/cta-band', []),
         ];
     }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.1
+
+- **Home** — The newsletter / new-listings digest band is a designed section: split copy + form card (default), centered magazine, or compact bar. Neighborhood chips, a quieter concept note, and the email + join row sit on a themed card.
+- **Block** — Inspector options for layout, band style, copy, button label, chips, and fine-print visibility. Forest / Harvest / Charcoal (and the other color styles) still color the band.
+
 ## 1.5.0
 
 - **Home & Areas** — New Region Coverage block: split map + neighborhood cards, or a bento/grid layout. Neighborhoods, methods, and CTAs are editable in the block inspector. Section bands follow the active color scheme.
