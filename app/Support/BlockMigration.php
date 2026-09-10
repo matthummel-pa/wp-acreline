@@ -255,7 +255,7 @@ class BlockMigration
             self::block('acreline/pricing-plans', []),
             self::block('acreline/faq-list', []),
             self::block('acreline/reviews', []),
-            self::block('acreline/logo-strip', []),
+            self::block('acreline/logo-strip', self::logoStripAttrs()),
             self::block('acreline/newsletter', [
                 'layout' => 'digest',
                 'bandStyle' => 'accent',
@@ -451,9 +451,15 @@ class BlockMigration
             'secondaryLabel' => 'Browse listings',
         ];
 
-        $introAttrs = [
-            'title' => $m['intro_title'] ?? 'A focused team, not a franchise',
-            'text' => $m['intro_text'] ?? 'This sample office is built around a simple idea: buyers and sellers deserve an agent who knows the neighborhood. Houses, condos, and commercial suites all carry different questions — HOA rules, parking, permitted use, and a commute that holds up on a Tuesday. Every agent on this team specialises in the property type you are buying or selling.',
+        $teamIntroAttrs = [
+            'eyebrow' => 'The sample office',
+            'title' => 'A focused team for <em>buyers, sellers, and commercial</em>',
+            'text' => $m['intro_text'] ?? 'This concept desk is built so a buyer or seller talks to a specialist — not a call queue. Houses, condos, and commercial suites carry different questions: HOA rules, parking, permitted use, and a commute that holds up on a Tuesday. Pick the desk that matches what you are doing, then book a showing.',
+            'bandStyle' => 'alt',
+            'layout' => 'split',
+            'primaryLabel' => 'Meet the roster',
+            'primaryUrl' => '#sample-team',
+            'secondaryLabel' => 'Book a showing',
         ];
 
         $agentListAttrs = [
@@ -461,6 +467,7 @@ class BlockMigration
             'title' => 'Specialists, not generalists',
             'text' => 'Each agent focuses on a specific desk — buyers, sellers, or commercial. Pick the specialist whose background matches what you are buying.',
             'headingAlign' => 'left',
+            'anchor' => 'sample-team',
         ];
 
         $reviewsAttrs = [
@@ -484,12 +491,12 @@ class BlockMigration
 
         return [
             self::block('acreline/page-hero', $heroAttrs),
-            self::block('acreline/intro-section', $introAttrs),
+            self::block('acreline/team-intro', $teamIntroAttrs),
             self::block('acreline/agent-list', $agentListAttrs),
             self::block('acreline/pricing-plans', []),
             self::block('acreline/reviews', $reviewsAttrs),
             self::block('acreline/how-we-work', $howAttrs),
-            self::block('acreline/logo-strip', []),
+            self::block('acreline/logo-strip', self::logoStripAttrs()),
             self::block('acreline/cta-band', $ctaAttrs),
         ];
     }
@@ -532,8 +539,7 @@ class BlockMigration
 
         return [
             self::block('acreline/page-hero', $heroAttrs),
-            self::block('acreline/contact-form', $formAttrs),
-            self::block('acreline/office-info', ['showMap' => true]),
+            self::block('acreline/contact-form', $formAttrs + ['showOffice' => true, 'showMap' => true]),
             self::block('acreline/trust-strip', []),
             self::block('acreline/intro-section', $introAttrs),
             self::block('acreline/how-we-work', $howAttrs),
@@ -649,6 +655,16 @@ class BlockMigration
      *
      * @param  array<string, mixed>  $attrs
      */
+    /**
+     * Seed partners as media-library attachments when possible.
+     *
+     * @return array{partners: list<array<string, mixed>>}
+     */
+    private static function logoStripAttrs(): array
+    {
+        return ['partners' => PartnerLogos::seedPartners()];
+    }
+
     private static function block(string $name, array $attrs): string
     {
         $filtered = array_filter($attrs, fn ($v) => $v !== '' && $v !== null);

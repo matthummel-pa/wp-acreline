@@ -72,8 +72,9 @@
       var btn = valueForm.querySelector("button[type=submit]");
       setBusy(btn, true, "Estimating…");
       var beds = Number(document.getElementById("vBeds").value) || 3;
-      var acres = Number(document.getElementById("vAcres").value) || 5;
-      var mid = 180000 + beds * 42000 + acres * 8500;
+      var bathsEl = document.getElementById("vBaths") || document.getElementById("vAcres");
+      var baths = Number(bathsEl && bathsEl.value) || 2;
+      var mid = 180000 + beds * 42000 + baths * 28000;
       var low = Math.round(mid * 0.92 / 1000) * 1000;
       var high = Math.round(mid * 1.08 / 1000) * 1000;
       valueResult.className = "val-result show";
