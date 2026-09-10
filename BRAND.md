@@ -10,15 +10,15 @@ Retired demo name **Keystone** (and `@keystone-concept.test`) must never appear 
 
 ## Tagline
 
-**Farms · land · historic homes**
+**Homes · neighborhoods · local agents**
 
 Short header line under the wordmark. Alternate for long-form:
 
-> WordPress theme for rural offices — searchable listings, agents, and showing requests.
+> WordPress theme for real estate offices — searchable listings, agents, and showing requests.
 
 ## Voice
 
-Plain, survey-clear, land-office honest. No luxury-gold realtor clichés. Fiction demos stay labeled as fiction (555 phones, `@acreline-concept.test`).
+Plain, survey-clear, office-honest. No luxury-gold realtor clichés. Fiction demos stay labeled as fiction (555 phones, `@acreline-concept.test`).
 
 ## Mark & lockup
 

@@ -1,6 +1,6 @@
 # Acreline — WordPress Theme
 
-A [Roots Sage 11](https://roots.io/sage/) theme (Blade + Tailwind CSS v4 + Vite 8, powered by Acorn) for a land-and-farms realtor concept. GitHub repo: [`matthummel-pa/wp-acreline`](https://github.com/matthummel-pa/wp-acreline). The visual design is ported from the static concept in [`matthummel-pa/realtor-keystone-homes-and-land-theme`](https://github.com/matthummel-pa/realtor-keystone-homes-and-land-theme).
+A [Roots Sage 11](https://roots.io/sage/) theme (Blade + Tailwind CSS v4 + Vite 8, powered by Acorn) for a general real-estate realtor concept. GitHub repo: [`matthummel-pa/wp-acreline`](https://github.com/matthummel-pa/wp-acreline). The visual design is ported from the static concept in [`matthummel-pa/realtor-keystone-homes-and-land-theme`](https://github.com/matthummel-pa/realtor-keystone-homes-and-land-theme).
 
 ## Project rules (Cursor Agent)
 
@@ -63,4 +63,4 @@ Then browse `http://localhost:8080/` (homepage), `/listings`, `/areas`, `/guide`
 - Theme zip (regular Appearance → Upload Theme): `bin/build-theme-zip.sh` → `dist-theme/acreline.zip`. Ships compiled `public/build` and production `vendor/` so the host needs no composer/npm.
 - Seller pack (ThemeForest / Gumroad / own site): `bin/build-install-pack.sh` → `dist-install/acreline-*.zip`. Buyers extract it, then upload the inner `acreline.zip`. Includes child theme, Acreline Core, and `Documentation/requirements.html` (host needs + listing fields). Do not upload the outer zip into WordPress.
 - Hosts can also update in place from **Appearance → Update Theme**. `.github/workflows/deploy.yml` publishes both zips on the `theme-latest` GitHub release. Token: Customizer → GitHub, the updater screen, or `KS_GITHUB_TOKEN`.
-- `bin/build-marketplace-pack.sh` copies the install pack to `dist-marketplace/` and adds `SELLING.md` for Matt only. WordPress.org is a later lite path — Sage + Gutenberg-off will not sail through first review. See `docs/marketplace/SELLING.md` and `.cursor/rules/marketplace.mdc`.
+- `bin/build-marketplace-pack.sh` copies the install pack to `dist-marketplace/` and adds `SELLING.md` for Matt only. WordPress.org is a later lite path — Sage + Acorn will not sail through first review. See `docs/marketplace/SELLING.md` and `.cursor/rules/marketplace.mdc`.

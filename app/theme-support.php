@@ -228,7 +228,7 @@ function render_support_page(): void
         [__('Where are bookings stored?', 'acreline'),
             __('Showing requests become Booking CPT posts in WordPress Admin → Bookings. There is no external CRM connection by default — all data stays in your database.', 'acreline')],
         [__('Can I submit this theme to WordPress.org?', 'acreline'),
-            __('A lite version path is planned. The current build ships with Sage 11 + Gutenberg-off which will not pass wp.org first review without stripping Acorn. See docs/marketplace/SELLING.md for the current release strategy.', 'acreline')],
+            __('A lite version path is planned. The current build ships Sage 11 + Acorn, which will not pass wp.org first review without stripping Acorn. See docs/marketplace/SELLING.md for the current release strategy.', 'acreline')],
     ];
     foreach ($faqs as [$q, $a]) { ?>
           <details class="kss-faq">
@@ -245,6 +245,13 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.0', [
+            __('New Region Coverage block: split map + neighborhood cards, or bento/grid', 'acreline'),
+            __('New blocks: Pricing plans, logo strip, and newsletter signup (demo form — nothing is emailed)', 'acreline'),
+            __('Area Grid photos and card styles; How We Work steps are editable', 'acreline'),
+            __('Marketing pages and FAQs speak to a general real-estate office', 'acreline'),
+            __('After you install the zip, run Tools → Migrate to Blocks → Force rebuild so existing pages pick up the new stacks', 'acreline'),
+        ]],
         ['1.4.7', [
             __('The marketing CTA band follows the active color scheme', 'acreline'),
             __('The desktop top bar follows the active color scheme; custom top-bar colors still override', 'acreline'),
@@ -336,7 +343,7 @@ function render_support_page(): void
             <span class="kss-logo-mark kss-logo-mark--lg" aria-hidden="true">A</span>
             <div>
               <h2 class="kss-about-title">Acreline</h2>
-              <p class="kss-about-tagline"><?php esc_html_e('Farms · land · historic homes', 'acreline'); ?></p>
+              <p class="kss-about-tagline"><?php esc_html_e('Homes · neighborhoods · local agents', 'acreline'); ?></p>
               <p class="kss-about-meta">
                 <?php echo esc_html(sprintf(__('Version %s · WordPress theme by Matt Hummel', 'acreline'), $themeVer)); ?>
               </p>

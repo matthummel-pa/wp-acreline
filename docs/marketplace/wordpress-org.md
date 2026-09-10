@@ -30,7 +30,7 @@ The theme folder inside the zip must be `acreline/` with `style.css` at `acrelin
 
 ## Gutenberg optimized
 
-**No.** Do not check “Gutenberg optimized” on any form. The theme disables the block editor and uses classic metaboxes. Enabling Gutenberg just to pass a checklist is out of scope.
+**No.** Do not check “Gutenberg optimized” on any form. Marketing pages and posts use Gutenberg; listings, agents, and bookings still use classic metaboxes. Checking the box just to pass a checklist is out of scope.
 
 ## Plugin territory
 
@@ -66,13 +66,13 @@ Keep `screenshot.png` at 1200×900. Recapture if the homepage layout changes. Do
 Use `readme.txt` Description as the directory blurb. Short:
 
 ```
-Acreline is a classic (non-block) WordPress theme for land, farms, and historic-home inventory: searchable listings, agents, and showing requests. Customizer identity and eight color styles. Concept demo — not a live MLS.
+Acreline is a WordPress theme for real estate offices: searchable listings, agents, and showing requests. Gutenberg marketing pages, Customizer identity, and eight color styles. Concept demo — not a live MLS.
 ```
 
 ## Honest blockers (do not paper over)
 
 1. Sage / Blade / `vendor` (Acorn) is not what the Themes Team usually ships
-2. Block editor is disabled on purpose
+2. Listings, agents, and bookings still use classic metaboxes (do not check Gutenberg-optimized)
 3. PHP 8.3+ and a compiled Vite manifest
 4. Listings are plugin territory if you want a directory-clean theme zip
 

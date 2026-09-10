@@ -120,5 +120,5 @@ Identity (phone, email, address, hours, CTA, accent, social, demo banner) comes 
 - Add theme GA / SEO metaboxes
 - Leave `{!! $raw !!}` or unprefixed global functions
 - Add TGMPA / Freemius / Envato admin banners
-- Claim WordPress.org approval while this is still Sage + Gutenberg-off
+- Claim WordPress.org approval while this is still Sage + Acorn
 - Hard-require a dofollow backlink

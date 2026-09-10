@@ -29,7 +29,7 @@ Put one native generator in the theme — prefer `App\Support\Seo` hooked from `
 ## How to pick values
 
 1. **Title** — page / listing / agent / post title. Front page: brand + short offer, not “Home | …”.
-2. **Description** — `PageCopy` field if present (`hero_text`, excerpt), else listing `description`, else a farms/land fallback. Never “luxury homes.” Concept voice: farms, historic houses, acreage in a sample rural market. Mention fiction/sample only when the page is clearly demo chrome, not in every OG blurb.
+2. **Description** — `PageCopy` field if present (`hero_text`, excerpt), else listing `description`, else a general real-estate fallback. Never “luxury homes.” Concept voice: homes, neighborhoods, and local agents in a sample market. Mention fiction/sample only when the page is clearly demo chrome, not in every OG blurb.
 3. **Canonical / og:url**
    - Front page: `home_url('/')`
    - Singular page, listing, agent, post: `get_permalink()`
@@ -45,7 +45,7 @@ JSON-LD already on the home template (`RealEstateAgent`) stays native in Blade. 
 - Leave description as WordPress’s empty excerpt on marketing pages (they are field-driven).
 - Output duplicate canonical / description if a tag already exists — one writer owns the head.
 - Ship Rank Math / Yoast “just for now.” If a buyer later activates one, native tags must yield (see `marketplace.mdc` 8.2).
-- Use the luxury-broker fallback from generic snippets. Default something like: `Sample farms, historic houses, and acreage. Filter listings and book a fictional showing — Acreline concept demo.`
+- Use the luxury-broker fallback from generic snippets. Default something like: `Sample homes and neighborhoods. Filter listings and book a fictional showing — Acreline concept demo.`
 
 ## When implementing
 

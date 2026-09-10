@@ -102,6 +102,29 @@
     });
   }
 
+  /* Newsletter signup (concept demo — no network) */
+  document.querySelectorAll(".ks-newsletter__form").forEach(function(newsForm){
+    newsForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      var btn = newsForm.querySelector("button[type=submit]");
+      var note = newsForm.querySelector("[role=status]");
+      var email = newsForm.querySelector('input[type="email"]');
+      if(email && !email.value){
+        showStatus(note, "Enter an email to join the list.", true);
+        return;
+      }
+      setBusy(btn, true);
+      window.setTimeout(function(){
+        showStatus(note, "Saved on this page only — this is a concept demo and nothing was emailed.", false);
+        if(btn){
+          btn.textContent = "Joined";
+          btn.disabled = true;
+          btn.setAttribute("aria-disabled", "true");
+        }
+      }, 280);
+    });
+  });
+
   /* Contact message (concept demo — no network) */
   var contactForm = document.getElementById("contactForm");
   var contactConfirm = document.getElementById("contactConfirm");

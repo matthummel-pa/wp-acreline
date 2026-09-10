@@ -190,7 +190,7 @@ class BlockMigration
     private static function homeBlocks(array $m, int $postId): array
     {
         $heroAttrs = [
-            'eyebrow' => $m['hero_eyebrow'] ?? 'Farms, land, and historic homes',
+            'eyebrow' => $m['hero_eyebrow'] ?? 'Homes, neighborhoods, and local agents',
             'title' => $m['hero_title'] ?? 'Homes worth <em>walking through.</em>',
             'text' => $m['hero_text'] ?? '',
             'imageUrl' => self::resolveHeroImage($postId),
@@ -215,7 +215,7 @@ class BlockMigration
             'tourLead' => $m['intent_tour_lead'] ?? $m['intent_tour'] ?? '',
             'tourCta' => $m['intent_tour_cta'] ?? 'Book a showing',
             'notesLabel' => $m['intent_notes_label'] ?? 'Good to know',
-            'note1Title' => $m['intent_note_1_title'] ?? 'Township first',
+            'note1Title' => $m['intent_note_1_title'] ?? 'Neighborhood first',
             'note1Text' => $m['intent_note_1_text'] ?? '',
             'note2Title' => $m['intent_note_2_title'] ?? 'Well and perc',
             'note2Text' => $m['intent_note_2_text'] ?? '',
@@ -239,13 +239,24 @@ class BlockMigration
             self::block('acreline/home-hero', $heroAttrs),
             self::block('acreline/intent-cards', $intentAttrs),
             self::block('acreline/spotlight', $spotlightAttrs),
+            self::block('acreline/region-coverage', [
+                'eyebrow' => 'Area service',
+                'title' => 'How we cover the region',
+                'text' => 'Neighborhood-first coverage across North Ridge, Mill Creek, and Oak Hollow — one sample office, local specialists, and a showing on the calendar.',
+                'layout' => 'split',
+                'bandStyle' => 'alt',
+                'maxAreas' => 3,
+            ]),
             self::block('acreline/how-it-works', []),
             self::block('acreline/booking-section', $bookAttrs),
             self::block('acreline/market-stats', []),
             self::block('acreline/agent-tools', []),
             self::block('acreline/seo-content', []),
+            self::block('acreline/pricing-plans', []),
             self::block('acreline/faq-list', []),
             self::block('acreline/reviews', []),
+            self::block('acreline/logo-strip', []),
+            self::block('acreline/newsletter', []),
             self::block('acreline/cta-band', []),
         ];
     }
@@ -255,7 +266,7 @@ class BlockMigration
     {
         $heroAttrs = [
             'eyebrow' => $m['hero_eyebrow'] ?? 'Sample inventory',
-            'title' => $m['hero_title'] ?? 'Farms, land &amp; homes — <em>browse the sample inventory</em>',
+            'title' => $m['hero_title'] ?? 'Homes &amp; commercial — <em>browse the sample inventory</em>',
             'text' => $m['hero_text'] ?? 'Filter by area, price, and property type. Every listing below is a concept record — use the tools, save favorites, and compare side by side before you reach out.',
             'imageUrl' => self::resolveHeroImage($postId),
             'primaryLabel' => 'Book a showing',
@@ -273,8 +284,8 @@ class BlockMigration
         return [
             self::block('acreline/page-hero', $heroAttrs),
             self::block('acreline/listing-grid', [
-                'introTitle' => $m['intro_title'] ?? 'Buying rural property takes more than a quick scroll',
-                'introText' => $m['intro_text'] ?? 'Every parcel here has a story beyond the MLS data: soil type, water source, road access, easements, and any agricultural enrollments that affect taxes or use. Use the filter below to narrow by area and price, then save the ones worth a walk-through. Our agents know these parcels personally and can answer the questions that a listing sheet leaves out.',
+                'introTitle' => $m['intro_title'] ?? 'Buying in a new neighborhood takes more than a quick scroll',
+                'introText' => $m['intro_text'] ?? 'Every listing here has a story beyond the card: HOA rules, commute, school options, and how the block actually lives. Use the filter below to narrow by area and price, then save the ones worth a walk-through.',
             ]),
             self::block('acreline/market-stats', []),
             self::block('acreline/reviews', [
@@ -286,6 +297,7 @@ class BlockMigration
                 'title' => 'Listings FAQ',
                 'headClass' => 'left',
             ]),
+            self::block('acreline/newsletter', []),
             self::block('acreline/cta-band', $ctaAttrs),
         ];
     }
@@ -294,9 +306,9 @@ class BlockMigration
     private static function areasBlocks(array $m, int $postId): array
     {
         $heroAttrs = [
-            'eyebrow' => $m['hero_eyebrow'] ?? 'Six sample markets',
-            'title' => $m['hero_title'] ?? 'Know the ground before <em>you make an offer</em>',
-            'text' => $m['hero_text'] ?? 'Six distinct sample areas — from fruit-belt orchards to timber ridges and creek-bottom farmland. Each one has a different price range, land type, and set of buyer considerations.',
+            'eyebrow' => $m['hero_eyebrow'] ?? 'Six sample neighborhoods',
+            'title' => $m['hero_title'] ?? 'Know the area before <em>you make an offer</em>',
+            'text' => $m['hero_text'] ?? 'Six distinct sample neighborhoods — from established streets to a walkable core and new-construction HOA. Each one has a different price range, housing mix, and commute.',
             'imageUrl' => self::resolveHeroImage($postId),
             'primaryLabel' => 'Browse listings',
             'primaryUrl' => home_url('/listings'),
@@ -304,15 +316,17 @@ class BlockMigration
         ];
 
         $introAttrs = [
-            'eyebrow' => $m['intro_eyebrow'] ?? 'Why area knowledge matters',
-            'title' => $m['intro_title'] ?? 'Rural land is not one market — it is six',
-            'text' => $m['intro_text'] ?? 'The difference between a flat cash-crop farm in Grain Country and a wooded ridge lot in Hill Country is not just price per acre — it is water source, road maintenance, zoning overlays, agricultural enrollments, and who your neighbors will be. This office covers a range of sample area types so you can compare what each ground type is actually like before you drive out for a showing.',
+            'eyebrow' => $m['intro_eyebrow'] ?? 'Why neighborhood knowledge matters',
+            'title' => $m['intro_title'] ?? 'One county is not one market',
+            'text' => $m['intro_text'] ?? 'The difference between a porch-front street in North Ridge and a condo above the shops in Oak Hollow is not just price — it is commute, schools, HOA rules, and who your neighbors will be. This office covers six sample neighborhoods so you can compare before you book a showing.',
         ];
 
         $gridAttrs = [
-            'gridEyebrow' => $m['grid_eyebrow'] ?? 'Area by area',
+            'gridEyebrow' => $m['grid_eyebrow'] ?? 'Neighborhood by neighborhood',
             'gridTitle' => $m['grid_title'] ?? 'Where the sample office works',
-            'gridText' => $m['grid_text'] ?? 'A quick read on six rural area types — what the ground is like, what typically lists, and what a buyer should watch for.',
+            'gridText' => $m['grid_text'] ?? 'A quick read on six sample neighborhoods — housing mix, commute, and what a buyer should watch for.',
+            'cardStyle' => 'featured',
+            'bandStyle' => 'alt',
         ];
 
         for ($i = 1; $i <= 6; $i++) {
@@ -324,7 +338,10 @@ class BlockMigration
         $howAttrs = [
             'eyebrow' => 'Area service',
             'title' => 'How we cover the region',
-            'text' => 'Each agent on the sample team is based in — or grew up in — the area they cover. That means real knowledge of road conditions, water table depth, which soils perc and which do not, and which local lenders understand agricultural land loans. When you work with this office on a rural purchase, your agent has likely walked ground within a mile of the parcel you are considering.',
+            'text' => 'Each agent on the sample team works a neighborhood — schools, commute, HOA rules, and which lenders close cleanly in that part of the sample county. When you book a showing, the specialist who covers that area walks it with you.',
+            'layout' => 'bento',
+            'maxAreas' => 6,
+            'bandStyle' => 'paper',
         ];
 
         $ctaAttrs = [
@@ -339,13 +356,14 @@ class BlockMigration
             self::block('acreline/intro-section', $introAttrs),
             self::block('acreline/area-grid', $gridAttrs),
             self::block('acreline/compare-table', []),
-            self::block('acreline/how-we-work', $howAttrs),
+            self::block('acreline/region-coverage', $howAttrs),
             self::block('acreline/market-stats', []),
             self::block('acreline/reviews', [
                 'eyebrow' => 'From the areas',
                 'title' => 'What buyers say about working local',
                 'text' => 'Sample quotes — not reviews from a licensed brokerage.',
             ]),
+            self::block('acreline/newsletter', []),
             self::block('acreline/cta-band', $ctaAttrs),
         ];
     }
@@ -355,25 +373,25 @@ class BlockMigration
     {
         $heroAttrs = [
             'eyebrow' => $m['hero_eyebrow'] ?? 'Buyer tools & education',
-            'title' => $m['hero_title'] ?? 'The land-buying guide <em>agents wish every buyer read</em>',
-            'text' => $m['hero_text'] ?? 'Rural properties come with questions you would never ask about a condo: Is the well drinkable? Does the septic perc? Who maintains the lane? This guide answers the ones that matter most — before you fall in love with a view.',
+            'title' => $m['hero_title'] ?? 'The buying guide <em>agents wish every buyer read</em>',
+            'text' => $m['hero_text'] ?? 'Houses, condos, and commercial spaces come with different questions: HOA rules, parking, permitted use, and a payment you can live with. This guide answers the ones that matter most — before you fall in love with the photos.',
             'imageUrl' => self::resolveHeroImage($postId),
             'primaryLabel' => 'Book a showing',
             'secondaryLabel' => 'Browse listings',
         ];
 
         $toolsAttrs = [
-            'introTitle' => $m['intro_title'] ?? 'What changes when you buy land instead of a house',
-            'introText' => $m['intro_text'] ?? 'With a finished home, utilities are already in place: municipal water, city sewer, paved road, and a clear address for delivery trucks. When you buy raw land or a rural farm, you often prove those things yourself — and the answers change what the land is worth and what it will cost to build or operate. Perc test results, well yield logs, and road-access easements are not optional paperwork. They are the foundation of your offer price.',
+            'introTitle' => $m['intro_title'] ?? 'What to sort before you write an offer',
+            'introText' => $m['intro_text'] ?? 'A finished house still needs a clear inspection path, HOA rules, and a payment you can live with. Condos add dues and rental rules. Commercial adds permitted use. Use the sample tools below to plan — then book a showing with an agent who knows the neighborhood.',
             'eyebrow' => $m['tools_eyebrow'] ?? 'Run your numbers first',
-            'title' => $m['tools_title'] ?? 'Land-loan &amp; pre-qualification tools',
-            'text' => $m['tools_text'] ?? 'These are friendly estimates to help you plan before you talk to a lender — not loan commitments. Land loans are different from home mortgages: expect higher down payments (typically 20–35%), shorter terms, and lenders who specialise in agricultural collateral. Use the tools below to get a realistic payment range, then call a farm-credit lender.',
+            'title' => $m['tools_title'] ?? 'Payment and pre-qualification tools',
+            'text' => $m['tools_text'] ?? 'These are friendly estimates to help you plan before you talk to a lender — not loan commitments. Use the tools below to get a realistic payment range, then call a licensed lender.',
         ];
 
         $howAttrs = [
             'eyebrow' => 'The buying process',
             'title' => 'From first search to closing day',
-            'text' => 'Most rural purchases follow the same arc — but the details vary a lot by property type. Here is what a typical farm or land purchase looks like when working with a specialist who knows the ground.',
+            'text' => 'Most purchases follow the same arc — but the details vary by property type. Here is what a typical house, condo, or commercial deal looks like when working with a specialist who knows the neighborhood.',
         ];
 
         $ctaAttrs = [
@@ -397,6 +415,7 @@ class BlockMigration
                 'title' => 'What buyers found most useful',
                 'text' => 'Sample quotes — not reviews from a licensed brokerage.',
             ]),
+            self::block('acreline/newsletter', []),
             self::block('acreline/cta-band', $ctaAttrs),
         ];
     }
@@ -406,8 +425,8 @@ class BlockMigration
     {
         $heroAttrs = [
             'eyebrow' => $m['hero_eyebrow'] ?? 'Meet the sample team',
-            'title' => $m['hero_title'] ?? 'Local agents. <em>Real land knowledge.</em>',
-            'text' => $m['hero_text'] ?? 'Three demo specialists — farms, historic homes, and raw land. All phone numbers are fictional 555 lines.',
+            'title' => $m['hero_title'] ?? 'Local agents. <em>Real market knowledge.</em>',
+            'text' => $m['hero_text'] ?? 'Three demo specialists — buyers, sellers, and a commercial desk. All phone numbers are fictional 555 lines.',
             'imageUrl' => self::resolveHeroImage($postId),
             'primaryLabel' => 'Book a showing',
             'secondaryLabel' => 'Browse listings',
@@ -415,13 +434,13 @@ class BlockMigration
 
         $introAttrs = [
             'title' => $m['intro_title'] ?? 'A focused team, not a franchise',
-            'text' => $m['intro_text'] ?? 'This sample office is built around a simple idea: rural property deserves an agent who understands it. Farms, orchards, raw land, and century homesteads all carry questions a typical residential agent rarely faces — use-value tax enrollment, agricultural conservation easements, perc evaluations, soil testing, and stone-foundation inspections. Every agent on this team specialises in the property type you are buying or selling.',
+            'text' => $m['intro_text'] ?? 'This sample office is built around a simple idea: buyers and sellers deserve an agent who knows the neighborhood. Houses, condos, and commercial suites all carry different questions — HOA rules, parking, permitted use, and a commute that holds up on a Tuesday. Every agent on this team specialises in the property type you are buying or selling.',
         ];
 
         $agentListAttrs = [
             'eyebrow' => 'The sample team',
             'title' => 'Specialists, not generalists',
-            'text' => 'Each agent focuses on a specific type of rural property. Pick the specialist whose background matches what you are buying.',
+            'text' => 'Each agent focuses on a specific desk — buyers, sellers, or commercial. Pick the specialist whose background matches what you are buying.',
             'headingAlign' => 'left',
         ];
 
@@ -434,7 +453,7 @@ class BlockMigration
         $howAttrs = [
             'eyebrow' => $m['how_eyebrow'] ?? 'How we work',
             'title' => $m['how_title'] ?? 'What the process actually looks like',
-            'text' => $m['how_text'] ?? 'No pressure, no jargon, and a straight answer about the ground under your feet. We walk the property with you, explain the issues we find, and let you decide.',
+            'text' => $m['how_text'] ?? 'No pressure, no jargon, and a straight answer about the house, the block, and the next step. We walk the property with you, explain the issues we find, and let you decide.',
         ];
 
         $ctaAttrs = [
@@ -448,8 +467,10 @@ class BlockMigration
             self::block('acreline/page-hero', $heroAttrs),
             self::block('acreline/intro-section', $introAttrs),
             self::block('acreline/agent-list', $agentListAttrs),
+            self::block('acreline/pricing-plans', []),
             self::block('acreline/reviews', $reviewsAttrs),
             self::block('acreline/how-we-work', $howAttrs),
+            self::block('acreline/logo-strip', []),
             self::block('acreline/cta-band', $ctaAttrs),
         ];
     }
@@ -520,7 +541,7 @@ class BlockMigration
         $introAttrs = [
             'eyebrow' => 'What to expect',
             'title' => 'A showing, not a sales pitch',
-            'text' => 'Rural property tours take more time than a 20-minute condo walk-through. A farm or land showing typically runs 60–90 minutes. Your agent will walk boundaries, point out drainage, check the well or septic records if available, and answer questions on site — not in a follow-up email. Come with boots if the ground is wet and a list of questions you want answered before you think about an offer.',
+            'text' => 'A house tour is not a 20-minute scroll. Plan 45–60 minutes so your agent can walk the rooms, check the block, and answer questions on site — not in a follow-up email. Come with a list of questions you want answered before you think about an offer.',
         ];
 
         $ctaAttrs = [
@@ -554,7 +575,7 @@ class BlockMigration
         $heroAttrs = [
             'eyebrow' => $m['hero_eyebrow'] ?? 'Buyer resources',
             'title' => $m['hero_title'] ?? 'Field notes from the sample county',
-            'text' => $m['hero_text'] ?? 'Practical articles on land buying, rural home searches, and what to know before you book a showing. Written to be useful — not to rank for keywords.',
+            'text' => $m['hero_text'] ?? 'Practical articles on house tours, first-time checklists, and neighborhood search — what to know before you book a showing.',
             'imageUrl' => self::resolveHeroImage($postId),
         ];
 
@@ -563,7 +584,7 @@ class BlockMigration
             self::block('acreline/topic-cards', [
                 'eyebrow' => 'What these notes cover',
                 'title' => 'Short reads you can adapt for your market',
-                'text' => 'Showings, first-time checklists, and land vs home search — the three posts buyers actually ask for. Use them as local SEO starters, then link back to listings and the booking form.',
+                'text' => 'Showings, first-time checklists, and neighborhood search — the three posts buyers actually ask for. Use them as local SEO starters, then link back to listings and the booking form.',
             ]),
             self::block('acreline/post-grid', []),
             self::block('acreline/reviews', [
@@ -571,6 +592,7 @@ class BlockMigration
                 'title' => 'What readers take into a showing',
                 'text' => 'Sample quotes for layout — not reviews from a licensed brokerage.',
             ]),
+            self::block('acreline/newsletter', []),
             self::block('acreline/cta-band', [
                 'title' => $m['cta_title'] ?? 'Ready to put these notes to use?',
                 'text' => $m['cta_text'] ?? 'Browse the current sample inventory or book a showing to walk a parcel with a specialist.',

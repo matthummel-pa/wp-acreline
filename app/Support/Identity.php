@@ -31,7 +31,7 @@ class Identity
 
         $desc = (string) get_bloginfo('description', 'display');
 
-        return $desc !== '' ? $desc : __('Farms · land · historic homes', 'acreline');
+        return $desc !== '' ? $desc : __('Homes · neighborhoods · local agents', 'acreline');
     }
 
     public static function phone(): string

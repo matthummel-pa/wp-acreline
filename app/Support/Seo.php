@@ -10,7 +10,7 @@ class Seo
 {
     public const SITE = 'Acreline';
 
-    public const FALLBACK = 'Farms, historic houses, and acreage in a sample rural market. Filter listings by area and book a showing with a sample agent.';
+    public const FALLBACK = 'Houses, condos, and commercial listings in a sample market. Filter by neighborhood and book a showing with a sample agent.';
 
     public static function siteName(): string
     {
@@ -339,14 +339,14 @@ class Seo
     public static function defaultDescriptions(): array
     {
         return [
-            'home' => 'Farms, historic houses, and acreage in a sample rural market. Filter by area, review sample listings, and book a showing with a sample agent.',
-            'listings' => 'Browse sample farms, historic houses, and acreage. Filter by type, price, acres, and area, then schedule a showing.',
-            'areas' => 'Sample-market notes: orchards, farms, and wooded lots from Oak Hollow to Border Farms. Context before you tour a listing — rename the areas for your county.',
-            'guide' => 'Guidance on wells, septic, access, and land loans, plus calculators and a path to schedule a parcel showing.',
-            'agents' => 'Meet the sample team. Agents focused on farms, orchards, and historic houses across a rural demo market.',
+            'home' => 'Houses, condos, and commercial listings in a sample market. Filter by neighborhood, review sample listings, and book a showing with a sample agent.',
+            'listings' => 'Browse sample houses, condos, and commercial spaces. Filter by type, price, and neighborhood, then schedule a showing.',
+            'areas' => 'Sample-market notes for North Ridge, Mill Creek, Oak Hollow, and three more neighborhoods. Context before you tour — rename the areas for your county.',
+            'guide' => 'Guidance on inspections, HOA rules, payments, and a path to schedule a house showing.',
+            'agents' => 'Meet the sample team. Agents focused on buyers, sellers, and commercial listings across a demo market.',
             'contact' => 'Contact the sample office at 100 Concept Way, Sample Borough. Call (555) 010-0455 or book a house showing online.',
             'book' => 'Choose a listing, date, and time. Showing requests are saved for the listing agent so you can review the booking flow.',
-            'blog' => 'Notes on house showings, first-time buyer checklists, and land versus home search for rural buyers and sellers.',
+            'blog' => 'Notes on house showings, first-time buyer checklists, and neighborhood search for buyers and sellers.',
             'simple' => self::FALLBACK,
         ];
     }

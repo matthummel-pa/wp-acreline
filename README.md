@@ -1,12 +1,12 @@
-# Acreline — WordPress Theme for Farms, Land & Historic Homes
+# Acreline — WordPress Theme for Real Estate
 
 [![Deploy theme zip](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml/badge.svg)](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml)
-[![Version](https://img.shields.io/badge/version-1.4.7-155539?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.5.0-155539?style=flat-square)](CHANGELOG.md)
 [![License: GPLv2+](https://img.shields.io/badge/license-GPLv2%2B-3c763d?style=flat-square)](license.txt)
 [![PHP 8.3+](https://img.shields.io/badge/PHP-8.3%2B-777bb4?style=flat-square)](https://www.php.net/)
 [![WordPress 6.6+](https://img.shields.io/badge/WordPress-6.6%2B-21759b?style=flat-square)](https://wordpress.org/)
 
-**Acreline** is a WordPress real estate theme built for rural land offices — searchable listings, agent profiles, and showing requests for farms, acreage, and historic homes.
+**Acreline** is a WordPress theme for real estate offices — searchable listings, agent profiles, and showing requests for homes, neighborhoods, and local agents.
 
 |  |  |
 | --- | --- |
@@ -15,7 +15,7 @@
 | **Buy / checkout** | [matthummel.com/product/acreline/](https://matthummel.com/product/acreline/) |
 | **Support** | [matthummel.com/support/acreline/](https://matthummel.com/support/acreline/) · [GitHub Issues](https://github.com/matthummel-pa/wp-acreline/issues) |
 | **Author** | [Matt Hummel](https://matthummel.com/) |
-| **Version** | 1.4.7 |
+| **Version** | 1.5.0 |
 
 > **Fiction only.** The demo uses sample data — `555` phone numbers, `@acreline-concept.test` emails, concept listings. Not a live MLS, licensed brokerage, or booking system.
 
@@ -63,7 +63,7 @@
 
 ## What's included
 
-Everything a land and farm office needs in **one zip** — no page builder, no ACF, no IDX plugin.
+Everything a real estate office needs in **one zip** — no page builder, no ACF, no IDX plugin.
 
 ### Why Acreline is different
 
@@ -72,7 +72,7 @@ Everything a land and farm office needs in **one zip** — no page builder, no A
 | No page builder required | ✅ | Page builder license often needed |
 | No ACF required | ✅ | ACF Pro often bundled |
 | No IDX/MLS plugin | ✅ | IDX subscription often required |
-| 28 custom Gutenberg blocks | ✅ | Most use shortcodes or Classic |
+| 32 custom Gutenberg blocks | ✅ | Most use shortcodes or Classic |
 | Block Generator (no-code blocks) | ✅ | Unique to Acreline |
 | Listing comparison modal | ✅ | Rare without paid add-ons |
 | Saved listings (localStorage) | ✅ | Usually needs a plugin or login |
@@ -83,7 +83,7 @@ Everything a land and farm office needs in **one zip** — no page builder, no A
 | Desktop top bar with mobile fallback | ✅ | Rarely included |
 | Fiction-only concept demo | ✅ | Required for honest marketplace listing |
 
-### 28 custom Gutenberg blocks
+### 32 custom Gutenberg blocks
 
 Every marketing page is built with WordPress blocks that render server-side — what you see in the block editor matches the live site exactly.
 
@@ -97,21 +97,25 @@ Every marketing page is built with WordPress blocks that render server-side — 
 | Market Stats | Four editable market stat tiles |
 | How It Works | Four-step tour process |
 | Agent Tools | Home value estimator + listing alert forms |
-| Area Grid | Up to six area cards |
+| Area Grid | Up to six area cards with photos, card styles, and a section CTA |
+| Region Coverage | Split map + neighborhood cards, or bento/grid; editable methods and CTAs |
+| Pricing Plans | Three service/plan cards with a featured highlight |
+| Logo Strip | Partner or brokerage wordmarks (optional grayscale) |
+| Newsletter | Email signup band (demo form — nothing is emailed) |
 | CTA Band | Full-width CTA with two buttons, three backgrounds |
 | Intro Section | Eyebrow · title · lede copy |
 | Listing Grid | Filter toolbar, card grid, and map view |
-| Tools Section | Land loan + pre-qual calculators |
-| How We Work | Three-step office process |
+| Tools Section | Loan + pre-qual calculators |
+| How We Work | Editable office-process steps |
 | Office Info | Address, phone, email, hours from Customizer |
 | Contact Form | Office info + message form side by side |
 | FAQ List | Accordion, plain, or numbered format |
 | Reviews | Testimonial cards |
-| SEO Content Block | Land-buying guide copy |
+| SEO Content Block | Long-form buying-guide copy |
 | Booking Note + Form | Standalone booking page |
 | Agent List | Agent grid with photo, stats, designations |
 | Trust Strip | Four contact commitments |
-| Buyer Checklist | Numbered rural-property checklist |
+| Buyer Checklist | Numbered property checklist |
 | Showing Prep Checklist | Two-column buyer / agent prep lists |
 | Area Compare Table | Side-by-side sample-market table |
 | Topic Cards | Three scan cards for the blog index |
@@ -126,14 +130,14 @@ Every marketing page is built with WordPress blocks that render server-side — 
 
 | Page | Blocks included |
 | --- | --- |
-| Home | Hero · Intent Cards · Spotlight · How It Works · Booking · Market Stats · Agent Tools · SEO Content · FAQ · Reviews · CTA |
-| Listings | Page Hero · Listing Grid · Market Stats · Reviews · FAQ · CTA |
-| Areas | Page Hero · Intro · Area Grid · Compare Table · How We Work · Market Stats · Reviews · CTA |
-| Guide | Page Hero · Tools · How It Works · Checklist · FAQ · Reviews · CTA |
-| Agents | Page Hero · Intro · Agent List · Reviews · How We Work · CTA |
+| Home | Hero · Intent Cards · Spotlight · Region Coverage · How It Works · Booking · Market Stats · Agent Tools · Pricing · Logo Strip · Newsletter · SEO Content · FAQ · Reviews · CTA |
+| Listings | Page Hero · Listing Grid · Market Stats · Reviews · FAQ · Newsletter · CTA |
+| Areas | Page Hero · Intro · Area Grid · Compare Table · Region Coverage · Market Stats · Reviews · Newsletter · CTA |
+| Guide | Page Hero · Tools · How It Works · Checklist · FAQ · Reviews · Newsletter · CTA |
+| Agents | Page Hero · Intro · Agent List · Reviews · Pricing · Logo Strip · How We Work · CTA |
 | Contact | Page Hero · Contact Form · Office Info · Trust Strip · Intro · How We Work · Agent List · CTA |
 | Book a showing | Page Hero · Booking Note + Form · Intro · Prep Checklist · FAQ · CTA |
-| Blog | Page Hero · Topic Cards · Post Grid · Reviews · CTA |
+| Blog | Page Hero · Topic Cards · Post Grid · Reviews · Newsletter · CTA |
 
 ---
 

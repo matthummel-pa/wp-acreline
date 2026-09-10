@@ -3,18 +3,18 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.4.7
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
 
-WordPress theme for farms, land, and historic homes — listings, agents, showing requests. Almost no plugins.
+WordPress theme for real estate offices — listings, agents, showing requests. Gutenberg marketing pages. Almost no plugins.
 
 == Description ==
 
-Acreline is a classic (non-block) Sage 11 WordPress theme for land, farms, and historic-home inventory: searchable listings, agents, and showing requests.
+Acreline is a Sage 11 WordPress theme for real estate offices: searchable listings, agents, and showing requests. Marketing pages use Gutenberg (32 custom blocks). Listings, agents, and bookings use classic metaboxes.
 
-It is meant to set up with almost no plugins. The theme zip alone runs the office. You do not need Advanced Custom Fields, Elementor, a Gutenberg kit, or an IDX plugin. Buyers change brand, phone, colors, and inventory from the Customizer and custom-field metaboxes — they do not edit the design.
+It is meant to set up with almost no plugins. The theme zip alone runs the office. You do not need Advanced Custom Fields, Elementor, or an IDX plugin. Buyers change brand, phone, and colors from the Customizer; marketing copy from the block editor; inventory from custom-field metaboxes.
 
 The sample office in the preview is named Acreline — replace it under Customize → Identity. This is a concept theme. Sample phones are 555 numbers. Concept emails use @acreline-concept.test. It is not a live MLS, licensed brokerage, or booking system.
 
@@ -28,7 +28,7 @@ House mark and wordmark (original SVG, GPLv2) ship in public/images/brand/. Supp
 * Appearance → Acreline Settings: tabbed admin page with iOS-style toggles for every listing, agent, booking, and display option
 * Appearance → Acreline Support: getting-started guide, feature reference, shortcode cheatsheet, FAQ, and changelog in one screen
 * Almost no plugins — theme zip is enough; optional Acreline Core and child theme
-* Gutenberg block editor for pages and posts (28 custom dynamic blocks, no page builder or shortcodes)
+* Gutenberg block editor for pages and posts (32 custom dynamic blocks, no page builder or shortcodes)
 * Classic metaboxes for listings, agents, and bookings (no ACF required)
 * Rich listing fields: property details, utilities, HOA, land & farm, flood zone, school district, green/eco features, smart home chips
 * Built-in mortgage calculator on listing detail pages — no plugin or API required
@@ -76,7 +76,7 @@ No. The theme zip runs listings, agents, and showings. Optional: Acreline Core (
 
 = Where do I change copy without editing templates? =
 
-Customize → Identity / Colors / Header / Typography. Pages, listings, agents, and posts use custom-field metaboxes. Layout stays in Blade.
+Customize → Identity / Colors / Header / Typography. Marketing pages and posts use the Gutenberg block editor. Listings, agents, and bookings use classic metaboxes.
 
 = Where do I change the phone number? =
 
@@ -120,7 +120,7 @@ Desktop captures of the seeded concept demo (also used on https://matthummel.com
 
 1. Homepage — search, Acreline house mark, and the path from listing to showing. (`docs/marketplace/screenshots/01-homepage.png`)
 2. Listings — sample inventory with type, price, acreage, and area filters. (`02-listings.png`)
-3. Listing single — farmhouse / land example with agent card and book-a-showing. (`03-listing.png`)
+3. Listing single — property example with agent card and book-a-showing. (`03-listing.png`)
 4. Agents — license, specialties, and contact fields (not a live MLS roster). (`04-agents.png`)
 5. Contact — office phone and address from Customize → Identity. (`05-contact.png`)
 6. Areas — sample markets you replace with your own counties. (`06-areas.png`)
@@ -138,6 +138,13 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.5.0 =
+* New Region Coverage block — split map + neighborhood cards, or bento/grid. Neighborhoods, methods, and CTAs are editable.
+* New blocks: Pricing plans, logo strip, and newsletter signup (demo form — nothing is emailed).
+* Area Grid supports photos, card styles, and a section CTA. How We Work steps are editable.
+* Marketing pages and FAQs speak to a general real-estate office: homes, neighborhoods, and local agents.
+* After you install the zip, run Tools → Migrate to Blocks → Force rebuild so existing pages pick up the new stacks.
 
 = 1.4.7 =
 * The homepage and marketing CTA band follows the active color scheme. Text and buttons stay readable.
