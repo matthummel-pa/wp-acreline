@@ -3,7 +3,7 @@
 @include('partials.page-hero', [
   'heroBrand' => ($copy['hero_brand'] ?? '') !== '' ? $copy['hero_brand'] : ($identity['brand'] ?? 'Acreline'),
   'heroEyebrow' => $copy['hero_eyebrow'] ?? 'Guide',
-  'heroTitle' => $copy['hero_title'] ?? 'Realtor notes you can publish',
+  'heroTitle' => $copy['hero_title'] ?? 'Agent notes you can publish',
   'heroText' => $copy['hero_text'] ?? 'Showings, buyer checklists, and land vs home search — short posts you can adapt for local SEO.',
   'heroActions' => [
     ['href' => home_url('/book/'), 'label' => 'Book a showing', 'class' => 'btn btn-primary'],
@@ -24,7 +24,7 @@
       <article class="scan-card">
         <span class="num">Showings</span>
         <h3>How a tour should feel</h3>
-        <p>What to book, what to wear, and why a rural slot is not a 20-minute condo walk-through.</p>
+        <p>What to book, what to wear, and why a showing is not a 20-minute photo scroll.</p>
       </article>
       <article class="scan-card">
         <span class="num">Checklists</span>
@@ -33,8 +33,8 @@
       </article>
       <article class="scan-card">
         <span class="num">Search</span>
-        <h3>Land vs home</h3>
-        <p>Different card hierarchy so acreage shoppers and house shoppers do not share one muddy filter.</p>
+        <h3>House vs condo</h3>
+        <p>Different card hierarchy so house shoppers and condo shoppers do not share one muddy filter.</p>
       </article>
     </div>
   </div>

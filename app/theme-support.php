@@ -68,7 +68,7 @@ function render_support_page(): void
           <?php
           $steps = [
               ['num' => '1', 'title' => __('Run the setup wizard', 'acreline'),
-                  'desc' => __('Go to Appearance → Acreline Setup and follow the five-step wizard to set your brand name, phone, email, color palette, and seed demo content.', 'acreline'),
+                  'desc' => __('Go to Appearance → Acreline Setup and follow the wizard to set your brand name, phone, brokerage legal name, color palette, and seed demo content.', 'acreline'),
                   'link' => admin_url('themes.php?page=acreline-setup'), 'link_text' => __('Open setup wizard', 'acreline')],
               ['num' => '2', 'title' => __('Add your listings', 'acreline'),
                   'desc' => __('Every listing is a Listing CPT with full metaboxes: photos, MLS info, property details, utilities, land data, open house, virtual tour, floor plan, and smart home features.', 'acreline'),
@@ -76,9 +76,9 @@ function render_support_page(): void
               ['num' => '3', 'title' => __('Create agent profiles', 'acreline'),
                   'desc' => __('Each agent is an Agent CPT with a photo, bio, stats (homes sold, volume, DOM), certifications, social links, calendar URL, and team assignment.', 'acreline'),
                   'link' => admin_url('edit.php?post_type=agent'), 'link_text' => __('View agents', 'acreline')],
-              ['num' => '4', 'title' => __('Customise Identity', 'acreline'),
-                  'desc' => __('Phone, email, address, hours, and social handles live under Appearance → Customize → Identity. Color style is Customize → Colors or Appearance → Acreline Settings → General.', 'acreline'),
-                  'link' => admin_url('customize.php?autofocus[section]=ks_identity'), 'link_text' => __('Open Identity', 'acreline')],
+              ['num' => '4', 'title' => __('Customise Identity &amp; Compliance', 'acreline'),
+                  'desc' => __('Phone, email, address, and hours live under Customize → Identity. Brokerage legal name, Fair Housing, IDX slots, privacy URL, and form consent live under Customize → Compliance (same fields in Acreline Settings). Not legal advice.', 'acreline'),
+                  'link' => admin_url('customize.php?autofocus[section]=ks_compliance'), 'link_text' => __('Open Compliance', 'acreline')],
               ['num' => '5', 'title' => __('Adjust feature toggles', 'acreline'),
                   'desc' => __('Use Theme Settings (Appearance → Acreline Settings) to turn individual sections on or off — mortgage calculator, open house banners, agent stats, booking fields, and more.', 'acreline'),
                   'link' => $settingsUrl, 'link_text' => __('Open settings', 'acreline')],
@@ -119,7 +119,7 @@ function render_support_page(): void
         ['icon' => '🧮',  'title' => __('Mortgage calculator', 'acreline'),
             'desc' => __('Built-in calculator on every listing detail page. Rate, term, and down-payment are editable. No plugin or API required.', 'acreline')],
         ['icon' => '🏡',  'title' => __('Rich listing fields', 'acreline'),
-            'desc' => __('Property details, utilities, HOA, land & farm data, flood zone, school district, green features, and smart home chips.', 'acreline')],
+            'desc' => __('Property details, utilities, HOA, flood zone, school district, green features, and smart home chips.', 'acreline')],
         ['icon' => '👤',  'title' => __('Advanced agent profiles', 'acreline'),
             'desc' => __('Performance stats grid, credentials, social links, intro video, calendar booking URL, mobile number, and team name.', 'acreline')],
         ['icon' => '🖼️',  'title' => __('Media picker', 'acreline'),
@@ -130,6 +130,8 @@ function render_support_page(): void
             'desc' => __('The homepage hero photo slowly pans and zooms. Turn it off under Customize → Header → Animate homepage hero image. Reduced-motion visitors see a still cover.', 'acreline')],
         ['icon' => '📱',  'title' => __('Mobile listing-search tilt', 'acreline'),
             'desc' => __('Optional: the homepage search panel gently follows device tilt on phones. Off by default. Does nothing without sensors or if permission is denied.', 'acreline')],
+        ['icon' => '⚖️',  'title' => __('Compliance tools', 'acreline'),
+            'desc' => __('Brokerage legal name, optional licenses, Fair Housing statement, MLS/IDX disclaimer slots, privacy URL, and a consent checkbox on forms. Not legal advice — check your state commission.', 'acreline')],
     ];
     foreach ($features as $f) { ?>
           <div class="kss-feature-card">
@@ -228,7 +230,7 @@ function render_support_page(): void
         [__('Where are bookings stored?', 'acreline'),
             __('Showing requests become Booking CPT posts in WordPress Admin → Bookings. There is no external CRM connection by default — all data stays in your database.', 'acreline')],
         [__('Can I submit this theme to WordPress.org?', 'acreline'),
-            __('A lite version path is planned. The current build ships with Sage 11 + Gutenberg-off which will not pass wp.org first review without stripping Acorn. See docs/marketplace/SELLING.md for the current release strategy.', 'acreline')],
+            __('A lite version path is planned. The current build ships Sage 11 + Acorn, which will not pass wp.org first review without stripping Acorn. See docs/marketplace/SELLING.md for the current release strategy.', 'acreline')],
     ];
     foreach ($faqs as [$q, $a]) { ?>
           <details class="kss-faq">
@@ -245,6 +247,13 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.0', [
+            __('New Region Coverage block: split map + neighborhood cards, or bento/grid', 'acreline'),
+            __('New blocks: Pricing plans, logo strip, and newsletter signup (demo form — nothing is emailed)', 'acreline'),
+            __('Area Grid photos and card styles; How We Work steps are editable', 'acreline'),
+            __('Marketing pages and FAQs speak to real estate agents: homes, listings, and showings', 'acreline'),
+            __('After you install the zip, run Tools → Migrate to Blocks → Force rebuild so existing pages pick up the new stacks', 'acreline'),
+        ]],
         ['1.4.7', [
             __('The marketing CTA band follows the active color scheme', 'acreline'),
             __('The desktop top bar follows the active color scheme; custom top-bar colors still override', 'acreline'),
@@ -336,7 +345,7 @@ function render_support_page(): void
             <span class="kss-logo-mark kss-logo-mark--lg" aria-hidden="true">A</span>
             <div>
               <h2 class="kss-about-title">Acreline</h2>
-              <p class="kss-about-tagline"><?php esc_html_e('Farms · land · historic homes', 'acreline'); ?></p>
+              <p class="kss-about-tagline"><?php esc_html_e('Homes · neighborhoods · local agents', 'acreline'); ?></p>
               <p class="kss-about-meta">
                 <?php echo esc_html(sprintf(__('Version %s · WordPress theme by Matt Hummel', 'acreline'), $themeVer)); ?>
               </p>

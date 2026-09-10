@@ -63,7 +63,7 @@ cp -a "$STAGE/acreline-core.zip" "$PACK_ROOT/"
 DOCS="$THEME_DIR/docs/marketplace"
 for html in index.html buyer-guide.html branding.html requirements.html support.html \
            changelog.html sources.html customizer.html templates.html listings.html \
-           child-theme.html translation.html faq.html credits.html; do
+           child-theme.html translation.html faq.html credits.html compliance.html; do
   if [ -f "$DOCS/$html" ]; then
     cp -a "$DOCS/$html" "$PACK_ROOT/Documentation/"
   fi

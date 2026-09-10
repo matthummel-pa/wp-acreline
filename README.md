@@ -1,21 +1,22 @@
-# Acreline — WordPress Theme for Farms, Land & Historic Homes
+# Acreline — WordPress Theme for Real Estate Agents
 
 [![Deploy theme zip](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml/badge.svg)](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml)
-[![Version](https://img.shields.io/badge/version-1.4.7-155539?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.5.0-155539?style=flat-square)](CHANGELOG.md)
 [![License: GPLv2+](https://img.shields.io/badge/license-GPLv2%2B-3c763d?style=flat-square)](license.txt)
 [![PHP 8.3+](https://img.shields.io/badge/PHP-8.3%2B-777bb4?style=flat-square)](https://www.php.net/)
 [![WordPress 6.6+](https://img.shields.io/badge/WordPress-6.6%2B-21759b?style=flat-square)](https://wordpress.org/)
 
-**Acreline** is a WordPress real estate theme built for rural land offices — searchable listings, agent profiles, and showing requests for farms, acreage, and historic homes.
+**Acreline** is a WordPress theme for **solo agents and small teams** — featured homes, agent bios, and showing requests on Gutenberg marketing pages. No page builder, no ACF, and no IDX plugin required on day one.
 
 |  |  |
 | --- | --- |
 | **Live demo** | [acreline.matthummel.com](https://acreline.matthummel.com/) |
 | **Product page** | [matthummel.com/projects/acreline/](https://matthummel.com/projects/acreline/) |
+| **Shop** | [matthummel.com/shop](https://matthummel.com/shop/) |
 | **Buy / checkout** | [matthummel.com/product/acreline/](https://matthummel.com/product/acreline/) |
 | **Support** | [matthummel.com/support/acreline/](https://matthummel.com/support/acreline/) · [GitHub Issues](https://github.com/matthummel-pa/wp-acreline/issues) |
 | **Author** | [Matt Hummel](https://matthummel.com/) |
-| **Version** | 1.4.7 |
+| **Version** | 1.5.0 |
 
 > **Fiction only.** The demo uses sample data — `555` phone numbers, `@acreline-concept.test` emails, concept listings. Not a live MLS, licensed brokerage, or booking system.
 
@@ -45,7 +46,7 @@
 | | |
 |:---:|:---:|
 | [![Homepage](docs/marketplace/screenshots/01-homepage.png)](docs/marketplace/screenshots/01-homepage.png) | [![Listings](docs/marketplace/screenshots/02-listings.png)](docs/marketplace/screenshots/02-listings.png) |
-| **Homepage** — Hero search · Intent cards · Featured listings | **Listings** — Filter bar (type, price, acreage, area) · Grid view |
+| **Homepage** — Hero search · Intent cards · Featured listings | **Listings** — Filter bar (type, price, area) · Grid view |
 | [![Listing detail](docs/marketplace/screenshots/03-listing.png)](docs/marketplace/screenshots/03-listing.png) | [![Listing detail scroll](docs/marketplace/screenshots/09-listing-detail.png)](docs/marketplace/screenshots/09-listing-detail.png) |
 | **Listing** — Photo, price, stats, sticky CTA | **Listing (scrolled)** — Mortgage calculator · Agent card · Book CTA |
 | [![Agents](docs/marketplace/screenshots/04-agents.png)](docs/marketplace/screenshots/04-agents.png) | [![Contact](docs/marketplace/screenshots/05-contact.png)](docs/marketplace/screenshots/05-contact.png) |
@@ -63,7 +64,7 @@
 
 ## What's included
 
-Everything a land and farm office needs in **one zip** — no page builder, no ACF, no IDX plugin.
+Day-one inventory, agent bios, and lead capture in **one zip** — no page builder, no ACF, no IDX subscription. Houzez, RealHomes, and WPResidence are built as listing portals. Acreline is built for an agent site.
 
 ### Why Acreline is different
 
@@ -71,8 +72,8 @@ Everything a land and farm office needs in **one zip** — no page builder, no A
 | --- | :---: | :---: |
 | No page builder required | ✅ | Page builder license often needed |
 | No ACF required | ✅ | ACF Pro often bundled |
-| No IDX/MLS plugin | ✅ | IDX subscription often required |
-| 28 custom Gutenberg blocks | ✅ | Most use shortcodes or Classic |
+| No IDX/MLS required | ✅ | IDX subscription often required |
+| 32 custom Gutenberg blocks | ✅ | Most use shortcodes or Classic |
 | Block Generator (no-code blocks) | ✅ | Unique to Acreline |
 | Listing comparison modal | ✅ | Rare without paid add-ons |
 | Saved listings (localStorage) | ✅ | Usually needs a plugin or login |
@@ -83,7 +84,7 @@ Everything a land and farm office needs in **one zip** — no page builder, no A
 | Desktop top bar with mobile fallback | ✅ | Rarely included |
 | Fiction-only concept demo | ✅ | Required for honest marketplace listing |
 
-### 28 custom Gutenberg blocks
+### 32 custom Gutenberg blocks
 
 Every marketing page is built with WordPress blocks that render server-side — what you see in the block editor matches the live site exactly.
 
@@ -97,21 +98,25 @@ Every marketing page is built with WordPress blocks that render server-side — 
 | Market Stats | Four editable market stat tiles |
 | How It Works | Four-step tour process |
 | Agent Tools | Home value estimator + listing alert forms |
-| Area Grid | Up to six area cards |
+| Area Grid | Up to six area cards with photos, card styles, and a section CTA |
+| Region Coverage | Split map + neighborhood cards, or bento/grid; editable methods and CTAs |
+| Pricing Plans | Three service/plan cards with a featured highlight |
+| Logo Strip | Partner or brokerage wordmarks (optional grayscale) |
+| Newsletter | Email signup band (demo form — nothing is emailed) |
 | CTA Band | Full-width CTA with two buttons, three backgrounds |
 | Intro Section | Eyebrow · title · lede copy |
 | Listing Grid | Filter toolbar, card grid, and map view |
-| Tools Section | Land loan + pre-qual calculators |
-| How We Work | Three-step office process |
+| Tools Section | Loan + pre-qual calculators |
+| How We Work | Editable office-process steps |
 | Office Info | Address, phone, email, hours from Customizer |
 | Contact Form | Office info + message form side by side |
 | FAQ List | Accordion, plain, or numbered format |
 | Reviews | Testimonial cards |
-| SEO Content Block | Land-buying guide copy |
+| SEO Content Block | Long-form buying-guide copy |
 | Booking Note + Form | Standalone booking page |
 | Agent List | Agent grid with photo, stats, designations |
 | Trust Strip | Four contact commitments |
-| Buyer Checklist | Numbered rural-property checklist |
+| Buyer Checklist | Numbered property checklist |
 | Showing Prep Checklist | Two-column buyer / agent prep lists |
 | Area Compare Table | Side-by-side sample-market table |
 | Topic Cards | Three scan cards for the blog index |
@@ -126,14 +131,14 @@ Every marketing page is built with WordPress blocks that render server-side — 
 
 | Page | Blocks included |
 | --- | --- |
-| Home | Hero · Intent Cards · Spotlight · How It Works · Booking · Market Stats · Agent Tools · SEO Content · FAQ · Reviews · CTA |
-| Listings | Page Hero · Listing Grid · Market Stats · Reviews · FAQ · CTA |
-| Areas | Page Hero · Intro · Area Grid · Compare Table · How We Work · Market Stats · Reviews · CTA |
-| Guide | Page Hero · Tools · How It Works · Checklist · FAQ · Reviews · CTA |
-| Agents | Page Hero · Intro · Agent List · Reviews · How We Work · CTA |
+| Home | Hero · Intent Cards · Spotlight · Region Coverage · How It Works · Booking · Market Stats · Agent Tools · Pricing · Logo Strip · Newsletter · SEO Content · FAQ · Reviews · CTA |
+| Listings | Page Hero · Listing Grid · Market Stats · Reviews · FAQ · Newsletter · CTA |
+| Areas | Page Hero · Intro · Area Grid · Compare Table · Region Coverage · Market Stats · Reviews · Newsletter · CTA |
+| Guide | Page Hero · Tools · How It Works · Checklist · FAQ · Reviews · Newsletter · CTA |
+| Agents | Page Hero · Intro · Agent List · Reviews · Pricing · Logo Strip · How We Work · CTA |
 | Contact | Page Hero · Contact Form · Office Info · Trust Strip · Intro · How We Work · Agent List · CTA |
 | Book a showing | Page Hero · Booking Note + Form · Intro · Prep Checklist · FAQ · CTA |
-| Blog | Page Hero · Topic Cards · Post Grid · Reviews · CTA |
+| Blog | Page Hero · Topic Cards · Post Grid · Reviews · Newsletter · CTA |
 
 ---
 
@@ -142,7 +147,7 @@ Every marketing page is built with WordPress blocks that render server-side — 
 - **Listing** — type, price, beds, baths, sqft, acres, township, MLS, status; utilities (water/sewer/heating/cooling), HOA, school district, flood zone, open house date/time, virtual + video tour, floor plan, green/eco features, smart home chips, outbuildings, tillable/pasture acres
 - **Agent** — photo, bio, performance stats (homes sold, volume, avg DOM, list-to-sale ratio, review count), certifications/designations, social links (Facebook, Instagram, LinkedIn, YouTube), intro video URL, calendar URL, mobile, awards, team name
 - **Booking** — showing type, date, time, assigned agent, client contact; buyer type, attendees, comm preference; pipeline (Requested → Confirmed → Completed)
-- **Listing grid** — filter by type, price, acreage, area, status; grid and map views
+- **Listing grid** — filter by type, price, area, and status; grid and map views
 - **Comparison modal** — compare up to 3 listings side-by-side
 - **Saved listings drawer** — heart icon saves to `localStorage`; floating button opens the slide-out panel
 - **Sticky CTA bar** — price + "Book a showing" after the hero scrolls out on single listing pages
@@ -162,6 +167,7 @@ Every marketing page is built with WordPress blocks that render server-side — 
 | Section | What you set |
 | --- | --- |
 | **Identity** | Brand name, tagline, phone, email, address, hours, header CTA, footer blurb, demo banner, author credit |
+| **Compliance** | Brokerage legal name, optional licenses, Fair Housing, MLS/IDX slots, privacy/terms URLs, form consent (not legal advice) |
 | **Site Identity** | Custom logo (replaces the Acreline house mark) |
 | **Colors** | Eight presets: Forest · Clay · Navy · Burgundy · Harvest · Lake · Orchard · Charcoal — plus accent, paper, and ink pickers |
 | **Header** | Sticky on/off, standard / compact height, homepage Ken Burns photo animation (`ks_hero_ken_burns`, on), optional mobile listing-search tilt (`ks_hero_search_tilt`, off) |
@@ -283,6 +289,7 @@ Upload your own logo under **Appearance → Customize → Site Identity**. Eight
 | [`BRAND.md`](BRAND.md) | Brand kit — palette, logo marks |
 | [`docs/marketplace/index.html`](docs/marketplace/index.html) | Buyer docs hub — open first |
 | [`docs/marketplace/buyer-guide.html`](docs/marketplace/buyer-guide.html) | Install, Customizer, top bar, fields, FAQ |
+| [`docs/marketplace/compliance.html`](docs/marketplace/compliance.html) | Website compliance checklist (not legal advice) |
 | [`docs/marketplace/screenshots/`](docs/marketplace/screenshots/) | 01–09 screenshots used on matthummel.com |
 | [`public/images/brand/`](public/images/brand/) | House mark + lockup (SVG, GPLv2) |
 

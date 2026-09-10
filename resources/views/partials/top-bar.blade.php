@@ -58,6 +58,12 @@
 
     {{-- ── Right: contact items + optional CTA ────────────────────────────── --}}
     <div class="top-bar-contacts" aria-label="{{ esc_attr__('Contact information', 'acreline') }}">
+      @if (! empty($compliance['showLicenseHeader']) && ! empty($compliance['brokerageLegalName']))
+        <span class="top-bar-item top-bar-item--license" translate="no">
+          <span>{{ $compliance['brokerageLegalName'] }}</span>
+        </span>
+      @endif
+
       @if ($tb['showPhone'])
         <a href="{{ esc_url($tb['phoneHref']) }}" class="top-bar-item"
            aria-label="{{ esc_attr(sprintf(__('Call %s', 'acreline'), $tb['phone'])) }}">

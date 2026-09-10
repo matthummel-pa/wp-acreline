@@ -4,7 +4,7 @@
   $phone = $identity['phone'] ?? '(555) 010-0455';
   $phoneHref = $identity['phoneHref'] ?? 'tel:+15550100455';
   $brand = $identity['brand'] ?? 'Acreline';
-  $tagline = $identity['tagline'] ?? 'Farms · land · historic homes';
+  $tagline = $identity['tagline'] ?? 'Homes · neighborhoods · local agents';
   $cta = $identity['ctaLabel'] ?? 'Book a showing';
 @endphp
 
@@ -15,6 +15,9 @@
     @if (! empty($identity['hasLogo']))
       <div class="brand brand-logo">
         {!! get_custom_logo() !!}
+        @if (! empty($compliance['showLicenseHeader']) && ! empty($compliance['hasBrokerId']))
+          <span class="header-license">{{ implode(' · ', $compliance['idParts']) }}</span>
+        @endif
       </div>
     @else
       <a href="{{ home_url('/') }}" class="brand" aria-label="{{ esc_attr($brand) }}">
@@ -26,6 +29,9 @@
         <span class="brand-text">
           <strong>{{ $brand }}</strong>
           <span>{{ $tagline }}</span>
+          @if (! empty($compliance['showLicenseHeader']) && ! empty($compliance['hasBrokerId']))
+            <span class="header-license">{{ implode(' · ', $compliance['idParts']) }}</span>
+          @endif
         </span>
       </a>
     @endif

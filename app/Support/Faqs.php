@@ -43,16 +43,16 @@ class Faqs
     {
         return [
             [
-                'q' => 'What should I compare first on a rural listing?',
-                'a' => 'Start with area, price, and usable acres, then water, septic, and legal access. Bedrooms and commute matter on houses; perc status and road frontage matter on land. Inventory on this site is sample data; the review order is what a working farm buyer uses.',
+                'q' => 'What should I compare first on a listing?',
+                'a' => 'Start with neighborhood, price, and property type, then bedrooms, commute, and HOA or systems. Condos add dues and parking; commercial adds permitted use. Inventory on this site is sample data; the review order is what a working buyer uses.',
             ],
             [
-                'q' => 'How is buying land different from buying a house here?',
-                'a' => 'A house usually has utilities in place. Raw acreage often needs a well, a perc test, and a recorded driveway. Zoning and farmland-tax enrollment change from North Ridge to Oak Hollow. Review the buyer guide before you write an offer on a parcel without a house.',
+                'q' => 'How is buying a condo different from buying a house here?',
+                'a' => 'A house usually means yard, systems, and a single owner. A condo adds dues, reserves, and building rules. Neighborhoods change from North Ridge to Oak Hollow. Review the buyer guide before you write.',
             ],
             [
-                'q' => 'Do I need a showing to walk a farm or historic house?',
-                'a' => 'Yes for occupied homes and most working farms — lanes, livestock, and locked shops are common. Schedule a sample showing to see the flow: choose a listing, a date, and a time. Wear boots, and mention pets or if you are new to land.',
+                'q' => 'Do I need a showing to walk a house or condo?',
+                'a' => 'Yes for occupied homes and most buildings — locks, parking, and neighbors matter. Schedule a sample showing to see the flow: choose a listing, a date, and a time. Mention pets or timing in the notes.',
             ],
             [
                 'q' => 'Is this a live brokerage?',
@@ -68,16 +68,16 @@ class Faqs
     {
         return [
             [
-                'q' => 'What should I bring to a rural showing?',
-                'a' => 'Boots, a notebook, and questions about the well, septic, and access. If you are shopping land, ask where a house could sit and whether a perc report exists. This demo saves the request only — it does not email or text.',
+                'q' => 'What should I bring to a showing?',
+                'a' => 'A notebook and questions about systems, HOA rules, and the block. If you are shopping a condo, ask about dues and parking. This demo saves the request only — it does not email or text.',
             ],
             [
-                'q' => 'How long is a typical farm or acreage walk-through?',
-                'a' => 'Plan 45–90 minutes. A historic house can be shorter; a 30-acre farm with a barn and lane takes longer. Evening slots on this form match how working buyers actually tour after commute hours.',
+                'q' => 'How long is a typical walk-through?',
+                'a' => 'Plan 45–60 minutes for a house. A condo can be shorter; a commercial suite with build-out questions takes longer. Evening slots on this form match how working buyers actually tour after commute hours.',
             ],
             [
-                'q' => 'Can I tour land and a house on the same request?',
-                'a' => 'Pick one listing per request so the agent preps the right file. Want both a farmhouse and a vacant parcel? Send two showing requests or note it in the comments after you choose the first address.',
+                'q' => 'Can I tour two listings on the same request?',
+                'a' => 'Pick one listing per request so the agent preps the right file. Want a house and a condo? Send two showing requests or note it in the comments after you choose the first address.',
             ],
             [
                 'q' => 'Does this form schedule a real appointment?',
@@ -93,20 +93,20 @@ class Faqs
     {
         return [
             [
-                'q' => 'Why filter by township before city?',
-                'a' => 'Zoning, lot-size rules, and preferential farmland-tax programs sit at the township or county. Two parcels a mile apart can have different well, septic, and subdivision answers. Pick an area first, then price and acres.',
+                'q' => 'Why filter by neighborhood before city?',
+                'a' => 'Schools, commute, HOA rules, and inventory mix sit at the neighborhood. Two listings a mile apart can have different dues, parking, and buyer profiles. Pick an area first, then price and type.',
             ],
             [
-                'q' => 'What do Land, Farm, and Historic mean?',
-                'a' => 'Land is acreage to build or hold. Farm includes working ground, barns, or orchard. Historic is an older house where the building is the product. Home is a turnkey dwelling. All eight cards are fictional samples.',
+                'q' => 'What do the property types mean?',
+                'a' => 'Home is a turnkey house. Condo is a unit with shared building rules. Commercial is a storefront or suite. Sample cards may also include other labels you can rename. All eight cards are fictional samples.',
             ],
             [
                 'q' => 'How do I get from a card to a showing?',
-                'a' => 'Open a listing for beds, acres, and the write-up, then Book a showing — that address is preselected. You can also start from the homepage or /book/ and pick the listing there.',
+                'a' => 'Open a listing for beds, price, and the write-up, then Book a showing — that address is preselected. You can also start from the homepage or /book/ and pick the listing there.',
             ],
             [
                 'q' => 'Is this a live MLS feed?',
-                'a' => 'No. Prices, addresses, and township labels are concept data for this demo. Use the filters to see how a working farm search should feel, then replace the sample inventory with a real feed.',
+                'a' => 'No. Prices, addresses, and neighborhood labels are concept data for this demo. Use the filters to see how a working search should feel, then replace the sample inventory with a real feed.',
             ],
         ];
     }
@@ -118,20 +118,20 @@ class Faqs
     {
         return [
             [
-                'q' => 'Why does township matter more than the nearest borough?',
-                'a' => 'Zoning, minimum lot size, and Clean and Green (Act 319) sit at the township. Two parcels a mile apart — one toward Cashtown, one toward Biglerville — can have different well, septic, and subdivision answers. Read the township card first, then the borough for groceries and commute.',
+                'q' => 'Why does neighborhood matter more than the nearest city name?',
+                'a' => 'Schools, HOA rules, and commute sit at the neighborhood. Two listings a mile apart — one in North Ridge, one in Oak Hollow — can have different dues, parking, and buyer profiles. Read the neighborhood card first, then the borough for groceries and commute.',
             ],
             [
-                'q' => 'What should I compare if I want orchard ground vs a wooded lot?',
-                'a' => 'Orchard and fruit-belt townships (Menallen, Butler, parts of Franklin) ask about packing access, spray neighbors, and tillable split. Mountain woodlots (Hamiltonban, Liberty toward Michaux) ask about driveway grade, well yield in rock, and recreational use. Same county — different product.',
+                'q' => 'What should I compare if I want a house vs a condo?',
+                'a' => 'Houses ask about systems, yard, and resale on the block. Condos ask about dues, reserves, parking, and rental rules. Midtown adds commercial storefronts. Same sample county — different product.',
             ],
             [
-                'q' => 'Can I commute from these townships and still buy acreage?',
-                'a' => 'Yes. Liberty and Fairfield lean toward the Maryland line; New Oxford and Hanover sit east toward York. Tell us the drive you will actually make on a Tuesday, and we will point you at the townships that fit — this demo uses sample inventory only.',
+                'q' => 'Can I commute from these neighborhoods?',
+                'a' => 'Yes. Tell us the drive you will actually make on a Tuesday, and we will point you at the neighborhoods that fit — this demo uses sample inventory only.',
             ],
             [
-                'q' => 'Are these real listings tied to each township?',
-                'a' => 'No. The profiles are written for Adams County patterns so the area page is useful to scan. Inventory on Listings is fictional. Use the township filter there, then book a sample showing if you want to walk the flow.',
+                'q' => 'Are these real listings tied to each neighborhood?',
+                'a' => 'No. The profiles are written so the area page is useful to scan. Inventory on Listings is fictional. Use the area filter there, then book a sample showing if you want to walk the flow.',
             ],
         ];
     }
@@ -143,24 +143,24 @@ class Faqs
     {
         return [
             [
-                'q' => 'How much land do I need for a house, well, and septic?',
-                'a' => 'It depends on the township minimum lot size and the perc results. For a conventional on-lot system in rural Adams County, buyers commonly look at one to two acres or more. An agent can tell you what a specific township requires before you write an offer.',
+                'q' => 'What should I check before I write an offer?',
+                'a' => 'Inspection path, HOA or condo docs, and a payment you can live with. An agent can tell you what a specific neighborhood typically requires before you write.',
             ],
             [
-                'q' => 'What is a perc test, and who pays for it?',
-                'a' => 'A percolation test checks whether the soil will absorb septic effluent and where a system can go. On raw land it is usually a buyer contingency, and the buyer typically pays — unless the seller already has a valid soils report. Do not skip it.',
+                'q' => 'What is a home inspection, and who pays for it?',
+                'a' => 'An inspection checks systems, structure, and safety items. On a house it is usually a buyer contingency, and the buyer typically pays. Do not skip it.',
             ],
             [
-                'q' => 'Can I get a normal mortgage on raw land?',
-                'a' => 'Often not a standard 30-year home mortgage. Land and farm purchases usually run through a land loan, construction loan, or farm-credit lender, with a larger down payment. The estimators on this page are planning math only — a lender gives real terms.',
+                'q' => 'Can I get a normal mortgage on a condo?',
+                'a' => 'Often yes, if the building is warrantable. Some associations or commercial suites need a different loan. The estimators on this page are planning math only — a lender gives real terms.',
             ],
             [
-                'q' => 'What is Act 319 Clean and Green?',
-                'a' => 'A Pennsylvania program that taxes qualifying farm and forest land at use value instead of market value. It saves money annually, but subdividing or changing the use can trigger a rollback tax of up to seven years. We flag enrollment on any sample parcel that would carry it.',
+                'q' => 'What should I ask about an HOA?',
+                'a' => 'Dues, reserves, rental caps, and what the association actually maintains. We flag HOA notes on any sample listing that would carry them.',
             ],
             [
-                'q' => 'Do I need public water to buy acreage here?',
-                'a' => 'No. Most rural Adams County parcels use a private well. Ask whether a well exists and has been flow-tested, or whether neighboring yields suggest a new well is likely. Public water at the road is a bonus, not the default.',
+                'q' => 'Do I need to live in the neighborhood to buy here?',
+                'a' => 'No. Tell us the commute you will actually make. This demo uses sample inventory only.',
             ],
         ];
     }
@@ -173,19 +173,19 @@ class Faqs
         return [
             [
                 'q' => 'How do I pick which sample agent to call?',
-                'a' => 'Match the ground: farms and orchards, raw land and perc questions, or a century house. Read specialties on the card, then book a showing or message the office. This roster is fictional — 555 numbers and concept bios.',
+                'a' => 'Match the desk: buyers, sellers, or commercial. Read specialties on the card, then book a showing or message the office. This roster is fictional — 555 numbers and concept bios.',
             ],
             [
-                'q' => 'What does a rural agent actually check on a walk?',
-                'a' => 'Access (recorded vs handshake lane), well and septic feasibility, zoning, easements, and whether the barn or shop still works. Photo-first shopping misses wet corners and rollback risk. That is the job — not a condo punch list.',
+                'q' => 'What does an agent actually check on a walk?',
+                'a' => 'Systems, the block, parking, HOA or building rules, and whether the layout still works. Photo-first shopping misses neighbors and street noise. That is the job.',
             ],
             [
                 'q' => 'Can I request a showing with a specific agent?',
                 'a' => 'On a live site, yes — pick the listing and note the agent. This demo saves a Booking as Requested and does not email or assign a calendar. Use Book a showing, then Contact if you want the office path.',
             ],
             [
-                'q' => 'Is Keystone Real Estate a licensed brokerage?',
-                'a' => 'No. This is a concept demo. Agent names, licenses, and phones are sample data so you can see how a small rural team page should read.',
+                'q' => 'Is Acreline a licensed brokerage?',
+                'a' => 'No. This is a concept demo. Agent names, licenses, and phones are sample data so you can see how a small team page should read.',
             ],
         ];
     }
@@ -202,7 +202,7 @@ class Faqs
             ],
             [
                 'q' => 'Should I use the form, the valuation tool, or the book page?',
-                'a' => 'Form: a question or a sell conversation. Valuation: a demo price range for acreage or a house. Book: a date and time on a sample listing. None of these send email on this concept site.',
+                'a' => 'Form: a question or a sell conversation. Valuation: a demo price range for a house or condo. Book: a date and time on a sample listing. None of these send email on this concept site.',
             ],
             [
                 'q' => 'Where is the office, really?',
@@ -210,7 +210,7 @@ class Faqs
             ],
             [
                 'q' => 'What happens when I submit a message or estimate?',
-                'a' => 'The confirmation stays on the page. Nothing is emailed, texted, or stored as a lead. A live Keystone install would route the message to the team.',
+                'a' => 'The confirmation stays on the page. Nothing is emailed, texted, or stored as a lead. A live Acreline install would route the message to the team.',
             ],
         ];
     }
@@ -223,7 +223,7 @@ class Faqs
         return [
             [
                 'q' => 'What should I check before I book this walk?',
-                'a' => 'Type first: houses lead with beds and systems; land leads with acres, perc, and access; farms mix both plus barn use. Then township — zoning and Clean and Green change from one ridge to the next. Wear boots.',
+                'a' => 'Type first: houses lead with beds and systems; condos lead with dues and parking; commercial leads with permitted use. Then neighborhood — schools and commute change from one area to the next.',
             ],
             [
                 'q' => 'How do I request a showing for this address?',
@@ -231,11 +231,11 @@ class Faqs
             ],
             [
                 'q' => 'Is this a live MLS listing?',
-                'a' => 'No. Sample inventory for layout and booking flow. Addresses, prices, and MLS numbers are fictional. Use the write-up to practice how a rural listing page should answer water, access, and next steps.',
+                'a' => 'No. Sample inventory for layout and booking flow. Addresses, prices, and MLS numbers are fictional. Use the write-up to practice how a listing page should answer systems, HOA, and next steps.',
             ],
             [
-                'q' => 'Where do I read more about wells, perc, or the township?',
-                'a' => 'The buyer guide covers wells, septic, access, and Act 319. Areas has township-by-township reads. Both stay useful even when this card is a concept demo.',
+                'q' => 'Where do I read more about neighborhoods or the buyer path?',
+                'a' => 'The buyer guide covers inspections, payments, and HOA questions. Areas has neighborhood-by-neighborhood reads. Both stay useful even when this card is a concept demo.',
             ],
         ];
     }
@@ -256,7 +256,7 @@ class Faqs
             ],
             [
                 'q' => 'Is this a real licensed agent?',
-                'a' => 'No. Profiles, license numbers, and phones are fictional concept data. The page is here to show how a rural agent bio, specialties, and listings should scan.',
+                'a' => 'No. Profiles, license numbers, and phones are fictional concept data. The page is here to show how an agent bio, specialties, and listings should scan.',
             ],
         ];
     }

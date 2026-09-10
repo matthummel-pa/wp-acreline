@@ -100,7 +100,7 @@ class Post extends Composer
             return wp_strip_all_tags(get_the_excerpt());
         }
 
-        return 'A short note for buyers comparing farms, historic houses, and acreage.';
+        return 'A short note for buyers comparing homes, neighborhoods, and showing logistics.';
     }
 
     public function readingMinutes(): int

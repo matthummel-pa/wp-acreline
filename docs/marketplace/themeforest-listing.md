@@ -9,13 +9,13 @@ Do not claim WordPress.org approval, Gutenberg-optimized, Elementor, a live IDX/
 ## Title (≤ 70 characters)
 
 ```
-Acreline — Farm, Land & Historic Homes WordPress Theme
+Acreline — WordPress Theme for Real Estate Agents
 ```
 
 Alternate:
 
 ```
-Acreline — Rural Real Estate WordPress Theme
+Acreline — Homes, Listings & Showings WordPress Theme
 ```
 
 ---
@@ -23,7 +23,7 @@ Acreline — Rural Real Estate WordPress Theme
 ## Excerpt / short description
 
 ```
-Acreline is a WordPress theme for farms, land, and historic homes — searchable listings, agents, and showing requests. Customizer identity, eight color styles, 28 custom Gutenberg blocks, top bar, no page builder. Concept demo by Matt Hummel.
+Acreline is a WordPress theme for real estate agents — featured homes, agent bios, and showing requests. Customizer identity, eight color styles, 32 custom Gutenberg blocks, no page builder, no IDX required. Concept demo by Matt Hummel.
 ```
 
 ---
@@ -46,6 +46,12 @@ https://github.com/matthummel-pa/wp-acreline/blob/main/SUPPORT.md
 https://matthummel.com/product/acreline/
 ```
 
+Shop index (do not invent a second product slug):
+
+```
+https://matthummel.com/shop/
+```
+
 ## Author
 
 Matt Hummel · https://matthummel.com/
@@ -55,7 +61,7 @@ Matt Hummel · https://matthummel.com/
 ## Tags
 
 ```
-real estate, realtor, farm, land, acreage, listings, rural, sage, historic homes, showing requests
+real estate, realtor, listings, agents, brokerage, neighborhoods, sage, showing requests
 ```
 
 WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready, sticky-post`
@@ -66,7 +72,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 
 | Field | Value |
 | --- | --- |
-| **Version** | 1.4.7 |
+| **Version** | 1.5.0 |
 | **Software version** | WordPress 6.6, 6.7, 6.8, 7.0 (tested up to 7.0.1) |
 | **Compatible browsers** | Chrome, Firefox, Safari, Edge (current two versions) |
 | **Compatible with** | No page builder required. Optional: Yoast, Rank Math, SEOPress, AIOSEO |
@@ -84,20 +90,24 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 ## Long description (HTML; Envato, TemplateMonster, or own site)
 
 ```html
-<h2>Rural inventory — not another luxury brokerage skin</h2>
-<p>Acreline is a WordPress theme for offices that sell <strong>acreage, working farms, and historic homes</strong>. Buyers search sample listings, open a property, meet an agent, and request a showing — all from one zip. Identity, colors, and the header bar live in the Customizer. No page builder, no ACF, no IDX plugin required.</p>
+<h2>A working agent site — not a luxury listing portal</h2>
+<p>Acreline is a WordPress theme for <strong>solo agents and small teams</strong>. Buyers search featured homes, open a listing, meet an agent, and request a showing — all from one zip. Identity, colors, and the header bar live in the Customizer. No page builder, no ACF, and no IDX subscription required on day one.</p>
+<p>Portal-scale kits such as Houzez, RealHomes, and WPResidence solve a different job: large inventories and MLS-first sites. Acreline is the middle path — Gutenberg marketing pages plus a listing shell an agent can launch without Elementor, ACF, or an IDX bill. Add a feed later if you need one.</p>
 
 <p><strong>Fiction only.</strong> The live preview uses 555 phone numbers and <code>@acreline-concept.test</code> emails. It is not a live MLS, licensed brokerage, or booking desk. Replace every field from the WordPress admin.</p>
 
-<h3>28 custom Gutenberg blocks</h3>
-<p>All marketing pages are built with actual WordPress blocks (not Classic Editor shortcodes or HTML blocks). Every block renders server-side, so the editor canvas matches the live page exactly. Inspector Controls expose typography, image picker, hero overlay, CTA styles, FAQ format, column count, and per-block show/hide toggles — no coding needed.</p>
+<h3>32 custom Gutenberg blocks</h3>
+<p>All marketing pages are built with actual WordPress blocks (not Classic Editor shortcodes or HTML blocks). Every block renders server-side, so the editor canvas matches the live page exactly. Inspector Controls expose typography, image picker, hero overlay, CTA styles, FAQ format, column count, band colors, and per-block show/hide toggles — no coding needed.</p>
 <ul>
-  <li>Home Hero with live listing search (type, price, acreage, area), cinematic photo pan (on by default), and optional phone tilt on the search panel (off by default)</li>
+  <li>Home Hero with live listing search (type, price, area), cinematic photo pan (on by default), and optional phone tilt on the search panel (off by default)</li>
+  <li>Region Coverage — split map + neighborhood cards, or bento/grid; editable methods and CTAs</li>
+  <li>Pricing plans, logo strip, and newsletter signup (demo form — nothing is emailed)</li>
   <li>Featured Listings Spotlight — dynamic, pulls from WP</li>
   <li>Listing Grid with filter toolbar and map view</li>
   <li>Agent List block — photo, stats, designations, social links</li>
+  <li>Area Grid with photos, card styles, and a section CTA</li>
   <li>Contact Form + Office Info from Customizer</li>
-  <li>CTA Band, Market Stats, Booking Form, FAQ, Reviews, Area Grid, and more</li>
+  <li>CTA Band, Market Stats, Booking Form, FAQ, Reviews, and more</li>
 </ul>
 <p><strong>Block Generator</strong> (Tools → Block Generator): create new custom blocks by filling in a form — no PHP or JS required.</p>
 
@@ -183,7 +193,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 
 ## Key features (bullet form for the store form)
 
-- 28 custom server-side Gutenberg blocks, no page builder
+- 32 custom server-side Gutenberg blocks, no page builder
 - Block Generator: create new blocks without PHP or JS
 - Customizer identity (brand, phone, email, hours, removable footer credit)
 - Eight named color styles + accent / paper / ink pickers
@@ -197,12 +207,12 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 - Built-in mortgage calculator
 - Market snapshot shortcode
 - Share (Web Share API + clipboard) + print flyer
-- Rich listing fields (open house, virtual tour, utilities, land data, green features, smart home)
+- Rich listing fields (open house, virtual tour, utilities, lot data, green features, smart home)
 - Advanced agent profiles (stats, social, video, designations, certifications)
 - Acreline Setup wizard (no upsells)
 - Tabbed Theme Settings page with iOS-style toggles
 - Acreline Support admin page
-- Native SEO tags with yield to major SEO plugins
+- Native title / description / OG tags; yields to Rank Math, Yoast, SEOPress, AIOSEO
 - Child theme + Acreline Core companion plugin
 - Translation-ready (`acreline`)
 - GPLv2+ license; Sage / Acorn MIT
@@ -217,7 +227,7 @@ Path in repo: `docs/marketplace/screenshots/` (copied to `Documentation/screensh
 | # | Filename | Caption |
 | --- | --- | --- |
 | 1 | `01-homepage.png` | Homepage — hero search, Intent cards, Featured listings spotlight |
-| 2 | `02-listings.png` | Listings — filter bar (type, price, acreage, area), grid view |
+| 2 | `02-listings.png` | Listings — filter bar (type, price, area), grid view |
 | 3 | `03-listing.png` | Listing detail — photo, stats, mortgage calculator, agent card, sticky CTA |
 | 4 | `04-agents.png` | Agents page — stats grid, designations, social links |
 | 5 | `05-contact.png` | Contact — office info from Customizer + message form |

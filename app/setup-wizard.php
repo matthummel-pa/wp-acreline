@@ -9,6 +9,7 @@
 namespace App;
 
 use App\Support\ColorSchemes;
+use App\Support\Compliance;
 use App\Support\DemoContent;
 use App\Support\Identity;
 
@@ -21,7 +22,7 @@ const KS_WIZARD_PAGE = 'keystone-setup';
  */
 function ks_wizard_steps(): array
 {
-    return ['welcome', 'identity', 'colors', 'demo', 'finish'];
+    return ['welcome', 'identity', 'compliance', 'colors', 'demo', 'finish'];
 }
 
 function ks_wizard_is_complete(): bool
@@ -218,6 +219,29 @@ function ks_handle_setup_wizard(): void
         }
     }
 
+    if ($step === 'compliance') {
+        $wizardKeys = [
+            'ks_brokerage_legal_name',
+            'ks_license_number',
+            'ks_broker_license',
+            'ks_license_jurisdiction',
+            'ks_office_city',
+            'ks_office_state',
+            'ks_privacy_url',
+            'ks_eho_enable',
+            'ks_eho_show_logo',
+            'ks_consent_enable',
+            'ks_show_license_footer',
+        ];
+        $modRaw = [];
+        foreach ($wizardKeys as $key) {
+            if (isset($_POST[$key])) {
+                $modRaw[$key] = $_POST[$key];
+            }
+        }
+        Compliance::saveFromPost($modRaw, $wizardKeys);
+    }
+
     if ($step === 'colors') {
         $schemeKey = ColorSchemes::sanitizeKey($_POST['ks_color_scheme'] ?? ColorSchemes::defaultKey());
         $scheme = ColorSchemes::all()[$schemeKey];
@@ -261,6 +285,7 @@ function ks_render_setup_wizard(): void
     $labels = [
         'welcome' => __('Welcome', 'acreline'),
         'identity' => __('Identity', 'acreline'),
+        'compliance' => __('Compliance', 'acreline'),
         'colors' => __('Colors', 'acreline'),
         'demo' => __('Demo', 'acreline'),
         'finish' => __('Done', 'acreline'),
@@ -289,6 +314,7 @@ function ks_render_setup_wizard(): void
 
     match ($step) {
         'identity' => ks_wizard_step_identity(),
+        'compliance' => ks_wizard_step_compliance(),
         'colors' => ks_wizard_step_colors(),
         'demo' => ks_wizard_step_demo(),
         'finish' => ks_wizard_step_finish(),
@@ -318,6 +344,7 @@ function ks_wizard_step_welcome(): void
     echo '<p>'.esc_html__('This wizard walks the first branding pass so your real estate site looks like your office — not the concept demo.', 'acreline').'</p>';
     echo '<ul class="ks-wizard__checklist">';
     echo '<li>'.esc_html__('Set office name, phone, email, and hours', 'acreline').'</li>';
+    echo '<li>'.esc_html__('Add brokerage legal name, optional license, and form consent', 'acreline').'</li>';
     echo '<li>'.esc_html__('Pick one of eight color styles', 'acreline').'</li>';
     echo '<li>'.esc_html__('Optionally load demo pages, listings, and agents', 'acreline').'</li>';
     echo '</ul>';
@@ -365,10 +392,47 @@ function ks_wizard_step_identity(): void
     echo '</div>';
 }
 
+function ks_wizard_step_compliance(): void
+{
+    echo '<h2>'.esc_html__('Brokerage ID &amp; compliance', 'acreline').'</h2>';
+    echo '<p>'.esc_html__('Not legal advice. Almost every state wants the brokerage’s licensed name on the website. Extra ID (license number, city/state) varies — check your commission. Empty fields stay hidden.', 'acreline').'</p>';
+    echo '<div class="ks-wizard__grid ks-wizard__grid--2">';
+    $fields = [
+        'ks_brokerage_legal_name' => [__('Brokerage legal name', 'acreline'), Compliance::text('ks_brokerage_legal_name'), 'text'],
+        'ks_license_number' => [__('License number (optional)', 'acreline'), Compliance::text('ks_license_number'), 'text'],
+        'ks_broker_license' => [__('Broker license (optional)', 'acreline'), Compliance::text('ks_broker_license'), 'text'],
+        'ks_license_jurisdiction' => [__('License jurisdiction', 'acreline'), Compliance::text('ks_license_jurisdiction'), 'text'],
+        'ks_office_city' => [__('Office city', 'acreline'), Compliance::text('ks_office_city'), 'text'],
+        'ks_office_state' => [__('Office state', 'acreline'), Compliance::text('ks_office_state'), 'text'],
+        'ks_privacy_url' => [__('Privacy Policy URL', 'acreline'), Compliance::text('ks_privacy_url'), 'url'],
+    ];
+    foreach ($fields as $name => [$label, $value, $type]) {
+        echo '<div class="ks-wizard__field">';
+        echo '<label for="'.esc_attr($name).'">'.esc_html($label).'</label>';
+        printf(
+            '<input type="%1$s" name="%2$s" id="%2$s" value="%3$s" class="regular-text">',
+            esc_attr($type),
+            esc_attr($name),
+            esc_attr($value)
+        );
+        echo '</div>';
+    }
+    echo '</div>';
+    echo '<p><label><input type="checkbox" name="ks_eho_enable" value="1" '.checked(Compliance::flag('ks_eho_enable'), true, false).'> ';
+    echo esc_html__('Show Equal Housing Opportunity statement in the footer', 'acreline').'</label></p>';
+    echo '<p><label><input type="checkbox" name="ks_eho_show_logo" value="1" '.checked(Compliance::flag('ks_eho_show_logo'), true, false).'> ';
+    echo esc_html__('Show Equal Housing house mark', 'acreline').'</label></p>';
+    echo '<p><label><input type="checkbox" name="ks_consent_enable" value="1" '.checked(Compliance::flag('ks_consent_enable'), true, false).'> ';
+    echo esc_html__('Require consent checkbox on showing and contact forms', 'acreline').'</label></p>';
+    echo '<p><label><input type="checkbox" name="ks_show_license_footer" value="1" '.checked(Compliance::flag('ks_show_license_footer'), true, false).'> ';
+    echo esc_html__('Show brokerage ID in the footer when fields are filled', 'acreline').'</label></p>';
+    echo '<p class="ks-wizard__note">'.esc_html__('MLS/IDX disclaimer, custom Fair Housing copy, and SMS language live under Customize → Compliance or Appearance → Acreline Settings → Compliance. REALTOR® is a trademark — use it only if you are a member.', 'acreline').'</p>';
+}
+
 function ks_wizard_step_colors(): void
 {
     $current = ColorSchemes::currentKey();
-    $demoOn = (bool) get_theme_mod('ks_show_demo_chrome', true);
+    $demoOn = \App\ks_hero_value_on(get_theme_mod('ks_show_demo_chrome', true));
     $creditOn = (bool) get_theme_mod('ks_show_credit', true);
 
     echo '<h2>'.esc_html__('Color style', 'acreline').'</h2>';
@@ -432,6 +496,7 @@ function ks_wizard_step_finish(): void
     echo '<p>'.esc_html__('Acreline Setup is complete. Next steps that usually matter:', 'acreline').'</p>';
     echo '<ul class="ks-wizard__checklist">';
     echo '<li><a href="'.esc_url($logoUrl).'">'.esc_html__('Upload your logo', 'acreline').'</a> '.esc_html__('under Site Identity', 'acreline').'</li>';
+    echo '<li><a href="'.esc_url(add_query_arg('autofocus[section]', 'ks_compliance', $customizer)).'">'.esc_html__('Finish compliance fields', 'acreline').'</a> '.esc_html__('(MLS disclaimer, consent copy, privacy URL)', 'acreline').'</li>';
     echo '<li><a href="'.esc_url($customizer).'">'.esc_html__('Open the Customizer', 'acreline').'</a> '.esc_html__('for header, typography, and social links', 'acreline').'</li>';
     echo '<li><a href="'.esc_url($front).'" target="_blank" rel="noopener noreferrer">'.esc_html__('View the front end', 'acreline').'</a></li>';
     echo '</ul>';

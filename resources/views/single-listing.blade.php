@@ -345,6 +345,8 @@
       </script>
       @endif
 
+      @include('partials.idx-disclaimer', ['listing' => $listing])
+
       <div class="cta-actions" style="margin-top:32px">
         <a class="btn btn-primary" href="{{ home_url('/book/') }}?listing_id={{ $listing['id'] }}">{{ __('Book a showing', 'acreline') }}</a>
         <a class="btn btn-outline" href="{{ home_url('/listings') }}">{{ __('All listings', 'acreline') }}</a>

@@ -17,6 +17,10 @@
 .intent-card,
 .scan-card,
 .area-card,
+.ks-region-card,
+.how-step,
+.pricing-card,
+.logo-chip,
 .listing-mini,
 .blog-card,
 .agent-card,
@@ -85,6 +89,10 @@
 .testi:hover,
 .topic-card:hover,
 .area-card:hover,
+.ks-region-card:hover,
+.how-step:hover,
+.pricing-card:hover,
+.logo-chip:hover,
 .nearby-card:hover{
   box-shadow:var(--shadow-lg);
 }

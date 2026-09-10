@@ -75,9 +75,9 @@ function ks_register_blocks(): void
         'acreline/home-hero' => [
             'render_callback' => __NAMESPACE__.'\\ks_render_home_hero',
             'attributes' => array_merge($typo, $heroBase, [
-                'eyebrow' => ['type' => 'string', 'default' => 'Farms, land, and historic homes'],
+                'eyebrow' => ['type' => 'string', 'default' => 'Homes, neighborhoods, and local agents'],
                 'title' => ['type' => 'string', 'default' => 'Homes worth <em>walking through.</em>'],
-                'text' => ['type' => 'string', 'default' => 'Sample farms, historic houses, and acreage across three demo areas. Filter by type and township, then schedule a showing.'],
+                'text' => ['type' => 'string', 'default' => 'Sample houses, condos, and commercial listings across three demo neighborhoods. Filter by type and area, then book a showing.'],
                 'imageUrl' => ['type' => 'string', 'default' => HeroImage::DEFAULT],
                 'primaryLabel' => ['type' => 'string', 'default' => 'Show matches'],
                 'secondaryLabel' => ['type' => 'string', 'default' => 'Browse all listings'],
@@ -103,26 +103,26 @@ function ks_register_blocks(): void
             'attributes' => array_merge($typo, [
                 'eyebrow' => ['type' => 'string', 'default' => 'Start here'],
                 'title' => ['type' => 'string', 'default' => 'Pick the path'],
-                'text' => ['type' => 'string', 'default' => 'Then we match a listing or a tour. Township first — the rest follows.'],
+                'text' => ['type' => 'string', 'default' => 'Then we match a listing or a tour. Neighborhood first — the rest follows.'],
                 'buyKicker' => ['type' => 'string', 'default' => 'Buy'],
-                'buyTitle' => ['type' => 'string', 'default' => 'Scan homes, farms, and land'],
-                'buyLead' => ['type' => 'string', 'default' => 'Area first — North Ridge, Mill Creek, Oak Hollow. Zoning and farmland tax rules change before the listing photo does.'],
+                'buyTitle' => ['type' => 'string', 'default' => 'Scan homes and neighborhoods'],
+                'buyLead' => ['type' => 'string', 'default' => 'Area first — North Ridge, Mill Creek, Oak Hollow. Schools, commute, and inventory mix change before the listing photo does.'],
                 'buyCta' => ['type' => 'string', 'default' => 'Browse listings'],
                 'sellKicker' => ['type' => 'string', 'default' => 'Sell'],
                 'sellTitle' => ['type' => 'string', 'default' => 'Price it before you list'],
                 'sellLead' => ['type' => 'string', 'default' => 'Run a sample value range for a fictional address. Not an appraisal — a next step if you are comparing options.'],
                 'sellCta' => ['type' => 'string', 'default' => 'Estimate value'],
                 'tourKicker' => ['type' => 'string', 'default' => 'Tour'],
-                'tourTitle' => ['type' => 'string', 'default' => 'Walk it on the ground'],
-                'tourLead' => ['type' => 'string', 'default' => 'Pick a sample listing, a date, and a slot. Rural showings mean a lane, a well, and boots — mention perc or pets in the notes.'],
+                'tourTitle' => ['type' => 'string', 'default' => 'Walk it with an agent'],
+                'tourLead' => ['type' => 'string', 'default' => 'Pick a sample listing, a date, and a slot. Mention pets, timing, or a second property in the notes.'],
                 'tourCta' => ['type' => 'string', 'default' => 'Book a showing'],
                 'notesLabel' => ['type' => 'string', 'default' => 'Good to know'],
-                'note1Title' => ['type' => 'string', 'default' => 'Township first'],
-                'note1Text' => ['type' => 'string', 'default' => 'Zoning and farmland tax enrollment change from one sample area to the next.'],
-                'note2Title' => ['type' => 'string', 'default' => 'Well and perc'],
-                'note2Text' => ['type' => 'string', 'default' => 'Rural parcels rarely have municipal hookups — walk that before an offer.'],
-                'note3Title' => ['type' => 'string', 'default' => 'Boots for showings'],
-                'note3Text' => ['type' => 'string', 'default' => 'Lanes get muddy after rain. Mention pets if you are new to land.'],
+                'note1Title' => ['type' => 'string', 'default' => 'Neighborhood first'],
+                'note1Text' => ['type' => 'string', 'default' => 'Schools, commute, and HOA rules change from one sample area to the next.'],
+                'note2Title' => ['type' => 'string', 'default' => 'Read the listing, then walk'],
+                'note2Text' => ['type' => 'string', 'default' => 'Photos skip systems, parking, and the block. Book a showing before you write.'],
+                'note3Title' => ['type' => 'string', 'default' => 'One office, three desks'],
+                'note3Text' => ['type' => 'string', 'default' => 'Buyers, sellers, and commercial inquiries route to the matching specialist.'],
                 'cardStyle' => ['type' => 'string', 'default' => 'photo'],
                 'intentCols' => ['type' => 'string', 'default' => '3'],
             ]),
@@ -172,7 +172,7 @@ function ks_register_blocks(): void
             'attributes' => array_merge($typo, [
                 'eyebrow' => ['type' => 'string', 'default' => 'How a tour starts'],
                 'title' => ['type' => 'string', 'default' => 'From search to showing'],
-                'text' => ['type' => 'string', 'default' => 'Township first, then a walk on the ground — not office theater. This demo stops at on-page confirmation.'],
+                'text' => ['type' => 'string', 'default' => 'Neighborhood first, then a walk-through — not office theater. This demo stops at on-page confirmation.'],
                 'stepLayout' => ['type' => 'string', 'default' => 'grid'],
             ]),
         ],
@@ -206,7 +206,7 @@ function ks_register_blocks(): void
             'render_callback' => __NAMESPACE__.'\\ks_render_faq_list',
             'attributes' => array_merge($typo, [
                 'title' => ['type' => 'string', 'default' => 'Questions buyers ask first'],
-                'text' => ['type' => 'string', 'default' => 'Practical answers for house and acreage shoppers.'],
+                'text' => ['type' => 'string', 'default' => 'Practical answers for house and neighborhood shoppers.'],
                 'headClass' => ['type' => 'string', 'default' => 'left'],
                 'faqStyle' => ['type' => 'string', 'default' => 'dl'],
                 'listIcon' => ['type' => 'string', 'default' => 'none'],
@@ -243,8 +243,8 @@ function ks_register_blocks(): void
         'acreline/listing-grid' => [
             'render_callback' => __NAMESPACE__.'\\ks_render_listing_grid',
             'attributes' => [
-                'introTitle' => ['type' => 'string', 'default' => 'Buying rural property'],
-                'introText' => ['type' => 'string', 'default' => 'Every sample parcel sits in an area — zoning, lot size, and farmland tax rules change from one ridge to the next. Filter first, then book a walk.'],
+                'introTitle' => ['type' => 'string', 'default' => 'Buying in a new neighborhood'],
+                'introText' => ['type' => 'string', 'default' => 'Every sample listing sits in an area — schools, commute, HOA rules, and inventory mix change from one neighborhood to the next. Filter first, then book a walk-through.'],
                 'defaultView' => ['type' => 'string', 'default' => 'grid'],
                 'gridCols' => ['type' => 'string', 'default' => '3'],
             ],
@@ -253,36 +253,66 @@ function ks_register_blocks(): void
             'render_callback' => __NAMESPACE__.'\\ks_render_agent_list',
             'attributes' => array_merge($typo, [
                 'eyebrow' => ['type' => 'string', 'default' => 'The sample team'],
-                'title' => ['type' => 'string', 'default' => 'Agents who know this ground'],
-                'text' => ['type' => 'string', 'default' => 'Three demo profiles — one for farm & land, one for historic homes, one for first-time land buyers.'],
+                'title' => ['type' => 'string', 'default' => 'Agents who know this market'],
+                'text' => ['type' => 'string', 'default' => 'Three demo profiles — buyers, sellers, and a commercial desk. Replace names and specialties with your own roster.'],
             ]),
         ],
         'acreline/area-grid' => [
             'render_callback' => __NAMESPACE__.'\\ks_render_area_grid',
             'attributes' => array_merge($typo, [
-                'gridEyebrow' => ['type' => 'string', 'default' => 'Area by area'],
+                'gridEyebrow' => ['type' => 'string', 'default' => 'Neighborhood by neighborhood'],
                 'gridTitle' => ['type' => 'string', 'default' => 'Where the sample office works'],
-                'gridText' => ['type' => 'string', 'default' => 'A quick read on six rural area types — what the ground is like, what tends to list, and what a buyer should watch for.'],
-                'area1Meta' => ['type' => 'string', 'default' => 'West ridge · orchards and stone houses'],
-                'area1Title' => ['type' => 'string', 'default' => 'Oak Hollow'],
-                'area1Body' => ['type' => 'string', 'default' => 'Century homesteads, working orchards, and wooded building lots with long views. Buyers come for the house as much as the acres.'],
-                'area2Meta' => ['type' => 'string', 'default' => 'North valley · fruit and packing sheds'],
-                'area2Title' => ['type' => 'string', 'default' => 'Orchard Belt'],
-                'area2Body' => ['type' => 'string', 'default' => 'Mile after mile of fruit ground, cold storage, and roadside stands. A working farm market, not a weekend-hobby strip.'],
-                'area3Meta' => ['type' => 'string', 'default' => 'Northeast · rolling open ground'],
-                'area3Title' => ['type' => 'string', 'default' => 'Mill Creek'],
-                'area3Body' => ['type' => 'string', 'default' => 'Orchard mixed with open farmland and quiet residential lots — often more value per acre than parcels next to the county seat.'],
-                'area4Meta' => ['type' => 'string', 'default' => 'North-central · larger tracts'],
-                'area4Title' => ['type' => 'string', 'default' => 'Grain Country'],
-                'area4Body' => ['type' => 'string', 'default' => 'Working-farm country: tillable and orchard ground in larger pieces. Buyers here want real acreage, not a single homesite.'],
-                'area5Meta' => ['type' => 'string', 'default' => 'West hills · timber and cabins'],
-                'area5Title' => ['type' => 'string', 'default' => 'Hill Country'],
-                'area5Body' => ['type' => 'string', 'default' => 'Cabins, wooded acreage, hunting ground, and recreational parcels toward state forest. Yields and access vary lot to lot.'],
-                'area6Meta' => ['type' => 'string', 'default' => 'South line · small farms and commute'],
-                'area6Title' => ['type' => 'string', 'default' => 'Border Farms'],
-                'area6Body' => ['type' => 'string', 'default' => 'Small farms, pasture, and wooded homesteads with an easier drive to jobs and grocery stores. Good first-land-buyer ground.'],
+                'gridText' => ['type' => 'string', 'default' => 'A quick read on six sample neighborhoods — housing mix, commute, and what a buyer should watch for.'],
+                'area1Meta' => ['type' => 'string', 'default' => 'West ridge · established streets'],
+                'area1Title' => ['type' => 'string', 'default' => 'North Ridge'],
+                'area1Body' => ['type' => 'string', 'default' => 'Tree-lined blocks, family homes, and a short drive to the sample county seat. Buyers come for schools and porch-front streets.'],
+                'area2Meta' => ['type' => 'string', 'default' => 'Creek corridor · parks and schools'],
+                'area2Title' => ['type' => 'string', 'default' => 'Mill Creek'],
+                'area2Body' => ['type' => 'string', 'default' => 'Mid-range houses, townhomes, and quiet cul-de-sacs. A practical commute and parks along the creek.'],
+                'area3Meta' => ['type' => 'string', 'default' => 'Walkable core · shops and older homes'],
+                'area3Title' => ['type' => 'string', 'default' => 'Oak Hollow'],
+                'area3Body' => ['type' => 'string', 'default' => 'A compact main street, older houses, and condos above the shops. Best for buyers who want to walk to coffee.'],
+                'area4Meta' => ['type' => 'string', 'default' => 'New construction · HOA streets'],
+                'area4Title' => ['type' => 'string', 'default' => 'Riverbend'],
+                'area4Body' => ['type' => 'string', 'default' => 'Builder homes, HOA amenities, and wide streets. Good for buyers who want low-maintenance and a predictable finish.'],
+                'area5Meta' => ['type' => 'string', 'default' => 'Mixed-use · condos and storefronts'],
+                'area5Title' => ['type' => 'string', 'default' => 'Midtown'],
+                'area5Body' => ['type' => 'string', 'default' => 'Condos, lofts, and a few commercial suites. A sample urban-edge pocket inside the same county.'],
+                'area6Meta' => ['type' => 'string', 'default' => 'First-home streets · townhomes'],
+                'area6Title' => ['type' => 'string', 'default' => 'Southgate'],
+                'area6Body' => ['type' => 'string', 'default' => 'Townhomes and modest single-family streets. Often the first stop for buyers stretching into the sample market.'],
+                'area1ImageUrl' => ['type' => 'string', 'default' => ''],
+                'area1ImageId' => ['type' => 'integer', 'default' => 0],
+                'area1Cta' => ['type' => 'string', 'default' => ''],
+                'area1Url' => ['type' => 'string', 'default' => ''],
+                'area2ImageUrl' => ['type' => 'string', 'default' => ''],
+                'area2ImageId' => ['type' => 'integer', 'default' => 0],
+                'area2Cta' => ['type' => 'string', 'default' => ''],
+                'area2Url' => ['type' => 'string', 'default' => ''],
+                'area3ImageUrl' => ['type' => 'string', 'default' => ''],
+                'area3ImageId' => ['type' => 'integer', 'default' => 0],
+                'area3Cta' => ['type' => 'string', 'default' => ''],
+                'area3Url' => ['type' => 'string', 'default' => ''],
+                'area4ImageUrl' => ['type' => 'string', 'default' => ''],
+                'area4ImageId' => ['type' => 'integer', 'default' => 0],
+                'area4Cta' => ['type' => 'string', 'default' => ''],
+                'area4Url' => ['type' => 'string', 'default' => ''],
+                'area5ImageUrl' => ['type' => 'string', 'default' => ''],
+                'area5ImageId' => ['type' => 'integer', 'default' => 0],
+                'area5Cta' => ['type' => 'string', 'default' => ''],
+                'area5Url' => ['type' => 'string', 'default' => ''],
+                'area6ImageUrl' => ['type' => 'string', 'default' => ''],
+                'area6ImageId' => ['type' => 'integer', 'default' => 0],
+                'area6Cta' => ['type' => 'string', 'default' => ''],
+                'area6Url' => ['type' => 'string', 'default' => ''],
                 'gridCols' => ['type' => 'string', 'default' => '3'],
                 'showIndex' => ['type' => 'boolean', 'default' => true],
+                'cardStyle' => ['type' => 'string', 'default' => 'classic'],
+                'bandStyle' => ['type' => 'string', 'default' => 'alt'],
+                'headingLevel' => ['type' => 'string', 'default' => 'h2'],
+                'sectionPad' => ['type' => 'string', 'default' => 'default'],
+                'primaryLabel' => ['type' => 'string', 'default' => ''],
+                'primaryUrl' => ['type' => 'string', 'default' => ''],
             ]),
         ],
         'acreline/tools-section' => [
@@ -290,11 +320,11 @@ function ks_register_blocks(): void
             'attributes' => array_merge($typo, [
                 // Intro paragraph (above the tools cards)
                 'showIntro' => ['type' => 'boolean', 'default' => true],
-                'introTitle' => ['type' => 'string', 'default' => "What's different about buying land"],
-                'introText' => ['type' => 'string', 'default' => 'When you buy an existing home, utilities are usually sorted. Out in the townships you often have to prove water, septic and access yourself — and those answers change the value of the ground.'],
+                'introTitle' => ['type' => 'string', 'default' => 'What to sort before you write an offer'],
+                'introText' => ['type' => 'string', 'default' => 'A finished house still needs a clear inspection path, HOA rules, and a payment you can live with. Use the sample tools below to plan — then book a showing with an agent who knows the neighborhood.'],
                 // Tools header
-                'eyebrow' => ['type' => 'string', 'default' => 'Run Your Numbers'],
-                'title' => ['type' => 'string', 'default' => 'Land-loan &amp; pre-qualification tools'],
+                'eyebrow' => ['type' => 'string', 'default' => 'Run your numbers'],
+                'title' => ['type' => 'string', 'default' => 'Payment and pre-qualification tools'],
                 'text' => ['type' => 'string', 'default' => 'Friendly estimates to help you plan — not loan offers. A licensed lender will verify everything with full documentation.'],
                 // Which tools to show
                 'showLoanTool' => ['type' => 'boolean', 'default' => true],
@@ -316,11 +346,22 @@ function ks_register_blocks(): void
         'acreline/how-we-work' => [
             'render_callback' => __NAMESPACE__.'\\ks_render_how_we_work',
             'attributes' => array_merge($typo, [
-                'eyebrow' => ['type' => 'string', 'default' => 'How We Work'],
+                'eyebrow' => ['type' => 'string', 'default' => 'How we work'],
                 'title' => ['type' => 'string', 'default' => 'What working with this office looks like'],
-                'text' => ['type' => 'string', 'default' => 'No pressure, no jargon, and a straight answer about the ground under your feet.'],
+                'text' => ['type' => 'string', 'default' => 'No pressure, no jargon, and a straight answer about the house, the block, and the next step.'],
                 'stepsStyle' => ['type' => 'string', 'default' => 'numbered'],
                 'stepsLayout' => ['type' => 'string', 'default' => 'row'],
+                'bandStyle' => ['type' => 'string', 'default' => 'paper'],
+                'headingLevel' => ['type' => 'string', 'default' => 'h2'],
+                'sectionPad' => ['type' => 'string', 'default' => 'default'],
+                'step1Title' => ['type' => 'string', 'default' => 'Listen first'],
+                'step1Text' => ['type' => 'string', 'default' => 'We start with the neighborhood you want and the life you plan to build. No form to fill — just a conversation.'],
+                'step2Title' => ['type' => 'string', 'default' => 'Match the inventory'],
+                'step2Text' => ['type' => 'string', 'default' => 'We pull sample listings that match your area, budget, and type. Houses, condos, and commercial spaces are different products — we treat them that way.'],
+                'step3Title' => ['type' => 'string', 'default' => 'Walk it with you'],
+                'step3Text' => ['type' => 'string', 'default' => 'A real showing, not a drive-by. We walk the rooms, check the block, and explain what we see.'],
+                'step4Title' => ['type' => 'string', 'default' => ''],
+                'step4Text' => ['type' => 'string', 'default' => ''],
             ]),
         ],
         'acreline/office-info' => [
@@ -354,8 +395,8 @@ function ks_register_blocks(): void
             'render_callback' => __NAMESPACE__.'\\ks_render_checklist',
             'attributes' => array_merge($typo, ks_item_pair_attrs(8, 'item'), [
                 'eyebrow' => ['type' => 'string', 'default' => 'Before you make an offer'],
-                'title' => ['type' => 'string', 'default' => 'The rural property checklist'],
-                'text' => ['type' => 'string', 'default' => 'Eight questions to answer before you fall in love with the view and the price tag.'],
+                'title' => ['type' => 'string', 'default' => 'The buyer checklist'],
+                'text' => ['type' => 'string', 'default' => 'Eight questions to answer before you fall in love with the photos and the price tag.'],
                 'primaryLabel' => ['type' => 'string', 'default' => 'Book a showing'],
                 'primaryUrl' => ['type' => 'string', 'default' => ''],
                 'secondaryLabel' => ['type' => 'string', 'default' => 'Browse listings'],
@@ -370,7 +411,7 @@ function ks_register_blocks(): void
                 ks_item_pair_attrs(4, 'right'),
                 [
                     'leftHeading' => ['type' => 'string', 'default' => 'Come prepared'],
-                    'leftLead' => ['type' => 'string', 'default' => 'A rural showing is not a quick drive-through. Here is what makes yours worth the trip.'],
+                    'leftLead' => ['type' => 'string', 'default' => 'A showing is not a photo scroll. Here is what makes yours worth the trip.'],
                     'rightHeading' => ['type' => 'string', 'default' => 'What your agent brings'],
                     'rightLead' => ['type' => 'string', 'default' => 'Preparation goes both ways. Your assigned specialist arrives ready.'],
                 ]
@@ -380,44 +421,44 @@ function ks_register_blocks(): void
             'render_callback' => __NAMESPACE__.'\\ks_render_compare_table',
             'attributes' => array_merge($typo, [
                 'eyebrow' => ['type' => 'string', 'default' => 'Side-by-side'],
-                'title' => ['type' => 'string', 'default' => 'Area comparison at a glance'],
-                'text' => ['type' => 'string', 'default' => 'Typical ranges for sample concept parcels — actual prices vary by size, condition, and seasonal market.'],
+                'title' => ['type' => 'string', 'default' => 'Neighborhood comparison at a glance'],
+                'text' => ['type' => 'string', 'default' => 'Typical ranges for sample concept listings — actual prices vary by size, condition, and seasonal market.'],
                 'disclaimer' => ['type' => 'string', 'default' => 'All figures are sample ranges for concept demonstration only. Not real MLS data or licensed appraisal values.'],
                 'col1' => ['type' => 'string', 'default' => 'Area'],
-                'col2' => ['type' => 'string', 'default' => 'Primary land type'],
+                'col2' => ['type' => 'string', 'default' => 'Housing mix'],
                 'col3' => ['type' => 'string', 'default' => 'Typical price range'],
-                'col4' => ['type' => 'string', 'default' => 'Well / septic'],
+                'col4' => ['type' => 'string', 'default' => 'Commute / lifestyle'],
                 'col5' => ['type' => 'string', 'default' => 'Best for'],
-                'row1Col1' => ['type' => 'string', 'default' => 'Oak Hollow'],
-                'row1Col2' => ['type' => 'string', 'default' => 'Century homesteads, orchards'],
-                'row1Col3' => ['type' => 'string', 'default' => '$290K–$620K'],
-                'row1Col4' => ['type' => 'string', 'default' => 'Well + private septic'],
-                'row1Col5' => ['type' => 'string', 'default' => 'Historic homes, orchard buyers'],
-                'row2Col1' => ['type' => 'string', 'default' => 'Orchard Belt'],
-                'row2Col2' => ['type' => 'string', 'default' => 'Fruit ground, cold storage'],
-                'row2Col3' => ['type' => 'string', 'default' => '$380K–$1.1M'],
-                'row2Col4' => ['type' => 'string', 'default' => 'Irrigation well, farm septic'],
-                'row2Col5' => ['type' => 'string', 'default' => 'Working farm operators'],
-                'row3Col1' => ['type' => 'string', 'default' => 'Mill Creek'],
-                'row3Col2' => ['type' => 'string', 'default' => 'Mixed farmland, quiet lots'],
-                'row3Col3' => ['type' => 'string', 'default' => '$195K–$480K'],
-                'row3Col4' => ['type' => 'string', 'default' => 'Well + perc required (raw)'],
-                'row3Col5' => ['type' => 'string', 'default' => 'Value buyers, first-time land'],
-                'row4Col1' => ['type' => 'string', 'default' => 'Grain Country'],
-                'row4Col2' => ['type' => 'string', 'default' => 'Tillable, cash-crop tracts'],
-                'row4Col3' => ['type' => 'string', 'default' => '$420K–$2.2M'],
-                'row4Col4' => ['type' => 'string', 'default' => 'Farm well, grain-yard septic'],
-                'row4Col5' => ['type' => 'string', 'default' => 'Farm investors, ag operators'],
-                'row5Col1' => ['type' => 'string', 'default' => 'Hill Country'],
-                'row5Col2' => ['type' => 'string', 'default' => 'Timber, hunting, cabins'],
-                'row5Col3' => ['type' => 'string', 'default' => '$110K–$390K'],
-                'row5Col4' => ['type' => 'string', 'default' => 'Spring or well, outhouse/perc'],
-                'row5Col5' => ['type' => 'string', 'default' => 'Recreational buyers'],
-                'row6Col1' => ['type' => 'string', 'default' => 'Border Farms'],
-                'row6Col2' => ['type' => 'string', 'default' => 'Small farms, pasture'],
-                'row6Col3' => ['type' => 'string', 'default' => '$165K–$440K'],
-                'row6Col4' => ['type' => 'string', 'default' => 'Well + private septic'],
-                'row6Col5' => ['type' => 'string', 'default' => 'First-time farm buyers'],
+                'row1Col1' => ['type' => 'string', 'default' => 'North Ridge'],
+                'row1Col2' => ['type' => 'string', 'default' => 'Family homes, tree streets'],
+                'row1Col3' => ['type' => 'string', 'default' => '$320K–$640K'],
+                'row1Col4' => ['type' => 'string', 'default' => '15 min to sample seat'],
+                'row1Col5' => ['type' => 'string', 'default' => 'Schools, established blocks'],
+                'row2Col1' => ['type' => 'string', 'default' => 'Mill Creek'],
+                'row2Col2' => ['type' => 'string', 'default' => 'Houses and townhomes'],
+                'row2Col3' => ['type' => 'string', 'default' => '$240K–$490K'],
+                'row2Col4' => ['type' => 'string', 'default' => 'Parks, mid commute'],
+                'row2Col5' => ['type' => 'string', 'default' => 'Value buyers, families'],
+                'row3Col1' => ['type' => 'string', 'default' => 'Oak Hollow'],
+                'row3Col2' => ['type' => 'string', 'default' => 'Older homes, condos, shops'],
+                'row3Col3' => ['type' => 'string', 'default' => '$275K–$580K'],
+                'row3Col4' => ['type' => 'string', 'default' => 'Walkable core'],
+                'row3Col5' => ['type' => 'string', 'default' => 'Main-street buyers'],
+                'row4Col1' => ['type' => 'string', 'default' => 'Riverbend'],
+                'row4Col2' => ['type' => 'string', 'default' => 'New construction, HOA'],
+                'row4Col3' => ['type' => 'string', 'default' => '$360K–$720K'],
+                'row4Col4' => ['type' => 'string', 'default' => 'Amenities, longer drive'],
+                'row4Col5' => ['type' => 'string', 'default' => 'Low-maintenance buyers'],
+                'row5Col1' => ['type' => 'string', 'default' => 'Midtown'],
+                'row5Col2' => ['type' => 'string', 'default' => 'Condos, lofts, storefronts'],
+                'row5Col3' => ['type' => 'string', 'default' => '$210K–$540K'],
+                'row5Col4' => ['type' => 'string', 'default' => 'Urban-edge, transit'],
+                'row5Col5' => ['type' => 'string', 'default' => 'Condos, commercial'],
+                'row6Col1' => ['type' => 'string', 'default' => 'Southgate'],
+                'row6Col2' => ['type' => 'string', 'default' => 'Townhomes, starter houses'],
+                'row6Col3' => ['type' => 'string', 'default' => '$185K–$395K'],
+                'row6Col4' => ['type' => 'string', 'default' => 'Easier entry price'],
+                'row6Col5' => ['type' => 'string', 'default' => 'First-time buyers'],
             ]),
         ],
         'acreline/topic-cards' => [
@@ -425,16 +466,16 @@ function ks_register_blocks(): void
             'attributes' => array_merge($typo, [
                 'eyebrow' => ['type' => 'string', 'default' => 'What these notes cover'],
                 'title' => ['type' => 'string', 'default' => 'Short reads you can adapt for your market'],
-                'text' => ['type' => 'string', 'default' => 'Showings, first-time checklists, and land vs home search — the three posts buyers actually ask for. Use them as local SEO starters, then link back to listings and the booking form.'],
+                'text' => ['type' => 'string', 'default' => 'Showings, first-time checklists, and neighborhood search — the three posts buyers actually ask for. Use them as local SEO starters, then link back to listings and the booking form.'],
                 'card1Kicker' => ['type' => 'string', 'default' => 'Showings'],
                 'card1Title' => ['type' => 'string', 'default' => 'How a tour should feel'],
-                'card1Text' => ['type' => 'string', 'default' => 'What to book, what to wear, and why a rural slot is not a 20-minute condo walk-through.'],
+                'card1Text' => ['type' => 'string', 'default' => 'What to book, how long to plan, and why a house tour is not a 20-minute scroll.'],
                 'card2Kicker' => ['type' => 'string', 'default' => 'Checklists'],
                 'card2Title' => ['type' => 'string', 'default' => 'First-time buyers'],
-                'card2Text' => ['type' => 'string', 'default' => 'Payment, inspection, and well/septic questions in an order you can scan before you call.'],
+                'card2Text' => ['type' => 'string', 'default' => 'Payment, inspection, and HOA questions in an order you can scan before you call.'],
                 'card3Kicker' => ['type' => 'string', 'default' => 'Search'],
-                'card3Title' => ['type' => 'string', 'default' => 'Land vs home'],
-                'card3Text' => ['type' => 'string', 'default' => 'Different card hierarchy so acreage shoppers and house shoppers do not share one muddy filter.'],
+                'card3Title' => ['type' => 'string', 'default' => 'House vs condo vs commercial'],
+                'card3Text' => ['type' => 'string', 'default' => 'Different card hierarchy so house shoppers and commercial tenants do not share one muddy filter.'],
             ]),
         ],
         'acreline/post-grid' => [
@@ -442,6 +483,124 @@ function ks_register_blocks(): void
             'attributes' => [
                 'emptyText' => ['type' => 'string', 'default' => 'Sample posts load with Tools → Seed Acreline demo.'],
             ],
+        ],
+        'acreline/region-coverage' => [
+            'render_callback' => __NAMESPACE__.'\\ks_render_region_coverage',
+            'attributes' => array_merge($typo, ks_region_area_attrs(), [
+                'eyebrow' => ['type' => 'string', 'default' => 'Area service'],
+                'title' => ['type' => 'string', 'default' => 'How we cover the region'],
+                'text' => ['type' => 'string', 'default' => 'Neighborhood-first coverage across North Ridge, Mill Creek, and Oak Hollow — one sample office, local specialists, and a showing on the calendar.'],
+                'layout' => ['type' => 'string', 'default' => 'split'],
+                'bandStyle' => ['type' => 'string', 'default' => 'alt'],
+                'headingLevel' => ['type' => 'string', 'default' => 'h2'],
+                'sectionPad' => ['type' => 'string', 'default' => 'default'],
+                'iconStyle' => ['type' => 'string', 'default' => 'pin'],
+                'areaCols' => ['type' => 'string', 'default' => '3'],
+                'showMap' => ['type' => 'boolean', 'default' => true],
+                'showMethods' => ['type' => 'boolean', 'default' => true],
+                'showIndex' => ['type' => 'boolean', 'default' => true],
+                'showSchema' => ['type' => 'boolean', 'default' => true],
+                'maxAreas' => ['type' => 'integer', 'default' => 3],
+                'primaryLabel' => ['type' => 'string', 'default' => 'Browse neighborhoods'],
+                'primaryUrl' => ['type' => 'string', 'default' => ''],
+                'secondaryLabel' => ['type' => 'string', 'default' => 'Book a showing'],
+                'secondaryUrl' => ['type' => 'string', 'default' => ''],
+                'method1Title' => ['type' => 'string', 'default' => 'Listen first'],
+                'method1Text' => ['type' => 'string', 'default' => 'We start with the neighborhood you want and the commute you will actually make.'],
+                'method2Title' => ['type' => 'string', 'default' => 'Match inventory'],
+                'method2Text' => ['type' => 'string', 'default' => 'Houses, condos, and commercial spaces are different products — we filter that way.'],
+                'method3Title' => ['type' => 'string', 'default' => 'Walk the property'],
+                'method3Text' => ['type' => 'string', 'default' => 'A scheduled showing with the specialist who covers that part of the sample county.'],
+            ]),
+        ],
+        'acreline/pricing-plans' => [
+            'render_callback' => __NAMESPACE__.'\\ks_render_pricing_plans',
+            'attributes' => array_merge($typo, [
+                'eyebrow' => ['type' => 'string', 'default' => 'Ways to work together'],
+                'title' => ['type' => 'string', 'default' => 'Sample plans for buyers and sellers'],
+                'text' => ['type' => 'string', 'default' => 'Concept packages so a brokerage can show how representation is priced — replace the numbers with yours.'],
+                'bandStyle' => ['type' => 'string', 'default' => 'paper'],
+                'headingLevel' => ['type' => 'string', 'default' => 'h2'],
+                'sectionPad' => ['type' => 'string', 'default' => 'default'],
+                'planCols' => ['type' => 'string', 'default' => '3'],
+                'plan1Kicker' => ['type' => 'string', 'default' => 'Buyers'],
+                'plan1Title' => ['type' => 'string', 'default' => 'Buyer consult'],
+                'plan1Price' => ['type' => 'string', 'default' => 'Complimentary'],
+                'plan1Period' => ['type' => 'string', 'default' => ''],
+                'plan1Text' => ['type' => 'string', 'default' => 'A neighborhood match and a sample showing calendar — no obligation.'],
+                'plan1Features' => ['type' => 'string', 'default' => "Neighborhood shortlist\nSaved-search setup\nOne accompanied showing\nSame-day follow-up"],
+                'plan1Cta' => ['type' => 'string', 'default' => 'Book a consult'],
+                'plan1Url' => ['type' => 'string', 'default' => ''],
+                'plan1Featured' => ['type' => 'boolean', 'default' => false],
+                'plan2Kicker' => ['type' => 'string', 'default' => 'Sellers'],
+                'plan2Title' => ['type' => 'string', 'default' => 'Listing launch'],
+                'plan2Price' => ['type' => 'string', 'default' => '2.5%'],
+                'plan2Period' => ['type' => 'string', 'default' => 'sample rate'],
+                'plan2Text' => ['type' => 'string', 'default' => 'Pricing strategy, photos, and a launch week on the sample calendar.'],
+                'plan2Features' => ['type' => 'string', 'default' => "Pricing consult\nPhoto + copy package\nOpen-house plan\nWeekly seller update"],
+                'plan2Cta' => ['type' => 'string', 'default' => 'Talk listing prep'],
+                'plan2Url' => ['type' => 'string', 'default' => ''],
+                'plan2Featured' => ['type' => 'boolean', 'default' => true],
+                'plan3Kicker' => ['type' => 'string', 'default' => 'Relocation'],
+                'plan3Title' => ['type' => 'string', 'default' => 'Relocation desk'],
+                'plan3Price' => ['type' => 'string', 'default' => 'Custom'],
+                'plan3Period' => ['type' => 'string', 'default' => ''],
+                'plan3Text' => ['type' => 'string', 'default' => 'One point of contact for a move into the sample county — buyers or sellers.'],
+                'plan3Features' => ['type' => 'string', 'default' => "Remote video tours\nNeighborhood brief\nLender + inspector intros\nClosing-week checklist"],
+                'plan3Cta' => ['type' => 'string', 'default' => 'Start a move plan'],
+                'plan3Url' => ['type' => 'string', 'default' => ''],
+                'plan3Featured' => ['type' => 'boolean', 'default' => false],
+            ]),
+        ],
+        'acreline/logo-strip' => [
+            'render_callback' => __NAMESPACE__.'\\ks_render_logo_strip',
+            'attributes' => array_merge($typo, [
+                'eyebrow' => ['type' => 'string', 'default' => 'Local partners'],
+                'title' => ['type' => 'string', 'default' => 'The sample county desk we call'],
+                'text' => ['type' => 'string', 'default' => 'Concept partner names — swap in your lenders, title shops, and inspectors.'],
+                'bandStyle' => ['type' => 'string', 'default' => 'paper'],
+                'headingLevel' => ['type' => 'string', 'default' => 'h2'],
+                'sectionPad' => ['type' => 'string', 'default' => 'compact'],
+                'grayscale' => ['type' => 'boolean', 'default' => true],
+                'logo1Label' => ['type' => 'string', 'default' => 'Sample Credit Union'],
+                'logo1Url' => ['type' => 'string', 'default' => ''],
+                'logo1ImageUrl' => ['type' => 'string', 'default' => ''],
+                'logo1ImageId' => ['type' => 'integer', 'default' => 0],
+                'logo2Label' => ['type' => 'string', 'default' => 'County Title Co.'],
+                'logo2Url' => ['type' => 'string', 'default' => ''],
+                'logo2ImageUrl' => ['type' => 'string', 'default' => ''],
+                'logo2ImageId' => ['type' => 'integer', 'default' => 0],
+                'logo3Label' => ['type' => 'string', 'default' => 'North Ridge Inspect'],
+                'logo3Url' => ['type' => 'string', 'default' => ''],
+                'logo3ImageUrl' => ['type' => 'string', 'default' => ''],
+                'logo3ImageId' => ['type' => 'integer', 'default' => 0],
+                'logo4Label' => ['type' => 'string', 'default' => 'Mill Creek Lending'],
+                'logo4Url' => ['type' => 'string', 'default' => ''],
+                'logo4ImageUrl' => ['type' => 'string', 'default' => ''],
+                'logo4ImageId' => ['type' => 'integer', 'default' => 0],
+                'logo5Label' => ['type' => 'string', 'default' => 'Oak Hollow Photo'],
+                'logo5Url' => ['type' => 'string', 'default' => ''],
+                'logo5ImageUrl' => ['type' => 'string', 'default' => ''],
+                'logo5ImageId' => ['type' => 'integer', 'default' => 0],
+                'logo6Label' => ['type' => 'string', 'default' => 'Borough Insurance'],
+                'logo6Url' => ['type' => 'string', 'default' => ''],
+                'logo6ImageUrl' => ['type' => 'string', 'default' => ''],
+                'logo6ImageId' => ['type' => 'integer', 'default' => 0],
+            ]),
+        ],
+        'acreline/newsletter' => [
+            'render_callback' => __NAMESPACE__.'\\ks_render_newsletter',
+            'attributes' => array_merge($typo, [
+                'eyebrow' => ['type' => 'string', 'default' => 'New listings'],
+                'title' => ['type' => 'string', 'default' => 'Get the weekly sample market note'],
+                'text' => ['type' => 'string', 'default' => 'A short digest of new addresses in North Ridge, Mill Creek, and Oak Hollow. Demo only — nothing is emailed.'],
+                'placeholder' => ['type' => 'string', 'default' => 'you@acreline-concept.test'],
+                'buttonLabel' => ['type' => 'string', 'default' => 'Join the list'],
+                'note' => ['type' => 'string', 'default' => 'Concept capture — confirmation stays on this page.'],
+                'bandStyle' => ['type' => 'string', 'default' => 'accent'],
+                'headingLevel' => ['type' => 'string', 'default' => 'h2'],
+                'sectionPad' => ['type' => 'string', 'default' => 'default'],
+            ]),
         ],
         'acreline/custom' => [
             'render_callback' => __NAMESPACE__.'\\ks_render_custom_block',
@@ -490,6 +649,64 @@ function ks_head_class(array $attrs, string $base = 'section-head left reveal'):
     }
 
     return trim($cls);
+}
+
+/**
+ * Section background + vertical pad from bandStyle / sectionPad.
+ */
+function ks_band_section_class(array $attrs, string $base = 'section'): string
+{
+    $style = sanitize_key((string) ($attrs['bandStyle'] ?? 'paper'));
+    $cls = $base;
+    if ($style === 'alt') {
+        $cls .= ' section-alt';
+    } elseif ($style === 'accent') {
+        $cls .= ' ks-section--accent';
+    } elseif ($style === 'dark') {
+        $cls .= ' ks-section--dark';
+    }
+
+    $pad = sanitize_key((string) ($attrs['sectionPad'] ?? 'default'));
+    if (in_array($pad, ['compact', 'tall'], true)) {
+        $cls .= ' ks-pad--'.$pad;
+    }
+
+    return $cls;
+}
+
+/**
+ * Heading tag from headingLevel (h2 / h3 / h4).
+ */
+function ks_heading_tag(array $attrs, string $default = 'h2'): string
+{
+    $tag = strtolower((string) ($attrs['headingLevel'] ?? $default));
+
+    return in_array($tag, ['h2', 'h3', 'h4'], true) ? $tag : $default;
+}
+
+/**
+ * @return array<string, array{type: string, default: string}>
+ */
+function ks_region_area_attrs(): array
+{
+    $defaults = [
+        1 => ['West ridge · established streets', 'North Ridge', 'Tree-lined blocks, family homes, and a short drive to the sample county seat. Buyers come for schools and porch-front streets.', '12 active'],
+        2 => ['Creek corridor · parks and schools', 'Mill Creek', 'Mid-range houses, townhomes, and quiet cul-de-sacs. A practical commute and parks along the creek.', '9 active'],
+        3 => ['Walkable core · shops and older homes', 'Oak Hollow', 'A compact main street, older houses, and condos above the shops. Best for buyers who want to walk to coffee.', '7 active'],
+        4 => ['New construction · HOA streets', 'Riverbend', 'Builder homes, HOA amenities, and wide streets. Good for buyers who want low-maintenance and a predictable finish.', '6 active'],
+        5 => ['Mixed-use · condos and storefronts', 'Midtown', 'Condos, lofts, and a few commercial suites. A sample urban-edge pocket inside the same county.', '5 active'],
+        6 => ['First-home streets · townhomes', 'Southgate', 'Townhomes and modest single-family streets. Often the first stop for buyers stretching into the sample market.', '8 active'],
+    ];
+    $attrs = [];
+    for ($i = 1; $i <= 6; $i++) {
+        $attrs["area{$i}Kicker"] = ['type' => 'string', 'default' => $defaults[$i][0]];
+        $attrs["area{$i}Title"] = ['type' => 'string', 'default' => $defaults[$i][1]];
+        $attrs["area{$i}Body"] = ['type' => 'string', 'default' => $defaults[$i][2]];
+        $attrs["area{$i}Stat"] = ['type' => 'string', 'default' => $defaults[$i][3]];
+        $attrs["area{$i}Url"] = ['type' => 'string', 'default' => ''];
+    }
+
+    return $attrs;
 }
 
 /**
@@ -658,7 +875,7 @@ add_action('init', function (): void {
 
     register_block_pattern('acreline/home-page', [
         'title' => __('Acreline — Home page', 'acreline'),
-        'description' => __('Full homepage layout with hero, intent cards, spotlight, booking, market stats, tools, and CTA.', 'acreline'),
+        'description' => __('Homepage: hero, intent, spotlight, region coverage, booking, stats, plans, newsletter, and CTA.', 'acreline'),
         'categories' => ['acreline'],
         'content' => ks_home_page_pattern(),
     ]);
@@ -672,7 +889,7 @@ add_action('init', function (): void {
 
     register_block_pattern('acreline/areas-page', [
         'title' => __('Acreline — Areas page', 'acreline'),
-        'description' => __('Areas page: hero, intro, area grid, comparison table, reviews, CTA.', 'acreline'),
+        'description' => __('Areas page: hero, neighborhood grid, comparison, region coverage, newsletter, CTA.', 'acreline'),
         'categories' => ['acreline'],
         'content' => ks_areas_page_pattern(),
     ]);
@@ -686,7 +903,7 @@ add_action('init', function (): void {
 
     register_block_pattern('acreline/agents-page', [
         'title' => __('Acreline — Agents page', 'acreline'),
-        'description' => __('Agents page: hero, intro, agent list, reviews, how-we-work, CTA.', 'acreline'),
+        'description' => __('Agents page: hero, roster, pricing plans, reviews, process, partners, CTA.', 'acreline'),
         'categories' => ['acreline'],
         'content' => ks_agents_page_pattern(),
     ]);
@@ -947,7 +1164,7 @@ function ks_render_home_hero(array $attrs): string
     $townships = count(array_unique(array_filter(array_column($listings, 'township'))));
     $count = count($listings);
 
-    $eyebrow = esc_html($attrs['eyebrow'] ?? 'Farms, land, and historic homes');
+    $eyebrow = esc_html($attrs['eyebrow'] ?? 'Homes, neighborhoods, and local agents');
     $title = wp_kses($attrs['title'] ?? 'Homes worth <em>walking through.</em>', ['em' => [], 'strong' => []]);
     $text = wp_kses($attrs['text'] ?? '', ['em' => [], 'strong' => [], 'br' => []]);
     $primary = esc_html($attrs['primaryLabel'] ?? 'Show matches');
@@ -1105,7 +1322,7 @@ function ks_render_intent_cards(array $attrs): string
             <?php } ?>
             <div class="intent-copy">
               <span class="intent-kicker"><?php echo esc_html($a['buyKicker'] ?? 'Buy'); ?></span>
-              <h3><?php echo wp_kses($a['buyTitle'] ?? 'Scan homes, farms, and land', ['em' => []]); ?></h3>
+              <h3><?php echo wp_kses($a['buyTitle'] ?? 'Scan homes and neighborhoods', ['em' => []]); ?></h3>
               <p><?php echo wp_kses($a['buyLead'] ?? '', ['em' => [], 'strong' => []]); ?></p>
               <span class="intent-go"><?php echo esc_html($a['buyCta'] ?? 'Browse listings'); ?> →</span>
             </div>
@@ -1140,9 +1357,9 @@ function ks_render_intent_cards(array $attrs): string
         <ul class="intent-notes reveal" aria-label="<?php echo esc_attr($a['notesLabel'] ?? 'Good to know'); ?>">
           <?php
           $notes = [
-              [$a['note1Title'] ?? 'Township first', $a['note1Text'] ?? 'Zoning and farmland tax enrollment change from one sample area to the next.'],
-              [$a['note2Title'] ?? 'Well and perc', $a['note2Text'] ?? 'Rural parcels rarely have municipal hookups — walk that before an offer.'],
-              [$a['note3Title'] ?? 'Boots for showings', $a['note3Text'] ?? 'Lanes get muddy after rain. Mention pets if you are new to land.'],
+              [$a['note1Title'] ?? 'Neighborhood first', $a['note1Text'] ?? 'Schools, commute, and HOA rules change from one sample area to the next.'],
+              [$a['note2Title'] ?? 'Walk the rooms', $a['note2Text'] ?? 'Photos hide layout. Confirm beds, parking, and outdoor space before you offer.'],
+              [$a['note3Title'] ?? 'Bring decision-makers', $a['note3Text'] ?? 'If a partner will help decide, book the showing when they can come too.'],
           ];
     foreach ($notes as [$nt, $nb]) { ?>
             <li>
@@ -1290,15 +1507,15 @@ function ks_render_how_it_works(array $attrs): string
 {
     $eyebrow = esc_html($attrs['eyebrow'] ?? 'How a tour starts');
     $title = wp_kses($attrs['title'] ?? 'From search to showing', ['em' => [], 'strong' => []]);
-    $text = wp_kses($attrs['text'] ?? 'Township first, then a walk on the ground — not office theater. This demo stops at on-page confirmation.', ['em' => []]);
+    $text = wp_kses($attrs['text'] ?? 'Neighborhood first, then a walk-through — not office theater. This demo stops at on-page confirmation.', ['em' => []]);
     $themeUri = esc_url(get_template_directory_uri());
     $bookUrl = esc_url(home_url('/book/'));
 
     $steps = [
-        ['tour-step-township.jpg', 'Country road past a white farmhouse and red barn in a rural township', 'Filter the township', 'Start with the area so zoning and farmland-tax rules are not compared across Oak Hollow land and a North Ridge house.'],
-        ['tour-step-card.jpg', 'Hands reviewing papers at a worn farmhouse kitchen table', 'Read the card', 'Price and beds on a house; usable acres, access, and utilities on land. Spotlight homes below already select the listing.'],
-        ['tour-step-book.jpg', 'Writing a showing time at a farmhouse table beside muddy work boots', 'Book the hour', 'Pick a date and a time. Evening slots exist because farm showings often happen after commute.'],
-        ['tour-step-walk.jpg', 'An agent walking buyers up a gravel lane toward a white farmhouse', 'Walk the ground', 'Wear boots and walk the lane. Here you get an on-page receipt — no email, no calendar invite.'],
+        ['tour-step-township.jpg', 'Quiet neighborhood street with houses and mature trees', 'Filter the area', 'Start with the neighborhood so you are not comparing a Midtown condo to a North Ridge house.'],
+        ['tour-step-card.jpg', 'Hands reviewing listing papers at a kitchen table', 'Read the card', 'Price, beds, baths, and lot size. Featured homes below already select the listing.'],
+        ['tour-step-book.jpg', 'Writing a showing time at a kitchen table', 'Book the hour', 'Pick a date and a time. Evening slots exist because many buyers tour after work.'],
+        ['tour-step-walk.jpg', 'An agent walking buyers up to a house', 'Walk the rooms', 'Wear comfortable shoes. Here you get an on-page receipt — no email, no calendar invite.'],
     ];
 
     ob_start();
@@ -1426,28 +1643,28 @@ function ks_render_seo_content(array $attrs): string
       <div class="wrap">
         <div class="seo-block reveal">
           <div>
-            <p class="eyebrow"><?php esc_html_e('Rural market notes', 'acreline'); ?></p>
-            <h2 id="seo-heading"><?php esc_html_e('Buying a home, farm, or land', 'acreline'); ?></h2>
+            <p class="eyebrow"><?php esc_html_e('Market notes', 'acreline'); ?></p>
+            <h2 id="seo-heading"><?php esc_html_e('Buying a house, condo, or commercial space', 'acreline'); ?></h2>
             <div class="prose-tight">
-              <p><?php esc_html_e('This sample market is orchard and farm country: fruit on the ridges, tillable ground in the valleys, and older houses that still rely on a private well.', 'acreline'); ?></p>
+              <p><?php esc_html_e('This sample county has three neighborhoods buyers actually compare: North Ridge for established streets, Mill Creek for value and parks, and Oak Hollow for a walkable core.', 'acreline'); ?></p>
               <h3><?php esc_html_e('When you are buying a house', 'acreline'); ?></h3>
-              <p><?php esc_html_e('Start with price, bedrooms, and the commute. Acreage matters when you want a shop or barn; confirm well or public water before a second visit.', 'acreline'); ?></p>
-              <h3><?php esc_html_e('When you are buying land', 'acreline'); ?></h3>
-              <p><?php esc_html_e('Start with usable acres, recorded access, and septic feasibility. A parcel without a perc answer is a different product than a finished farmhouse.', 'acreline'); ?></p>
+              <p><?php esc_html_e('Start with price, bedrooms, and the commute. Confirm schools, HOA rules, and systems before a second visit.', 'acreline'); ?></p>
+              <h3><?php esc_html_e('When you are buying a condo or commercial suite', 'acreline'); ?></h3>
+              <p><?php esc_html_e('Start with dues, parking, and permitted use. A storefront without a clear lease path is a different product than a turnkey house.', 'acreline'); ?></p>
             </div>
             <p class="help-links">
               <a href="<?php echo $guideUrl; ?>"><?php esc_html_e('Buyer guide →', 'acreline'); ?></a>
-              <a href="<?php echo $areasUrl; ?>"><?php esc_html_e('Township notes →', 'acreline'); ?></a>
+              <a href="<?php echo $areasUrl; ?>"><?php esc_html_e('Neighborhood notes →', 'acreline'); ?></a>
               <a href="<?php echo $listingsUrl; ?>"><?php esc_html_e('Sample listings →', 'acreline'); ?></a>
             </p>
           </div>
           <div class="scan-grid cols-2">
             <?php
             $scanCards = [
-                ['Houses', 'Review first', ['Price, bedrooms, and baths', 'Township and commute', 'Well or public water', 'A showing that fits the week']],
-                ['Land', 'Review first', ['Usable acres, not only deed acres', 'Perc and septic status', 'Road frontage and driveway', 'Farmland-tax enrollment and rollback risk']],
-                ['Farms', 'Walk the working ground', ['Barn, shop, and outbuildings', 'Tillable versus wooded split', 'Livestock or orchard use', 'Water rights and irrigation']],
-                ['Next', 'Recommended next steps', ['Filter the sample listings', 'Read the township notes', 'Run a sample value range', 'Schedule a showing']],
+                ['Houses', 'Review first', ['Price, bedrooms, and baths', 'Neighborhood and commute', 'HOA or systems', 'A showing that fits the week']],
+                ['Condos', 'Review first', ['Dues and reserves', 'Parking and storage', 'Pet and rental rules', 'A walk of the building']],
+                ['Commercial', 'Walk the use', ['Permitted use and zoning', 'Frontage and parking', 'Lease vs purchase', 'Build-out timeline']],
+                ['Next', 'Recommended next steps', ['Filter the sample listings', 'Read the neighborhood notes', 'Run a sample payment', 'Schedule a showing']],
             ];
     foreach ($scanCards as [$num, $heading, $items]) { ?>
               <article class="scan-card">
@@ -1557,7 +1774,7 @@ function ks_render_reviews(array $attrs): string
 function ks_render_faq_list(array $attrs): string
 {
     $title = wp_kses($attrs['title'] ?? 'Questions buyers ask first', ['em' => [], 'strong' => []]);
-    $text = wp_kses($attrs['text'] ?? 'Practical answers for house and acreage shoppers.', ['em' => []]);
+    $text = wp_kses($attrs['text'] ?? 'Practical answers for house and neighborhood shoppers.', ['em' => []]);
     $headClass = esc_attr(ks_head_class($attrs));
     $faqs = Faqs::forContext();
     $faqStyle = sanitize_key((string) ($attrs['faqStyle'] ?? 'dl'));
@@ -1895,8 +2112,8 @@ function ks_render_agent_list(array $attrs): string
 
 function ks_render_listing_grid(array $attrs): string
 {
-    $introTitle = wp_kses($attrs['introTitle'] ?? 'Buying rural property', ['em' => [], 'strong' => []]);
-    $introText = wp_kses($attrs['introText'] ?? 'Every sample parcel sits in an area.', ['em' => [], 'strong' => []]);
+    $introTitle = wp_kses($attrs['introTitle'] ?? 'Buying in this sample market', ['em' => [], 'strong' => []]);
+    $introText = wp_kses($attrs['introText'] ?? 'Every sample home sits in a neighborhood you can filter.', ['em' => [], 'strong' => []]);
 
     ob_start();
     ?>
@@ -2089,12 +2306,15 @@ function ks_render_listing_grid(array $attrs): string
 function ks_render_area_grid(array $attrs): string
 {
     $a = $attrs;
-    $gridEyebrow = esc_html($a['gridEyebrow'] ?? 'Area by area');
+    $gridEyebrow = esc_html($a['gridEyebrow'] ?? 'Neighborhood by neighborhood');
+    $hTag = ks_heading_tag($a);
     $gridTitle = wp_kses($a['gridTitle'] ?? 'Where the sample office works', ['em' => [], 'strong' => []]);
     $gridText = wp_kses($a['gridText'] ?? '', ['em' => [], 'strong' => []]);
     $headClass = esc_attr(ks_head_class($attrs));
     $gridCols = sanitize_key((string) ($a['gridCols'] ?? '3'));
     $showIndex = (bool) ($a['showIndex'] ?? true);
+    $cardStyle = sanitize_key((string) ($a['cardStyle'] ?? 'classic'));
+    $sectionClass = ks_band_section_class($a, 'section');
     $gridClass = 'area-grid';
     if (in_array($gridCols, ['2', '4'], true)) {
         $gridClass .= ' ks-cols--'.$gridCols;
@@ -2102,7 +2322,12 @@ function ks_render_area_grid(array $attrs): string
     if (! $showIndex) {
         $gridClass .= ' no-index';
     }
-    $pinSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+    if ($cardStyle === 'featured') {
+        $gridClass .= ' ks-area--featured';
+    } elseif ($cardStyle === 'compact') {
+        $gridClass .= ' ks-area--compact';
+    }
+    $pinSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>';
 
     $areas = [];
     for ($i = 1; $i <= 6; $i++) {
@@ -2114,30 +2339,59 @@ function ks_render_area_grid(array $attrs): string
             'meta' => (string) ($a["area{$i}Meta"] ?? ''),
             'title' => $t,
             'body' => (string) ($a["area{$i}Body"] ?? ''),
+            'image' => (string) ($a["area{$i}ImageUrl"] ?? ''),
+            'cta' => (string) ($a["area{$i}Cta"] ?? ''),
+            'url' => (string) ($a["area{$i}Url"] ?? ''),
         ];
     }
 
+    $primaryLabel = trim((string) ($a['primaryLabel'] ?? ''));
+    $primaryUrl = (string) ($a['primaryUrl'] ?? '');
+    if ($primaryUrl === '') {
+        $primaryUrl = home_url('/listings');
+    }
+
+    $hid = function_exists('wp_unique_id') ? wp_unique_id('ks-areas-') : 'ks-areas-heading';
+
     ob_start();
     ?>
-    <section class="section section-alt">
+    <section class="<?php echo esc_attr($sectionClass); ?>" aria-labelledby="<?php echo esc_attr($hid); ?>">
       <div class="wrap">
         <div class="<?php echo $headClass; ?>">
-          <p class="eyebrow"><?php echo $gridEyebrow; ?></p>
-          <h2><?php echo $gridTitle; ?></h2>
+          <?php if ($gridEyebrow !== '') { ?><p class="eyebrow"><?php echo $gridEyebrow; ?></p><?php } ?>
+          <<?php echo $hTag; ?> id="<?php echo esc_attr($hid); ?>"><?php echo $gridTitle; ?></<?php echo $hTag; ?>>
           <?php if ($gridText) { ?><p><?php echo $gridText; ?></p><?php } ?>
         </div>
         <div class="<?php echo esc_attr($gridClass); ?>">
-          <?php foreach ($areas as $idx => $area) { ?>
-            <article class="area-card reveal">
+          <?php foreach ($areas as $idx => $area) {
+              $hasPhoto = $area['image'] !== '';
+              $cardClass = 'area-card reveal'.($hasPhoto ? ' has-photo' : '');
+              ?>
+            <article class="<?php echo esc_attr($cardClass); ?>">
+              <?php if ($hasPhoto) { ?>
+                <div class="area-card__media">
+                  <img src="<?php echo esc_url($area['image']); ?>" alt="" loading="lazy" decoding="async">
+                </div>
+                <div class="area-card__body">
+              <?php } ?>
               <?php if ($showIndex) { ?>
                 <p class="area-index" aria-hidden="true"><?php echo esc_html(sprintf('%02d', $idx + 1)); ?></p>
               <?php } ?>
               <p class="area-meta"><?php echo wp_kses($area['meta'], ['em' => [], 'strong' => []]); ?></p>
               <h3><span class="pin"><?php echo $pinSvg; ?></span><?php echo wp_kses($area['title'], ['em' => [], 'strong' => []]); ?></h3>
               <p><?php echo wp_kses($area['body'], ['em' => [], 'strong' => []]); ?></p>
+              <?php if ($area['cta'] !== '' && $area['url'] !== '') { ?>
+                <a class="area-card__cta" href="<?php echo esc_url($area['url']); ?>"><?php echo esc_html($area['cta']); ?></a>
+              <?php } ?>
+              <?php if ($hasPhoto) { ?></div><?php } ?>
             </article>
           <?php } ?>
         </div>
+        <?php if ($primaryLabel !== '') { ?>
+          <p class="ks-region__cta" style="margin-top:28px">
+            <a class="btn btn-primary" href="<?php echo esc_url($primaryUrl); ?>"><?php echo esc_html($primaryLabel); ?></a>
+          </p>
+        <?php } ?>
       </div>
     </section>
     <?php
@@ -2167,7 +2421,7 @@ function ks_render_tools_section(array $attrs): string
     <section class="section">
       <div class="wrap">
         <div class="guide-intro reveal">
-          <h2><?php echo wp_kses($a['introTitle'] ?? "What's different about buying land", ['em' => [], 'strong' => []]); ?></h2>
+          <h2><?php echo wp_kses($a['introTitle'] ?? "What's different about buying here", ['em' => [], 'strong' => []]); ?></h2>
           <p><?php echo wp_kses($a['introText'] ?? '', ['em' => [], 'strong' => []]); ?></p>
         </div>
       </div>
@@ -2192,23 +2446,27 @@ function ks_render_tools_section(array $attrs): string
 /** @param array<string, mixed> $attrs */
 function ks_render_how_we_work(array $attrs): string
 {
-    $eyebrow = esc_html($attrs['eyebrow'] ?? 'How We Work');
+    $eyebrow = esc_html($attrs['eyebrow'] ?? 'How we work');
+    $hTag = ks_heading_tag($attrs);
     $title = wp_kses($attrs['title'] ?? 'What working with this office looks like', ['em' => [], 'strong' => []]);
-    $text = wp_kses($attrs['text'] ?? 'No pressure, no jargon, and a straight answer about the ground under your feet.', ['em' => []]);
+    $text = wp_kses($attrs['text'] ?? 'No pressure, no jargon, and a straight answer about the house, the block, and the next step.', ['em' => []]);
     $headClass = esc_attr(ks_head_class($attrs));
     $stepsStyle = sanitize_key((string) ($attrs['stepsStyle'] ?? 'numbered'));
     $stepsLayout = sanitize_key((string) ($attrs['stepsLayout'] ?? 'row'));
+    $sectionClass = ks_band_section_class($attrs, 'section');
+    $sectionClass .= ' ks-how-we-work--'.$stepsStyle.' ks-how-we-work--'.$stepsLayout;
+    $hid = function_exists('wp_unique_id') ? wp_unique_id('ks-hww-') : 'how-we-work-heading';
 
     ob_start();
     ?>
-    <section class="section ks-how-we-work--<?php echo esc_attr($stepsStyle); ?> ks-how-we-work--<?php echo esc_attr($stepsLayout); ?>" aria-labelledby="how-we-work-heading">
+    <section class="<?php echo esc_attr($sectionClass); ?>" aria-labelledby="<?php echo esc_attr($hid); ?>">
       <div class="wrap">
         <header class="<?php echo $headClass; ?>">
-          <p class="eyebrow"><?php echo $eyebrow; ?></p>
-          <h2 id="how-we-work-heading"><?php echo $title; ?></h2>
-          <p><?php echo $text; ?></p>
+          <?php if ($eyebrow !== '') { ?><p class="eyebrow"><?php echo $eyebrow; ?></p><?php } ?>
+          <<?php echo $hTag; ?> id="<?php echo esc_attr($hid); ?>"><?php echo $title; ?></<?php echo $hTag; ?>>
+          <?php if ($text !== '') { ?><p><?php echo $text; ?></p><?php } ?>
         </header>
-        <?php echo ks_how_we_work_steps_html($stepsStyle); ?>
+        <?php echo ks_how_we_work_steps_html($attrs); ?>
       </div>
     </section>
     <?php
@@ -2276,13 +2534,14 @@ function ks_render_contact_form(array $attrs): string
                   <div class="field"><label for="cEmail"><?php esc_html_e('Email', 'acreline'); ?></label><input type="email" id="cEmail" name="email" autocomplete="email" required placeholder="you@acreline-concept.test"></div>
                   <div class="field"><label for="cTopic"><?php esc_html_e("I'm interested in", 'acreline'); ?></label>
                     <select id="cTopic" name="topic">
-                      <option><?php esc_html_e('Buying land or a farm', 'acreline'); ?></option>
                       <option><?php esc_html_e('Buying a home', 'acreline'); ?></option>
+                      <option><?php esc_html_e('Buying a condo or townhome', 'acreline'); ?></option>
                       <option><?php esc_html_e('Selling my property', 'acreline'); ?></option>
                       <option><?php esc_html_e('A free valuation', 'acreline'); ?></option>
                       <option><?php esc_html_e('Something else', 'acreline'); ?></option>
                     </select></div>
-                  <div class="field field-span"><label for="cMessage"><?php esc_html_e('Message', 'acreline'); ?></label><textarea id="cMessage" name="message" rows="4" placeholder="<?php esc_attr_e('e.g. Looking for 10+ acres near Oak Hollow', 'acreline'); ?>"></textarea></div>
+                  <div class="field field-span"><label for="cMessage"><?php esc_html_e('Message', 'acreline'); ?></label><textarea id="cMessage" name="message" rows="4" placeholder="<?php esc_attr_e('e.g. Looking for a 3-bed near Oak Hollow', 'acreline'); ?>"></textarea></div>
+                  <?php echo ks_render_consent_field('contactConsent'); ?>
                   <div class="field field-span"><button type="submit" class="btn btn-primary btn-block"><?php esc_html_e('Send Message', 'acreline'); ?></button></div>
                 </div>
               </form>
@@ -2421,14 +2680,14 @@ function ks_default_trust_items(): array
 function ks_default_guide_items(): array
 {
     return [
-        ['title' => __('Water source — well or municipal?', 'acreline'), 'text' => __('Private wells need a yield test and a water-quality report. Ask for the original well log and the most recent test date. A well producing under 3 gpm may not support the use you have planned.', 'acreline')],
-        ['title' => __('Septic — existing system or percolation required?', 'acreline'), 'text' => __('An existing septic has records on file with the county. Raw land needs a perc test before you can pull a permit. Perc results control what you can build and where.', 'acreline')],
-        ['title' => __('Road access — deeded or by permission?', 'acreline'), 'text' => __('A private lane that crosses a neighbour\'s land needs a recorded easement in the deed. "We\'ve always used that road" is not legal access and will show up in a title search.', 'acreline')],
-        ['title' => __('Zoning and agricultural enrollments', 'acreline'), 'text' => __('Land enrolled in a use-value or preferential farmland tax program, or under an agricultural conservation easement, has use restrictions. Rollback taxes can be triggered by certain improvements. Verify enrollment status with the county before closing.', 'acreline')],
-        ['title' => __('Survey — does one exist?', 'acreline'), 'text' => __('Many rural parcels have never been surveyed. Boundary pins may be missing or disputed. If the parcel shape or acreage matters to your use plan, budget for a fresh survey.', 'acreline')],
-        ['title' => __('Flood zone and drainage', 'acreline'), 'text' => __('Check the FEMA flood map. Creek-bottom and low-lying fields may be in Zone A. Flood insurance is required for federally-backed loans on Zone A parcels and premiums can be significant.', 'acreline')],
-        ['title' => __('Mineral rights — included or severed?', 'acreline'), 'text' => __('Mineral rights can be owned separately from the surface. Ask the seller whether oil, gas, and mineral rights are included in the sale and request a title opinion.', 'acreline')],
-        ['title' => __('Financing — land loan or conventional?', 'acreline'), 'text' => __('Standard home mortgages are not available for raw land. Farm Credit, USDA, or local community banks handle most rural loans. Down payment requirements are typically 20–35% and loan terms are shorter than residential.', 'acreline')],
+        ['title' => __('Financing in writing', 'acreline'), 'text' => __('Know whether you are pre-approved, paying cash, or still shopping lenders. That shapes which homes are realistic to tour and how fast you can write an offer.', 'acreline')],
+        ['title' => __('Inspection window', 'acreline'), 'text' => __('Ask what a typical inspection period looks like in this market and which specialists (home, radon, sewer, roof) buyers usually book. Budget time, not just money.', 'acreline')],
+        ['title' => __('HOA, condo docs, and dues', 'acreline'), 'text' => __('If the home is in an association, request the documents early. Dues, reserves, rental caps, and pending assessments change monthly payment and resale.', 'acreline')],
+        ['title' => __('Title, survey, and easements', 'acreline'), 'text' => __('Confirm who pays for title insurance and whether a recent survey exists. Shared driveways and utility easements should be on the report, not a surprise after closing.', 'acreline')],
+        ['title' => __('Flood zone and insurance', 'acreline'), 'text' => __('Check the FEMA flood map and ask about homeowners insurance quotes before you waive contingencies. Zone A properties often need flood coverage on a financed purchase.', 'acreline')],
+        ['title' => __('School and commute — verify, don’t assume', 'acreline'), 'text' => __('District lines and bus routes change. Confirm with the district, not a listing remark. Same for drive times at the hour you actually travel.', 'acreline')],
+        ['title' => __('Fair Housing in your search notes', 'acreline'), 'text' => __('Describe the house and the lot — not who “belongs” in a neighborhood. Steer clear of demographic or religious preference in notes you send your agent.', 'acreline')],
+        ['title' => __('Offer terms, not just price', 'acreline'), 'text' => __('Closing date, inspection length, and what stays with the house often matter as much as the number. Write those down before you fall in love with a kitchen.', 'acreline')],
     ];
 }
 
@@ -2436,9 +2695,9 @@ function ks_default_guide_items(): array
 function ks_default_prep_left_items(): array
 {
     return [
-        ['title' => __('Boots or waterproof shoes', 'acreline'), 'text' => __('Farm ground, creek fields, and wooded lots are often wet. A good pair of boots is the single most useful thing you can bring.', 'acreline')],
+        ['title' => __('Comfortable shoes', 'acreline'), 'text' => __('You will walk rooms, stairs, and often the yard. Wear something you can stay in for an hour.', 'acreline')],
         ['title' => __('Your priority list', 'acreline'), 'text' => __('Write down the three things that would make or break the purchase. Your agent will address them on site, not in a follow-up email.', 'acreline')],
-        ['title' => __('Financing status', 'acreline'), 'text' => __('Know roughly what you are approved for — or what you plan to pay cash. It shapes which parcels make sense to walk.', 'acreline')],
+        ['title' => __('Financing status', 'acreline'), 'text' => __('Know roughly what you are approved for — or what you plan to pay cash. It shapes which homes make sense to walk.', 'acreline')],
         ['title' => __('Your timeline', 'acreline'), 'text' => __('Are you buying in the next 60 days or researching for next year? Your agent will calibrate the conversation accordingly.', 'acreline')],
         ['title' => __('All decision-makers', 'acreline'), 'text' => __('If a partner, parent, or business partner will be part of the purchase, bring them. An extra showing costs everyone time.', 'acreline')],
     ];
@@ -2448,9 +2707,9 @@ function ks_default_prep_left_items(): array
 function ks_default_prep_right_items(): array
 {
     return [
-        ['title' => __('Property briefing', 'acreline'), 'text' => __('Parcel map, deed history, tax enrollment status, well log if available, and any disclosed issues — ready before you arrive.', 'acreline')],
-        ['title' => __('Comps and price context', 'acreline'), 'text' => __('Recent sales of similar ground in the same area, so you understand what the asking price reflects.', 'acreline')],
-        ['title' => __('On-site answers', 'acreline'), 'text' => __('Questions about drainage, soil quality, zoning, or septic feasibility answered on the walk — not in a follow-up email three days later.', 'acreline')],
+        ['title' => __('Listing briefing', 'acreline'), 'text' => __('Floor plan if available, tax record, HOA notes, and any disclosed issues — ready before you arrive.', 'acreline')],
+        ['title' => __('Comps and price context', 'acreline'), 'text' => __('Recent sales of similar homes in the same area, so you understand what the asking price reflects.', 'acreline')],
+        ['title' => __('On-site answers', 'acreline'), 'text' => __('Questions about condition, systems, and neighborhood logistics answered on the walk — not in a follow-up email three days later.', 'acreline')],
         ['title' => __('No pressure close', 'acreline'), 'text' => __('The goal of a showing is information — not a signature. Agents do not push offers on the property or "back at the office."', 'acreline')],
     ];
 }
@@ -2594,9 +2853,9 @@ function ks_render_compare_table(array $attrs): string
     $headClass = esc_attr(ks_head_class($attrs));
     $cols = [
         esc_html($attrs['col1'] ?? __('Area', 'acreline')),
-        esc_html($attrs['col2'] ?? __('Primary land type', 'acreline')),
+        esc_html($attrs['col2'] ?? __('Housing mix', 'acreline')),
         esc_html($attrs['col3'] ?? __('Typical price range', 'acreline')),
-        esc_html($attrs['col4'] ?? __('Well / septic', 'acreline')),
+        esc_html($attrs['col4'] ?? __('Utilities', 'acreline')),
         esc_html($attrs['col5'] ?? __('Best for', 'acreline')),
     ];
 
@@ -2776,6 +3035,374 @@ function ks_render_post_grid(array $attrs): string
     return (string) ob_get_clean();
 }
 
+/** @param array<string, mixed> $attrs */
+function ks_render_region_coverage(array $attrs): string
+{
+    $a = $attrs;
+    $eyebrow = esc_html((string) ($a['eyebrow'] ?? 'Area service'));
+    $hTag = ks_heading_tag($a);
+    $title = wp_kses((string) ($a['title'] ?? 'How we cover the region'), ['em' => [], 'strong' => []]);
+    $text = wp_kses((string) ($a['text'] ?? ''), ['em' => [], 'strong' => []]);
+    $headClass = esc_attr(ks_head_class($a));
+    $layout = sanitize_key((string) ($a['layout'] ?? 'split'));
+    if (! in_array($layout, ['split', 'bento', 'grid'], true)) {
+        $layout = 'split';
+    }
+    $iconStyle = sanitize_key((string) ($a['iconStyle'] ?? 'pin'));
+    $areaCols = sanitize_key((string) ($a['areaCols'] ?? '3'));
+    $showMap = (bool) ($a['showMap'] ?? true);
+    $showMethods = (bool) ($a['showMethods'] ?? true);
+    $showIndex = (bool) ($a['showIndex'] ?? true);
+    $showSchema = (bool) ($a['showSchema'] ?? true);
+    $maxAreas = (int) ($a['maxAreas'] ?? 3);
+    if ($maxAreas < 1) {
+        $maxAreas = 1;
+    }
+    if ($maxAreas > 6) {
+        $maxAreas = 6;
+    }
+
+    $sectionClass = ks_band_section_class($a, 'section');
+    $sectionClass .= ' ks-region ks-region--'.$layout;
+    if ($iconStyle === 'none') {
+        $sectionClass .= ' ks-region--icon-none';
+    }
+    if (! $showIndex) {
+        $sectionClass .= ' ks-region--no-index';
+    }
+
+    $areas = [];
+    for ($i = 1; $i <= $maxAreas; $i++) {
+        $t = trim((string) ($a["area{$i}Title"] ?? ''));
+        if ($t === '') {
+            continue;
+        }
+        $areas[] = [
+            'kicker' => (string) ($a["area{$i}Kicker"] ?? ''),
+            'title' => $t,
+            'body' => (string) ($a["area{$i}Body"] ?? ''),
+            'stat' => (string) ($a["area{$i}Stat"] ?? ''),
+            'url' => (string) ($a["area{$i}Url"] ?? ''),
+        ];
+    }
+
+    $methods = [];
+    for ($i = 1; $i <= 3; $i++) {
+        $mt = trim((string) ($a["method{$i}Title"] ?? ''));
+        if ($mt === '') {
+            continue;
+        }
+        $methods[] = [$mt, (string) ($a["method{$i}Text"] ?? '')];
+    }
+
+    $primaryLabel = trim((string) ($a['primaryLabel'] ?? ''));
+    $primaryUrl = (string) ($a['primaryUrl'] ?? '');
+    if ($primaryUrl === '') {
+        $primaryUrl = home_url('/areas');
+    }
+    $secondaryLabel = trim((string) ($a['secondaryLabel'] ?? ''));
+    $secondaryUrl = (string) ($a['secondaryUrl'] ?? '');
+    if ($secondaryUrl === '') {
+        $secondaryUrl = home_url('/book');
+    }
+
+    $pinSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+    $hid = function_exists('wp_unique_id') ? wp_unique_id('ks-region-') : 'ks-region-heading';
+    $gridClass = 'ks-region__areas';
+    if ($layout === 'grid' && $areaCols === '3') {
+        $gridClass .= ' ks-cols--3';
+    }
+
+    $pinSlots = [
+        ['22%', '32%'],
+        ['68%', '28%'],
+        ['48%', '72%'],
+        ['78%', '62%'],
+        ['18%', '68%'],
+        ['55%', '48%'],
+    ];
+
+    ob_start();
+    ?>
+    <section class="<?php echo esc_attr($sectionClass); ?>" aria-labelledby="<?php echo esc_attr($hid); ?>">
+      <div class="wrap">
+        <div class="ks-region__intro">
+          <header class="<?php echo $headClass; ?>">
+            <?php if ($eyebrow !== '') { ?><p class="eyebrow"><?php echo $eyebrow; ?></p><?php } ?>
+            <<?php echo $hTag; ?> id="<?php echo esc_attr($hid); ?>"><?php echo $title; ?></<?php echo $hTag; ?>>
+            <?php if ($text !== '') { ?><p><?php echo $text; ?></p><?php } ?>
+          </header>
+          <?php if ($showMethods && $methods !== []) { ?>
+            <ol class="ks-region__methods">
+              <?php foreach ($methods as $mi => [$mTitle, $mText]) { ?>
+                <li class="ks-region__method">
+                  <span class="ks-region__method-num" aria-hidden="true"><?php echo esc_html(sprintf('%02d', $mi + 1)); ?></span>
+                  <strong><?php echo esc_html($mTitle); ?></strong>
+                  <?php if ($mText !== '') { ?><p><?php echo esc_html($mText); ?></p><?php } ?>
+                </li>
+              <?php } ?>
+            </ol>
+          <?php } ?>
+          <?php if ($primaryLabel !== '' || $secondaryLabel !== '') { ?>
+            <p class="ks-region__cta">
+              <?php if ($primaryLabel !== '') { ?>
+                <a class="btn btn-primary" href="<?php echo esc_url($primaryUrl); ?>"><?php echo esc_html($primaryLabel); ?></a>
+              <?php } ?>
+              <?php if ($secondaryLabel !== '') { ?>
+                <a class="btn btn-ghost" href="<?php echo esc_url($secondaryUrl); ?>"><?php echo esc_html($secondaryLabel); ?></a>
+              <?php } ?>
+            </p>
+          <?php } ?>
+        </div>
+        <div class="ks-region__stage">
+          <?php if ($showMap && $layout === 'split') { ?>
+            <div class="ks-region-map" aria-hidden="true">
+              <div class="ks-region-map__roads"></div>
+              <?php foreach (array_slice($areas, 0, 3) as $pi => $area) {
+                  $slot = $pinSlots[$pi];
+                  ?>
+                <span class="ks-region-map__pin" style="left:<?php echo esc_attr($slot[0]); ?>;top:<?php echo esc_attr($slot[1]); ?>">
+                  <i></i>
+                  <span><?php echo esc_html($area['title']); ?></span>
+                </span>
+              <?php } ?>
+            </div>
+          <?php } ?>
+          <div class="<?php echo esc_attr($gridClass); ?>">
+            <?php foreach ($areas as $idx => $area) { ?>
+              <article class="ks-region-card">
+                <?php if ($showIndex) { ?>
+                  <p class="ks-region-card__index" aria-hidden="true"><?php echo esc_html(sprintf('%02d', $idx + 1)); ?></p>
+                <?php } ?>
+                <?php if ($area['kicker'] !== '') { ?>
+                  <p class="ks-region-card__meta"><?php echo wp_kses($area['kicker'], ['em' => [], 'strong' => []]); ?></p>
+                <?php } ?>
+                <h3>
+                  <?php if ($iconStyle === 'pin') { ?><span class="ks-region-card__pin"><?php echo $pinSvg; ?></span><?php } ?>
+                  <?php echo wp_kses($area['title'], ['em' => [], 'strong' => []]); ?>
+                </h3>
+                <?php if ($area['body'] !== '') { ?>
+                  <p><?php echo wp_kses($area['body'], ['em' => [], 'strong' => []]); ?></p>
+                <?php } ?>
+                <?php if ($area['stat'] !== '') { ?>
+                  <p class="ks-region-card__stat"><?php echo esc_html($area['stat']); ?></p>
+                <?php } ?>
+                <?php if ($area['url'] !== '') { ?>
+                  <a class="ks-region-card__link" href="<?php echo esc_url($area['url']); ?>"><?php esc_html_e('View listings →', 'acreline'); ?></a>
+                <?php } ?>
+              </article>
+            <?php } ?>
+          </div>
+        </div>
+      </div>
+    </section>
+    <?php
+    if ($showSchema && $areas !== []) {
+        $items = [];
+        foreach ($areas as $i => $area) {
+            $items[] = [
+                '@type' => 'ListItem',
+                'position' => $i + 1,
+                'name' => wp_strip_all_tags($area['title']),
+                'description' => wp_strip_all_tags($area['body']),
+            ];
+        }
+        echo '<script type="application/ld+json">'.wp_json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'ItemList',
+            'name' => wp_strip_all_tags((string) ($a['title'] ?? 'Service areas')),
+            'itemListElement' => $items,
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE).'</script>';
+    }
+
+    return (string) ob_get_clean();
+}
+
+/** @param array<string, mixed> $attrs */
+function ks_render_pricing_plans(array $attrs): string
+{
+    $a = $attrs;
+    $eyebrow = esc_html((string) ($a['eyebrow'] ?? ''));
+    $hTag = ks_heading_tag($a);
+    $title = wp_kses((string) ($a['title'] ?? ''), ['em' => [], 'strong' => []]);
+    $text = wp_kses((string) ($a['text'] ?? ''), ['em' => [], 'strong' => []]);
+    $headClass = esc_attr(ks_head_class($a));
+    $sectionClass = ks_band_section_class($a, 'section');
+    $cols = sanitize_key((string) ($a['planCols'] ?? '3'));
+    $gridClass = 'pricing-grid';
+    if ($cols === '2') {
+        $gridClass .= ' ks-cols--2';
+    }
+    $hid = function_exists('wp_unique_id') ? wp_unique_id('ks-plans-') : 'ks-plans-heading';
+    $bookUrl = home_url('/book');
+    $contactUrl = home_url('/contact');
+
+    $plans = [];
+    for ($i = 1; $i <= 3; $i++) {
+        $name = trim((string) ($a["plan{$i}Title"] ?? ''));
+        if ($name === '') {
+            continue;
+        }
+        $features = preg_split('/\r\n|\r|\n/', (string) ($a["plan{$i}Features"] ?? '')) ?: [];
+        $features = array_values(array_filter(array_map('trim', $features)));
+        $url = (string) ($a["plan{$i}Url"] ?? '');
+        if ($url === '') {
+            $url = $i === 2 ? $contactUrl : $bookUrl;
+        }
+        $plans[] = [
+            'kicker' => (string) ($a["plan{$i}Kicker"] ?? ''),
+            'title' => $name,
+            'price' => (string) ($a["plan{$i}Price"] ?? ''),
+            'period' => (string) ($a["plan{$i}Period"] ?? ''),
+            'text' => (string) ($a["plan{$i}Text"] ?? ''),
+            'features' => $features,
+            'cta' => (string) ($a["plan{$i}Cta"] ?? 'Get started'),
+            'url' => $url,
+            'featured' => (bool) ($a["plan{$i}Featured"] ?? false),
+        ];
+    }
+
+    ob_start();
+    ?>
+    <section class="<?php echo esc_attr($sectionClass); ?>" aria-labelledby="<?php echo esc_attr($hid); ?>">
+      <div class="wrap">
+        <header class="<?php echo $headClass; ?>">
+          <?php if ($eyebrow !== '') { ?><p class="eyebrow"><?php echo $eyebrow; ?></p><?php } ?>
+          <<?php echo $hTag; ?> id="<?php echo esc_attr($hid); ?>"><?php echo $title; ?></<?php echo $hTag; ?>>
+          <?php if ($text !== '') { ?><p><?php echo $text; ?></p><?php } ?>
+        </header>
+        <div class="<?php echo esc_attr($gridClass); ?>">
+          <?php foreach ($plans as $plan) { ?>
+            <article class="pricing-card<?php echo $plan['featured'] ? ' is-featured' : ''; ?>">
+              <?php if ($plan['kicker'] !== '') { ?><p class="pricing-card__kicker"><?php echo esc_html($plan['kicker']); ?></p><?php } ?>
+              <h3><?php echo esc_html($plan['title']); ?></h3>
+              <?php if ($plan['price'] !== '') { ?>
+                <p class="pricing-card__price">
+                  <?php echo esc_html($plan['price']); ?>
+                  <?php if ($plan['period'] !== '') { ?><span><?php echo esc_html($plan['period']); ?></span><?php } ?>
+                </p>
+              <?php } ?>
+              <?php if ($plan['text'] !== '') { ?><p class="pricing-card__lede"><?php echo esc_html($plan['text']); ?></p><?php } ?>
+              <?php if ($plan['features'] !== []) { ?>
+                <ul class="pricing-card__features">
+                  <?php foreach ($plan['features'] as $feat) { ?><li><?php echo esc_html($feat); ?></li><?php } ?>
+                </ul>
+              <?php } ?>
+              <?php if ($plan['cta'] !== '') { ?>
+                <a class="btn <?php echo $plan['featured'] ? 'btn-primary' : 'btn-ghost'; ?>" href="<?php echo esc_url($plan['url']); ?>"><?php echo esc_html($plan['cta']); ?></a>
+              <?php } ?>
+            </article>
+          <?php } ?>
+        </div>
+      </div>
+    </section>
+    <?php
+    return (string) ob_get_clean();
+}
+
+/** @param array<string, mixed> $attrs */
+function ks_render_logo_strip(array $attrs): string
+{
+    $a = $attrs;
+    $eyebrow = esc_html((string) ($a['eyebrow'] ?? ''));
+    $hTag = ks_heading_tag($a);
+    $title = wp_kses((string) ($a['title'] ?? ''), ['em' => [], 'strong' => []]);
+    $text = wp_kses((string) ($a['text'] ?? ''), ['em' => [], 'strong' => []]);
+    $headClass = esc_attr(ks_head_class($a));
+    $sectionClass = ks_band_section_class($a, 'section');
+    $grayscale = (bool) ($a['grayscale'] ?? true);
+    $hid = function_exists('wp_unique_id') ? wp_unique_id('ks-logos-') : 'ks-logos-heading';
+
+    $logos = [];
+    for ($i = 1; $i <= 6; $i++) {
+        $label = trim((string) ($a["logo{$i}Label"] ?? ''));
+        $image = trim((string) ($a["logo{$i}ImageUrl"] ?? ''));
+        if ($label === '' && $image === '') {
+            continue;
+        }
+        $logos[] = [
+            'label' => $label !== '' ? $label : __('Partner', 'acreline'),
+            'url' => (string) ($a["logo{$i}Url"] ?? ''),
+            'image' => $image,
+        ];
+    }
+
+    ob_start();
+    ?>
+    <section class="<?php echo esc_attr($sectionClass); ?>" aria-labelledby="<?php echo esc_attr($hid); ?>">
+      <div class="wrap">
+        <header class="<?php echo $headClass; ?>">
+          <?php if ($eyebrow !== '') { ?><p class="eyebrow"><?php echo $eyebrow; ?></p><?php } ?>
+          <<?php echo $hTag; ?> id="<?php echo esc_attr($hid); ?>"><?php echo $title; ?></<?php echo $hTag; ?>>
+          <?php if ($text !== '') { ?><p><?php echo $text; ?></p><?php } ?>
+        </header>
+        <div class="logo-strip__grid ks-cols--6">
+          <?php foreach ($logos as $logo) {
+              $tag = $logo['url'] !== '' ? 'a' : 'div';
+              $href = $logo['url'] !== '' ? ' href="'.esc_url($logo['url']).'"' : '';
+              $chipClass = 'logo-chip'.($grayscale && $logo['image'] !== '' ? ' is-muted' : '');
+              ?>
+            <<?php echo $tag; ?> class="<?php echo esc_attr($chipClass); ?>"<?php echo $href; ?>>
+              <?php if ($logo['image'] !== '') { ?>
+                <img src="<?php echo esc_url($logo['image']); ?>" alt="<?php echo esc_attr($logo['label']); ?>">
+              <?php } else { ?>
+                <span class="logo-chip__word"><?php echo esc_html($logo['label']); ?></span>
+              <?php } ?>
+            </<?php echo $tag; ?>>
+          <?php } ?>
+        </div>
+      </div>
+    </section>
+    <?php
+    return (string) ob_get_clean();
+}
+
+/** @param array<string, mixed> $attrs */
+function ks_render_newsletter(array $attrs): string
+{
+    $a = $attrs;
+    $eyebrow = esc_html((string) ($a['eyebrow'] ?? ''));
+    $hTag = ks_heading_tag($a);
+    $title = wp_kses((string) ($a['title'] ?? ''), ['em' => [], 'strong' => []]);
+    $text = wp_kses((string) ($a['text'] ?? ''), ['em' => [], 'strong' => []]);
+    $placeholder = esc_attr((string) ($a['placeholder'] ?? 'you@acreline-concept.test'));
+    $buttonLabel = esc_html((string) ($a['buttonLabel'] ?? 'Join the list'));
+    $note = esc_html((string) ($a['note'] ?? ''));
+    $band = sanitize_key((string) ($a['bandStyle'] ?? 'accent'));
+    if (! in_array($band, ['paper', 'alt', 'accent', 'dark'], true)) {
+        $band = 'accent';
+    }
+    $sectionClass = ks_band_section_class(array_merge($a, ['bandStyle' => 'paper']), 'section');
+    $hid = function_exists('wp_unique_id') ? wp_unique_id('ks-news-') : 'ks-news-heading';
+    $fid = function_exists('wp_unique_id') ? wp_unique_id('ks-news-email-') : 'ksNewsletterEmail';
+
+    ob_start();
+    ?>
+    <section class="<?php echo esc_attr($sectionClass); ?>">
+      <div class="wrap">
+        <div class="ks-newsletter ks-band--<?php echo esc_attr($band); ?>">
+          <div class="ks-newsletter__inner">
+            <div class="ks-newsletter__copy">
+              <?php if ($eyebrow !== '') { ?><p class="eyebrow"><?php echo $eyebrow; ?></p><?php } ?>
+              <<?php echo $hTag; ?> id="<?php echo esc_attr($hid); ?>"><?php echo $title; ?></<?php echo $hTag; ?>>
+              <?php if ($text !== '') { ?><p><?php echo $text; ?></p><?php } ?>
+            </div>
+            <form class="ks-newsletter__form" id="ksNewsletterForm" aria-labelledby="<?php echo esc_attr($hid); ?>">
+              <div class="field">
+                <label for="<?php echo esc_attr($fid); ?>"><?php esc_html_e('Email', 'acreline'); ?></label>
+                <input type="email" id="<?php echo esc_attr($fid); ?>" name="email" autocomplete="email" required placeholder="<?php echo $placeholder; ?>">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block"><?php echo $buttonLabel; ?></button>
+              <p class="ks-newsletter__note" id="ksNewsletterConfirm" role="status" aria-live="polite"><?php echo $note; ?></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <?php
+    return (string) ob_get_clean();
+}
+
 // ---------------------------------------------------------------------------
 // Block pattern content generators
 // ---------------------------------------------------------------------------
@@ -2785,36 +3412,42 @@ function ks_home_page_pattern(): string
     return '<!-- wp:acreline/home-hero {} /-->
 <!-- wp:acreline/intent-cards {} /-->
 <!-- wp:acreline/spotlight {} /-->
+<!-- wp:acreline/region-coverage {} /-->
 <!-- wp:acreline/how-it-works {} /-->
 <!-- wp:acreline/booking-section {} /-->
 <!-- wp:acreline/market-stats {} /-->
 <!-- wp:acreline/agent-tools {} /-->
 <!-- wp:acreline/seo-content {} /-->
+<!-- wp:acreline/pricing-plans {} /-->
 <!-- wp:acreline/faq-list {} /-->
 <!-- wp:acreline/reviews {} /-->
+<!-- wp:acreline/logo-strip {} /-->
+<!-- wp:acreline/newsletter {} /-->
 <!-- wp:acreline/cta-band {} /-->';
 }
 
 function ks_listings_page_pattern(): string
 {
-    return '<!-- wp:acreline/page-hero {"eyebrow":"Sample inventory","title":"Farms, land \u0026 homes — \u003cem\u003ebrowse the sample inventory\u003c\/em\u003e","primaryLabel":"Book a showing","secondaryLabel":"Buyer guide"} /-->
+    return '<!-- wp:acreline/page-hero {"eyebrow":"Sample inventory","title":"Homes \u0026 commercial — \u003cem\u003ebrowse the sample inventory\u003c\/em\u003e","primaryLabel":"Book a showing","secondaryLabel":"Buyer guide"} /-->
 <!-- wp:acreline/listing-grid {} /-->
 <!-- wp:acreline/market-stats {} /-->
 <!-- wp:acreline/reviews {"eyebrow":"Buyer feedback","title":"What buyers say about the search process"} /-->
 <!-- wp:acreline/faq-list {"title":"Listings FAQ","headClass":"left"} /-->
+<!-- wp:acreline/newsletter {} /-->
 <!-- wp:acreline/cta-band {"title":"Found a property worth a closer look?","primaryLabel":"Book a showing","secondaryLabel":"Run the numbers"} /-->';
 }
 
 function ks_areas_page_pattern(): string
 {
-    return '<!-- wp:acreline/page-hero {"eyebrow":"Six sample markets","title":"Know the ground before \u003cem\u003eyou make an offer\u003c\/em\u003e","primaryLabel":"Browse listings","secondaryLabel":"Book a showing"} /-->
-<!-- wp:acreline/intro-section {"eyebrow":"Why area knowledge matters","title":"Rural land is not one market — it is six"} /-->
-<!-- wp:acreline/area-grid {} /-->
+    return '<!-- wp:acreline/page-hero {"eyebrow":"Six sample neighborhoods","title":"Know the area before \u003cem\u003eyou make an offer\u003c\/em\u003e","primaryLabel":"Browse listings","secondaryLabel":"Book a showing"} /-->
+<!-- wp:acreline/intro-section {"eyebrow":"Why neighborhood knowledge matters","title":"One county is not one market"} /-->
+<!-- wp:acreline/area-grid {"cardStyle":"featured"} /-->
 <!-- wp:acreline/compare-table {} /-->
-<!-- wp:acreline/how-we-work {"eyebrow":"Area service","title":"How we cover the region"} /-->
+<!-- wp:acreline/region-coverage {"layout":"bento","maxAreas":6,"eyebrow":"Area service","title":"How we cover the region"} /-->
 <!-- wp:acreline/market-stats {} /-->
 <!-- wp:acreline/reviews {"eyebrow":"From the areas","title":"What buyers say about working local"} /-->
-<!-- wp:acreline/cta-band {"title":"Ready to walk an area with a local specialist?","primaryLabel":"Book a showing","secondaryLabel":"Browse listings"} /-->';
+<!-- wp:acreline/newsletter {} /-->
+<!-- wp:acreline/cta-band {"title":"Ready to walk a neighborhood with a local specialist?","primaryLabel":"Book a showing","secondaryLabel":"Browse listings"} /-->';
 }
 
 function ks_contact_page_pattern(): string
@@ -2831,22 +3464,25 @@ function ks_contact_page_pattern(): string
 
 function ks_guide_page_pattern(): string
 {
-    return '<!-- wp:acreline/page-hero {"eyebrow":"Buyer tools \u0026 education","title":"The land-buying guide \u003cem\u003eagents wish every buyer read\u003c\/em\u003e","primaryLabel":"Book a showing","secondaryLabel":"Browse listings"} /-->
+    return '<!-- wp:acreline/page-hero {"eyebrow":"Buyer tools \u0026 education","title":"The buying guide \u003cem\u003eagents wish every buyer read\u003c\/em\u003e","primaryLabel":"Book a showing","secondaryLabel":"Browse listings"} /-->
 <!-- wp:acreline/tools-section {} /-->
 <!-- wp:acreline/how-it-works {"eyebrow":"The buying process","title":"From first search to closing day"} /-->
 <!-- wp:acreline/checklist {} /-->
 <!-- wp:acreline/faq-list {"title":"Common buyer questions","headClass":"left"} /-->
 <!-- wp:acreline/reviews {"eyebrow":"First-time buyers","title":"What buyers found most useful"} /-->
+<!-- wp:acreline/newsletter {} /-->
 <!-- wp:acreline/cta-band {"title":"Ready to put this guide to use?","primaryLabel":"Book a showing","secondaryLabel":"Browse listings"} /-->';
 }
 
 function ks_agents_page_pattern(): string
 {
-    return '<!-- wp:acreline/page-hero {"eyebrow":"Meet the sample team","title":"Local agents. \u003cem\u003eReal land knowledge.\u003c\/em\u003e","primaryLabel":"Book a showing","secondaryLabel":"Browse listings"} /-->
+    return '<!-- wp:acreline/page-hero {"eyebrow":"Meet the sample team","title":"Local agents. \u003cem\u003eReal market knowledge.\u003c\/em\u003e","primaryLabel":"Book a showing","secondaryLabel":"Browse listings"} /-->
 <!-- wp:acreline/intro-section {"title":"A focused team, not a franchise"} /-->
 <!-- wp:acreline/agent-list {"eyebrow":"The sample team","title":"Specialists, not generalists"} /-->
+<!-- wp:acreline/pricing-plans {} /-->
 <!-- wp:acreline/reviews {"eyebrow":"Client stories","title":"What buyers say about the process"} /-->
 <!-- wp:acreline/how-we-work {"eyebrow":"How we work","title":"What the process actually looks like"} /-->
+<!-- wp:acreline/logo-strip {} /-->
 <!-- wp:acreline/cta-band {"title":"Ready to talk to a specialist?","primaryLabel":"Book a showing","secondaryLabel":"Browse listings"} /-->';
 }
 
@@ -2865,6 +3501,7 @@ function ks_blog_page_pattern(): string
     return '<!-- wp:acreline/page-hero {"eyebrow":"Buyer resources","title":"Field notes from the sample county"} /-->
 <!-- wp:acreline/topic-cards {} /-->
 <!-- wp:acreline/post-grid {} /-->
+<!-- wp:acreline/newsletter {} /-->
 <!-- wp:acreline/cta-band {"title":"Ready to put these notes to use?","primaryLabel":"Browse listings","secondaryLabel":"Book a showing"} /-->';
 }
 
@@ -2916,11 +3553,20 @@ function ks_booking_form_html(): string
         </div>
         <div class="field">
           <label for="sfNotes"><?php esc_html_e('Notes', 'acreline'); ?></label>
-          <textarea id="sfNotes" name="notes" rows="3" placeholder="<?php esc_attr_e('Boots on, perc questions, pets in the car…', 'acreline'); ?>"></textarea>
+          <textarea id="sfNotes" name="notes" rows="3" placeholder="<?php esc_attr_e('Pets, gate code, first-time buyer…', 'acreline'); ?>"></textarea>
         </div>
-        <div class="field">
-          <div id="showingSlots" class="slot-grid" role="group" aria-label="<?php esc_attr_e('Choose a time slot', 'acreline'); ?>"></div>
+        <div class="field field-span">
+          <div id="showingSlots" class="slot-grid" role="group" aria-label="<?php esc_attr_e('Choose a time slot', 'acreline'); ?>">
+            <button type="button" class="slot" data-time="9:00 AM">9:00 AM</button>
+            <button type="button" class="slot" data-time="10:30 AM">10:30 AM</button>
+            <button type="button" class="slot" data-time="12:00 PM">12:00 PM</button>
+            <button type="button" class="slot" data-time="1:30 PM">1:30 PM</button>
+            <button type="button" class="slot" data-time="3:00 PM">3:00 PM</button>
+            <button type="button" class="slot" data-time="4:30 PM">4:30 PM</button>
+          </div>
+          <input type="hidden" id="showTime" name="time" value="">
         </div>
+        <?php echo ks_render_consent_field('leadConsent'); ?>
         <div class="field">
           <button type="submit" class="btn btn-primary btn-block" id="showingSubmit"><?php esc_html_e('Request showing', 'acreline'); ?></button>
         </div>
@@ -3011,20 +3657,38 @@ function ks_guide_tools_html(array $a = []): string
     return (string) ob_get_clean();
 }
 
-function ks_how_we_work_steps_html(): string
+function ks_how_we_work_steps_html(array $attrs = []): string
 {
-    $steps = [
-        ['1', 'Listen first', 'We start with the ground you want and the life you plan to build. No form to fill — just a conversation.'],
-        ['2', 'Match the inventory', 'We pull sample listings that match your area, budget, and type. Farms, land, and houses are different products — we treat them that way.'],
-        ['3', 'Walk it with you', 'A boots-on-the-ground showing, not a drive-by. We walk the lane, check the well, and explain what we see.'],
+    $defaults = [
+        ['Listen first', 'We start with the neighborhood you want and the life you plan to build. No form to fill — just a conversation.'],
+        ['Match the inventory', 'We pull sample listings that match your area, budget, and type. Houses, condos, and commercial spaces are different products — we treat them that way.'],
+        ['Walk it with you', 'A real showing, not a drive-by. We walk the rooms, check the block, and explain what we see.'],
     ];
+    $steps = [];
+    for ($i = 1; $i <= 4; $i++) {
+        $title = trim((string) ($attrs["step{$i}Title"] ?? ($defaults[$i - 1][0] ?? '')));
+        $text = trim((string) ($attrs["step{$i}Text"] ?? ($defaults[$i - 1][1] ?? '')));
+        if ($title === '') {
+            continue;
+        }
+        $steps[] = [$i, $title, $text];
+    }
+    if ($steps === []) {
+        $steps = [
+            [1, $defaults[0][0], $defaults[0][1]],
+            [2, $defaults[1][0], $defaults[1][1]],
+            [3, $defaults[2][0], $defaults[2][1]],
+        ];
+    }
+    $count = count($steps);
+    $colsClass = $count === 2 ? ' ks-how-cols--2' : ($count >= 4 ? ' ks-how-cols--4' : '');
 
     ob_start();
     ?>
-    <div class="how-grid reveal">
+    <div class="how-grid reveal<?php echo esc_attr($colsClass); ?>">
       <?php foreach ($steps as [$num, $stepTitle, $stepText]) { ?>
         <div class="how-step">
-          <span class="how-num"><?php echo esc_html($num); ?></span>
+          <span class="how-num"><?php echo esc_html((string) $num); ?></span>
           <h3><?php echo esc_html($stepTitle); ?></h3>
           <p><?php echo esc_html($stepText); ?></p>
         </div>

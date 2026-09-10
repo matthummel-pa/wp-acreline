@@ -25,7 +25,7 @@
         </a>
         <a class="intent-card" href="{{ home_url('/listings') }}">
           <strong>Listings</strong>
-          <span>Eight fictional homes, farms, and land parcels.</span>
+          <span>Eight fictional homes and neighborhoods.</span>
           <em>Browse inventory →</em>
         </a>
         <a class="intent-card" href="{{ home_url('/book/') }}">
@@ -35,13 +35,13 @@
         </a>
         <a class="intent-card" href="{{ home_url('/guide') }}">
           <strong>Buyer guide</strong>
-          <span>Wells, perc, access, and demo land-loan math.</span>
+          <span>Payment, inspection, and neighborhood notes.</span>
           <em>Open buyer tools →</em>
         </a>
         <a class="intent-card" href="{{ home_url('/areas') }}">
           <strong>Areas</strong>
-          <span>Township-by-township reads of rural Adams County.</span>
-          <em>Scan townships →</em>
+          <span>Sample neighborhoods you can rename for your market.</span>
+          <em>Scan areas →</em>
         </a>
         <a class="intent-card" href="{{ home_url('/contact') }}">
           <strong>Contact</strong>

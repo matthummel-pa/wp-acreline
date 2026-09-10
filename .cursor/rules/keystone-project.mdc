@@ -7,7 +7,7 @@ alwaysApply: true
 
 Sage 11 WordPress **theme only** (`wp-content/themes/acreline`). **Theme Name:** Acreline. Repo: `matthummel-pa/wp-acreline`. WordPress core is not in this repo. The sample brokerage in the preview stays Acreline until Identity is changed.
 
-Matt Hummel is the owner (marketer) and theme Author (`style.css` Author / Author URI: https://matthummel.com/). Prefer working in code. Keep copy editorial — rural farms, historic homes, and acreage in a **sample county** a buyer can rename — not generic luxury-broker voice and not a Gettysburg / Adams County-only brand story. Township filter **values** stay `Cumberland` / `Straban` / `Franklin`; labels are North Ridge / Mill Creek / Oak Hollow.
+Matt Hummel is the owner (marketer) and theme Author (`style.css` Author / Author URI: https://matthummel.com/). Prefer working in code. Position Acreline as a **WordPress theme for real estate agents** (solo agents / small teams): homes, listings, showings, neighborhoods, buyers/sellers. Not a luxury portal megakit (Houzez / RealHomes / WPResidence) and not a farms/land/historic-homes niche. Township filter **values** stay `Cumberland` / `Straban` / `Franklin`; labels are North Ridge / Mill Creek / Oak Hollow. Sell via [matthummel.com/shop](https://matthummel.com/shop/) and [matthummel.com/product/acreline/](https://matthummel.com/product/acreline/) — do not invent a second product URL.
 
 ## Fiction only
 

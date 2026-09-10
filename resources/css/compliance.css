@@ -1,0 +1,104 @@
+/* Compliance strip, Fair Housing, IDX slots, form consent. */
+
+.compliance-id{
+  margin:10px 0 0;
+  font-size:.82rem;
+  line-height:1.45;
+  color:rgba(255,255,255,.72);
+}
+.site-footer .compliance-id a{color:rgba(255,255,255,.82);text-decoration:underline;}
+.site-footer .compliance-id a:hover{color:#fff;}
+
+.header-license{
+  display:block;
+  margin-top:2px;
+  font-size:.68rem;
+  font-weight:500;
+  letter-spacing:.02em;
+  color:var(--ink-soft);
+  line-height:1.35;
+}
+
+.top-bar-item--license{font-weight:600;}
+
+.equal-housing{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  max-width:42rem;
+}
+.equal-housing__mark{
+  width:28px;
+  height:28px;
+  flex-shrink:0;
+  color:rgba(255,255,255,.7);
+  margin-top:2px;
+}
+.equal-housing__copy strong{
+  display:block;
+  font-size:.82rem;
+  color:rgba(255,255,255,.82);
+}
+.equal-housing__copy p{
+  margin:4px 0 0;
+  font-size:.72rem;
+  line-height:1.45;
+  color:rgba(255,255,255,.58);
+}
+
+.footer-bottom{
+  align-items:flex-start;
+}
+.footer-legal-links{display:inline;}
+
+.field-consent{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  min-height:44px;
+}
+.field-consent input[type=checkbox]{
+  width:22px;
+  height:22px;
+  min-width:22px;
+  min-height:22px;
+  margin-top:4px;
+  accent-color:var(--accent);
+  cursor:pointer;
+}
+.field-consent label{
+  font-weight:450;
+  font-size:.88rem;
+  line-height:1.45;
+  color:var(--ink-soft);
+  cursor:pointer;
+}
+.field-consent__extra{
+  display:block;
+  margin-top:6px;
+  font-size:.8rem;
+}
+
+.listing-idx{
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+  font-size:.72rem;
+  line-height:1.45;
+  color:var(--ink-faint);
+}
+.card .listing-idx{
+  margin-top:12px;
+  padding:10px 0 0;
+  background:transparent;
+}
+.listing-idx__logo{
+  display:block;
+  height:28px;
+  width:auto;
+  margin-bottom:8px;
+  object-fit:contain;
+}
+.listing-idx p{margin:0 0 6px;}
+.listing-idx p:last-child{margin-bottom:0;}
+.listing-idx__office{font-weight:600;color:var(--ink-soft);}

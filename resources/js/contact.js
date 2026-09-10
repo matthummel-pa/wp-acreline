@@ -12,6 +12,11 @@
   if(contactForm && contactConfirm){
     contactForm.addEventListener("submit", function(e){
       e.preventDefault();
+      var consent = contactForm.querySelector("[name=lead_consent]");
+      if(consent && !consent.checked){
+        if(typeof contactForm.reportValidity === "function") contactForm.reportValidity();
+        return;
+      }
       var btn = contactForm.querySelector('button[type="submit"]');
       if(btn){
         btn.disabled = true;

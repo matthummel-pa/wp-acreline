@@ -12,7 +12,7 @@ This file covers everything you need to work on the theme **source** locally, bu
 | Templating | Blade |
 | CSS | Tailwind CSS v4 + `resources/css/keystone.css` design system |
 | Build tool | Vite 8 |
-| Block editor | Core Gutenberg — 28 custom dynamic blocks registered in `app/blocks.php` |
+| Block editor | Core Gutenberg — 32 custom dynamic blocks registered in `app/blocks.php` |
 | Block editor JS | `resources/js/blocks/index.js` (separate Vite entry) |
 | PHP style | Laravel Pint (`./vendor/bin/pint`) |
 | WordPress | 6.6+, PHP 8.3+, SQLite (local) or MySQL (host) |

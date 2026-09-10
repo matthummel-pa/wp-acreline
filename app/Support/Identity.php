@@ -31,7 +31,7 @@ class Identity
 
         $desc = (string) get_bloginfo('description', 'display');
 
-        return $desc !== '' ? $desc : __('Farms · land · historic homes', 'acreline');
+        return $desc !== '' ? $desc : __('Homes · neighborhoods · local agents', 'acreline');
     }
 
     public static function phone(): string
@@ -77,6 +77,10 @@ class Identity
             return $blurb;
         }
 
+        if (! self::showDemoChrome()) {
+            return '';
+        }
+
         return __('Acreline sample office by Matt Hummel. Fiction only — not a licensed brokerage or live MLS feed.', 'acreline');
     }
 
@@ -101,7 +105,7 @@ class Identity
 
     public static function showDemoChrome(): bool
     {
-        return (bool) get_theme_mod('ks_show_demo_chrome', true);
+        return \App\ks_hero_value_on(get_theme_mod('ks_show_demo_chrome', true));
     }
 
     public static function showCredit(): bool

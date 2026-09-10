@@ -48,7 +48,7 @@
         <div class="listing-agent-card">
           <p class="eyebrow">{{ __('Next step', 'acreline') }}</p>
           <h2>{{ __('Walk a sample property', 'acreline') }}</h2>
-          <p>{{ __('This note is for buyers comparing farms, historic houses, and acreage. Use the same tools a working realtor site would put next to the article.', 'acreline') }}</p>
+          <p>{{ __('This note is for buyers comparing homes, neighborhoods, and showing logistics. Use the same tools a working agent site would put next to the article.', 'acreline') }}</p>
           <a class="btn btn-primary" href="{{ home_url('/book/') }}">{{ __('Book a showing', 'acreline') }}</a>
           <a class="btn btn-outline" href="{{ home_url('/listings') }}">{{ __('Browse listings', 'acreline') }}</a>
           <a class="agent-phone" href="{{ home_url('/guide') }}">{{ __('Buyer tools →', 'acreline') }}</a>

@@ -63,6 +63,7 @@
       <label for="showNotes">Notes (optional)</label>
       <textarea id="showNotes" name="notes" rows="3" placeholder="Gate code questions, pets, first-time buyer…"></textarea>
     </div>
+    @include('partials.consent-field', ['inputId' => 'leadConsent'])
     <div class="field field-span">
       <button type="submit" class="btn btn-primary btn-block">Request showing</button>
     </div>

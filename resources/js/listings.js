@@ -235,6 +235,36 @@
   var countEl  = document.getElementById("resultCount");
   var pinsEl   = document.getElementById("mapPins");
 
+  function escapeIdx(s){
+    return String(s || "").replace(/[&<>"']/g, function(ch){
+      return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[ch];
+    });
+  }
+
+  function idxSlotHTML(l){
+    var c = (window.ACRELINE && window.ACRELINE.compliance) || {};
+    if (!c.idxEnabled) return "";
+    var office = (l && l.listing_office) || c.brokerageLegalName || "";
+    var parts = [];
+    if (c.idxLogoUrl) {
+      parts.push('<img class="listing-idx__logo" src="'+escapeIdx(c.idxLogoUrl)+'" alt="" width="72" height="36" loading="lazy">');
+    }
+    if (c.idxAttribution && office) {
+      parts.push('<p class="listing-idx__office">Listed by '+escapeIdx(office)+'</p>');
+    }
+    if (c.idxDisclaimer) {
+      parts.push('<p class="listing-idx__disclaimer">'+escapeIdx(c.idxDisclaimer)+'</p>');
+    }
+    if (c.idxCopyright) {
+      parts.push('<p class="listing-idx__copy">'+escapeIdx(c.idxCopyright)+'</p>');
+    }
+    if (l && l.updated) {
+      parts.push('<p class="listing-idx__updated">Last updated '+escapeIdx(l.updated)+'</p>');
+    }
+    if (!parts.length) return "";
+    return '<aside class="listing-idx" aria-label="Listing attribution and MLS disclaimer">'+parts.join("")+'</aside>';
+  }
+
   function cardTemplate(l){
     var saved   = !!savedListings[l.id];
     var compared = !!compareSet[l.id];
@@ -258,6 +288,7 @@
               (compared ? 'Added ✓' : 'Compare')+
             '</button>' +
           '</div>' +
+          idxSlotHTML(l) +
         '</div>' +
       '</article>'
     );
