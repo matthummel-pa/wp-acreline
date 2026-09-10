@@ -84,7 +84,7 @@
     @php $tb = $identity['topBar'] ?? false; @endphp
     {{-- Top-bar content surfaces here on mobile when the bar is enabled --}}
     @if ($tb)
-      <div class="mnav-tb"@if (! empty($tb['cssVars'])) style="{{ esc_attr($tb['cssVars']) }}"@endif>
+      <div class="mnav-tb">
       {{-- Announcement --}}
       @if ($tb['message'])
         <div class="mnav-tb-announcement">

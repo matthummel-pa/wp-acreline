@@ -216,10 +216,7 @@ class Identity
             return false;
         }
 
-        $style = sanitize_key((string) get_theme_mod('ks_top_bar_style', 'dark'));
-        if (! in_array($style, ['dark', 'accent', 'light', 'custom'], true)) {
-            $style = 'dark';
-        }
+        $style = self::topBarStyle();
 
         $badge = sanitize_text_field((string) get_theme_mod('ks_top_bar_badge', ''));
         $message = sanitize_text_field((string) get_theme_mod('ks_top_bar_message', ''));
@@ -347,21 +344,37 @@ class Identity
         $navHover = self::readableOn($navHoverBg, $ink, $palette);
         $navCurrent = self::readableOn($navCurrentBg, $dark, $palette);
         $navIcon = self::readableIconOn($headerSolid, $palette);
+        $tb = self::topBarTokens(self::topBarStyle(), $accent, $paper, $ink);
 
-        return ':root{--accent:'.$accent.';--accent-dark:'.$dark.';--accent-soft:'.$soft.';--accent-glow:'.$glow.';--accent-wash:'.$wash.';--success:'.$accent.';--paper:'.$paper.';--paper-2:'.$paper2.';--paper-3:'.$paper3.';--line:'.$line.';--ink:'.$ink.';--ink-soft:'.$inkSoft.';--ink-faint:'.$inkFaint.';--field-text:'.$ink.';--header-bg:'.$headerBg.';--header-bg-scrolled:'.$headerBgScrolled.';--ink-wash:'.$inkWash.';--nav-text:'.$navText.';--nav-hover:'.$navHover.';--nav-hover-bg:'.$navHoverBg.';--nav-current:'.$navCurrent.';--nav-current-bg:'.$navCurrentBg.';--nav-icon:'.$navIcon.';--nav-surface:'.$headerSolid.';--nav-drawer-bg:'.$paper.';}';
+        return ':root{--accent:'.$accent.';--accent-dark:'.$dark.';--accent-soft:'.$soft.';--accent-glow:'.$glow.';--accent-wash:'.$wash.';--success:'.$accent.';--paper:'.$paper.';--paper-2:'.$paper2.';--paper-3:'.$paper3.';--line:'.$line.';--ink:'.$ink.';--ink-soft:'.$inkSoft.';--ink-faint:'.$inkFaint.';--field-text:'.$ink.';--header-bg:'.$headerBg.';--header-bg-scrolled:'.$headerBgScrolled.';--ink-wash:'.$inkWash.';--nav-text:'.$navText.';--nav-hover:'.$navHover.';--nav-hover-bg:'.$navHoverBg.';--nav-current:'.$navCurrent.';--nav-current-bg:'.$navCurrentBg.';--nav-icon:'.$navIcon.';--nav-surface:'.$headerSolid.';--nav-drawer-bg:'.$paper.';'.$tb['css'].';}';
+    }
+
+    /**
+     * Dark / Accent / Light / Custom — same keys as Customize → Top Bar.
+     */
+    public static function topBarStyle(): string
+    {
+        $style = sanitize_key((string) get_theme_mod('ks_top_bar_style', 'dark'));
+
+        return in_array($style, ['dark', 'accent', 'light', 'custom'], true) ? $style : 'dark';
     }
 
     /**
      * Theme-color tokens for the top bar (desktop + mobile) with WCAG AA text.
-     * Uses ks_accent / ks_paper / ks_ink (active color scheme). Custom override stays.
+     * Uses the given palette (or ks_accent / ks_paper / ks_ink). Custom override stays.
      *
      * @return array{bg:string,text:string,css:string}
      */
-    public static function topBarTokens(string $style): array
+    public static function topBarTokens(string $style, ?string $accent = null, ?string $paper = null, ?string $ink = null): array
     {
-        $accent = self::accent();
-        $paper = self::paper();
-        $ink = self::ink();
+        if (! in_array($style, ['dark', 'accent', 'light', 'custom'], true)) {
+            $style = 'dark';
+        }
+
+        $accent = sanitize_hex_color((string) $accent) ?: self::accent();
+        $paper = sanitize_hex_color((string) $paper) ?: self::paper();
+        $ink = sanitize_hex_color((string) $ink) ?: self::ink();
+        $palette = ['accent' => $accent, 'paper' => $paper, 'ink' => $ink];
         $paper2 = self::mixHex($paper, $ink, 0.06);
         $inkSoft = self::mixHex($ink, $paper, 0.28);
 
@@ -382,12 +395,12 @@ class Identity
             $preferred = $paper;
         }
 
-        $textStrong = self::readableOn($bg, $preferred);
+        $textStrong = self::readableOn($bg, $preferred, $palette);
         $text = self::mixHex($textStrong, $bg, 0.12);
         if (self::contrastRatio($bg, $text) < 4.5) {
             $text = $textStrong;
         }
-        $icon = self::readableIconOn($bg);
+        $icon = self::readableIconOn($bg, $palette);
         $line = self::mixHex($textStrong, $bg, 0.78);
         $badgeBg = self::mixHex($textStrong, $bg, 0.84);
         $ctaBg = self::mixHex($textStrong, $bg, 0.86);
