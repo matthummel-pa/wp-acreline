@@ -168,7 +168,7 @@
   content: '+';
   font-size: 1.25rem;
   font-weight: 300;
-  color: var(--accent);
+  color: var(--accent-text, var(--accent));
   flex-shrink: 0;
   transition: transform 0.2s var(--ease);
 }
@@ -220,7 +220,7 @@
   flex-shrink: 0;
   padding-top: 4px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-text, var(--accent));
 }
 .faq-list.ks-icon--arrow .faq-item { display: grid; grid-template-columns: 20px 1fr; gap: 0 8px; margin-bottom: 20px; }
 .faq-list.ks-icon--arrow .faq-item::before { content: '→'; font-size: 0.875rem; }
@@ -252,7 +252,7 @@
   background: var(--accent-soft);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  color: var(--accent);
+  color: var(--accent-text, var(--accent));
   font-size: 1rem;
   font-weight: 700;
   text-indent: -999em;
@@ -303,7 +303,7 @@ p.ks-note--warning {
 
 p.ks-note--banner {
   background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 75%, #000));
-  color: #fff;
+  color: var(--on-accent, #fff);
   border-radius: var(--radius);
   padding: 14px 20px;
   font-size: 0.9rem;

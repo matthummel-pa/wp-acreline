@@ -234,7 +234,7 @@ Versions that disagree across these files will confuse the WP.org parser and the
 - **`block-options.css`** — CSS modifier classes for block advanced settings. Class names must match what the PHP render callbacks emit.
 - **`editor.css`** — editor-only overrides, loaded after `app.css` in the block editor canvas.
 - Color tokens come from `Identity::cssVariables()` (Customizer-driven), overriding the defaults in `keystone.css :root`.
-- Accessibility target: WCAG 2.2 AA. Color contrast floors: `--ink` (#141210) on `--paper` (#f5f4f1), `--ink-soft` (#4a453d) for secondary text, `--ink-faint` (#7a7368) for decorative metadata only.
+- Accessibility target: WCAG 2.2 AA. Color contrast floors: `--ink` on `--paper`, `--ink-soft` for secondary text, `--ink-faint` for notes — Identity floors faint/soft to 4.5:1 on paper and white cards.
 
 ---
 

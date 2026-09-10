@@ -247,6 +247,10 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.4', [
+            __('Contrast pass: muted text, top-bar chips, buttons, footer, and Equal Housing stay readable on every color style', 'acreline'),
+            __('Custom pale accents pick a darker text color when the swatch would fail WCAG AA', 'acreline'),
+        ]],
         ['1.5.3', [
             __('The top bar defaults to Accent so it tracks the active color style', 'acreline'),
             __('Sites that already saved Dark, Light, or Custom keep that choice', 'acreline'),

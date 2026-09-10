@@ -176,7 +176,7 @@
   position:absolute;
   display:flex;flex-direction:column;align-items:center;gap:4px;
   transform:translate(-50%, -100%);
-  color:var(--accent);
+  color:var(--accent-text, var(--accent));
   font-family:var(--ff-mono);
   font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
   font-weight:600;
@@ -223,7 +223,7 @@
 .ks-region-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);}
 .ks-region-card__meta{
   font-family:var(--ff-mono);font-size:.72rem;text-transform:uppercase;
-  letter-spacing:.1em;color:var(--accent);margin:0;
+  letter-spacing:.1em;color:var(--accent-text, var(--accent));margin:0;
 }
 .ks-region-card h3{
   margin:0;font-size:1.28rem;letter-spacing:-.02em;
@@ -240,7 +240,7 @@
   margin-top:6px;font-size:.82rem;font-weight:600;color:var(--ink);
 }
 .ks-region-card__link{
-  color:var(--accent);font-weight:600;font-size:.9rem;text-decoration:none;
+  color:var(--accent-text, var(--accent));font-weight:600;font-size:.9rem;text-decoration:none;
 }
 .ks-region-card__link:hover{color:var(--accent-dark);}
 .ks-region-card__index{
@@ -317,7 +317,7 @@
 .area-card.has-photo .area-index{position:absolute;}
 .area-grid.ks-area--compact .area-card{padding:18px 18px 16px;}
 .area-grid.ks-area--compact .area-card h3{font-size:1.1rem;}
-.area-card__cta{margin-top:6px;font-weight:600;color:var(--accent);text-decoration:none;}
+.area-card__cta{margin-top:6px;font-weight:600;color:var(--accent-text, var(--accent));text-decoration:none;}
 .area-card__cta:hover{color:var(--accent-dark);}
 
 /* --------------------------------------------------------------------------
@@ -352,7 +352,7 @@
 }
 .pricing-card__kicker{
   font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--accent);margin:0;font-weight:600;
+  color:var(--accent-text, var(--accent));margin:0;font-weight:600;
 }
 .pricing-card h3{margin:0;font-size:1.35rem;letter-spacing:-.02em;}
 .pricing-card__price{
@@ -368,7 +368,7 @@
   position:relative;padding-left:1.35rem;color:var(--ink-soft);font-size:.92rem;
 }
 .pricing-card__features li::before{
-  content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700;
+  content:"✓";position:absolute;left:0;color:var(--accent-text, var(--accent));font-weight:700;
 }
 .pricing-card .btn{margin-top:8px;width:100%;justify-content:center;}
 
@@ -732,7 +732,7 @@ a.ks-newsletter__teaser:hover{box-shadow:var(--shadow-lg);}
   letter-spacing:.12em;
   text-transform:uppercase;
   font-weight:600;
-  color:var(--accent);
+  color:var(--accent-text, var(--accent));
 }
 .ks-newsletter__form-title{
   margin:0;
@@ -785,7 +785,7 @@ a.ks-newsletter__teaser:hover{box-shadow:var(--shadow-lg);}
 }
 .ks-newsletter__benefits svg{
   width:14px;height:14px;flex:none;margin-top:2px;
-  color:var(--accent);
+  color:var(--accent-text, var(--accent));
 }
 
 .ks-newsletter__note{
@@ -856,8 +856,7 @@ a.ks-newsletter__teaser:hover{box-shadow:var(--shadow-lg);}
 .ks-newsletter--compact.ks-band--dark .field label,
 .ks-newsletter--form-flush.ks-band--accent .field label,
 .ks-newsletter--form-flush.ks-band--dark .field label{
-  color:inherit;
-  opacity:.88;
+  color:var(--news-muted, inherit);
 }
 .ks-newsletter--compact.ks-band--accent .ks-newsletter__note,
 .ks-newsletter--compact.ks-band--dark .ks-newsletter__note,
@@ -870,7 +869,9 @@ a.ks-newsletter__teaser:hover{box-shadow:var(--shadow-lg);}
 .ks-newsletter--compact.ks-band--accent .ks-newsletter__note,
 .ks-newsletter--compact.ks-band--dark .ks-newsletter__note,
 .ks-newsletter--form-flush.ks-band--accent .ks-newsletter__note,
-.ks-newsletter--form-flush.ks-band--dark .ks-newsletter__note{opacity:.72;}
+.ks-newsletter--form-flush.ks-band--dark .ks-newsletter__note{
+  color:var(--news-muted, inherit);
+}
 .ks-newsletter--form-flush.ks-band--accent .ks-newsletter__form-kicker,
 .ks-newsletter--form-flush.ks-band--dark .ks-newsletter__form-kicker,
 .ks-newsletter--form-flush.ks-band--accent .ks-newsletter__benefits li,
@@ -948,7 +949,7 @@ a.ks-newsletter__teaser:hover{box-shadow:var(--shadow-lg);}
 }
 .ks-team-card__kicker{
   margin:0;font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--accent);font-weight:600;
+  color:var(--accent-text, var(--accent));font-weight:600;
 }
 .ks-team-card h3{margin:0;font-size:1.12rem;letter-spacing:-.02em;}
 .ks-team-card p{margin:0;color:var(--ink-soft);font-size:.92rem;line-height:1.5;}
