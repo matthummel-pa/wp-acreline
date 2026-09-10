@@ -26,6 +26,8 @@ Fonts are Customizer-driven (`app/customizer.php`, default Inter). Do not hard-c
 
 `vite.config.js` `base` is `/wp-content/themes/acreline/public/build/`. If the folder slug changes, update `base` and rebuild.
 
+Identity CSS (`#keystone-identity`) must print **after** `@vite` in `layouts/app.blade.php`. Compiled `keystone.css` `:root` fallbacks (`--tb-*`, `--cta-*`, `--nav-*`) load with the stylesheet and will freeze the top bar / CTA band on ink if they beat the PHP tokens.
+
 ## Homepage search
 
 - Form id: `heroSearchForm` (`resources/js/home.js`)

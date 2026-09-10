@@ -247,6 +247,11 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.3', [
+            __('The top bar defaults to Accent so it tracks the active color style', 'acreline'),
+            __('Sites that already saved Dark, Light, or Custom keep that choice', 'acreline'),
+            __('Identity color tokens load after the compiled stylesheet so the bar follows the scheme', 'acreline'),
+        ]],
         ['1.5.2', [
             __('Newsletter / new-listings digest: weekly-note band with listing teasers and a form card', 'acreline'),
             __('Inspector options for layout, band color, form style, copy, teasers, benefits, and fine print', 'acreline'),

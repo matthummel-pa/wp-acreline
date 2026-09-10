@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.3
+
+- **Header** — The top bar defaults to Accent so it tracks the active color style (Forest green, Harvest gold, Orchard purple, Clay rust). Sites that already saved Dark, Light, or Custom keep that choice.
+- **Header** — Identity color tokens now load after the compiled stylesheet, so the bar (and CTA band) use the scheme instead of the ink fallback.
+
 ## 1.5.2
 
 - **Home** — Newsletter / new-listings digest is a weekly-note band: cadence stamp, neighborhood chips, three listing teasers, and a raised email card with quiet concept fine print.
