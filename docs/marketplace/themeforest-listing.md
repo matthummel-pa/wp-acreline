@@ -66,7 +66,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 
 | Field | Value |
 | --- | --- |
-| **Version** | 1.4.5 |
+| **Version** | 1.4.6 |
 | **Software version** | WordPress 6.6, 6.7, 6.8, 7.0 (tested up to 7.0.1) |
 | **Compatible browsers** | Chrome, Firefox, Safari, Edge (current two versions) |
 | **Compatible with** | No page builder required. Optional: Yoast, Rank Math, SEOPress, AIOSEO |

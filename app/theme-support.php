@@ -241,6 +241,10 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.4.6', [
+            __('The mobile-menu contact, social, and new-listing panel follows the active color scheme', 'acreline'),
+            __('Text and icons on that panel stay readable when the accent is pale', 'acreline'),
+        ]],
         ['1.4.5', [
             __('Primary menu, hamburger, and mobile drawer follow the active color scheme', 'acreline'),
             __('Link, hover, and current menu colors stay readable on the header background', 'acreline'),
