@@ -140,8 +140,8 @@ Upload your office logo under Customize → Site Identity. Colors: Forest sample
 == Changelog ==
 
 = 1.5.1 =
-* Home newsletter / new-listings digest band: split, centered, or compact layouts; neighborhood chips; form card; and a quieter concept note.
-* Inspector controls for layout, band color, copy, button label, chips, and fine-print visibility. Color styles still theme the band.
+* Home newsletter / new-listings digest: weekly-note band with listing teasers, cadence stamp, neighborhood chips, and a raised email card. Compact bar available for tighter pages.
+* Inspector controls for layout, band color, form style, copy, button, chips, teasers, benefits, and fine-print visibility. Color styles still theme the band.
 
 = 1.5.0 =
 * New Region Coverage block — split map + neighborhood cards, or bento/grid. Neighborhoods, methods, and CTAs are editable.

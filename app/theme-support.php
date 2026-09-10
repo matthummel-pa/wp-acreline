@@ -248,8 +248,8 @@ function render_support_page(): void
           <?php
     $changelog = [
         ['1.5.1', [
-            __('Newsletter / new-listings digest band: split, centered, or compact layouts with a form card', 'acreline'),
-            __('Inspector options for layout, band color, copy, button, chips, and fine-print visibility', 'acreline'),
+            __('Newsletter / new-listings digest: weekly-note band with listing teasers and a form card', 'acreline'),
+            __('Inspector options for layout, band color, form style, copy, teasers, benefits, and fine print', 'acreline'),
             __('Color styles still theme the band; concept note stays quiet and nothing is emailed', 'acreline'),
         ]],
         ['1.5.0', [
