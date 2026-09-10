@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.7
+
+- **Home** — The marketing CTA band follows the active color scheme (`ks_accent` / `ks_paper` / `ks_ink`). Text and buttons stay readable on that surface.
+
 ## 1.4.6
 
 - **Header** — The mobile-menu contact / social / “new listing” panel follows the active color scheme. Text and icons stay readable on that surface.

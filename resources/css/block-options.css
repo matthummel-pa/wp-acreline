@@ -76,37 +76,44 @@
    CTA Band: background style (from bandStyle attr → ks-band--*)
    -------------------------------------------------------------------------- */
 
-/* Accent (forest green) */
+/* Accent — reuse --cta-* via aliases Identity writes as --cta-accent-* */
 .cta-band.ks-band--accent {
-  background: var(--accent);
+  --cta-from: var(--cta-accent-from, var(--accent));
+  --cta-to: var(--cta-accent-to, var(--accent));
+  --cta-glow: var(--cta-accent-glow, var(--accent-glow));
+  --cta-text: var(--cta-accent-text, var(--paper));
+  --cta-muted: var(--cta-accent-muted, var(--cta-accent-text, var(--paper)));
+  --cta-btn-bg: var(--cta-accent-btn-bg, var(--paper));
+  --cta-btn-text: var(--cta-accent-btn-text, var(--accent));
+  --cta-btn-hover: var(--cta-accent-btn-hover, var(--accent-soft));
+  --cta-btn-hover-text: var(--cta-accent-btn-hover-text, var(--accent));
+  --cta-outline: var(--cta-accent-outline, var(--cta-accent-text, var(--paper)));
+  --cta-outline-border: var(--cta-accent-outline-border, color-mix(in srgb, var(--cta-accent-text, var(--paper)) 50%, transparent));
+  --cta-outline-hover-bg: var(--cta-accent-outline-hover-bg, var(--cta-accent-text, var(--paper)));
+  --cta-outline-hover-text: var(--cta-accent-outline-hover-text, var(--accent));
+  background: var(--cta-from, var(--accent));
   border-radius: var(--radius);
   padding: clamp(32px, 5vw, 56px) clamp(24px, 4vw, 48px);
-}
-.cta-band.ks-band--accent h2,
-.cta-band.ks-band--accent p { color: #fff; }
-.cta-band.ks-band--accent .btn-primary {
-  background: #fff;
-  color: var(--accent);
-}
-.cta-band.ks-band--accent .btn-primary:hover { background: var(--accent-soft); }
-.cta-band.ks-band--accent .btn-outline.light,
-.cta-band.ks-band--accent .btn-ghost {
-  border-color: rgba(255,255,255,.5);
-  color: #fff;
 }
 
-/* Dark (ink) */
+/* Dark (ink) — aliases for --cta-dark-* */
 .cta-band.ks-band--dark {
-  background: var(--ink);
+  --cta-from: var(--cta-dark-from, var(--ink));
+  --cta-to: var(--cta-dark-to, var(--ink));
+  --cta-glow: var(--cta-dark-glow, var(--accent-glow));
+  --cta-text: var(--cta-dark-text, var(--paper));
+  --cta-muted: var(--cta-dark-muted, var(--cta-dark-text, var(--paper)));
+  --cta-btn-bg: var(--cta-dark-btn-bg, var(--accent));
+  --cta-btn-text: var(--cta-dark-btn-text, var(--paper));
+  --cta-btn-hover: var(--cta-dark-btn-hover, var(--accent-dark));
+  --cta-btn-hover-text: var(--cta-dark-btn-hover-text, var(--paper));
+  --cta-outline: var(--cta-dark-outline, var(--cta-dark-text, var(--paper)));
+  --cta-outline-border: var(--cta-dark-outline-border, color-mix(in srgb, var(--cta-dark-text, var(--paper)) 35%, transparent));
+  --cta-outline-hover-bg: var(--cta-dark-outline-hover-bg, var(--cta-dark-text, var(--paper)));
+  --cta-outline-hover-text: var(--cta-dark-outline-hover-text, var(--ink));
+  background: var(--cta-from, var(--ink));
   border-radius: var(--radius);
   padding: clamp(32px, 5vw, 56px) clamp(24px, 4vw, 48px);
-}
-.cta-band.ks-band--dark h2,
-.cta-band.ks-band--dark p { color: #fff; }
-.cta-band.ks-band--dark .btn-outline.light,
-.cta-band.ks-band--dark .btn-ghost {
-  border-color: rgba(255,255,255,.35);
-  color: rgba(255,255,255,.85);
 }
 
 /* CTA: content alignment */
