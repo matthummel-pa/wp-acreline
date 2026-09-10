@@ -344,8 +344,8 @@ class Identity
         $paper2 = self::mixHex($paper, $ink, 0.06);
         $paper3 = self::mixHex($paper, $ink, 0.12);
         $line = self::mixHex($paper, $ink, 0.22);
-        $inkSoft = self::mixHex($ink, $paper, 0.28);
-        $inkFaint = self::mixHex($ink, $paper, 0.48);
+        $inkSoft = self::textOnSurfaces(self::mixHex($ink, $paper, 0.28), [$paper, '#ffffff'], 4.5, $ink);
+        $inkFaint = self::textOnSurfaces(self::mixHex($ink, $paper, 0.42), [$paper, '#ffffff'], 4.5, $ink);
         $headerR = min(255, $p[0] + 8);
         $headerG = min(255, $p[1] + 8);
         $headerB = min(255, $p[2] + 6);
@@ -361,10 +361,14 @@ class Identity
         $navHover = self::readableOn($navHoverBg, $ink, $palette);
         $navCurrent = self::readableOn($navCurrentBg, $dark, $palette);
         $navIcon = self::readableIconOn($headerSolid, $palette);
+        $accentText = self::textOnSurfaces($accent, [$paper, '#ffffff'], 4.5, $ink);
+        $onAccent = self::readableOn($accent, $paper, $palette);
+        $onAccentHover = self::readableOn($dark, $onAccent, $palette);
         $tb = self::topBarTokens(self::topBarStyle(), $accent, $paper, $ink);
         $cta = self::ctaBandCss($accent, $paper, $ink, $dark);
+        $footer = self::footerCss($accent, $paper, $ink, $palette);
 
-        return ':root{--accent:'.$accent.';--accent-dark:'.$dark.';--accent-soft:'.$soft.';--accent-glow:'.$glow.';--accent-wash:'.$wash.';--success:'.$accent.';--paper:'.$paper.';--paper-2:'.$paper2.';--paper-3:'.$paper3.';--line:'.$line.';--ink:'.$ink.';--ink-soft:'.$inkSoft.';--ink-faint:'.$inkFaint.';--field-text:'.$ink.';--header-bg:'.$headerBg.';--header-bg-scrolled:'.$headerBgScrolled.';--ink-wash:'.$inkWash.';--nav-text:'.$navText.';--nav-hover:'.$navHover.';--nav-hover-bg:'.$navHoverBg.';--nav-current:'.$navCurrent.';--nav-current-bg:'.$navCurrentBg.';--nav-icon:'.$navIcon.';--nav-surface:'.$headerSolid.';--nav-drawer-bg:'.$paper.';'.$tb['css'].';'.$cta.';}';
+        return ':root{--accent:'.$accent.';--accent-dark:'.$dark.';--accent-soft:'.$soft.';--accent-glow:'.$glow.';--accent-wash:'.$wash.';--accent-text:'.$accentText.';--on-accent:'.$onAccent.';--on-accent-hover:'.$onAccentHover.';--success:'.$accent.';--paper:'.$paper.';--paper-2:'.$paper2.';--paper-3:'.$paper3.';--line:'.$line.';--ink:'.$ink.';--ink-soft:'.$inkSoft.';--ink-faint:'.$inkFaint.';--field-text:'.$ink.';--header-bg:'.$headerBg.';--header-bg-scrolled:'.$headerBgScrolled.';--ink-wash:'.$inkWash.';--nav-text:'.$navText.';--nav-hover:'.$navHover.';--nav-hover-bg:'.$navHoverBg.';--nav-current:'.$navCurrent.';--nav-current-bg:'.$navCurrentBg.';--nav-icon:'.$navIcon.';--nav-surface:'.$headerSolid.';--nav-drawer-bg:'.$paper.';'.$tb['css'].';'.$cta.';'.$footer.';}';
     }
 
     /**
@@ -419,10 +423,11 @@ class Identity
             $text = $textStrong;
         }
         $icon = self::readableIconOn($bg, $palette);
-        $line = self::mixHex($textStrong, $bg, 0.78);
-        $badgeBg = self::mixHex($textStrong, $bg, 0.84);
-        $ctaBg = self::mixHex($textStrong, $bg, 0.86);
-        $ctaHover = self::mixHex($textStrong, $bg, 0.74);
+        $line = self::mixToContrast(self::mixHex($textStrong, $bg, 0.78), $bg, 3.0, $textStrong);
+        $badgeBg = self::surfaceForText($textStrong, $bg, 0.16, 4.5);
+        $ctaBg = self::surfaceForText($textStrong, $bg, 0.14, 4.5);
+        $ctaHover = self::surfaceForText($textStrong, $bg, 0.26, 4.5);
+        $ctaBorder = self::mixToContrast($line, $bg, 3.0, $textStrong);
 
         $css = '--tb-bg:'.$bg
             .';--tb-text:'.$text
@@ -431,7 +436,8 @@ class Identity
             .';--tb-line:'.$line
             .';--tb-badge-bg:'.$badgeBg
             .';--tb-cta-bg:'.$ctaBg
-            .';--tb-cta-hover:'.$ctaHover;
+            .';--tb-cta-hover:'.$ctaHover
+            .';--tb-cta-border:'.$ctaBorder;
 
         return [
             'bg' => $bg,
@@ -460,6 +466,28 @@ class Identity
         $darkSurf = self::ctaSurfaceVars('dark', $ink, $ink, $glowSoft, $accent, $paper, $ink, $dark, $palette);
 
         return $default['css'].';'.$accentSurf['css'].';'.$darkSurf['css'];
+    }
+
+    /**
+     * Footer / Equal Housing tokens — readable on --ink for every scheme.
+     *
+     * @param  array{accent: string, paper: string, ink: string}  $palette
+     */
+    private static function footerCss(string $accent, string $paper, string $ink, array $palette): string
+    {
+        $strong = self::readableOn($ink, $paper, $palette);
+        $text = self::mixToContrast(self::mixHex($strong, $ink, 0.16), $ink, 4.5, $strong);
+        $muted = self::mixToContrast(self::mixHex($strong, $ink, 0.26), $ink, 4.5, $strong);
+        $accentOnInk = self::mixToContrast(self::mixHex($accent, $paper, 0.42), $ink, 4.5, $paper);
+        $icon = self::readableIconOn($ink, $palette);
+        $line = self::mixHex($strong, $ink, 0.82);
+
+        return '--footer-text:'.$text
+            .';--footer-muted:'.$muted
+            .';--footer-strong:'.$strong
+            .';--footer-accent:'.$accentOnInk
+            .';--footer-icon:'.$icon
+            .';--footer-line:'.$line;
     }
 
     /**
@@ -501,7 +529,7 @@ class Identity
         $btnHoverText = self::readableOn($btnHover, $btnText, $palette);
 
         $outline = $text;
-        $outlineBorder = self::mixHex($text, $from, 0.35);
+        $outlineBorder = self::mixToContrast(self::mixHex($text, $from, 0.35), $from, 3.0, $text);
         $outlineHoverBg = $text;
         $outlineHoverText = self::readableOn($outlineHoverBg, $ink, $palette);
 
@@ -580,6 +608,66 @@ class Identity
         }
 
         return self::readableOn($bg, null, $palette);
+    }
+
+    /**
+     * Mix $fg toward $toward until contrast vs $bg is at least $min.
+     */
+    private static function mixToContrast(string $fg, string $bg, float $min, string $toward): string
+    {
+        if (self::contrastRatio($fg, $bg) >= $min) {
+            return $fg;
+        }
+
+        $best = $toward;
+        $bestRatio = self::contrastRatio($toward, $bg);
+        for ($i = 1; $i <= 24; $i++) {
+            $try = self::mixHex($fg, $toward, $i / 24);
+            $ratio = self::contrastRatio($try, $bg);
+            if ($ratio >= $min) {
+                return $try;
+            }
+            if ($ratio > $bestRatio) {
+                $bestRatio = $ratio;
+                $best = $try;
+            }
+        }
+
+        return $best;
+    }
+
+    /**
+     * Keep $fg readable on every background in $bgs by mixing toward $toward.
+     *
+     * @param  list<string>  $bgs
+     */
+    private static function textOnSurfaces(string $fg, array $bgs, float $min, string $toward): string
+    {
+        foreach ($bgs as $bg) {
+            $clean = sanitize_hex_color($bg);
+            if ($clean) {
+                $fg = self::mixToContrast($fg, $clean, $min, $toward);
+            }
+        }
+
+        return $fg;
+    }
+
+    /**
+     * Tint $bg toward $text, then darken/lighten back toward $bg until $text stays AA.
+     */
+    private static function surfaceForText(string $text, string $bg, float $tintTowardText, float $min): string
+    {
+        $amountTowardBg = max(0.0, min(1.0, 1 - $tintTowardText));
+        for ($step = 0; $step <= 24; $step++) {
+            $amount = min(1.0, $amountTowardBg + $step * 0.02);
+            $surface = self::mixHex($text, $bg, $amount);
+            if (self::contrastRatio($text, $surface) >= $min) {
+                return $surface;
+            }
+        }
+
+        return $bg;
     }
 
     private static function hexLuminance(string $hex): float

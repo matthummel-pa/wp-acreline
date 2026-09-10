@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.4
+
+- **Accessibility** — Contrast pass on themed chrome: muted notes (`--ink-faint`), top-bar chips and CTA, primary buttons, footer / Equal Housing copy, and newsletter fine print. Token generation floors text to WCAG AA (4.5:1) and UI chrome to 3:1 so Forest, Harvest, Charcoal, Clay, Orchard, Navy, and custom pale accents stay readable. Not a “fully AA certified” claim.
+
 ## 1.5.3
 
 - **Header** — The top bar defaults to Accent so it tracks the active color style (Forest green, Harvest gold, Orchard purple, Clay rust). Sites that already saved Dark, Light, or Custom keep that choice.

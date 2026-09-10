@@ -18,7 +18,7 @@ Keystone floors (do not go lighter):
 | --- | --- | --- |
 | Body | `--ink` `#141210` on `--paper` `#f5f4f1` | Default |
 | Secondary / lede | `--ink-soft` `#4a453d` | Prefer this for paragraphs |
-| Muted labels / mono hints | `--ink-faint` `#7a7368` | Lightest allowed on paper. Equivalent of `text-slate-500` — **not** `text-slate-400` or `rgba(…,.4)` on light UI |
+| Muted labels / mono hints | `--ink-faint` | Identity floors this to 4.5:1 on paper and white cards. Do not lighten with `rgba(…,.4)` or `text-slate-400` |
 | On ink / photography | `#fff` / `--paper` on the `.hero-veil` | Never white on a raw `<img>` (see `ui-aesthetics.mdc` 5.4) |
 
 `--warn` `#b45309` is for badges/icons, not long body copy.
