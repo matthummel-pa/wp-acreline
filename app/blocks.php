@@ -641,17 +641,44 @@ function ks_register_blocks(): void
             'attributes' => array_merge($typo, $band, [
                 'eyebrow' => ['type' => 'string', 'default' => 'New listings'],
                 'title' => ['type' => 'string', 'default' => 'Get the weekly sample market note'],
-                'text' => ['type' => 'string', 'default' => 'A short digest of new addresses in North Ridge, Mill Creek, and Oak Hollow. Demo only — nothing is emailed.'],
+                'text' => ['type' => 'string', 'default' => 'A short digest of new addresses in North Ridge, Mill Creek, and Oak Hollow.'],
+                'cadence' => ['type' => 'string', 'default' => 'Weekly · sample county'],
                 'placeholder' => ['type' => 'string', 'default' => 'you@acreline-concept.test'],
-                'emailLabel' => ['type' => 'string', 'default' => 'Email'],
                 'buttonLabel' => ['type' => 'string', 'default' => 'Join the list'],
-                'note' => ['type' => 'string', 'default' => 'Concept capture — confirmation stays on this page.'],
-                'bandStyle' => ['type' => 'string', 'default' => 'accent'],
-                'layout' => ['type' => 'string', 'default' => 'split'],
+                'note' => ['type' => 'string', 'default' => 'Concept capture — confirmation stays on this page. Nothing is emailed.'],
+                'emailLabel' => ['type' => 'string', 'default' => 'Email'],
+                'formEyebrow' => ['type' => 'string', 'default' => 'Weekly digest'],
+                'formTitle' => ['type' => 'string', 'default' => 'Save a concept email'],
+                'highlightsLabel' => ['type' => 'string', 'default' => 'Covered this week'],
+                'highlight1' => ['type' => 'string', 'default' => 'North Ridge'],
+                'highlight2' => ['type' => 'string', 'default' => 'Mill Creek'],
+                'highlight3' => ['type' => 'string', 'default' => 'Oak Hollow'],
+                'teasersLabel' => ['type' => 'string', 'default' => "This week's addresses"],
+                'teaserSource' => ['type' => 'string', 'default' => 'featured'],
+                'teaser1Title' => ['type' => 'string', 'default' => ''],
+                'teaser1Meta' => ['type' => 'string', 'default' => ''],
+                'teaser1Price' => ['type' => 'string', 'default' => ''],
+                'teaser1Url' => ['type' => 'string', 'default' => ''],
+                'teaser2Title' => ['type' => 'string', 'default' => ''],
+                'teaser2Meta' => ['type' => 'string', 'default' => ''],
+                'teaser2Price' => ['type' => 'string', 'default' => ''],
+                'teaser2Url' => ['type' => 'string', 'default' => ''],
+                'teaser3Title' => ['type' => 'string', 'default' => ''],
+                'teaser3Meta' => ['type' => 'string', 'default' => ''],
+                'teaser3Price' => ['type' => 'string', 'default' => ''],
+                'teaser3Url' => ['type' => 'string', 'default' => ''],
+                'benefit1' => ['type' => 'string', 'default' => 'New addresses as they list'],
+                'benefit2' => ['type' => 'string', 'default' => 'Area notes from specialists'],
+                'benefit3' => ['type' => 'string', 'default' => 'Showing windows — not a blast'],
+                'layout' => ['type' => 'string', 'default' => 'digest'],
                 'formStyle' => ['type' => 'string', 'default' => 'card'],
-                'showMarkets' => ['type' => 'boolean', 'default' => true],
-                'markets' => ['type' => 'string', 'default' => 'North Ridge, Mill Creek, Oak Hollow'],
-                'showIcon' => ['type' => 'boolean', 'default' => true],
+                'showHighlights' => ['type' => 'boolean', 'default' => true],
+                'showTeasers' => ['type' => 'boolean', 'default' => true],
+                'showBenefits' => ['type' => 'boolean', 'default' => true],
+                'showDisclaimer' => ['type' => 'boolean', 'default' => true],
+                'bandStyle' => ['type' => 'string', 'default' => 'accent'],
+                'headingLevel' => ['type' => 'string', 'default' => 'h2'],
+                'sectionPad' => ['type' => 'string', 'default' => 'default'],
             ]),
         ],
         'acreline/team-intro' => [
@@ -3651,6 +3678,145 @@ function ks_render_logo_strip(array $attrs): string
 }
 
 /** @param array<string, mixed> $attrs */
+/**
+ * Street line for a digest teaser — drop city / state / ZIP so titles stay short.
+ */
+function ks_newsletter_street(string $address, string $fallback): string
+{
+    $address = trim($address);
+    if ($address === '') {
+        return $fallback;
+    }
+    $parts = array_map('trim', explode(',', $address));
+
+    return $parts[0] !== '' ? $parts[0] : $fallback;
+}
+
+function ks_newsletter_beds_label(float $beds): string
+{
+    if ($beds <= 0) {
+        return '';
+    }
+    $n = abs($beds - floor($beds)) < 0.05
+        ? (string) (int) $beds
+        : rtrim(rtrim(number_format($beds, 1, '.', ''), '0'), '.');
+
+    return $n.' '.__('bed', 'acreline');
+}
+
+/**
+ * Prefer one live listing per sample township so the digest matches the chips.
+ *
+ * @return list<array<string, mixed>>
+ */
+function ks_newsletter_featured_spread(): array
+{
+    $picked = [];
+    $usedTowns = [];
+
+    foreach (Catalog::listings() as $item) {
+        if (($item['status'] ?? '') === 'sold') {
+            continue;
+        }
+        $type = (string) ($item['type'] ?? 'home');
+        if ($type === 'land' || (float) ($item['beds'] ?? 0) <= 0) {
+            continue;
+        }
+        $town = (string) ($item['township'] ?? '');
+        if ($town === '' || isset($usedTowns[$town])) {
+            continue;
+        }
+        $usedTowns[$town] = true;
+        $picked[] = $item;
+        if (count($picked) >= 3) {
+            return $picked;
+        }
+    }
+
+    foreach (Catalog::featuredListings(6) as $item) {
+        if (count($picked) >= 3) {
+            break;
+        }
+        $key = (string) (($item['id'] ?? '') !== '' ? $item['id'] : ($item['slug'] ?? ''));
+        $already = false;
+        foreach ($picked as $row) {
+            $rowKey = (string) (($row['id'] ?? '') !== '' ? $row['id'] : ($row['slug'] ?? ''));
+            if ($key !== '' && $key === $rowKey) {
+                $already = true;
+                break;
+            }
+        }
+        if (! $already) {
+            $picked[] = $item;
+        }
+    }
+
+    return array_slice($picked, 0, 3);
+}
+
+/**
+ * Digest listing teasers — custom inspector rows, or featured listings.
+ *
+ * @return list<array{title: string, meta: string, price: string, url: string, image: string}>
+ */
+function ks_newsletter_teasers(array $attrs): array
+{
+    $source = sanitize_key((string) ($attrs['teaserSource'] ?? 'featured'));
+    if (! in_array($source, ['featured', 'custom'], true)) {
+        $source = 'featured';
+    }
+
+    $featured = $source === 'featured' ? ks_newsletter_featured_spread() : [];
+    $teasers = [];
+
+    foreach ([1, 2, 3] as $i) {
+        $title = trim((string) ($attrs['teaser'.$i.'Title'] ?? ''));
+        $meta = trim((string) ($attrs['teaser'.$i.'Meta'] ?? ''));
+        $price = trim((string) ($attrs['teaser'.$i.'Price'] ?? ''));
+        $url = trim((string) ($attrs['teaser'.$i.'Url'] ?? ''));
+
+        if ($title !== '') {
+            $teasers[] = [
+                'title' => $title,
+                'meta' => $meta,
+                'price' => $price,
+                'url' => $url,
+                'image' => '',
+            ];
+
+            continue;
+        }
+
+        $item = $featured[$i - 1] ?? null;
+        if (! is_array($item)) {
+            continue;
+        }
+
+        $street = ks_newsletter_street(
+            (string) ($item['address'] ?? ''),
+            (string) ($item['title'] ?? '')
+        );
+        if ($street === '') {
+            continue;
+        }
+
+        $town = trim((string) ($item['townshipLabel'] ?? ''));
+        $beds = ks_newsletter_beds_label((float) ($item['beds'] ?? 0));
+        $bits = array_values(array_filter([$town, $beds]));
+        $priceNum = (int) ($item['price'] ?? 0);
+
+        $teasers[] = [
+            'title' => $street,
+            'meta' => implode(' · ', $bits),
+            'price' => $priceNum > 0 ? '$'.number_format($priceNum) : '',
+            'url' => (string) ($item['permalink'] ?? ''),
+            'image' => (string) ($item['image'] ?? ''),
+        ];
+    }
+
+    return $teasers;
+}
+
 function ks_render_newsletter(array $attrs): string
 {
     $a = $attrs;
@@ -3658,66 +3824,164 @@ function ks_render_newsletter(array $attrs): string
     $hTag = ks_heading_tag($a);
     $title = wp_kses((string) ($a['title'] ?? ''), ['em' => [], 'strong' => []]);
     $text = wp_kses((string) ($a['text'] ?? ''), ['em' => [], 'strong' => []]);
+    $cadence = esc_html((string) ($a['cadence'] ?? ''));
     $placeholder = esc_attr((string) ($a['placeholder'] ?? 'you@acreline-concept.test'));
-    $emailLabel = esc_html((string) ($a['emailLabel'] ?? __('Email', 'acreline')));
     $buttonLabel = esc_html((string) ($a['buttonLabel'] ?? 'Join the list'));
     $note = esc_html((string) ($a['note'] ?? ''));
+    $emailLabel = trim((string) ($a['emailLabel'] ?? ''));
+    if ($emailLabel === '') {
+        $emailLabel = __('Email', 'acreline');
+    }
+    $emailLabel = esc_html($emailLabel);
+    $formEyebrow = esc_html((string) ($a['formEyebrow'] ?? ''));
+    $formTitle = wp_kses((string) ($a['formTitle'] ?? ''), ['em' => [], 'strong' => []]);
+    $highlightsLabel = esc_html((string) ($a['highlightsLabel'] ?? ''));
+    $teasersLabel = esc_html((string) ($a['teasersLabel'] ?? ''));
+
     $band = sanitize_key((string) ($a['bandStyle'] ?? 'accent'));
     if (! in_array($band, ['paper', 'alt', 'accent', 'dark'], true)) {
         $band = 'accent';
     }
-    $layout = sanitize_key((string) ($a['layout'] ?? 'split'));
-    if (! in_array($layout, ['split', 'stacked', 'inline'], true)) {
-        $layout = 'split';
+
+    $layout = sanitize_key((string) ($a['layout'] ?? 'digest'));
+    if (! in_array($layout, ['digest', 'split', 'center', 'compact'], true)) {
+        $layout = 'digest';
     }
+
     $formStyle = sanitize_key((string) ($a['formStyle'] ?? 'card'));
     if (! in_array($formStyle, ['card', 'flush'], true)) {
         $formStyle = 'card';
     }
-    $showMarkets = ($a['showMarkets'] ?? true) !== false;
-    $showIcon = ($a['showIcon'] ?? true) !== false;
-    $markets = array_values(array_filter(array_map('trim', explode(',', (string) ($a['markets'] ?? '')))));
+
+    $showHighlights = ($a['showHighlights'] ?? true) !== false;
+    $showDisclaimer = ($a['showDisclaimer'] ?? true) !== false;
+    $showTeasers = ($a['showTeasers'] ?? true) !== false && $layout !== 'compact';
+    $showBenefits = ($a['showBenefits'] ?? true) !== false && $layout !== 'compact';
+
+    $highlights = [];
+    foreach ([1, 2, 3] as $i) {
+        $label = trim((string) ($a['highlight'.$i] ?? ''));
+        if ($label !== '') {
+            $highlights[] = $label;
+        }
+    }
+
+    $benefits = [];
+    foreach ([1, 2, 3] as $i) {
+        $label = trim((string) ($a['benefit'.$i] ?? ''));
+        if ($label !== '') {
+            $benefits[] = $label;
+        }
+    }
+
+    $teasers = $showTeasers ? ks_newsletter_teasers($a) : [];
+
     $sectionClass = ks_band_section_class(array_merge($a, ['bandStyle' => 'paper']), 'section');
-    $hid = function_exists('wp_unique_id') ? wp_unique_id('ks-news-') : 'ks-news-heading';
-    $fid = function_exists('wp_unique_id') ? wp_unique_id('ks-news-email-') : 'ksNewsletterEmail';
-    $statusId = function_exists('wp_unique_id') ? wp_unique_id('ks-news-status-') : 'ksNewsletterConfirm';
+    $copyClass = ks_head_class($a, 'ks-newsletter__copy');
+    $newsClass = 'ks-newsletter ks-newsletter--'.$layout.' ks-newsletter--form-'.$formStyle.' ks-band--'.$band;
+    if ($teasers !== []) {
+        $newsClass .= ' ks-newsletter--has-teasers';
+    }
+    $uid = function_exists('wp_unique_id') ? wp_unique_id('ks-news-') : 'ks-news-';
+    $hid = $uid.'heading';
+    $fid = $uid.'email';
+    $nid = $uid.'status';
+    $formId = $uid.'form';
+
+    $mailSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M4 7.5l8 6.2 8-6.2"/></svg>';
+    $houseSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.2 12 3.6l9 7.6V20a1.2 1.2 0 0 1-1.2 1.2H4.2A1.2 1.2 0 0 1 3 20v-8.8Z"/><path d="M9.2 21.2v-6.5h5.6v6.5"/></svg>';
+    $checkSvg = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 8.2 6.1 11l6.7-7"/></svg>';
 
     ob_start();
     ?>
-    <section class="<?php echo esc_attr($sectionClass); ?>"<?php echo ks_section_id_attr($a); ?> aria-labelledby="<?php echo esc_attr($hid); ?>">
+    <section class="<?php echo esc_attr($sectionClass); ?>"<?php echo ks_section_id_attr($a); ?>>
       <div class="wrap">
-        <div class="ks-newsletter ks-band--<?php echo esc_attr($band); ?> ks-news--<?php echo esc_attr($layout); ?> ks-news--form-<?php echo esc_attr($formStyle); ?>">
-          <div class="ks-newsletter__glow" aria-hidden="true"></div>
+        <div class="<?php echo esc_attr($newsClass); ?>">
+          <span class="ks-newsletter__mark" aria-hidden="true"><?php echo $houseSvg; ?></span>
           <div class="ks-newsletter__inner">
-            <div class="ks-newsletter__copy">
-              <div class="ks-newsletter__kicker">
-                <?php if ($showIcon) { ?>
-                  <span class="ks-newsletter__icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg>
-                  </span>
-                <?php } ?>
-                <?php if ($eyebrow !== '') { ?><p class="eyebrow"><?php echo $eyebrow; ?></p><?php } ?>
-              </div>
-              <<?php echo $hTag; ?> id="<?php echo esc_attr($hid); ?>"><?php echo $title; ?></<?php echo $hTag; ?>>
-              <?php if ($text !== '') { ?><p><?php echo $text; ?></p><?php } ?>
-              <?php if ($showMarkets && $markets !== []) { ?>
-                <ul class="ks-newsletter__markets">
-                  <?php foreach ($markets as $market) { ?>
-                    <li><?php echo esc_html($market); ?></li>
+            <div class="<?php echo esc_attr($copyClass); ?>">
+              <?php if ($eyebrow !== '' || $cadence !== '') { ?>
+                <div class="ks-newsletter__masthead">
+                  <?php if ($eyebrow !== '') { ?>
+                    <p class="eyebrow ks-newsletter__eyebrow">
+                      <span class="ks-newsletter__badge" aria-hidden="true"><?php echo $mailSvg; ?></span>
+                      <?php echo $eyebrow; ?>
+                    </p>
                   <?php } ?>
-                </ul>
+                  <?php if ($cadence !== '') { ?>
+                    <p class="ks-newsletter__cadence"><?php echo $cadence; ?></p>
+                  <?php } ?>
+                </div>
+              <?php } ?>
+              <<?php echo $hTag; ?> id="<?php echo esc_attr($hid); ?>"><?php echo $title; ?></<?php echo $hTag; ?>>
+              <?php if ($text !== '') { ?><p class="ks-newsletter__lede"><?php echo $text; ?></p><?php } ?>
+              <?php if ($showHighlights && $highlights !== []) { ?>
+                <div class="ks-newsletter__highlights">
+                  <?php if ($highlightsLabel !== '') { ?>
+                    <p class="ks-newsletter__highlights-label"><?php echo $highlightsLabel; ?></p>
+                  <?php } ?>
+                  <ul class="ks-newsletter__chips">
+                    <?php foreach ($highlights as $chip) { ?>
+                      <li><?php echo esc_html($chip); ?></li>
+                    <?php } ?>
+                  </ul>
+                </div>
               <?php } ?>
             </div>
-            <form class="ks-newsletter__form" aria-labelledby="<?php echo esc_attr($hid); ?>">
-              <div class="ks-newsletter__fields">
-                <div class="field">
-                  <label for="<?php echo esc_attr($fid); ?>"><?php echo $emailLabel; ?></label>
-                  <input type="email" id="<?php echo esc_attr($fid); ?>" name="email" autocomplete="email" required placeholder="<?php echo $placeholder; ?>">
+            <div class="ks-newsletter__panel">
+              <form class="ks-newsletter__form" id="<?php echo esc_attr($formId); ?>" aria-labelledby="<?php echo esc_attr($hid); ?>">
+                <?php if ($formEyebrow !== '') { ?><p class="ks-newsletter__form-kicker"><?php echo $formEyebrow; ?></p><?php } ?>
+                <?php if ($formTitle !== '') { ?><p class="ks-newsletter__form-title"><?php echo $formTitle; ?></p><?php } ?>
+                <div class="ks-newsletter__row">
+                  <div class="field">
+                    <label for="<?php echo esc_attr($fid); ?>"><?php echo $emailLabel; ?></label>
+                    <input type="email" id="<?php echo esc_attr($fid); ?>" name="email" autocomplete="email" required placeholder="<?php echo $placeholder; ?>">
+                  </div>
+                  <button type="submit" class="btn btn-primary"><?php echo $buttonLabel; ?></button>
                 </div>
-                <button type="submit" class="btn btn-primary"><?php echo $buttonLabel; ?></button>
+                <?php if ($showBenefits && $benefits !== []) { ?>
+                  <ul class="ks-newsletter__benefits">
+                    <?php foreach ($benefits as $benefit) { ?>
+                      <li><span aria-hidden="true"><?php echo $checkSvg; ?></span><?php echo esc_html($benefit); ?></li>
+                    <?php } ?>
+                  </ul>
+                <?php } ?>
+                <p class="ks-newsletter__note" id="<?php echo esc_attr($nid); ?>" role="status" aria-live="polite"><?php echo $showDisclaimer ? $note : ''; ?></p>
+              </form>
+            </div>
+            <?php if ($teasers !== []) { ?>
+              <div class="ks-newsletter__digest">
+                <?php if ($teasersLabel !== '') { ?>
+                  <p class="ks-newsletter__digest-label"><?php echo $teasersLabel; ?></p>
+                <?php } ?>
+                <ul class="ks-newsletter__teasers">
+                  <?php foreach ($teasers as $teaser) {
+                      $tag = $teaser['url'] !== '' ? 'a' : 'div';
+                      $href = $tag === 'a' ? ' href="'.esc_url($teaser['url']).'"' : '';
+                      $initial = strtoupper(substr(wp_strip_all_tags($teaser['title']), 0, 1));
+                      ?>
+                    <li>
+                      <<?php echo $tag; ?> class="ks-newsletter__teaser"<?php echo $href; ?>>
+                        <span class="ks-newsletter__thumb" aria-hidden="true">
+                          <?php if ($teaser['image'] !== '') { ?>
+                            <img src="<?php echo esc_url($teaser['image']); ?>" alt="" width="72" height="72" loading="lazy" decoding="async">
+                          <?php } else { ?>
+                            <span class="ks-newsletter__mono"><?php echo esc_html($initial); ?></span>
+                          <?php } ?>
+                        </span>
+                        <span class="ks-newsletter__teaser-copy">
+                          <strong><?php echo esc_html($teaser['title']); ?></strong>
+                          <?php if ($teaser['meta'] !== '') { ?><span><?php echo esc_html($teaser['meta']); ?></span><?php } ?>
+                        </span>
+                        <?php if ($teaser['price'] !== '') { ?>
+                          <span class="ks-newsletter__teaser-price"><?php echo esc_html($teaser['price']); ?></span>
+                        <?php } ?>
+                      </<?php echo $tag; ?>>
+                    </li>
+                  <?php } ?>
+                </ul>
               </div>
-              <p class="ks-newsletter__note" id="<?php echo esc_attr($statusId); ?>" role="status" aria-live="polite"><?php echo $note; ?></p>
-            </form>
+            <?php } ?>
           </div>
         </div>
       </div>
@@ -3726,7 +3990,6 @@ function ks_render_newsletter(array $attrs): string
     return (string) ob_get_clean();
 }
 
-/** @param array<string, mixed> $attrs */
 function ks_render_team_intro(array $attrs): string
 {
     $a = $attrs;
@@ -3916,7 +4179,7 @@ function ks_blog_page_pattern(): string
     return '<!-- wp:acreline/page-hero {"eyebrow":"Buyer resources","title":"Field notes from the sample county"} /-->
 <!-- wp:acreline/topic-cards {} /-->
 <!-- wp:acreline/post-grid {} /-->
-<!-- wp:acreline/newsletter {} /-->
+<!-- wp:acreline/newsletter {"layout":"compact"} /-->
 <!-- wp:acreline/cta-band {"title":"Ready to put these notes to use?","primaryLabel":"Browse listings","secondaryLabel":"Book a showing"} /-->';
 }
 

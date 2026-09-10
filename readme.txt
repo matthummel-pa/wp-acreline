@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -139,6 +139,10 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.5.2 =
+* Home newsletter / new-listings digest: weekly-note band with listing teasers, cadence stamp, neighborhood chips, and a raised email card. Compact bar available for tighter pages.
+* Inspector controls for layout, band color, form style, copy, button, chips, teasers, benefits, and fine-print visibility. Color styles still theme the band.
 
 = 1.5.1 =
 * Partners logo strip ships fictional SVG marks and can add, remove, or replace logos from the media library.

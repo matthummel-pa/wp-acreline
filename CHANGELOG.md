@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.2
+
+- **Home** — Newsletter / new-listings digest is a weekly-note band: cadence stamp, neighborhood chips, three listing teasers, and a raised email card with quiet concept fine print.
+- **Block** — Inspector layouts (digest, split, centered, compact), band style, form card/flush, copy, CTA label, chips, teasers (featured listings or custom), benefits, and fine-print visibility. Color styles still theme the band.
+
 ## 1.5.1
 
 - **Home** — Partner logo strip now shows fictional sample marks. Add, remove, or replace logos from the media library. Newsletter / market-note band redesigned (desktop + mobile) with layout and form variants; demo still does not email anyone.

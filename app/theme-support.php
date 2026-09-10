@@ -247,6 +247,11 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.2', [
+            __('Newsletter / new-listings digest: weekly-note band with listing teasers and a form card', 'acreline'),
+            __('Inspector options for layout, band color, form style, copy, teasers, benefits, and fine print', 'acreline'),
+            __('Color styles still theme the band; concept note stays quiet and nothing is emailed', 'acreline'),
+        ]],
         ['1.5.1', [
             __('Partner logo strip: fictional sample marks, media-library picker, add or remove partners', 'acreline'),
             __('Newsletter / market-note band redesigned with layout variants (demo — nothing is emailed)', 'acreline'),
