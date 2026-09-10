@@ -415,6 +415,11 @@
   padding:clamp(32px, 5.2vw, 56px) clamp(22px, 4vw, 48px);
   color:var(--ink);
 }
+@media(min-width:860px){
+  .ks-newsletter{
+    padding-inline-end:clamp(36px, 6vw, 72px);
+  }
+}
 .ks-newsletter::before{
   content:"";
   position:absolute;
@@ -538,11 +543,21 @@
   min-height:32px;
   padding:4px 12px;
   border-radius:999px;
-  border:1px solid color-mix(in srgb, currentColor 28%, transparent);
-  background:color-mix(in srgb, currentColor 10%, transparent);
+  border:1px solid color-mix(in srgb, currentColor 40%, transparent);
+  background:color-mix(in srgb, currentColor 18%, transparent);
   font-size:.82rem;
   font-weight:600;
   letter-spacing:-.01em;
+}
+.ks-newsletter.ks-band--accent .ks-newsletter__chips li{
+  color:var(--cta-accent-text, var(--paper));
+  background:color-mix(in srgb, var(--cta-accent-text, var(--paper)) 16%, transparent);
+  border-color:color-mix(in srgb, var(--cta-accent-text, var(--paper)) 42%, transparent);
+}
+.ks-newsletter.ks-band--dark .ks-newsletter__chips li{
+  color:var(--cta-dark-text, var(--paper));
+  background:color-mix(in srgb, var(--cta-dark-text, var(--paper)) 14%, transparent);
+  border-color:color-mix(in srgb, var(--cta-dark-text, var(--paper)) 40%, transparent);
 }
 .ks-newsletter.ks-band--paper .ks-newsletter__chips li,
 .ks-newsletter.ks-band--alt .ks-newsletter__chips li{
