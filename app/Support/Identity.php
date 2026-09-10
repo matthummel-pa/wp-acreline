@@ -372,9 +372,9 @@ class Identity
      */
     public static function topBarStyle(): string
     {
-        $style = sanitize_key((string) get_theme_mod('ks_top_bar_style', 'dark'));
+        $style = sanitize_key((string) get_theme_mod('ks_top_bar_style', 'accent'));
 
-        return in_array($style, ['dark', 'accent', 'light', 'custom'], true) ? $style : 'dark';
+        return in_array($style, ['dark', 'accent', 'light', 'custom'], true) ? $style : 'accent';
     }
 
     /**
@@ -386,7 +386,7 @@ class Identity
     public static function topBarTokens(string $style, ?string $accent = null, ?string $paper = null, ?string $ink = null): array
     {
         if (! in_array($style, ['dark', 'accent', 'light', 'custom'], true)) {
-            $style = 'dark';
+            $style = 'accent';
         }
 
         $accent = sanitize_hex_color((string) $accent) ?: self::accent();

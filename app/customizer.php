@@ -236,7 +236,7 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
     // ── Top Bar ──────────────────────────────────────────────────────────────
     $wp_customize->add_section('ks_top_bar', [
         'title' => __('Top Bar', 'acreline'),
-        'description' => __('A slim bar above the header. Dark, Accent, and Light follow the active color style (Customize → Colors). Custom background and text stay until you change them.', 'acreline'),
+        'description' => __('A slim bar above the header. Accent (default) uses the active color style so the bar tracks the picker. Dark and Light also follow the palette. Custom background and text stay until you change them.', 'acreline'),
         'priority' => 38,
     ]);
 
@@ -253,12 +253,17 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
 
     // Style preset
     $wp_customize->add_setting('ks_top_bar_style', [
-        'default' => 'dark',
-        'sanitize_callback' => 'sanitize_key',
+        'default' => 'accent',
+        'sanitize_callback' => function ($value) {
+            $value = sanitize_key((string) $value);
+
+            return in_array($value, ['dark', 'accent', 'light', 'custom'], true) ? $value : 'accent';
+        },
     ]);
     $wp_customize->add_control('ks_top_bar_style', [
         'label' => __('Color style', 'acreline'),
         'section' => 'ks_top_bar',
+        'description' => __('Accent (default) tracks the active color style. Dark and Light also follow the palette. Custom uses the colors below.', 'acreline'),
         'type' => 'select',
         'choices' => [
             'dark' => __('Dark (ink background)', 'acreline'),

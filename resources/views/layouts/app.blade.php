@@ -9,6 +9,8 @@
     @php(wp_head())
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- After Vite: compiled :root fallbacks (--tb-*, --cta-*, --nav-*) must not beat Identity tokens. --}}
+    <style id="keystone-identity">{!! \App\Support\Identity::cssVariables() !!}</style>
 
     <script>
       window.ACRELINE = @json($keystone);
