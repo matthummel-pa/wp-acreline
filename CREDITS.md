@@ -31,6 +31,8 @@ No font files are vendored in the zip.
 - House mark and horizontal lockup SVG — original, GPLv2 or later
   - Theme: `public/images/brand/acreline-mark.svg`, `acreline-lockup.svg`
   - Docs pack: `docs/marketplace/assets/` (same files)
+- Fictional partner lockups — original, GPLv2 or later
+  - Theme: `public/images/partners/*.svg` (Sample Credit Union, County Title Co., North Ridge Inspect, Mill Creek Lending, Oak Hollow Photo, Borough Insurance). Not real MLS or brokerage marks.
 - Header / footer house mark — original SVG language, GPLv2 or later
 - `screenshot.png` — capture of the concept homepage (1200×900); Unsplash photo is hotlinked on the live demo, not copied into `public/`
 - Homepage / listing default still — `HeroImage::DEFAULT` (`images.unsplash.com/photo-1570129477492-45c003edd2be`). Hotlinked at render and seed time; **do not** copy the binary into `public/`

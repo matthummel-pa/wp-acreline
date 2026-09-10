@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.1
+
+- **Home** — Partner logo strip now shows fictional sample marks. Add, remove, or replace logos from the media library. Newsletter / market-note band redesigned (desktop + mobile) with layout and form variants; demo still does not email anyone.
+- **Agents** — New Team Intro block under the hero: specialty desks, snapshot stats, and sellable office copy (buyers, sellers, commercial).
+- **Blocks** — Marketing blocks share band, heading-level, spacing, and HTML-anchor controls. Inspector settings now apply on the front (spotlight, booking, stats, tools, checklists, compare, topics, posts). How-it-works steps and intro CTAs are editable.
+- **Seed** — Force rebuild writes partner logos into the media library and refreshes Home / Agents stacks.
+
 ## 1.5.0
 
 - **Home & Areas** — New Region Coverage block: split map + neighborhood cards, or a bento/grid layout. Neighborhoods, methods, and CTAs are editable in the block inspector. Section bands follow the active color scheme.
