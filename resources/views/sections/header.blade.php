@@ -15,6 +15,9 @@
     @if (! empty($identity['hasLogo']))
       <div class="brand brand-logo">
         {!! get_custom_logo() !!}
+        @if (! empty($compliance['showLicenseHeader']) && ! empty($compliance['hasBrokerId']))
+          <span class="header-license">{{ implode(' · ', $compliance['idParts']) }}</span>
+        @endif
       </div>
     @else
       <a href="{{ home_url('/') }}" class="brand" aria-label="{{ esc_attr($brand) }}">
@@ -26,6 +29,9 @@
         <span class="brand-text">
           <strong>{{ $brand }}</strong>
           <span>{{ $tagline }}</span>
+          @if (! empty($compliance['showLicenseHeader']) && ! empty($compliance['hasBrokerId']))
+            <span class="header-license">{{ implode(' · ', $compliance['idParts']) }}</span>
+          @endif
         </span>
       </a>
     @endif

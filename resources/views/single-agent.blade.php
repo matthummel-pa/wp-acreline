@@ -338,6 +338,18 @@
               <dd>{{ $agent['license_state'] }} {{ $agent['license_number'] }}</dd>
             </div>
           @endif
+          @php
+            $brokerageAffil = trim((string) ($agent['office'] ?? ''));
+            if ($brokerageAffil === '') {
+              $brokerageAffil = (string) ($compliance['brokerageLegalName'] ?? '');
+            }
+          @endphp
+          @if ($brokerageAffil !== '')
+            <div>
+              <dt>{{ __('Brokerage', 'acreline') }}</dt>
+              <dd>{{ $brokerageAffil }}</dd>
+            </div>
+          @endif
           @if ($agent['mls_id'])
             <div>
               <dt>{{ __('MLS ID', 'acreline') }}</dt>

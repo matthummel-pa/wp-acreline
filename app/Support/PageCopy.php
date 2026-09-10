@@ -142,7 +142,7 @@ class PageCopy
             'book' => $hero('Appointments', 'Book a house showing', 'Pick a listing, date and time. The request is saved as a Booking in Requested status — nothing is emailed.') + [
                 'book_note' => ['label' => 'Form note', 'type' => 'text', 'default' => 'Demo only — no emails, texts or calendar invites are sent. Staff can advance the booking in WP Admin → Bookings.'],
             ],
-            'blog' => array_merge($hero('Guide', 'Realtor notes you can publish', 'Sample posts for showings, buyer checklists, and neighborhood search — ready to adapt for local SEO.'), $cta, [
+            'blog' => array_merge($hero('Guide', 'Agent notes you can publish', 'Sample posts for showings, buyer checklists, and neighborhood search — ready to adapt for local SEO.'), $cta, [
                 'cta_title' => ['label' => 'Bottom CTA title', 'type' => 'text', 'default' => 'Ready to tour a sample home?'],
                 'cta_text' => ['label' => 'Bottom CTA text', 'type' => 'textarea', 'default' => 'Use the showing scheduler — property, date and time in one flow.'],
                 'cta_secondary' => ['label' => 'Secondary CTA label', 'type' => 'text', 'default' => 'Browse samples'],

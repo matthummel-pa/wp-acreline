@@ -230,7 +230,7 @@ function listing_metabox(\WP_Post $post): void
         <td><?php render_select('ks_open_house_type', $openHouseType, Catalog::OPEN_HOUSE_TYPES); ?></td>
       </tr>
       <?php render_meta_inputs($post->ID, ['open_house_date', 'open_house_time'], Catalog::listingFields()); ?>
-      <?php render_meta_inputs($post->ID, ['days_on_market', 'commission'], Catalog::listingFields()); ?>
+      <?php render_meta_inputs($post->ID, ['days_on_market', 'commission', 'listing_office'], Catalog::listingFields()); ?>
       <tr>
         <th><label for="ks_listing_source"><?php esc_html_e('Listing source', 'acreline'); ?></label></th>
         <td><?php render_select('ks_listing_source', $listingSource, Catalog::LISTING_SOURCES); ?></td>
@@ -382,6 +382,22 @@ function booking_metabox(\WP_Post $post): void
     <?php ks_section_heading(__('Client info', 'acreline')); ?>
     <table class="form-table" role="presentation">
       <?php render_meta_inputs($post->ID, ['client_name', 'client_email', 'client_phone'], Catalog::bookingFields()); ?>
+      <tr>
+        <th><?php esc_html_e('Form consent', 'acreline'); ?></th>
+        <td>
+          <?php
+            $consented = (string) Catalog::getMeta($post->ID, 'consent', '');
+    $consentAt = (string) Catalog::getMeta($post->ID, 'consent_at', '');
+    if ($consented === '1') {
+        echo esc_html($consentAt !== ''
+            ? sprintf(__('Recorded %s (UTC)', 'acreline'), $consentAt)
+            : __('Yes', 'acreline'));
+    } else {
+        echo esc_html__('Not recorded', 'acreline');
+    }
+    ?>
+        </td>
+      </tr>
       <tr>
         <th><label for="ks_buyer_type"><?php esc_html_e('Buyer type', 'acreline'); ?></label></th>
         <td><?php render_select('ks_buyer_type', $buyerType, Catalog::BUYER_TYPES); ?></td>

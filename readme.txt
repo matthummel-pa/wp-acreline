@@ -144,6 +144,7 @@ Upload your office logo under Customize → Site Identity. Colors: Forest sample
 * New blocks: Pricing plans, logo strip, and newsletter signup (demo form — nothing is emailed).
 * Area Grid supports photos, card styles, and a section CTA. How We Work steps are editable.
 * Marketing pages and FAQs speak to real estate agents: homes, listings, and showings — not a luxury portal kit and not a farms/land niche.
+* Compliance tools: brokerage legal name, optional licenses, Fair Housing statement, MLS/IDX disclaimer slots, privacy URL, and a consent checkbox on forms. Not legal advice — check your state commission.
 * After you install the zip, run Tools → Migrate to Blocks → Force rebuild so existing pages pick up the new stacks.
 
 = 1.4.7 =

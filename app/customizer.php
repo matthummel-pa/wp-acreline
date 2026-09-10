@@ -69,7 +69,7 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
     ]);
     $wp_customize->add_control('ks_footer_blurb', [
         'label' => __('Footer blurb', 'acreline'),
-        'description' => __('Leave empty for the concept sentence.', 'acreline'),
+        'description' => __('Leave empty for the concept sentence while the demo banner is on. Empty (no concept line) when the demo banner is off.', 'acreline'),
         'section' => 'ks_identity',
         'type' => 'textarea',
     ]);
@@ -93,6 +93,8 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
         'section' => 'ks_identity',
         'type' => 'checkbox',
     ]);
+
+    ks_register_compliance_customizer($wp_customize);
 
     $schemeChoices = [];
     foreach (ColorSchemes::all() as $key => $scheme) {
@@ -481,6 +483,138 @@ function sanitize_checkbox($value): bool
         || $value === 'true'
         || $value === 'on'
         || $value === 'yes';
+}
+
+/**
+ * Brokerage ID, Fair Housing, IDX slots, privacy URLs, and form consent.
+ * Tools only — not legal advice. Empty fields stay hidden on the front end.
+ */
+function ks_register_compliance_customizer(WP_Customize_Manager $wp_customize): void
+{
+    $wp_customize->add_section('ks_compliance', [
+        'title' => __('Compliance', 'acreline'),
+        'description' => __('Configurable tools for brokerage identification, Fair Housing, MLS/IDX disclaimers, privacy links, and form consent. Rules vary by state and MLS — check your commission and counsel. This is not legal advice.', 'acreline'),
+        'priority' => 32,
+    ]);
+
+    $text = [
+        'ks_brokerage_legal_name' => [__('Brokerage legal name', 'acreline'), __('Exact licensed name as registered with your state commission.', 'acreline')],
+        'ks_license_number' => [__('License number (optional)', 'acreline'), __('Some states require this on first-point-of-contact materials. Texas statute bars TREC from requiring license numbers — leave blank if yours does not.', 'acreline')],
+        'ks_broker_license' => [__('Broker license (optional)', 'acreline'), __('Supervising broker license when your state or board asks for it separately.', 'acreline')],
+        'ks_license_jurisdiction' => [__('License jurisdiction', 'acreline'), __('e.g. Pennsylvania Real Estate Commission', 'acreline')],
+        'ks_office_city' => [__('Office city', 'acreline'), __('NAR internet advertising typically wants office city and state.', 'acreline')],
+        'ks_office_state' => [__('Office state', 'acreline'), ''],
+        'ks_idx_copyright' => [__('MLS / IDX copyright line', 'acreline'), __('Optional. Paste your board’s copyright sentence.', 'acreline')],
+    ];
+
+    foreach ($text as $id => [$label, $description]) {
+        $wp_customize->add_setting($id, [
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ]);
+        $wp_customize->add_control($id, [
+            'label' => $label,
+            'description' => $description,
+            'section' => 'ks_compliance',
+            'type' => 'text',
+        ]);
+    }
+
+    foreach ([
+        'ks_show_license_footer' => [__('Show brokerage ID in the footer', 'acreline'), true],
+        'ks_show_license_header' => [__('Show brokerage ID in the header / top bar', 'acreline'), false],
+        'ks_eho_enable' => [__('Show Equal Housing Opportunity statement', 'acreline'), true],
+        'ks_eho_show_logo' => [__('Show Equal Housing house mark (best practice, not federally required)', 'acreline'), true],
+        'ks_idx_enable' => [__('Show MLS / IDX disclaimer slots on listings', 'acreline'), false],
+        'ks_idx_attribution' => [__('Show listing-office attribution when a listing office is filled', 'acreline'), false],
+        'ks_consent_enable' => [__('Require consent checkbox on showing and contact forms', 'acreline'), true],
+    ] as $id => [$label, $default]) {
+        $wp_customize->add_setting($id, [
+            'default' => $default,
+            'sanitize_callback' => __NAMESPACE__.'\\sanitize_checkbox',
+        ]);
+        $wp_customize->add_control($id, [
+            'label' => $label,
+            'section' => 'ks_compliance',
+            'type' => 'checkbox',
+        ]);
+    }
+
+    $wp_customize->add_setting('ks_eho_statement', [
+        'default' => '',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ]);
+    $wp_customize->add_control('ks_eho_statement', [
+        'label' => __('Equal Housing statement', 'acreline'),
+        'description' => __('Leave empty for the built-in Equal Housing Opportunity paragraph. Logo is industry best practice; HUD does not federally mandate it.', 'acreline'),
+        'section' => 'ks_compliance',
+        'type' => 'textarea',
+    ]);
+
+    $wp_customize->add_setting('ks_idx_disclaimer', [
+        'default' => '',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ]);
+    $wp_customize->add_control('ks_idx_disclaimer', [
+        'label' => __('MLS / IDX disclaimer', 'acreline'),
+        'description' => __('Paste your board’s exact disclaimer. Empty by default. This theme does not claim IDX compliance for every MLS.', 'acreline'),
+        'section' => 'ks_compliance',
+        'type' => 'textarea',
+    ]);
+
+    $wp_customize->add_setting('ks_idx_logo_url', [
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control('ks_idx_logo_url', [
+        'label' => __('IDX / MLS logo URL', 'acreline'),
+        'description' => __('Optional. Use a logo your board licenses to you — do not paste NAR, HUD, or MLS marks you do not have rights to.', 'acreline'),
+        'section' => 'ks_compliance',
+        'type' => 'url',
+    ]);
+
+    $wp_customize->add_setting('ks_privacy_url', [
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control('ks_privacy_url', [
+        'label' => __('Privacy Policy URL', 'acreline'),
+        'description' => __('Footer link only. This theme does not invent legal policy text.', 'acreline'),
+        'section' => 'ks_compliance',
+        'type' => 'url',
+    ]);
+
+    $wp_customize->add_setting('ks_terms_url', [
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $wp_customize->add_control('ks_terms_url', [
+        'label' => __('Terms of Use URL (optional)', 'acreline'),
+        'section' => 'ks_compliance',
+        'type' => 'url',
+    ]);
+
+    $wp_customize->add_setting('ks_consent_disclosure', [
+        'default' => '',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ]);
+    $wp_customize->add_control('ks_consent_disclosure', [
+        'label' => __('Form consent disclosure', 'acreline'),
+        'description' => __('Shown next to an unchecked checkbox. Use {brokerage} for the licensed name. Leave empty for the built-in “consent not required to purchase” wording. Consult counsel before autodialed or text marketing.', 'acreline'),
+        'section' => 'ks_compliance',
+        'type' => 'textarea',
+    ]);
+
+    $wp_customize->add_setting('ks_consent_sms', [
+        'default' => '',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ]);
+    $wp_customize->add_control('ks_consent_sms', [
+        'label' => __('Optional SMS / call language', 'acreline'),
+        'description' => __('Extra sentence under the checkbox (opt-out, message rates, etc.). Leave empty to hide.', 'acreline'),
+        'section' => 'ks_compliance',
+        'type' => 'textarea',
+    ]);
 }
 
 add_action('wp_enqueue_scripts', function () {

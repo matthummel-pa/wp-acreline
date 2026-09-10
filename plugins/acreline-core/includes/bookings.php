@@ -1,5 +1,7 @@
 <?php
 
+use App\Support\Compliance;
+
 defined('ABSPATH') || exit;
 
 add_action('rest_api_init', static function (): void {
@@ -52,6 +54,18 @@ function keystone_core_create_booking_request(WP_REST_Request $request)
         return new WP_Error('ks_bad_fields', __('Name, phone, email, date and time are required.', 'acreline-core'), ['status' => 400]);
     }
 
+    $consentOn = function_exists('get_theme_mod') && (bool) get_theme_mod('ks_consent_enable', true);
+    if (class_exists('\\App\\Support\\Compliance')) {
+        $consentOn = Compliance::flag('ks_consent_enable');
+    }
+    $consented = $request->get_param('consent') === true
+        || $request->get_param('consent') === 1
+        || $request->get_param('consent') === '1'
+        || $request->get_param('lead_consent') === '1';
+    if ($consentOn && ! $consented) {
+        return new WP_Error('ks_consent_required', __('Please confirm the contact consent checkbox.', 'acreline-core'), ['status' => 400]);
+    }
+
     $allowed = ['in-person', 'preview', 'virtual'];
     if (! in_array($type, $allowed, true)) {
         $type = 'in-person';
@@ -80,6 +94,10 @@ function keystone_core_create_booking_request(WP_REST_Request $request)
     update_post_meta($bookingId, 'ks_notes', $notes);
     update_post_meta($bookingId, 'ks_status', 'requested');
     update_post_meta($bookingId, 'ks_agent_id', $agentId);
+    if ($consented) {
+        update_post_meta($bookingId, 'ks_consent', '1');
+        update_post_meta($bookingId, 'ks_consent_at', gmdate('c'));
+    }
 
     return new WP_REST_Response([
         'id' => $bookingId,

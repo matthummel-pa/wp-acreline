@@ -2540,7 +2540,8 @@ function ks_render_contact_form(array $attrs): string
                       <option><?php esc_html_e('A free valuation', 'acreline'); ?></option>
                       <option><?php esc_html_e('Something else', 'acreline'); ?></option>
                     </select></div>
-                  <div class="field field-span"><label for="cMessage"><?php esc_html_e('Message', 'acreline'); ?></label><textarea id="cMessage" name="message" rows="4" placeholder="<?php esc_attr_e('e.g. Looking for 10+ acres near Oak Hollow', 'acreline'); ?>"></textarea></div>
+                  <div class="field field-span"><label for="cMessage"><?php esc_html_e('Message', 'acreline'); ?></label><textarea id="cMessage" name="message" rows="4" placeholder="<?php esc_attr_e('e.g. Looking for a 3-bed near Oak Hollow', 'acreline'); ?>"></textarea></div>
+                  <?php echo ks_render_consent_field('contactConsent'); ?>
                   <div class="field field-span"><button type="submit" class="btn btn-primary btn-block"><?php esc_html_e('Send Message', 'acreline'); ?></button></div>
                 </div>
               </form>
@@ -2679,14 +2680,14 @@ function ks_default_trust_items(): array
 function ks_default_guide_items(): array
 {
     return [
-        ['title' => __('Water source — well or municipal?', 'acreline'), 'text' => __('Private wells need a yield test and a water-quality report. Ask for the original well log and the most recent test date. A well producing under 3 gpm may not support the use you have planned.', 'acreline')],
-        ['title' => __('Septic — existing system or percolation required?', 'acreline'), 'text' => __('An existing septic has records on file with the county. Raw land needs a perc test before you can pull a permit. Perc results control what you can build and where.', 'acreline')],
-        ['title' => __('Road access — deeded or by permission?', 'acreline'), 'text' => __('A private lane that crosses a neighbour\'s land needs a recorded easement in the deed. "We\'ve always used that road" is not legal access and will show up in a title search.', 'acreline')],
-        ['title' => __('Zoning and agricultural enrollments', 'acreline'), 'text' => __('Land enrolled in a use-value or preferential farmland tax program, or under an agricultural conservation easement, has use restrictions. Rollback taxes can be triggered by certain improvements. Verify enrollment status with the county before closing.', 'acreline')],
-        ['title' => __('Survey — does one exist?', 'acreline'), 'text' => __('Many lots have never been resurveyed. Boundary pins may be missing or disputed. If the lot shape or fence line matters to your plan, budget for a fresh survey.', 'acreline')],
-        ['title' => __('Flood zone and drainage', 'acreline'), 'text' => __('Check the FEMA flood map. Low-lying streets and creek lots may be in Zone A. Flood insurance is required for federally-backed loans on Zone A properties and premiums can be significant.', 'acreline')],
-        ['title' => __('Mineral rights — included or severed?', 'acreline'), 'text' => __('Mineral rights can be owned separately from the surface. Ask the seller whether oil, gas, and mineral rights are included in the sale and request a title opinion.', 'acreline')],
-        ['title' => __('Financing — land loan or conventional?', 'acreline'), 'text' => __('Standard home mortgages are not available for raw land. Farm Credit, USDA, or local community banks handle most rural loans. Down payment requirements are typically 20–35% and loan terms are shorter than residential.', 'acreline')],
+        ['title' => __('Financing in writing', 'acreline'), 'text' => __('Know whether you are pre-approved, paying cash, or still shopping lenders. That shapes which homes are realistic to tour and how fast you can write an offer.', 'acreline')],
+        ['title' => __('Inspection window', 'acreline'), 'text' => __('Ask what a typical inspection period looks like in this market and which specialists (home, radon, sewer, roof) buyers usually book. Budget time, not just money.', 'acreline')],
+        ['title' => __('HOA, condo docs, and dues', 'acreline'), 'text' => __('If the home is in an association, request the documents early. Dues, reserves, rental caps, and pending assessments change monthly payment and resale.', 'acreline')],
+        ['title' => __('Title, survey, and easements', 'acreline'), 'text' => __('Confirm who pays for title insurance and whether a recent survey exists. Shared driveways and utility easements should be on the report, not a surprise after closing.', 'acreline')],
+        ['title' => __('Flood zone and insurance', 'acreline'), 'text' => __('Check the FEMA flood map and ask about homeowners insurance quotes before you waive contingencies. Zone A properties often need flood coverage on a financed purchase.', 'acreline')],
+        ['title' => __('School and commute — verify, don’t assume', 'acreline'), 'text' => __('District lines and bus routes change. Confirm with the district, not a listing remark. Same for drive times at the hour you actually travel.', 'acreline')],
+        ['title' => __('Fair Housing in your search notes', 'acreline'), 'text' => __('Describe the house and the lot — not who “belongs” in a neighborhood. Steer clear of demographic or religious preference in notes you send your agent.', 'acreline')],
+        ['title' => __('Offer terms, not just price', 'acreline'), 'text' => __('Closing date, inspection length, and what stays with the house often matter as much as the number. Write those down before you fall in love with a kitchen.', 'acreline')],
     ];
 }
 
@@ -2694,7 +2695,7 @@ function ks_default_guide_items(): array
 function ks_default_prep_left_items(): array
 {
     return [
-        ['title' => __('Boots or waterproof shoes', 'acreline'), 'text' => __('Farm ground, creek fields, and wooded lots are often wet. A good pair of boots is the single most useful thing you can bring.', 'acreline')],
+        ['title' => __('Comfortable shoes', 'acreline'), 'text' => __('You will walk rooms, stairs, and often the yard. Wear something you can stay in for an hour.', 'acreline')],
         ['title' => __('Your priority list', 'acreline'), 'text' => __('Write down the three things that would make or break the purchase. Your agent will address them on site, not in a follow-up email.', 'acreline')],
         ['title' => __('Financing status', 'acreline'), 'text' => __('Know roughly what you are approved for — or what you plan to pay cash. It shapes which homes make sense to walk.', 'acreline')],
         ['title' => __('Your timeline', 'acreline'), 'text' => __('Are you buying in the next 60 days or researching for next year? Your agent will calibrate the conversation accordingly.', 'acreline')],
@@ -2706,9 +2707,9 @@ function ks_default_prep_left_items(): array
 function ks_default_prep_right_items(): array
 {
     return [
-        ['title' => __('Property briefing', 'acreline'), 'text' => __('Parcel map, deed history, tax enrollment status, well log if available, and any disclosed issues — ready before you arrive.', 'acreline')],
-        ['title' => __('Comps and price context', 'acreline'), 'text' => __('Recent sales of similar ground in the same area, so you understand what the asking price reflects.', 'acreline')],
-        ['title' => __('On-site answers', 'acreline'), 'text' => __('Questions about drainage, soil quality, zoning, or septic feasibility answered on the walk — not in a follow-up email three days later.', 'acreline')],
+        ['title' => __('Listing briefing', 'acreline'), 'text' => __('Floor plan if available, tax record, HOA notes, and any disclosed issues — ready before you arrive.', 'acreline')],
+        ['title' => __('Comps and price context', 'acreline'), 'text' => __('Recent sales of similar homes in the same area, so you understand what the asking price reflects.', 'acreline')],
+        ['title' => __('On-site answers', 'acreline'), 'text' => __('Questions about condition, systems, and neighborhood logistics answered on the walk — not in a follow-up email three days later.', 'acreline')],
         ['title' => __('No pressure close', 'acreline'), 'text' => __('The goal of a showing is information — not a signature. Agents do not push offers on the property or "back at the office."', 'acreline')],
     ];
 }

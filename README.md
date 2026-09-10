@@ -167,6 +167,7 @@ Every marketing page is built with WordPress blocks that render server-side — 
 | Section | What you set |
 | --- | --- |
 | **Identity** | Brand name, tagline, phone, email, address, hours, header CTA, footer blurb, demo banner, author credit |
+| **Compliance** | Brokerage legal name, optional licenses, Fair Housing, MLS/IDX slots, privacy/terms URLs, form consent (not legal advice) |
 | **Site Identity** | Custom logo (replaces the Acreline house mark) |
 | **Colors** | Eight presets: Forest · Clay · Navy · Burgundy · Harvest · Lake · Orchard · Charcoal — plus accent, paper, and ink pickers |
 | **Header** | Sticky on/off, standard / compact height, homepage Ken Burns photo animation (`ks_hero_ken_burns`, on), optional mobile listing-search tilt (`ks_hero_search_tilt`, off) |
@@ -288,6 +289,7 @@ Upload your own logo under **Appearance → Customize → Site Identity**. Eight
 | [`BRAND.md`](BRAND.md) | Brand kit — palette, logo marks |
 | [`docs/marketplace/index.html`](docs/marketplace/index.html) | Buyer docs hub — open first |
 | [`docs/marketplace/buyer-guide.html`](docs/marketplace/buyer-guide.html) | Install, Customizer, top bar, fields, FAQ |
+| [`docs/marketplace/compliance.html`](docs/marketplace/compliance.html) | Website compliance checklist (not legal advice) |
 | [`docs/marketplace/screenshots/`](docs/marketplace/screenshots/) | 01–09 screenshots used on matthummel.com |
 | [`public/images/brand/`](public/images/brand/) | House mark + lockup (SVG, GPLv2) |
 

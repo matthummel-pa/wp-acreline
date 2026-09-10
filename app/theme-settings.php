@@ -11,6 +11,7 @@
 namespace App;
 
 use App\Support\ColorSchemes;
+use App\Support\Compliance;
 use App\Support\Identity;
 
 // ─── Option key & defaults ────────────────────────────────────────────────────
@@ -360,6 +361,10 @@ add_action('admin_post_ks_save_settings', function () {
     if ($tab === 'general') {
         ks_sync_color_theme_mods($clean);
     }
+    if ($tab === 'compliance') {
+        $modRaw = isset($_POST['ks_mod']) && is_array($_POST['ks_mod']) ? $_POST['ks_mod'] : [];
+        Compliance::saveFromPost($modRaw);
+    }
 
     wp_safe_redirect(add_query_arg([
         'page' => 'acreline-settings',
@@ -383,7 +388,7 @@ function render_settings_page(): void
 
     $saved = isset($_GET['ks_saved']);
     $activeTab = sanitize_key((string) ($_GET['tab'] ?? 'listings'));
-    $validTabs = ['labels', 'listings', 'agents', 'bookings', 'market', 'general'];
+    $validTabs = ['labels', 'listings', 'agents', 'bookings', 'market', 'compliance', 'general'];
     if (! in_array($activeTab, $validTabs, true)) {
         $activeTab = 'listings';
     }
@@ -393,6 +398,7 @@ function render_settings_page(): void
         'agents' => ['icon' => '👤', 'label' => __('Agents', 'acreline')],
         'bookings' => ['icon' => '📅', 'label' => __('Bookings', 'acreline')],
         'market' => ['icon' => '📊', 'label' => __('Market', 'acreline')],
+        'compliance' => ['icon' => '⚖️', 'label' => __('Compliance', 'acreline')],
         'labels' => ['icon' => '✏️', 'label' => __('Labels', 'acreline')],
         'general' => ['icon' => '⚙️', 'label' => __('General', 'acreline')],
     ];
@@ -546,6 +552,96 @@ function render_settings_page(): void
             ks_tog('booking_show_attendees', __('Ask number of attendees', 'acreline'));
             ks_tog('booking_show_comm_preference', __('Ask preferred contact method', 'acreline'));
             ks_tog('booking_show_source', __('Ask how they heard about the listing', 'acreline'));
+            ?>
+            </div>
+          </div>
+        </div>
+        <?php } ?>
+
+        <!-- ── COMPLIANCE ── -->
+        <?php if ($activeTab === 'compliance') { ?>
+        <div class="ks-panels">
+          <div class="ks-card">
+            <div class="ks-card-head">
+              <span class="ks-card-icon" aria-hidden="true">⚖️</span>
+              <div>
+                <h2 class="ks-card-title"><?php esc_html_e('Website compliance tools', 'acreline'); ?></h2>
+                <p class="ks-card-desc"><?php esc_html_e('Not legal advice. Rules vary by state and MLS — check your real estate commission and counsel. Same fields as Customize → Compliance. Empty fields stay hidden on the site.', 'acreline'); ?></p>
+              </div>
+            </div>
+            <div class="ks-fields">
+              <div class="ks-field-row">
+                <div class="ks-field"><?php ks_mod_txt('ks_brokerage_legal_name', __('Brokerage legal name', 'acreline'), __('Exact licensed name', 'acreline')); ?></div>
+                <div class="ks-field"><?php ks_mod_txt('ks_license_jurisdiction', __('License jurisdiction', 'acreline'), __('e.g. Pennsylvania Real Estate Commission', 'acreline')); ?></div>
+              </div>
+              <div class="ks-field-row">
+                <div class="ks-field"><?php ks_mod_txt('ks_license_number', __('License number (optional)', 'acreline'), ''); ?></div>
+                <div class="ks-field"><?php ks_mod_txt('ks_broker_license', __('Broker license (optional)', 'acreline'), ''); ?></div>
+              </div>
+              <div class="ks-field-row">
+                <div class="ks-field"><?php ks_mod_txt('ks_office_city', __('Office city', 'acreline'), ''); ?></div>
+                <div class="ks-field"><?php ks_mod_txt('ks_office_state', __('Office state', 'acreline'), ''); ?></div>
+              </div>
+              <?php
+                ks_mod_tog('ks_show_license_footer', __('Show brokerage ID in the footer', 'acreline'));
+            ks_mod_tog('ks_show_license_header', __('Show brokerage ID in the header / top bar', 'acreline'));
+            ?>
+            </div>
+          </div>
+
+          <div class="ks-card">
+            <div class="ks-card-head">
+              <span class="ks-card-icon" aria-hidden="true">🏠</span>
+              <div>
+                <h2 class="ks-card-title"><?php esc_html_e('Fair Housing', 'acreline'); ?></h2>
+                <p class="ks-card-desc"><?php esc_html_e('A statement and optional house mark. The Equal Housing logo is industry best practice — not federally mandatory. Avoid discriminatory preference in listing copy and photos.', 'acreline'); ?></p>
+              </div>
+            </div>
+            <div class="ks-fields">
+              <?php
+            ks_mod_tog('ks_eho_enable', __('Show Equal Housing Opportunity statement', 'acreline'));
+            ks_mod_tog('ks_eho_show_logo', __('Show Equal Housing house mark', 'acreline'));
+            ks_mod_area('ks_eho_statement', __('Custom statement (optional)', 'acreline'), __('Leave empty for the built-in Equal Housing Opportunity paragraph.', 'acreline'));
+            ?>
+            </div>
+          </div>
+
+          <div class="ks-card">
+            <div class="ks-card-head">
+              <span class="ks-card-icon" aria-hidden="true">📋</span>
+              <div>
+                <h2 class="ks-card-title"><?php esc_html_e('MLS / IDX slots', 'acreline'); ?></h2>
+                <p class="ks-card-desc"><?php esc_html_e('Empty until you paste your board’s exact disclaimer. This theme is featured-listings-first and does not claim IDX compliance for every MLS.', 'acreline'); ?></p>
+              </div>
+            </div>
+            <div class="ks-fields">
+              <?php
+            ks_mod_tog('ks_idx_enable', __('Show disclaimer slots on listing cards and singles', 'acreline'));
+            ks_mod_tog('ks_idx_attribution', __('Show listing-office attribution when filled', 'acreline'));
+            ks_mod_area('ks_idx_disclaimer', __('MLS / IDX disclaimer (verbatim)', 'acreline'), __('Paste your board’s exact text.', 'acreline'));
+            ks_mod_txt('ks_idx_copyright', __('Copyright line', 'acreline'), '');
+            ks_mod_url('ks_idx_logo_url', __('IDX / MLS logo URL', 'acreline'), 'https://');
+            ?>
+            </div>
+          </div>
+
+          <div class="ks-card">
+            <div class="ks-card-head">
+              <span class="ks-card-icon" aria-hidden="true">🔒</span>
+              <div>
+                <h2 class="ks-card-title"><?php esc_html_e('Privacy, terms, and form consent', 'acreline'); ?></h2>
+                <p class="ks-card-desc"><?php esc_html_e('Footer links only — write policy pages yourself. Showing/contact forms can require an unchecked consent checkbox. Consult counsel before autodialed or text marketing.', 'acreline'); ?></p>
+              </div>
+            </div>
+            <div class="ks-fields">
+              <div class="ks-field-row">
+                <div class="ks-field"><?php ks_mod_url('ks_privacy_url', __('Privacy Policy URL', 'acreline'), 'https://'); ?></div>
+                <div class="ks-field"><?php ks_mod_url('ks_terms_url', __('Terms of Use URL (optional)', 'acreline'), 'https://'); ?></div>
+              </div>
+              <?php
+            ks_mod_tog('ks_consent_enable', __('Require consent checkbox on showing and contact forms', 'acreline'));
+            ks_mod_area('ks_consent_disclosure', __('Consent disclosure', 'acreline'), __('Use {brokerage} for the licensed name. Leave empty for the built-in wording.', 'acreline'));
+            ks_mod_area('ks_consent_sms', __('Optional SMS / call language', 'acreline'), __('Extra sentence under the checkbox.', 'acreline'));
             ?>
             </div>
           </div>
@@ -942,13 +1038,17 @@ function ks_settings_css(): string
 .ks-color-hex { width: 7.5rem !important; font-family: ui-monospace, monospace; }
 
 .ks-field input[type="text"],
-.ks-field input[type="number"] {
+.ks-field input[type="number"],
+.ks-field input[type="url"],
+.ks-field textarea {
   width: 100%; border: 1px solid #ddd; border-radius: 7px;
   padding: 8px 12px; font-size: .875rem; color: #333;
   background: #fff; box-sizing: border-box;
   transition: border-color .15s, box-shadow .15s;
 }
-.ks-field input:focus {
+.ks-field textarea { min-height: 5.5rem; resize: vertical; }
+.ks-field input:focus,
+.ks-field textarea:focus {
   border-color: #155539; outline: none;
   box-shadow: 0 0 0 3px rgba(21,85,57,.12);
 }
@@ -1007,7 +1107,7 @@ jQuery(function($){
 
   /* Track unsaved changes */
   var dirty = false;
-  $("#ksSettingsForm").on("change input","input,select",function(){ dirty=true; $("#ksSaveStatus").text("Unsaved changes"); });
+  $("#ksSettingsForm").on("change input","input,select,textarea",function(){ dirty=true; $("#ksSaveStatus").text("Unsaved changes"); });
   $("#ksSettingsForm").on("submit",function(){ dirty=false; });
   $(window).on("beforeunload",function(e){ if(dirty){ e.preventDefault(); return "You have unsaved changes."; } });
 
@@ -1094,6 +1194,80 @@ function ks_tog(string $key, string $label): void
     echo '<span class="ks-toggle-switch" aria-hidden="true"></span>';
     echo '<span class="ks-toggle-text">'.esc_html($label).'</span>';
     echo '</label>';
+}
+
+/** Public contact / showing form consent checkbox. */
+function ks_render_consent_field(string $id = 'leadConsent'): string
+{
+    if (! Compliance::flag('ks_consent_enable')) {
+        return '';
+    }
+
+    $disclosure = Compliance::consentDisclosure();
+    $sms = Compliance::consentSms();
+
+    ob_start();
+    ?>
+    <div class="field field-span field-consent">
+      <input type="checkbox" id="<?php echo esc_attr($id); ?>" name="lead_consent" value="1" required>
+      <label for="<?php echo esc_attr($id); ?>">
+        <span><?php echo esc_html($disclosure); ?></span>
+        <?php if ($sms !== '') { ?>
+          <span class="field-consent__extra"><?php echo esc_html($sms); ?></span>
+        <?php } ?>
+      </label>
+    </div>
+    <?php
+
+    return (string) ob_get_clean();
+}
+
+/** Theme_mod toggle for the Compliance tab. */
+function ks_mod_tog(string $key, string $label): void
+{
+    $on = Compliance::flag($key);
+    $id = 'ks_mod_'.esc_attr($key);
+    echo '<label class="ks-toggle-wrap" for="'.esc_attr($id).'">';
+    echo '<input class="ks-toggle-input" type="checkbox" id="'.esc_attr($id).'" name="ks_mod['.esc_attr($key).']" value="1"'.checked($on, true, false).'>';
+    echo '<span class="ks-toggle-switch" aria-hidden="true"></span>';
+    echo '<span class="ks-toggle-text">'.esc_html($label).'</span>';
+    echo '</label>';
+}
+
+/** Theme_mod text input for the Compliance tab. */
+function ks_mod_txt(string $key, string $label, string $placeholder = ''): void
+{
+    $value = Compliance::text($key);
+    $id = 'ks_mod_'.esc_attr($key);
+    echo '<div class="ks-field">';
+    echo '<label for="'.esc_attr($id).'">'.esc_html($label).'</label>';
+    echo '<input type="text" id="'.esc_attr($id).'" name="ks_mod['.esc_attr($key).']" value="'.esc_attr($value).'" placeholder="'.esc_attr($placeholder).'">';
+    echo '</div>';
+}
+
+/** Theme_mod URL input for the Compliance tab. */
+function ks_mod_url(string $key, string $label, string $placeholder = ''): void
+{
+    $value = Compliance::text($key);
+    $id = 'ks_mod_'.esc_attr($key);
+    echo '<div class="ks-field">';
+    echo '<label for="'.esc_attr($id).'">'.esc_html($label).'</label>';
+    echo '<input type="url" id="'.esc_attr($id).'" name="ks_mod['.esc_attr($key).']" value="'.esc_attr($value).'" placeholder="'.esc_attr($placeholder).'">';
+    echo '</div>';
+}
+
+/** Theme_mod textarea for the Compliance tab. */
+function ks_mod_area(string $key, string $label, string $hint = ''): void
+{
+    $value = (string) get_theme_mod($key, '');
+    $id = 'ks_mod_'.esc_attr($key);
+    echo '<div class="ks-field">';
+    echo '<label for="'.esc_attr($id).'">'.esc_html($label).'</label>';
+    echo '<textarea id="'.esc_attr($id).'" name="ks_mod['.esc_attr($key).']" rows="4">'.esc_textarea($value).'</textarea>';
+    if ($hint !== '') {
+        echo '<p class="ks-field-hint">'.esc_html($hint).'</p>';
+    }
+    echo '</div>';
 }
 
 /** Render a text input field. */

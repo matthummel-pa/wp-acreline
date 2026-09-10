@@ -43,6 +43,7 @@
           <tr><td>MLS number</td><td>Display only — not a live feed.</td></tr>
           <tr><td>Map pin top % / left %</td><td>Position on the concept map graphic, not lat/long of a real parcel.</td></tr>
           <tr><td>Listing photo / virtual tour</td><td>Media library or URL. Do not keep Unsplash hotlinks on a client site.</td></tr>
+          <tr><td>Listing office</td><td>Optional brokerage attribution for IDX/MLS slots. Shown when Compliance → IDX attribution is on.</td></tr>
           <tr><td>Listing agent</td><td>Agent post ID.</td></tr>
           <tr><td>Featured</td><td>Homepage spotlight.</td></tr>
         </tbody>
@@ -50,7 +51,7 @@
       <h2>Agents</h2>
       <p>License, MLS/NRDS, specialties, service areas, contact, and social fields. Assign an agent on each listing.</p>
       <h2>Bookings</h2>
-      <p>The public Book a showing form POSTs to <code>/wp-json/keystone/v1/bookings</code>. A Booking post is created in <strong>Requested</strong> status. Advance it in wp-admin: Requested → Confirmed → Completed (or Cancelled). Nothing is emailed, texted, or added to a calendar.</p>
+      <p>The public Book a showing form POSTs to <code>/wp-json/keystone/v1/bookings</code>. A Booking post is created in <strong>Requested</strong> status. Advance it in wp-admin: Requested → Confirmed → Completed (or Cancelled). Nothing is emailed, texted, or added to a calendar. When form consent is on (Customize → Compliance), the request must include the checkbox; the Booking stores a consent flag and UTC timestamp.</p>
       <p>Public links must use a numeric listing post ID:</p>
       <p class="copy">/book/?listing_id=123</p>
       <p>Do not use <code>?listing=123</code> as a public query — that string can collide with the listing post type and 404.</p>

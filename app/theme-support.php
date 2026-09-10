@@ -68,7 +68,7 @@ function render_support_page(): void
           <?php
           $steps = [
               ['num' => '1', 'title' => __('Run the setup wizard', 'acreline'),
-                  'desc' => __('Go to Appearance → Acreline Setup and follow the five-step wizard to set your brand name, phone, email, color palette, and seed demo content.', 'acreline'),
+                  'desc' => __('Go to Appearance → Acreline Setup and follow the wizard to set your brand name, phone, brokerage legal name, color palette, and seed demo content.', 'acreline'),
                   'link' => admin_url('themes.php?page=acreline-setup'), 'link_text' => __('Open setup wizard', 'acreline')],
               ['num' => '2', 'title' => __('Add your listings', 'acreline'),
                   'desc' => __('Every listing is a Listing CPT with full metaboxes: photos, MLS info, property details, utilities, land data, open house, virtual tour, floor plan, and smart home features.', 'acreline'),
@@ -76,9 +76,9 @@ function render_support_page(): void
               ['num' => '3', 'title' => __('Create agent profiles', 'acreline'),
                   'desc' => __('Each agent is an Agent CPT with a photo, bio, stats (homes sold, volume, DOM), certifications, social links, calendar URL, and team assignment.', 'acreline'),
                   'link' => admin_url('edit.php?post_type=agent'), 'link_text' => __('View agents', 'acreline')],
-              ['num' => '4', 'title' => __('Customise Identity', 'acreline'),
-                  'desc' => __('Phone, email, address, hours, and social handles live under Appearance → Customize → Identity. Color style is Customize → Colors or Appearance → Acreline Settings → General.', 'acreline'),
-                  'link' => admin_url('customize.php?autofocus[section]=ks_identity'), 'link_text' => __('Open Identity', 'acreline')],
+              ['num' => '4', 'title' => __('Customise Identity &amp; Compliance', 'acreline'),
+                  'desc' => __('Phone, email, address, and hours live under Customize → Identity. Brokerage legal name, Fair Housing, IDX slots, privacy URL, and form consent live under Customize → Compliance (same fields in Acreline Settings). Not legal advice.', 'acreline'),
+                  'link' => admin_url('customize.php?autofocus[section]=ks_compliance'), 'link_text' => __('Open Compliance', 'acreline')],
               ['num' => '5', 'title' => __('Adjust feature toggles', 'acreline'),
                   'desc' => __('Use Theme Settings (Appearance → Acreline Settings) to turn individual sections on or off — mortgage calculator, open house banners, agent stats, booking fields, and more.', 'acreline'),
                   'link' => $settingsUrl, 'link_text' => __('Open settings', 'acreline')],
@@ -130,6 +130,8 @@ function render_support_page(): void
             'desc' => __('The homepage hero photo slowly pans and zooms. Turn it off under Customize → Header → Animate homepage hero image. Reduced-motion visitors see a still cover.', 'acreline')],
         ['icon' => '📱',  'title' => __('Mobile listing-search tilt', 'acreline'),
             'desc' => __('Optional: the homepage search panel gently follows device tilt on phones. Off by default. Does nothing without sensors or if permission is denied.', 'acreline')],
+        ['icon' => '⚖️',  'title' => __('Compliance tools', 'acreline'),
+            'desc' => __('Brokerage legal name, optional licenses, Fair Housing statement, MLS/IDX disclaimer slots, privacy URL, and a consent checkbox on forms. Not legal advice — check your state commission.', 'acreline')],
     ];
     foreach ($features as $f) { ?>
           <div class="kss-feature-card">

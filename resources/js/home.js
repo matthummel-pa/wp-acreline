@@ -131,6 +131,11 @@
   if(contactForm && contactConfirm){
     contactForm.addEventListener("submit", function(e){
       e.preventDefault();
+      var consent = contactForm.querySelector("[name=lead_consent]");
+      if(consent && !consent.checked){
+        if(typeof contactForm.reportValidity === "function") contactForm.reportValidity();
+        return;
+      }
       var btn = contactForm.querySelector("button[type=submit]");
       setBusy(btn, true);
       contactConfirm.classList.add("show");
@@ -205,6 +210,11 @@
   if(showingForm && showingConfirm){
     showingForm.addEventListener("submit", function(e){
       e.preventDefault();
+      var consent = showingForm.querySelector("[name=lead_consent]");
+      if(consent && !consent.checked){
+        if(typeof showingForm.reportValidity === "function") showingForm.reportValidity();
+        return;
+      }
       if(!showTime.value){
         showStatus(showingConfirm, "Pick a time slot to continue.", true);
         return;
@@ -225,7 +235,8 @@
         name: name,
         phone: (document.getElementById("showPhone") || {}).value || "",
         email: (document.getElementById("showEmail") || {}).value || "",
-        notes: (document.getElementById("showNotes") || {}).value || ""
+        notes: (document.getElementById("showNotes") || {}).value || "",
+        consent: consent ? consent.checked : false
       };
 
       function showOk(message){

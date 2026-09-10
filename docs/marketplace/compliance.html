@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acreline — Website compliance checklist</title>
+  <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+  <p class="site-bar">Acreline documentation · ThemeForest / own-site pack · Fiction only</p>
+  <header class="doc-head">
+    <div class="doc-head-inner">
+      <a class="brand-lockup" href="index.html">
+        <img src="assets/acreline-mark.svg" width="40" height="40" alt="">
+        <span><strong>Acreline</strong><span>Homes · neighborhoods · local agents</span></span>
+      </a>
+      <nav class="docs-nav" aria-label="Documentation">
+        <a href="index.html">Contents</a>
+        <a href="buyer-guide.html">Install &amp; setup</a>
+        <a href="branding.html">Branding</a>
+        <a href="customizer.html">Customizer</a>
+        <a href="listings.html">Listings</a>
+        <a href="support.html">Support</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1>Website compliance checklist</h1>
+    <p><strong>This is not legal advice.</strong> Acreline ships <em>configurable tools</em> and empty slots so a licensed office can display what their state commission, MLS, and counsel require. Rules vary by state and by board. The theme cannot make a site “compliant for every MLS.”</p>
+
+    <div class="note">
+      Fill fields under <strong>Appearance → Customize → Compliance</strong>, <strong>Appearance → Acreline Settings → Compliance</strong>, or the Compliance step in <strong>Appearance → Acreline Setup</strong>. Empty fields stay hidden on the public site. When the concept demo banner is on, fiction disclaimers stay; turn the banner off before a client walkthrough so “concept” and Sample County lines disappear.
+    </div>
+
+    <h2>1. State advertising / brokerage identification</h2>
+    <p>Almost every U.S. state requires the brokerage’s <strong>licensed name</strong> (exact as registered) on the website. Extra ID varies — examples, not a complete list:</p>
+    <ul>
+      <li><strong>California</strong> — license number on first-point-of-contact materials, including websites (Business &amp; Professions Code and DRE regulations).</li>
+      <li><strong>Texas</strong> — broker name sizing rules; statute bars TREC from requiring license numbers. Leave the license field blank if your state does not want it.</li>
+      <li><strong>Florida</strong> — licensed name on every page, typically next to contact information.</li>
+      <li><strong>New York</strong> — broker name plus address/phone; agent sites should link to the broker.</li>
+    </ul>
+    <p>Theme fields: brokerage legal name, optional license number, optional broker license, jurisdiction, office city/state. Display toggles for footer and header / top bar. Phone comes from Identity. <strong>Check your state commission</strong> — do not assume one state’s rule.</p>
+
+    <h2>2. Fair Housing (federal)</h2>
+    <p>The binding advertising rule is <strong>42 U.S.C. §3604(c)</strong>: no discriminatory preference in copy or imagery (race, color, religion, sex, handicap, familial status, national origin, plus any class your state or locality adds).</p>
+    <p>The Equal Housing Opportunity logo is <strong>not federally mandatory</strong> (HUD Part 109 was rescinded in 1996). The house mark and slogan are industry best practice. Acreline ships a statement plus an optional official-style house SVG — not HUD or NAR artwork. Customize or hide both.</p>
+    <p>Do not write neighborhood copy that signals who “belongs” there. Describe the house and the lot.</p>
+
+    <h2>3. NAR Code of Ethics (if you are a REALTOR®)</h2>
+    <p>Internet advertising typically wants the name as licensed, the brokerage, office city/state, and license jurisdiction. The fields above cover that.</p>
+    <p><strong>REALTOR® is a trademark.</strong> Use it only if you are a member. Acreline demo brand strings do not include REALTOR. Do not paste NAR logos you are not licensed to use.</p>
+
+    <h2>4. IDX / MLS (when you add a feed later)</h2>
+    <p>Acreline is featured-listings-first. It is not an IDX product and does <strong>not</strong> claim compliance for every MLS. When your board requires on-page text, use the slots:</p>
+    <ul>
+      <li>Listing-office attribution (per listing field <code>listing_office</code>, or the site brokerage name when the attribution toggle is on)</li>
+      <li>MLS disclaimer textarea — <strong>paste your board’s exact disclaimer</strong></li>
+      <li>Copyright line</li>
+      <li>Last-updated date (listing modified date)</li>
+      <li>IDX / MLS logo URL you have rights to</li>
+    </ul>
+    <p>Slots stay empty until you enable them and fill text. Pair a real feed with the plugin or integration your board approves.</p>
+
+    <h2>5. Lead / showing forms — TCPA-style consent</h2>
+    <p>Prior express written consent is still the safe pattern before autodialed or prerecorded marketing calls and texts. (The FCC one-to-one consent rule was vacated in 2025; that does not remove the need for clear consent.)</p>
+    <p>When the toggle is on, showing and contact forms show an <strong>unchecked</strong> checkbox, configurable disclosure that names the brokerage (use <code>{brokerage}</code>), and “consent is not required to purchase.” Optional SMS/call sentence underneath. Showing requests store a consent flag and UTC timestamp on the Booking post. The contact form is a concept confirm (nothing is emailed) — still require the checkbox on the page.</p>
+    <p>Consult counsel before you connect a texting or CRM tool. This checkbox is not a substitute for a TCPA program.</p>
+
+    <h2>6. Accessibility</h2>
+    <p>Keep WCAG 2.2 AA contrast. Forms use visible labels, a 44px-friendly consent target, and <code>aria-live</code> on confirms. Add useful alt text on listing photos. Do not install “accessibility overlay” widgets — they often fail users and audits.</p>
+
+    <h2>7. Privacy</h2>
+    <p>Footer fields accept a Privacy Policy URL and an optional Terms URL. The theme does <strong>not</strong> invent legal policy text. Publish real pages, then paste the URLs.</p>
+
+    <h2>Where to click</h2>
+    <table>
+      <thead><tr><th>Task</th><th>Screen</th></tr></thead>
+      <tbody>
+        <tr><td>All compliance fields</td><td>Customize → Compliance, or Acreline Settings → Compliance</td></tr>
+        <tr><td>First-run brokerage ID</td><td>Appearance → Acreline Setup → Compliance</td></tr>
+        <tr><td>Phone, brand, address</td><td>Customize → Identity</td></tr>
+        <tr><td>Hide “concept” / Sample County</td><td>Customize → Identity → uncheck demo banner</td></tr>
+        <tr><td>Agent license + brokerage</td><td>Agents → each profile; site legal name fills in if office is empty</td></tr>
+        <tr><td>Listing office attribution</td><td>Listings → Listing office field + IDX toggles</td></tr>
+        <tr><td>Consent on a showing</td><td>Bookings → Form consent (read-only timestamp)</td></tr>
+      </tbody>
+    </table>
+  </main>
+  <footer class="doc-foot">Not legal advice · Fiction only · Theme license GPLv2 or later · Created by Matt Hummel</footer>
+  <script src="assets/docs.js"></script>
+</body>
+</html>

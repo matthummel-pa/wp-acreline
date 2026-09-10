@@ -180,6 +180,7 @@ class Catalog
             'open_house_type' => 'Open house type',
             'days_on_market' => 'Days on market',
             'listing_source' => 'Listing source',
+            'listing_office' => 'Listing office / brokerage attribution',
             'commission' => 'Buyer agent commission %',
             // Agent & meta
             'listing_agent' => 'Listing agent (agent post ID)',
@@ -236,7 +237,7 @@ class Catalog
             'bio_video' => 'Intro video URL',
             'tag_line' => 'Tag line (short headline)',
             'process_note' => 'How I work (1–2 sentences)',
-            'transaction_types' => 'Transaction types (e.g. Farms · Land · Historic Homes)',
+            'transaction_types' => 'Transaction types (e.g. Buyers · sellers · listings)',
             'specialties' => 'Specialties',
             'service_areas' => 'Service areas',
             'languages' => 'Languages',
@@ -303,6 +304,8 @@ class Catalog
             'attendees' => 'Number of attendees',
             'source' => 'Lead source',
             'notes' => 'Notes (visible to agent)',
+            'consent' => 'Marketing consent (1 or empty)',
+            'consent_at' => 'Consent timestamp (UTC)',
             'special_notes' => 'Special access notes',
             'showing_feedback' => 'Post-showing feedback',
             'follow_up_date' => 'Follow-up date',
@@ -548,7 +551,9 @@ class Catalog
             'open_house_type' => (string) self::getMeta($post->ID, 'open_house_type', ''),
             'days_on_market' => (string) self::getMeta($post->ID, 'days_on_market', ''),
             'listing_source' => (string) self::getMeta($post->ID, 'listing_source', ''),
+            'listing_office' => (string) self::getMeta($post->ID, 'listing_office', ''),
             'commission' => (string) self::getMeta($post->ID, 'commission', ''),
+            'updated' => get_the_modified_date('Y-m-d', $post),
             // Derived
             'price_per_sqft' => ($sqft > 0 && $price > 0) ? (int) round($price / $sqft) : 0,
         ];
@@ -564,7 +569,7 @@ class Catalog
             'permalink' => get_permalink($post),
             'name' => get_the_title($post),
             'bio' => (string) (self::getMeta($post->ID, 'bio', '') ?: wp_strip_all_tags($post->post_content)),
-            'job_title' => (string) self::getMeta($post->ID, 'job_title', 'Realtor'),
+            'job_title' => (string) self::getMeta($post->ID, 'job_title', 'Agent'),
             'team_name' => (string) self::getMeta($post->ID, 'team_name', ''),
             'license_number' => (string) self::getMeta($post->ID, 'license_number', ''),
             'license_state' => (string) self::getMeta($post->ID, 'license_state', 'PA'),
@@ -783,7 +788,9 @@ class Catalog
             'open_house_type' => (string) ($item['open_house_type'] ?? ''),
             'days_on_market' => (string) ($item['days_on_market'] ?? ''),
             'listing_source' => (string) ($item['listing_source'] ?? ''),
+            'listing_office' => (string) ($item['listing_office'] ?? ''),
             'commission' => (string) ($item['commission'] ?? ''),
+            'updated' => (string) ($item['updated'] ?? ''),
             'price_per_sqft' => ($sqft > 0 && $price > 0) ? (int) round($price / $sqft) : 0,
         ];
     }
@@ -802,7 +809,7 @@ class Catalog
             'permalink' => home_url('/agents'),
             'name' => $name,
             'bio' => (string) ($item['bio'] ?? ''),
-            'job_title' => (string) ($item['job_title'] ?? 'Realtor'),
+            'job_title' => (string) ($item['job_title'] ?? 'Agent'),
             'team_name' => (string) ($item['team_name'] ?? ''),
             'license_number' => (string) ($item['license_number'] ?? ''),
             'license_state' => (string) ($item['license_state'] ?? 'PA'),

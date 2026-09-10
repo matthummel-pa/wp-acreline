@@ -32,7 +32,12 @@
           </svg>
           <strong>{{ $brand }}</strong>
         </div>
-        <p>{{ $identity['footerBlurb'] ?? '' }}</p>
+        @if (! empty($identity['footerBlurb']))
+          <p>{{ $identity['footerBlurb'] }}</p>
+        @endif
+        @if (! empty($compliance['showLicenseFooter']))
+          @include('partials.compliance-id')
+        @endif
         @include('partials.social-links')
       </div>
       <div>
@@ -63,14 +68,33 @@
       </div>
     @endif
 
-    <p class="footer-service-area">{{ __('Serving a fictional Sample County market for design demonstration purposes.', 'acreline') }}</p>
+    @if (! empty($identity['showDemoChrome']))
+      <p class="footer-service-area">{{ __('Serving a fictional Sample County market for design demonstration purposes.', 'acreline') }}</p>
+    @endif
     <div class="footer-bottom">
-      <div class="equal-housing">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 21v-6h6v6"/></svg>
-        <span>{{ __('Equal Housing Opportunity (concept)', 'acreline') }}</span>
-      </div>
+      @if (! empty($compliance['ehoEnabled']))
+        <div class="equal-housing">
+          @if (! empty($compliance['ehoShowLogo']))
+            <svg class="equal-housing__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M16 4L4 14h3v12h6v-7h6v7h6V14h3L16 4zm-1.2 9.2h2.4v1.4h-2.4V13.2zm0 2.6h2.4V20h-2.4v-4.2z"/>
+            </svg>
+          @endif
+          <div class="equal-housing__copy">
+            <strong>{{ $compliance['ehoLabel'] ?? __('Equal Housing Opportunity', 'acreline') }}</strong>
+            @if (! empty($compliance['ehoStatement']))
+              <p>{{ $compliance['ehoStatement'] }}</p>
+            @endif
+          </div>
+        </div>
+      @endif
       <p>
-        &copy; <span data-year>{{ date('Y') }}</span> {{ $brand }}
+        &copy; <span data-year>{{ date('Y') }}</span> {{ $compliance['licensedName'] ?? $brand }}
+        @if (! empty($compliance['privacyUrl']))
+          · <a href="{{ esc_url($compliance['privacyUrl']) }}">{{ __('Privacy', 'acreline') }}</a>
+        @endif
+        @if (! empty($compliance['termsUrl']))
+          · <a href="{{ esc_url($compliance['termsUrl']) }}">{{ __('Terms', 'acreline') }}</a>
+        @endif
         @if (! empty($identity['showCredit']))
           @if (! empty($identity['creditUrl']))
             · <a href="{{ esc_url($identity['creditUrl']) }}" rel="nofollow noopener">{{ $identity['creditText'] }}</a>

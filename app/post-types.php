@@ -10,6 +10,7 @@
 namespace App;
 
 use App\Support\Catalog;
+use App\Support\Compliance;
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
@@ -152,6 +153,15 @@ function create_booking_request(WP_REST_Request $request): WP_REST_Response|WP_E
         return new WP_Error('ks_bad_fields', __('Name, phone, email, date and time are required.', 'acreline'), ['status' => 400]);
     }
 
+    $consentOn = Compliance::flag('ks_consent_enable');
+    $consented = $request->get_param('consent') === true
+        || $request->get_param('consent') === 1
+        || $request->get_param('consent') === '1'
+        || $request->get_param('lead_consent') === '1';
+    if ($consentOn && ! $consented) {
+        return new WP_Error('ks_consent_required', __('Please confirm the contact consent checkbox.', 'acreline'), ['status' => 400]);
+    }
+
     if (! array_key_exists($type, Catalog::SHOWING_TYPES)) {
         $type = 'in-person';
     }
@@ -179,6 +189,10 @@ function create_booking_request(WP_REST_Request $request): WP_REST_Response|WP_E
     Catalog::updateMeta($bookingId, 'notes', $notes);
     Catalog::updateMeta($bookingId, 'status', 'requested');
     Catalog::updateMeta($bookingId, 'agent_id', $agentId);
+    if ($consented) {
+        Catalog::updateMeta($bookingId, 'consent', '1');
+        Catalog::updateMeta($bookingId, 'consent_at', gmdate('c'));
+    }
 
     return new WP_REST_Response([
         'id' => $bookingId,

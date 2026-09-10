@@ -77,6 +77,10 @@ class Identity
             return $blurb;
         }
 
+        if (! self::showDemoChrome()) {
+            return '';
+        }
+
         return __('Acreline sample office by Matt Hummel. Fiction only — not a licensed brokerage or live MLS feed.', 'acreline');
     }
 
