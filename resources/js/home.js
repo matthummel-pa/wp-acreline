@@ -172,11 +172,11 @@
 
   /* Showing booking */
   var showingForm = document.getElementById("showingForm");
-  var slotGrid = document.getElementById("slotGrid");
+  var slotGrid = document.getElementById("slotGrid") || document.getElementById("showingSlots");
   var showTime = document.getElementById("showTime");
-  var showProperty = document.getElementById("showProperty");
+  var showProperty = document.getElementById("showProperty") || document.getElementById("sfListing");
   var showingConfirm = document.getElementById("showingConfirm");
-  var showDate = document.getElementById("showDate");
+  var showDate = document.getElementById("showDate") || document.getElementById("sfDate");
 
   if(showDate){
     var tomorrow = new Date();
@@ -222,20 +222,25 @@
       var listingId = showProperty ? showProperty.value : "";
       var propLabel = showProperty && showProperty.selectedOptions[0] ? showProperty.selectedOptions[0].text : "a sample home";
       var when = (showDate && showDate.value ? showDate.value : "your date") + " · " + showTime.value;
-      var name = (document.getElementById("showName") || {}).value || "Guest";
+      var nameEl = document.getElementById("showName") || document.getElementById("sfName");
+      var name = (nameEl || {}).value || "Guest";
       var submitBtn = showingForm.querySelector("button[type=submit]");
       setBusy(submitBtn, true);
 
       var endpoint = window.ACRELINE && window.ACRELINE.restUrl ? window.ACRELINE.restUrl + "bookings" : "";
+      var typeEl = document.getElementById("showType") || document.getElementById("sfType");
+      var phoneEl = document.getElementById("showPhone") || document.getElementById("sfPhone");
+      var emailEl = document.getElementById("showEmail") || document.getElementById("sfEmail");
+      var notesEl = document.getElementById("showNotes") || document.getElementById("sfNotes");
       var payload = {
         listing_id: listingId,
         date: showDate ? showDate.value : "",
-        time: showTime.value,
-        type: (document.getElementById("showType") || {}).value || "in-person",
+        time: showTime ? showTime.value : "",
+        type: (typeEl || {}).value || "in-person",
         name: name,
-        phone: (document.getElementById("showPhone") || {}).value || "",
-        email: (document.getElementById("showEmail") || {}).value || "",
-        notes: (document.getElementById("showNotes") || {}).value || "",
+        phone: (phoneEl || {}).value || "",
+        email: (emailEl || {}).value || "",
+        notes: (notesEl || {}).value || "",
         consent: consent ? consent.checked : false
       };
 

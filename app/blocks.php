@@ -3553,11 +3553,20 @@ function ks_booking_form_html(): string
         </div>
         <div class="field">
           <label for="sfNotes"><?php esc_html_e('Notes', 'acreline'); ?></label>
-          <textarea id="sfNotes" name="notes" rows="3" placeholder="<?php esc_attr_e('Boots on, perc questions, pets in the car…', 'acreline'); ?>"></textarea>
+          <textarea id="sfNotes" name="notes" rows="3" placeholder="<?php esc_attr_e('Pets, gate code, first-time buyer…', 'acreline'); ?>"></textarea>
         </div>
-        <div class="field">
-          <div id="showingSlots" class="slot-grid" role="group" aria-label="<?php esc_attr_e('Choose a time slot', 'acreline'); ?>"></div>
+        <div class="field field-span">
+          <div id="showingSlots" class="slot-grid" role="group" aria-label="<?php esc_attr_e('Choose a time slot', 'acreline'); ?>">
+            <button type="button" class="slot" data-time="9:00 AM">9:00 AM</button>
+            <button type="button" class="slot" data-time="10:30 AM">10:30 AM</button>
+            <button type="button" class="slot" data-time="12:00 PM">12:00 PM</button>
+            <button type="button" class="slot" data-time="1:30 PM">1:30 PM</button>
+            <button type="button" class="slot" data-time="3:00 PM">3:00 PM</button>
+            <button type="button" class="slot" data-time="4:30 PM">4:30 PM</button>
+          </div>
+          <input type="hidden" id="showTime" name="time" value="">
         </div>
+        <?php echo ks_render_consent_field('leadConsent'); ?>
         <div class="field">
           <button type="submit" class="btn btn-primary btn-block" id="showingSubmit"><?php esc_html_e('Request showing', 'acreline'); ?></button>
         </div>

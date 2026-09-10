@@ -432,7 +432,7 @@ function ks_wizard_step_compliance(): void
 function ks_wizard_step_colors(): void
 {
     $current = ColorSchemes::currentKey();
-    $demoOn = (bool) get_theme_mod('ks_show_demo_chrome', true);
+    $demoOn = \App\ks_hero_value_on(get_theme_mod('ks_show_demo_chrome', true));
     $creditOn = (bool) get_theme_mod('ks_show_credit', true);
 
     echo '<h2>'.esc_html__('Color style', 'acreline').'</h2>';

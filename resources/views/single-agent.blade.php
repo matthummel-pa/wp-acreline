@@ -362,12 +362,6 @@
               <dd>{{ $agent['nrds_id'] }}</dd>
             </div>
           @endif
-          @if ($agent['office'])
-            <div>
-              <dt>{{ __('Brokerage', 'acreline') }}</dt>
-              <dd>{{ $agent['office'] }}</dd>
-            </div>
-          @endif
           @if ($agent['years_experience'])
             <div>
               <dt>{{ __('Experience', 'acreline') }}</dt>
@@ -506,16 +500,16 @@
     <header class="section-head left reveal">
       <p class="eyebrow">{{ __('What to expect', 'acreline') }}</p>
       <h2 id="ap-walk-heading">{{ sprintf(__('Working with %s', 'acreline'), $agent['name']) }}</h2>
-      <p>{{ __('Rural property takes more than 20 minutes. Here is how a sample showing actually runs.', 'acreline') }}</p>
+      <p>{{ __('A showing should feel like a walk-through, not a pitch. Here is how a sample visit runs.', 'acreline') }}</p>
     </header>
     <div class="scan-grid cols-3 reveal">
       <article class="scan-card">
         <span class="num">{{ __('Specialty', 'acreline') }}</span>
-        <h3>{{ $agent['specialties'] ?: __('Farms, houses, and land', 'acreline') }}</h3>
+        <h3>{{ $agent['specialties'] ?: __('Homes, neighborhoods, and listings', 'acreline') }}</h3>
         <ul>
-          <li>{{ $agent['service_areas'] ?: __('Sample County townships and nearby boroughs', 'acreline') }}</li>
-          <li>{{ __('Boots-on-ground before any offer', 'acreline') }}</li>
-          <li>{{ __('Honest notes on wet corners and rollback risk', 'acreline') }}</li>
+          <li>{{ $agent['service_areas'] ?: __('Local neighborhoods and nearby towns', 'acreline') }}</li>
+          <li>{{ __('In-person walk-through before any offer', 'acreline') }}</li>
+          <li>{{ __('Clear notes on condition, timing, and next steps', 'acreline') }}</li>
         </ul>
       </article>
       <article class="scan-card">

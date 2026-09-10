@@ -105,7 +105,7 @@ class Identity
 
     public static function showDemoChrome(): bool
     {
-        return (bool) get_theme_mod('ks_show_demo_chrome', true);
+        return \App\ks_hero_value_on(get_theme_mod('ks_show_demo_chrome', true));
     }
 
     public static function showCredit(): bool
