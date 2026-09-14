@@ -102,6 +102,41 @@ class ColorSchemes
     }
 
     /**
+     * Hex palette for Gutenberg. Keep these hex (not oklch) so the color picker can apply them.
+     *
+     * @return list<array{slug: string, color: string, name: string}>
+     */
+    public static function gutenbergPalette(): array
+    {
+        $palette = [];
+        foreach (self::all() as $key => $scheme) {
+            $palette[] = [
+                'slug' => $key,
+                'color' => $scheme['accent'],
+                'name' => $scheme['label'],
+            ];
+        }
+        $forest = self::all()['forest'];
+        $palette[] = [
+            'slug' => 'paper',
+            'color' => $forest['paper'],
+            'name' => __('Paper', 'acreline'),
+        ];
+        $palette[] = [
+            'slug' => 'ink',
+            'color' => $forest['ink'],
+            'name' => __('Ink', 'acreline'),
+        ];
+        $palette[] = [
+            'slug' => 'white',
+            'color' => '#ffffff',
+            'name' => __('White', 'acreline'),
+        ];
+
+        return $palette;
+    }
+
+    /**
      * @return array<string, array{label: string, accent: string, paper: string, ink: string, css: string}>
      */
     public static function forJs(): array

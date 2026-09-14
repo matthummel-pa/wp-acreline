@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.5
+
+- **Editor** — The block-editor color picker works again. Tailwind v4 had dumped 288 `oklch()` swatches into `theme.json` and turned off custom hex, so Gutenberg could not apply a color. The palette is now the eight Acreline hex styles plus paper, ink, and white, and the custom picker is on.
+
 ## 1.5.4
 
 - **Accessibility** — Contrast pass on themed chrome: muted notes (`--ink-faint`), top-bar chips and CTA, primary buttons, footer / Equal Housing copy, and newsletter fine print. Token generation floors text to WCAG AA (4.5:1) and UI chrome to 3:1 so Forest, Harvest, Charcoal, Clay, Orchard, Navy, and custom pale accents stay readable. Not a “fully AA certified” claim.

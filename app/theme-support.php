@@ -247,6 +247,10 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.5', [
+            __('Block editor color picker works again — custom hex plus the eight Acreline styles', 'acreline'),
+            __('Palette uses hex (Forest, Clay, paper, ink) instead of Tailwind oklch swatches Gutenberg could not apply', 'acreline'),
+        ]],
         ['1.5.4', [
             __('Contrast pass: muted text, top-bar chips, buttons, footer, and Equal Housing stay readable on every color style', 'acreline'),
             __('Custom pale accents pick a darker text color when the swatch would fail WCAG AA', 'acreline'),

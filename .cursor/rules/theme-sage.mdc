@@ -26,6 +26,7 @@ Marketing page content is in **Gutenberg block attributes** (not `ks_*` post met
 - `PageCopy.php` is retained for migration reference and SEO fallbacks only.
 - Blade page templates (`front-page.blade.php`, `page-listings.blade.php`, etc.) call `@php(the_content())`. All section HTML comes from block render callbacks in `app/blocks.php`.
 - Block attributes store copy text. Site-wide defaults (phone, address, hours, social) stay in **Appearance → Customize → Identity**.
+- Gutenberg **color picker**: hex palette in `theme.json` (`custom: true`). Keep `disableTailwindColors: true` in `vite.config.js`. Tailwind v4 `oklch()` swatches plus `custom: false` make the picker a no-op.
 - Page template mapping still applies — the Blade file determines which template WordPress sees.
 
 | Slug | Template |

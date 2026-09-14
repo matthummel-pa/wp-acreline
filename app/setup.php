@@ -6,6 +6,8 @@
 
 namespace App;
 
+use App\Support\ColorSchemes;
+use App\Support\Identity;
 use App\Support\Seo;
 use Illuminate\Support\Facades\Vite;
 
@@ -27,6 +29,9 @@ add_filter('block_editor_settings_all', function ($settings) {
     // Editor-only overrides (loaded after app.css so they win).
     $editorStyle = Vite::asset('resources/css/editor.css');
     $settings['styles'][] = ['css' => "@import url('{$editorStyle}')"];
+
+    // Customizer tokens after compiled :root fallbacks (same order as the public layout).
+    $settings['styles'][] = ['css' => Identity::cssVariables()];
 
     return $settings;
 });
@@ -65,6 +70,27 @@ add_filter('theme_file_path', function ($path, $file) {
         ? public_path('build/assets/theme.json')
         : $path;
 }, 10, 2);
+
+/**
+ * Gutenberg color UI needs hex swatches and a custom picker.
+ * Tailwind v4's generated palette is oklch() and `custom: false` hid the picker.
+ */
+add_filter('wp_theme_json_data_theme', function ($themeJson) {
+    if (! $themeJson instanceof \WP_Theme_JSON_Data) {
+        return $themeJson;
+    }
+
+    return $themeJson->update_with([
+        'version' => 3,
+        'settings' => [
+            'color' => [
+                'custom' => true,
+                'defaultPalette' => false,
+                'palette' => ColorSchemes::gutenbergPalette(),
+            ],
+        ],
+    ]);
+});
 
 /**
  * Disable on-demand block asset loading.

@@ -233,7 +233,7 @@ Versions that disagree across these files will confuse the WP.org parser and the
 - **`card-lock.css`** — locked card chrome (white faces, thin shadow, no green bars). Imported **last** in `app.css`; do not delete or move it above `keystone.css`.
 - **`block-options.css`** — CSS modifier classes for block advanced settings. Class names must match what the PHP render callbacks emit.
 - **`editor.css`** — editor-only overrides, loaded after `app.css` in the block editor canvas.
-- Color tokens come from `Identity::cssVariables()` (Customizer-driven), overriding the defaults in `keystone.css :root`.
+- Color tokens come from `Identity::cssVariables()` (Customizer-driven), overriding the defaults in `keystone.css :root`. Gutenberg’s palette is the hex list in `theme.json` (`custom: true`). Do not re-enable Tailwind color dump (`disableTailwindColors` must stay true) — v4 oklch swatches break the picker.
 - Accessibility target: WCAG 2.2 AA. Color contrast floors: `--ink` on `--paper`, `--ink-soft` for secondary text, `--ink-faint` for notes — Identity floors faint/soft to 4.5:1 on paper and white cards.
 
 ---
