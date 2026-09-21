@@ -72,7 +72,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 
 | Field | Value |
 | --- | --- |
-| **Version** | 1.5.4 |
+| **Version** | 1.5.5 |
 | **Software version** | WordPress 6.6, 6.7, 6.8, 7.0 (tested up to 7.0.1) |
 | **Compatible browsers** | Chrome, Firefox, Safari, Edge (current two versions) |
 | **Compatible with** | No page builder required. Optional: Yoast, Rank Math, SEOPress, AIOSEO |
@@ -99,7 +99,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 <h3>32 custom Gutenberg blocks</h3>
 <p>All marketing pages are built with actual WordPress blocks (not Classic Editor shortcodes or HTML blocks). Every block renders server-side, so the editor canvas matches the live page exactly. Inspector Controls expose typography, image picker, hero overlay, CTA styles, FAQ format, column count, band colors, and per-block show/hide toggles — no coding needed.</p>
 <ul>
-  <li>Home Hero with live listing search (type, price, area), cinematic photo pan (on by default), and optional phone tilt on the search panel (off by default)</li>
+  <li>Home Hero with live listing search (type, price, area), cinematic photo pan (on by default), and phone tilt on the search panel (on by default)</li>
   <li>Region Coverage — split map + neighborhood cards, or bento/grid; editable methods and CTAs</li>
   <li>Pricing plans, logo strip, and newsletter / new-listings digest (digest teasers, split, centered, or compact — demo form, nothing is emailed)</li>
   <li>Featured Listings Spotlight — dynamic, pulls from WP</li>
@@ -124,7 +124,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 </ul>
 
 <h3>Homepage hero motion (1.4.3 / 1.4.4)</h3>
-<p>The homepage hero photo slowly pans and zooms. Headlines, the overlay, and the listing search stay still. Turn the animation off under Customize → Header or Appearance → Acreline Settings → General (on by default). An optional phone-only tilt on the search panel is off by default (“Tilt listing search on mobile”) — it does nothing without sensors or if the visitor declines access. Both screens store the same saved values.</p>
+<p>The homepage hero photo slowly pans and zooms. Headlines, the overlay, and the listing search stay still. Turn the animation off under Customize → Header or Appearance → Acreline Settings → General (on by default). Phone-only tilt on the search panel is on by default (“Tilt listing search on mobile”) — it does nothing without sensors or if the visitor declines access. Both screens store the same saved values.</p>
 
 <h3>Top bar (new in 1.4.0)</h3>
 <p>A configurable slim bar above the header — desktop only (hidden below 900 px). All enabled content surfaces automatically at the foot of the mobile nav drawer.</p>
@@ -144,7 +144,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
   <li>Demo banner toggle (off on a real site)</li>
   <li>Eight color styles: Forest (default), Clay, Navy, Burgundy, Harvest, Lake, Orchard, Charcoal</li>
   <li>Accent, paper, and ink color pickers per style</li>
-  <li>Header: sticky / static, standard / compact, homepage Ken Burns photo animation (on), optional mobile listing-search tilt (off)</li>
+  <li>Header: sticky / static, standard / compact, homepage Ken Burns photo animation (on), mobile listing-search tilt (on)</li>
   <li>Typography: five font families, base size, heading weight</li>
   <li>Social links (Facebook, Instagram, YouTube, LinkedIn, X)</li>
   <li>GitHub token for one-click theme updates</li>
@@ -199,7 +199,7 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 - Eight named color styles + accent / paper / ink pickers
 - **Top bar** (desktop-only, mobile nav fallback) with announcement, contacts, social icons, CTA
 - Homepage Ken Burns hero photo animation (Customize → Header, on by default)
-- Optional mobile tilt on the homepage listing search (Customize → Header, off by default; no-op without sensors or permission)
+- Mobile tilt on the homepage listing search (Customize → Header, on by default; no-op without sensors or permission)
 - Listings, agents, and showing-request bookings
 - Listing comparison modal (up to 3 side-by-side)
 - Saved listings drawer (localStorage, floating button)

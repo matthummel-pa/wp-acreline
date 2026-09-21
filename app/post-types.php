@@ -189,6 +189,22 @@ function create_booking_request(WP_REST_Request $request): WP_REST_Response|WP_E
     Catalog::updateMeta($bookingId, 'notes', $notes);
     Catalog::updateMeta($bookingId, 'status', 'requested');
     Catalog::updateMeta($bookingId, 'agent_id', $agentId);
+    $buyerType = sanitize_key((string) $request->get_param('buyer_type'));
+    if (array_key_exists($buyerType, Catalog::BUYER_TYPES)) {
+        Catalog::updateMeta($bookingId, 'buyer_type', $buyerType);
+    }
+    $commPref = sanitize_key((string) $request->get_param('comm_preference'));
+    if (array_key_exists($commPref, Catalog::COMM_PREFERENCES)) {
+        Catalog::updateMeta($bookingId, 'comm_preference', $commPref);
+    }
+    $source = sanitize_key((string) $request->get_param('source'));
+    if (array_key_exists($source, Catalog::LEAD_SOURCES)) {
+        Catalog::updateMeta($bookingId, 'source', $source);
+    }
+    $attendees = (int) $request->get_param('attendees');
+    if ($attendees > 0) {
+        Catalog::updateMeta($bookingId, 'attendees', (string) min(12, $attendees));
+    }
     if ($consented) {
         Catalog::updateMeta($bookingId, 'consent', '1');
         Catalog::updateMeta($bookingId, 'consent_at', gmdate('c'));

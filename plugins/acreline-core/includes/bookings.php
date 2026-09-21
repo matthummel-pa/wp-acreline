@@ -94,6 +94,22 @@ function keystone_core_create_booking_request(WP_REST_Request $request)
     update_post_meta($bookingId, 'ks_notes', $notes);
     update_post_meta($bookingId, 'ks_status', 'requested');
     update_post_meta($bookingId, 'ks_agent_id', $agentId);
+    $buyerType = sanitize_key((string) $request->get_param('buyer_type'));
+    if (in_array($buyerType, ['pre-approved', 'cash', 'browsing', 'renting', 'investor'], true)) {
+        update_post_meta($bookingId, 'ks_buyer_type', $buyerType);
+    }
+    $commPref = sanitize_key((string) $request->get_param('comm_preference'));
+    if (in_array($commPref, ['phone', 'text', 'email'], true)) {
+        update_post_meta($bookingId, 'ks_comm_preference', $commPref);
+    }
+    $source = sanitize_key((string) $request->get_param('source'));
+    if (in_array($source, ['website', 'referral', 'sign', 'social', 'mls', 'open-house', 'other'], true)) {
+        update_post_meta($bookingId, 'ks_source', $source);
+    }
+    $attendees = (int) $request->get_param('attendees');
+    if ($attendees > 0) {
+        update_post_meta($bookingId, 'ks_attendees', (string) min(12, $attendees));
+    }
     if ($consented) {
         update_post_meta($bookingId, 'ks_consent', '1');
         update_post_meta($bookingId, 'ks_consent_at', gmdate('c'));

@@ -197,7 +197,7 @@
   var pinnedId = null;
 
   var currency = function(n){
-    return "$" + Math.round(n).toLocaleString("en-US");
+    return currencySymbol + Math.round(n).toLocaleString("en-US");
   };
 
   /* ============================= ICONS ============================= */
@@ -209,6 +209,16 @@
   };
 
   var TYPE_COLOR = { home:"#1f6b4a", farm:"#059669", land:"#d97706", historic:"#3f3f46" };
+  var SETTINGS = (window.ACRELINE && window.ACRELINE.settings) || {};
+  function settingOn(key, fallback){
+    if (typeof SETTINGS[key] === "boolean") return SETTINGS[key];
+    return fallback !== false;
+  }
+  var currencySymbol = SETTINGS.currencySymbol || "$";
+  var labelBeds = SETTINGS.labelBeds || "Beds";
+  var labelBaths = SETTINGS.labelBaths || "Baths";
+  var labelSqft = SETTINGS.labelSqft || "Sq Ft";
+  var labelAcres = SETTINGS.labelAcres || "Acres";
   var TOWNSHIP_LABELS = { Cumberland:"North Ridge", Straban:"Mill Creek", Franklin:"Oak Hollow" };
   function townshipLabel(l){
     return l.townshipLabel || TOWNSHIP_LABELS[l.township] || l.township;
@@ -217,11 +227,20 @@
   function specsHTML(l){
     var parts = [];
     if(l.type !== "land"){
-      parts.push('<span>'+ICONS.bed+' '+l.beds+' bd</span>');
-      parts.push('<span>'+ICONS.bath+' '+l.baths+' ba</span>');
-      parts.push('<span>'+ICONS.sqft+' '+Number(l.sqft).toLocaleString()+' sqft</span>');
+      if(settingOn("listingShowBeds")) parts.push('<span>'+ICONS.bed+' '+l.beds+' '+escapeIdx(labelBeds.toLowerCase() === "beds" ? "bd" : labelBeds)+'</span>');
+      if(settingOn("listingShowBaths")) parts.push('<span>'+ICONS.bath+' '+l.baths+' '+escapeIdx(labelBaths.toLowerCase() === "baths" ? "ba" : labelBaths)+'</span>');
+      if(settingOn("listingShowSqft") && l.sqft) parts.push('<span>'+ICONS.sqft+' '+Number(l.sqft).toLocaleString()+' '+escapeIdx(labelSqft)+'</span>');
     }
-    parts.push('<span>'+ICONS.acres+' '+l.acres+' ac</span>');
+    if(settingOn("listingShowAcres")) parts.push('<span>'+ICONS.acres+' '+l.acres+' '+escapeIdx(labelAcres.toLowerCase() === "acres" ? "ac" : labelAcres)+'</span>');
+    if(settingOn("listingShowPpsf") && l.price_per_sqft){
+      parts.push('<span>'+currency(l.price_per_sqft)+'/'+escapeIdx(labelSqft)+'</span>');
+    }
+    if(settingOn("listingShowDom") && l.days_on_market){
+      parts.push('<span>'+escapeIdx(String(l.days_on_market))+' DOM</span>');
+    }
+    if(settingOn("listingShowMls") && l.mls_number){
+      parts.push('<span>MLS '+escapeIdx(l.mls_number)+'</span>');
+    }
     return parts.join("");
   }
 
@@ -234,6 +253,10 @@
   var emptyEl  = document.getElementById("emptyState");
   var countEl  = document.getElementById("resultCount");
   var pinsEl   = document.getElementById("mapPins");
+  if (gridEl && SETTINGS.listingGridCols) {
+    gridEl.classList.remove("ks-cols-2", "ks-cols-3", "ks-cols-4");
+    gridEl.classList.add("ks-cols-"+SETTINGS.listingGridCols);
+  }
 
   function escapeIdx(s){
     return String(s || "").replace(/[&<>"']/g, function(ch){
@@ -268,20 +291,34 @@
   function cardTemplate(l){
     var saved   = !!savedListings[l.id];
     var compared = !!compareSet[l.id];
+    var badges = [];
+    if (settingOn("listingShowStatusBadge") && l.status) {
+      badges.push('<span class="status-tag status-'+escapeIdx(l.status)+'">'+statusLabel(l.status)+'</span>');
+    }
+    if (l.featured) {
+      badges.push('<span class="card-featured-pill">Featured</span>');
+    }
+    var typeTag = settingOn("listingShowTypeBadge") && l.typeLabel
+      ? '<span class="card-tag">'+escapeIdx(l.typeLabel)+'</span>'
+      : '';
+    var priceHtml = settingOn("listingShowPrice")
+      ? '<span class="card-price">'+currency(l.price)+'</span>'
+      : '';
+    var specs = specsHTML(l);
     return (
-      '<article class="card" id="card-'+l.id+'" data-id="'+l.id+'">' +
+      '<article class="card'+(l.featured ? ' is-featured' : '')+'" id="card-'+l.id+'" data-id="'+l.id+'">' +
         '<div class="card-photo" style="'+(l.image ? 'background-image:url('+l.image+');background-size:cover;background-position:center;' : 'background:'+l.grad+';')+'">' +
-          '<span class="status-tag status-'+l.status+'">'+statusLabel(l.status)+'</span>' +
-          '<span class="card-tag">'+l.typeLabel+'</span>' +
-          '<button type="button" class="save-heart" aria-label="Save '+l.title+'" aria-pressed="'+saved+'" data-save="'+l.id+'">' +
+          badges.join("") +
+          typeTag +
+          '<button type="button" class="save-heart" aria-label="Save '+escapeIdx(l.title)+'" aria-pressed="'+saved+'" data-save="'+l.id+'">' +
             '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.3C.5 8 2.4 4.5 6 4c2.1-.3 4 .8 6 3.1C14 4.8 15.9 3.7 18 4c3.6.5 5.5 4 4 7.7-2.5 4.7-10 9.3-10 9.3z"/></svg>' +
           '</button>' +
         '</div>' +
         '<div class="card-body">' +
-          '<span class="card-price">'+currency(l.price)+'</span>' +
-          '<h3 class="card-title">'+l.title+'</h3>' +
-          '<p class="card-address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>'+l.address+'</span></p>' +
-          '<div class="card-specs">'+specsHTML(l)+'</div>' +
+          priceHtml +
+          '<h3 class="card-title">'+escapeIdx(l.title)+'</h3>' +
+          '<p class="card-address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>'+escapeIdx(l.address)+'</span></p>' +
+          (specs ? '<div class="card-specs">'+specs+'</div>' : '') +
           '<div class="card-actions">' +
             '<button type="button" class="btn btn-primary btn-sm" data-view="'+l.id+'">View details</button>' +
             '<button type="button" class="btn btn-ghost btn-sm compare-btn" aria-pressed="'+compared+'" data-compare="'+l.id+'">'+

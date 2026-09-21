@@ -204,7 +204,7 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
     ]);
     $wp_customize->add_control('ks_hero_search_tilt', [
         'label' => __('Tilt listing search on mobile', 'acreline'),
-        'description' => __('On phones, the homepage listing search panel gently follows device tilt. Off by default. Does nothing if sensors are missing, permission is denied, or the visitor prefers reduced motion. iPhone may ask for motion access.', 'acreline'),
+        'description' => __('On phones, the homepage listing search panel gently follows device tilt. On by default. Does nothing if sensors are missing, permission is denied, or the visitor prefers reduced motion. iPhone may ask for motion access.', 'acreline'),
         'section' => 'ks_header',
         'type' => 'checkbox',
     ]);

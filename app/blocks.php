@@ -829,6 +829,22 @@ function ks_heading_tag(array $attrs, string $default = 'h2'): string
 }
 
 /**
+ * Decode accidentally double-encoded inline markup (`u003cemu003e…`) then allow em/strong/br.
+ */
+function ks_inline_copy(string $text): string
+{
+    if ($text !== '' && ! str_contains($text, '<') && str_contains($text, 'u003c')) {
+        $text = str_replace(
+            ['\\u003c', '\\u003e', 'u003c', 'u003e', '\\/', '\/'],
+            ['<', '>', '<', '>', '/', '/'],
+            $text
+        );
+    }
+
+    return wp_kses($text, ['em' => [], 'strong' => [], 'br' => []]);
+}
+
+/**
  * @return array<string, array{type: string, default: string}>
  */
 function ks_region_area_attrs(): array
@@ -1392,8 +1408,8 @@ function ks_render_page_hero(array $attrs): string
     $identity = Identity::toArray();
     $brand = esc_html($attrs['brand'] ?? '') ?: esc_html($identity['brand'] ?? 'Acreline');
     $eyebrow = esc_html($attrs['eyebrow'] ?? '');
-    $title = wp_kses($attrs['title'] ?? '', ['em' => [], 'strong' => []]);
-    $text = wp_kses($attrs['text'] ?? '', ['em' => [], 'strong' => [], 'br' => []]);
+    $title = ks_inline_copy((string) ($attrs['title'] ?? ''));
+    $text = ks_inline_copy((string) ($attrs['text'] ?? ''));
     $primary = esc_html($attrs['primaryLabel'] ?? 'Book a showing');
     $pUrl = esc_url($attrs['primaryUrl'] ?? '') ?: esc_url(home_url('/book/'));
     $secondary = esc_html($attrs['secondaryLabel'] ?? '');
@@ -2137,12 +2153,16 @@ function ks_render_agent_list(array $attrs): string
 {
     $agents = Catalog::agents();
     $eyebrow = esc_html($attrs['eyebrow'] ?? 'The sample team');
-    $title = wp_kses($attrs['title'] ?? 'Agents who know this ground', ['em' => [], 'strong' => []]);
+    $title = ks_inline_copy((string) ($attrs['title'] ?? 'Agents who know this ground'));
     $text = wp_kses($attrs['text'] ?? '', ['em' => []]);
     $headClass = esc_attr(ks_head_class($attrs));
     $hTag = ks_heading_tag($attrs);
     $sectionClass = ks_band_section_class($attrs, 'section');
-    $showStats = ($attrs['showStats'] ?? true) !== false;
+    $showStats = (($attrs['showStats'] ?? true) !== false) && \App\ks_feature_on('agent_show_stats');
+    $showCardStats = \App\ks_feature_on('agent_show_stats');
+    $showSocial = \App\ks_feature_on('agent_show_social');
+    $showTeam = \App\ks_feature_on('agent_show_team');
+    $showCalendly = \App\ks_feature_on('agent_show_calendly');
     $hid = function_exists('wp_unique_id') ? wp_unique_id('ks-agents-') : 'agent-list-heading';
 
     // Aggregate team stats from the agents array
@@ -2202,14 +2222,17 @@ function ks_render_agent_list(array $attrs): string
               $totalVol = $agent['total_volume'] ?? '';
               $lsr = $agent['list_to_sale_ratio'] ?? '';
               $badge = $agent['featured_badge'] ?? '';
+              $socialLinks = [];
+              if ($showSocial) {
+                  foreach (['facebook' => 'Facebook', 'instagram' => 'Instagram', 'linkedin' => 'LinkedIn', 'twitter' => 'X', 'youtube' => 'YouTube'] as $network => $label) {
+                      $url = trim((string) ($agent[$network] ?? ''));
+                      if ($url !== '') {
+                          $socialLinks[$network] = ['url' => $url, 'label' => $label];
+                      }
+                  }
+              }
               ?>
             <article class="agent-card reveal<?php echo $agent['featured'] ? ' is-featured' : ''; ?>" role="listitem">
-
-              <?php if ($agent['featured'] && $badge) { ?>
-                <p class="agent-featured-badge"><?php echo esc_html($badge); ?></p>
-              <?php } elseif ($agent['featured']) { ?>
-                <p class="agent-featured-badge"><?php esc_html_e('Featured', 'acreline'); ?></p>
-              <?php } ?>
 
               <div class="agent-card__photo-row">
                 <?php if ($agent['photo']) { ?>
@@ -2224,10 +2247,16 @@ function ks_render_agent_list(array $attrs): string
                 <?php } ?>
 
                 <div class="agent-card__photo-meta">
+                  <?php if ($agent['featured']) { ?>
+                    <p class="agent-featured-badge"><?php echo esc_html($badge !== '' ? $badge : __('Featured', 'acreline')); ?></p>
+                  <?php } ?>
                   <h4 class="agent-card__name">
                     <a href="<?php echo esc_url($agent['permalink']); ?>"><?php echo esc_html($agent['name']); ?></a>
                   </h4>
                   <p class="agent-title"><?php echo esc_html($agent['job_title']); ?></p>
+                  <?php if ($showTeam && ! empty($agent['team_name'])) { ?>
+                    <p class="agent-team-name"><?php echo esc_html($agent['team_name']); ?></p>
+                  <?php } ?>
                   <?php if ($agent['designations']) { ?>
                     <p class="agent-designations"><?php echo esc_html($agent['designations']); ?></p>
                   <?php } ?>
@@ -2265,7 +2294,7 @@ function ks_render_agent_list(array $attrs): string
                 </ul>
               <?php } ?>
 
-              <?php if ($agent['homes_sold'] || $agent['avg_dom'] || $totalVol || $lsr) { ?>
+              <?php if ($showCardStats && ($agent['homes_sold'] || $agent['avg_dom'] || $totalVol || $lsr)) { ?>
                 <dl class="agent-mini-stats">
                   <?php if ($agent['homes_sold']) { ?>
                     <div><dt><?php esc_html_e('Closed', 'acreline'); ?></dt><dd><?php echo esc_html($agent['homes_sold']); ?></dd></div>
@@ -2308,11 +2337,19 @@ function ks_render_agent_list(array $attrs): string
                 </div>
               <?php } ?>
 
+              <?php if ($socialLinks !== []) { ?>
+                <nav class="agent-card__social" aria-label="<?php echo esc_attr(sprintf(__('Social profiles for %s', 'acreline'), $agent['name'])); ?>">
+                  <?php foreach ($socialLinks as $network => $item) { ?>
+                    <a class="agent-social-link" href="<?php echo esc_url($item['url']); ?>" rel="noopener noreferrer" target="_blank"><?php echo esc_html($item['label']); ?></a>
+                  <?php } ?>
+                </nav>
+              <?php } ?>
+
               <div class="agent-card__actions">
                 <a href="<?php echo esc_url($agent['permalink']); ?>" class="btn btn-primary btn-sm">
                   <?php esc_html_e('View profile', 'acreline'); ?>
                 </a>
-                <?php if ($agent['calendly']) { ?>
+                <?php if ($showCalendly && $agent['calendly']) { ?>
                   <a href="<?php echo esc_url($agent['calendly']); ?>" class="btn btn-outline btn-sm" rel="noopener noreferrer" target="_blank">
                     <?php esc_html_e('Book a call', 'acreline'); ?>
                   </a>
@@ -2399,7 +2436,7 @@ function ks_render_listing_grid(array $attrs): string
             </div>
           </div>
         </form>
-        <div id="listingGrid" class="listing-grid reveal"></div>
+        <div id="listingGrid" class="listing-grid reveal ks-cols-<?php echo esc_attr((string) (\App\ks_public_settings()['listingGridCols'] ?? '3')); ?>"></div>
         <div id="emptyState" class="listing-empty" hidden>
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="24" cy="24" r="20"/><path d="M16 24h16M24 16v16"/></svg>
           <p><?php esc_html_e('No properties match these filters.', 'acreline'); ?></p>
@@ -4233,6 +4270,7 @@ function ks_booking_form_html(): string
           <label for="sfNotes"><?php esc_html_e('Notes', 'acreline'); ?></label>
           <textarea id="sfNotes" name="notes" rows="3" placeholder="<?php esc_attr_e('Pets, gate code, first-time buyer…', 'acreline'); ?>"></textarea>
         </div>
+        <?php echo \App\ks_booking_extra_fields_html('sf'); ?>
         <div class="field field-span">
           <div id="showingSlots" class="slot-grid" role="group" aria-label="<?php esc_attr_e('Choose a time slot', 'acreline'); ?>">
             <button type="button" class="slot" data-time="9:00 AM">9:00 AM</button>

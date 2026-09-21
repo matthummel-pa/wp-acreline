@@ -10,6 +10,7 @@
 
 namespace App;
 
+use App\Support\Catalog;
 use App\Support\ColorSchemes;
 use App\Support\Compliance;
 use App\Support\Identity;
@@ -44,7 +45,7 @@ function ks_default_settings(): array
         'listing_show_type_badge' => '1',
         'listing_show_mls' => '1',
         'listing_show_days_on_market' => '1',
-        'listing_show_price_per_sqft' => '0',
+        'listing_show_price_per_sqft' => '1',
         'listing_show_open_house' => '1',
         'listing_show_virtual_tour' => '1',
         'listing_show_video_tour' => '1',
@@ -69,13 +70,13 @@ function ks_default_settings(): array
         'booking_show_buyer_type' => '1',
         'booking_show_attendees' => '1',
         'booking_show_comm_preference' => '1',
-        'booking_show_source' => '0',
+        'booking_show_source' => '1',
         // ── General ──────────────────────────────────────────────────────────
         'show_mortgage_calc' => '1',
         'mortgage_rate_default' => '7.0',
         'show_concept_banner' => '1',
         'ks_hero_ken_burns' => '1',
-        'ks_hero_search_tilt' => '0',
+        'ks_hero_search_tilt' => '1',
         'ks_show_style_switcher' => '1',
         'ks_color_scheme' => ColorSchemes::defaultKey(),
         'ks_accent' => '#1f6b4a',
@@ -83,11 +84,11 @@ function ks_default_settings(): array
         'ks_ink' => '#141210',
         // ── Market snapshot ──────────────────────────────────────────────────
         'market_show_snapshot' => '1',
-        'market_median_price' => '',
-        'market_avg_dom' => '',
-        'market_inventory_months' => '',
-        'market_yoy_change' => '',
-        'market_as_of' => '',
+        'market_median_price' => '$485,000',
+        'market_avg_dom' => '28',
+        'market_inventory_months' => '1.8',
+        'market_yoy_change' => '+4.2%',
+        'market_as_of' => 'Q3 2026 · Sample county',
     ];
 }
 
@@ -123,6 +124,128 @@ function ks_setting(string $key, mixed $fallback = ''): mixed
     }
 
     return $defaults[$key] ?? $fallback;
+}
+
+/** True unless the setting is explicitly stored as "0". */
+function ks_feature_on(string $key): bool
+{
+    return (string) ks_setting($key) !== '0';
+}
+
+/**
+ * Front-end display settings consumed by listing cards, agent cards, and booking JS.
+ *
+ * @return array<string, mixed>
+ */
+function ks_public_settings(): array
+{
+    $cols = (string) ks_setting('listing_grid_cols', '3');
+    if (! in_array($cols, ['2', '3', '4'], true)) {
+        $cols = '3';
+    }
+
+    return [
+        'listingGridCols' => $cols,
+        'listingShowPrice' => ks_feature_on('listing_show_price'),
+        'listingShowBeds' => ks_feature_on('listing_show_beds'),
+        'listingShowBaths' => ks_feature_on('listing_show_baths'),
+        'listingShowSqft' => ks_feature_on('listing_show_sqft'),
+        'listingShowAcres' => ks_feature_on('listing_show_acres'),
+        'listingShowStatusBadge' => ks_feature_on('listing_show_status_badge'),
+        'listingShowTypeBadge' => ks_feature_on('listing_show_type_badge'),
+        'listingShowMls' => ks_feature_on('listing_show_mls'),
+        'listingShowDom' => ks_feature_on('listing_show_days_on_market'),
+        'listingShowPpsf' => ks_feature_on('listing_show_price_per_sqft'),
+        'agentShowStats' => ks_feature_on('agent_show_stats'),
+        'agentShowSocial' => ks_feature_on('agent_show_social'),
+        'agentShowCertifications' => ks_feature_on('agent_show_certifications'),
+        'agentShowAwards' => ks_feature_on('agent_show_awards'),
+        'agentShowBioVideo' => ks_feature_on('agent_show_bio_video'),
+        'agentShowTeam' => ks_feature_on('agent_show_team'),
+        'agentShowCalendly' => ks_feature_on('agent_show_calendly'),
+        'bookingShowBuyerType' => ks_feature_on('booking_show_buyer_type'),
+        'bookingShowAttendees' => ks_feature_on('booking_show_attendees'),
+        'bookingShowCommPreference' => ks_feature_on('booking_show_comm_preference'),
+        'bookingShowSource' => ks_feature_on('booking_show_source'),
+        'showMortgageCalc' => ks_feature_on('show_mortgage_calc'),
+        'mortgageRateDefault' => (string) ks_setting('mortgage_rate_default', '7.0'),
+        'labelBeds' => (string) ks_setting('label_beds', __('Beds', 'acreline')),
+        'labelBaths' => (string) ks_setting('label_baths', __('Baths', 'acreline')),
+        'labelSqft' => (string) ks_setting('label_sqft', __('Sq Ft', 'acreline')),
+        'labelAcres' => (string) ks_setting('label_acres', __('Acres', 'acreline')),
+        'labelTownship' => (string) ks_setting('label_township', __('Township', 'acreline')),
+        'currencySymbol' => (string) ks_setting('currency_symbol', '$'),
+    ];
+}
+
+/**
+ * Optional showing-form fields gated by Acreline Settings → Bookings.
+ *
+ * @param  string  $idPrefix  Element id prefix (`show` on the Blade form, `sf` on the block form).
+ */
+function ks_booking_extra_fields_html(string $idPrefix = 'show'): string
+{
+    $idPrefix = preg_replace('/[^a-z]/', '', strtolower($idPrefix)) ?: 'show';
+    $fields = [];
+
+    if (ks_feature_on('booking_show_buyer_type')) {
+        $fields[] = [
+            'id' => $idPrefix.'BuyerType',
+            'name' => 'buyer_type',
+            'label' => __('Financing / buyer status', 'acreline'),
+            'type' => 'select',
+            'options' => Catalog::BUYER_TYPES,
+        ];
+    }
+    if (ks_feature_on('booking_show_attendees')) {
+        $fields[] = [
+            'id' => $idPrefix.'Attendees',
+            'name' => 'attendees',
+            'label' => __('Number of attendees', 'acreline'),
+            'type' => 'number',
+        ];
+    }
+    if (ks_feature_on('booking_show_comm_preference')) {
+        $fields[] = [
+            'id' => $idPrefix.'CommPref',
+            'name' => 'comm_preference',
+            'label' => __('Preferred contact method', 'acreline'),
+            'type' => 'select',
+            'options' => Catalog::COMM_PREFERENCES,
+        ];
+    }
+    if (ks_feature_on('booking_show_source')) {
+        $fields[] = [
+            'id' => $idPrefix.'Source',
+            'name' => 'source',
+            'label' => __('How did you hear about this listing?', 'acreline'),
+            'type' => 'select',
+            'options' => Catalog::LEAD_SOURCES,
+        ];
+    }
+
+    if ($fields === []) {
+        return '';
+    }
+
+    ob_start();
+    foreach ($fields as $field) {
+        echo '<div class="field">';
+        echo '<label for="'.esc_attr($field['id']).'">'.esc_html($field['label']).'</label>';
+        if ($field['type'] === 'number') {
+            echo '<input id="'.esc_attr($field['id']).'" name="'.esc_attr($field['name']).'" type="number" inputmode="numeric" min="1" max="12" value="1" autocomplete="off">';
+        } else {
+            echo '<select id="'.esc_attr($field['id']).'" name="'.esc_attr($field['name']).'">';
+            foreach ($field['options'] as $value => $label) {
+                $optionLabel = $value === '' ? __('Select…', 'acreline') : $label;
+                echo '<option value="'.esc_attr((string) $value).'">'.esc_html($optionLabel).'</option>';
+            }
+            echo '</select>';
+        }
+        echo '</div>';
+    }
+
+    return (string) ob_get_clean();
 }
 
 /**
@@ -253,7 +376,7 @@ function ks_hero_value_on(mixed $value): bool
 function ks_sync_hero_theme_mods(array $settings): void
 {
     set_theme_mod('ks_hero_ken_burns', (string) ($settings['ks_hero_ken_burns'] ?? '1') !== '0');
-    set_theme_mod('ks_hero_search_tilt', (string) ($settings['ks_hero_search_tilt'] ?? '0') !== '0');
+    set_theme_mod('ks_hero_search_tilt', (string) ($settings['ks_hero_search_tilt'] ?? '1') !== '0');
 }
 
 /**
@@ -277,7 +400,7 @@ function ks_sync_hero_settings_from_theme_mods(): void
         $all = [];
     }
     $all['ks_hero_ken_burns'] = ks_hero_value_on(get_theme_mod('ks_hero_ken_burns', true)) ? '1' : '0';
-    $all['ks_hero_search_tilt'] = ks_hero_value_on(get_theme_mod('ks_hero_search_tilt', false)) ? '1' : '0';
+    $all['ks_hero_search_tilt'] = ks_hero_value_on(get_theme_mod('ks_hero_search_tilt', true)) ? '1' : '0';
     $all['ks_show_style_switcher'] = ks_hero_value_on(get_theme_mod('ks_show_style_switcher', true)) ? '1' : '0';
     $all['ks_color_scheme'] = ColorSchemes::currentKey();
     $all['ks_accent'] = Identity::accent();

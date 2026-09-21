@@ -1,7 +1,7 @@
 # Acreline — WordPress Theme for Real Estate Agents
 
 [![Deploy theme zip](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml/badge.svg)](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml)
-[![Version](https://img.shields.io/badge/version-1.5.4-155539?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.5.5-155539?style=flat-square)](CHANGELOG.md)
 [![License: GPLv2+](https://img.shields.io/badge/license-GPLv2%2B-3c763d?style=flat-square)](license.txt)
 [![PHP 8.3+](https://img.shields.io/badge/PHP-8.3%2B-777bb4?style=flat-square)](https://www.php.net/)
 [![WordPress 6.6+](https://img.shields.io/badge/WordPress-6.6%2B-21759b?style=flat-square)](https://wordpress.org/)
@@ -16,7 +16,7 @@
 | **Buy / checkout** | [matthummel.com/product/acreline/](https://matthummel.com/product/acreline/) |
 | **Support** | [matthummel.com/support/acreline/](https://matthummel.com/support/acreline/) · [GitHub Issues](https://github.com/matthummel-pa/wp-acreline/issues) |
 | **Author** | [Matt Hummel](https://matthummel.com/) |
-| **Version** | 1.5.4 |
+| **Version** | 1.5.5 |
 
 > **Fiction only.** The demo uses sample data — `555` phone numbers, `@acreline-concept.test` emails, concept listings. Not a live MLS, licensed brokerage, or booking system.
 
@@ -90,7 +90,7 @@ Every marketing page is built with WordPress blocks that render server-side — 
 
 | Block | What it does |
 | --- | --- |
-| Home Hero | Full-width hero with listing search; Ken Burns photo pan (on by default); optional phone tilt on the search panel (off) |
+| Home Hero | Full-width hero with listing search; Ken Burns photo pan (on by default); phone tilt on the search panel (on by default) |
 | Page Hero | Standard hero with photo, eyebrow, CTA buttons |
 | Intent Cards | Buy / Sell / Tour three-card section |
 | Featured Listings Spotlight | Dynamic grid of featured listings |
@@ -170,7 +170,7 @@ Every marketing page is built with WordPress blocks that render server-side — 
 | **Compliance** | Brokerage legal name, optional licenses, Fair Housing, MLS/IDX slots, privacy/terms URLs, form consent (not legal advice) |
 | **Site Identity** | Custom logo (replaces the Acreline house mark) |
 | **Colors** | Eight presets: Forest · Clay · Navy · Burgundy · Harvest · Lake · Orchard · Charcoal — plus accent, paper, and ink pickers |
-| **Header** | Sticky on/off, standard / compact height, homepage Ken Burns photo animation (`ks_hero_ken_burns`, on), optional mobile listing-search tilt (`ks_hero_search_tilt`, off) |
+| **Header** | Sticky on/off, standard / compact height, homepage Ken Burns photo animation (`ks_hero_ken_burns`, on), mobile listing-search tilt (`ks_hero_search_tilt`, on) |
 | **Top Bar** | Enable, color style, announcement badge + message + link, CTA pill, contact toggles, social icon toggles, dismiss option |
 | **Typography** | Five font families; base size 14–20 px; heading weight |
 | **Social links** | Facebook · Instagram · YouTube · LinkedIn · X |
@@ -179,7 +179,7 @@ Every marketing page is built with WordPress blocks that render server-side — 
 Homepage hero motion lives under **Header** and **Appearance → Acreline Settings → General** (same saved values):
 
 - **Animate homepage hero image** (`ks_hero_ken_burns`, **on**) — slow Ken Burns pan and zoom on the hero photo only. Headlines, overlay, and listing search stay still. Honors reduced motion.
-- **Tilt listing search on mobile** (`ks_hero_search_tilt`, **off**) — on phones, the listing search panel gently follows device tilt. No-op on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion.
+- **Tilt listing search on mobile** (`ks_hero_search_tilt`, **on**) — on phones, the listing search panel gently follows device tilt. Turn off under Header or Acreline Settings if you do not want motion. No-op on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion.
 
 ---
 

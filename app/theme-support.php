@@ -247,6 +247,11 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.5', [
+            __('Display settings default on: listing card extras, agent stats and social, booking fields, and a sample market snapshot', 'acreline'),
+            __('Colors chip sits bottom-right with palette dots so it is not hidden behind the header', 'acreline'),
+            __('Featured, status, specialty, and review pills stay readable; Pulse stats keep ink type', 'acreline'),
+        ]],
         ['1.5.4', [
             __('Contrast pass: muted text, top-bar chips, buttons, footer, and Equal Housing stay readable on every color style', 'acreline'),
             __('Custom pale accents pick a darker text color when the swatch would fail WCAG AA', 'acreline'),

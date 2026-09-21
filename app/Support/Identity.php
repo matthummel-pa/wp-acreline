@@ -178,7 +178,7 @@ class Identity
     public static function heroSearchTilt(): bool
     {
         if (is_customize_preview()) {
-            return \App\ks_hero_value_on(get_theme_mod('ks_hero_search_tilt', false));
+            return \App\ks_hero_value_on(get_theme_mod('ks_hero_search_tilt', true));
         }
 
         return (string) \App\ks_setting('ks_hero_search_tilt') !== '0';

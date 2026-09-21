@@ -67,7 +67,7 @@
       <li>If the front page looks like a post list, Reading is still set to “Your latest posts.”</li>
     </ol>
     <p>The homepage search form (type, price, area) submits to the Listings page with query params. Inventory is the <code>listing</code> post type — JavaScript reads <code>window.ACRELINE.listings</code>.</p>
-    <p>The hero photo slowly pans and zooms by default (Customize → Header → <em>Animate homepage hero image</em>). Headlines and the search form stay still. An optional phone-only tilt on the search panel is off by default (<em>Tilt listing search on mobile</em>) — it does nothing without sensors or permission.</p>
+    <p>The hero photo slowly pans and zooms by default (Customize → Header → <em>Animate homepage hero image</em>). Headlines and the search form stay still. Phone-only tilt on the search panel is on by default (<em>Tilt listing search on mobile</em>) — it does nothing without sensors or permission.</p>
 
     <h2 id="customizer">4. Customizer (theme options)</h2>
     <p>All office chrome is under <strong>Appearance → Customize</strong>. There is no separate “Theme Options” panel and no dummy license screen.</p>
@@ -77,7 +77,7 @@
         <tr><th>Compliance</th><td>Brokerage legal name, optional licenses, Fair Housing, MLS/IDX slots, privacy/terms URLs, form consent. Same fields in Acreline Settings. See <a href="compliance.html">Website compliance checklist</a> (not legal advice).</td></tr>
         <tr><th>Site Identity</th><td>Custom logo (replaces the house mark), site title, tagline. Logo max height 44px in the header. Recommended ~200×48 PNG or SVG.</td></tr>
         <tr><th>Colors</th><td>Eight styles: Forest, Clay, Navy, Burgundy, Harvest, Lake, Orchard, Charcoal. Then accent, paper (page background), ink (text). Forest sample: accent <code>#1f6b4a</code>, paper <code>#f5f4f1</code>, ink <code>#141210</code>. Header menu, hamburger, and mobile drawer use these tokens.</td></tr>
-        <tr><th>Header</th><td>Standard or compact; sticky on/off. Homepage hero: “Animate homepage hero image” (<code>ks_hero_ken_burns</code>, on) and “Tilt listing search on mobile” (<code>ks_hero_search_tilt</code>, off). Same toggles on Appearance → Acreline Settings → General. See <a href="customizer.html">customizer.html</a>.</td></tr>
+        <tr><th>Header</th><td>Standard or compact; sticky on/off. Homepage hero: “Animate homepage hero image” (<code>ks_hero_ken_burns</code>, on) and “Tilt listing search on mobile” (<code>ks_hero_search_tilt</code>, on). Same toggles on Appearance → Acreline Settings → General. See <a href="customizer.html">customizer.html</a>.</td></tr>
         <tr><th>Typography</th><td>Heading and body fonts (Inter default). Plus Jakarta Sans, DM Sans, Manrope, Montserrat — Google Fonts, SIL OFL. No font files in the zip.</td></tr>
         <tr><th>Social links</th><td>Facebook, Instagram, YouTube, LinkedIn, X.</td></tr>
         <tr><th>Menus</th><td>Assign <em>Primary Navigation</em> and <em>Footer Navigation</em>. Seed creates them if missing.</td></tr>
@@ -250,8 +250,8 @@
     <p>Customize → Identity → uncheck “Show concept demo banner and author badge.”</p>
     <h3>How do I turn off the homepage hero animation?</h3>
     <p>Customize → Header → uncheck “Animate homepage hero image.” The photo stays; it no longer pans.</p>
-    <h3>How do I turn on listing-search tilt on phones?</h3>
-    <p>Customize → Header → check “Tilt listing search on mobile.” Off by default. Does nothing on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion.</p>
+    <h3>How do I turn off listing-search tilt on phones?</h3>
+    <p>Customize → Header → uncheck “Tilt listing search on mobile.” On by default. Does nothing on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion.</p>
     <h3>Can I use a page builder?</h3>
     <p>Not supported. Fields are classic metaboxes on purpose. Gutenberg optimized: No.</p>
     <h3>Does this connect to my MLS?</h3>

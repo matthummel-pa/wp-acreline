@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.5.4
+Stable tag: 1.5.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -43,8 +43,8 @@ House mark and wordmark (original SVG, GPLv2) ship in public/images/brand/. Supp
 * Customizer identity: brand, phone, email, address, hours, header button, removable author credit
 * Custom logo under Site Identity (replaces the Acreline house mark)
 * Eight color styles (Forest, Clay, Navy, Burgundy, Harvest, Lake, Orchard, Charcoal) plus accent, paper, and ink
-* Header size, sticky toggle, homepage Ken Burns hero animation (on by default), and optional mobile listing-search tilt (off by default)
-* Demo color switcher on the concept preview (mid-right)
+* Header size, sticky toggle, homepage Ken Burns hero animation (on by default), and mobile listing-search tilt (on by default)
+* Demo color switcher on the concept preview (bottom-right, with palette dots)
 * Inter-based typography with font choices
 * WordPress menus (Primary + Footer) with a concept-page fallback
 * Footer widget area
@@ -90,9 +90,9 @@ Customize → Identity → uncheck “Show concept demo banner and author badge.
 
 Appearance → Acreline Settings → General, or Customize → Header → uncheck “Animate homepage hero image.” The photo stays; it no longer pans. Reduced-motion visitors already see a still cover. Both screens store the same value.
 
-= How do I turn on listing-search tilt on phones? =
+= How do I turn off listing-search tilt on phones? =
 
-Appearance → Acreline Settings → General, or Customize → Header → check “Tilt listing search on mobile.” Off by default. The homepage search panel gently follows device tilt. It does nothing on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion. iPhone may ask for motion access.
+Appearance → Acreline Settings → General, or Customize → Header → uncheck “Tilt listing search on mobile.” On by default. The homepage search panel gently follows device tilt. It does nothing on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion. iPhone may ask for motion access.
 
 = Where do listings live? =
 
@@ -139,6 +139,12 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.5.5 =
+* Public display toggles in Appearance → Acreline Settings default on (listing card extras, agent stats/social, booking fields, sample market snapshot). Turn off what you do not need.
+* Colors chip sits bottom-right with palette dots so it is not hidden behind the sticky header.
+* Featured, status, specialty, and review pills stay readable (ink on paper/white). Pulse market stats no longer pick up white type from the snapshot block.
+* Page-hero titles decode Gutenberg emphasis instead of showing `u003cemu003e`.
 
 = 1.5.4 =
 * Color contrast: muted text, top-bar chips, buttons, footer, and Equal Housing copy stay readable on every color style (Forest, Harvest, Charcoal, and the rest). Custom pale accents pick a darker text color when needed.

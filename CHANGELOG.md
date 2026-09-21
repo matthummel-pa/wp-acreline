@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.5
+
+- **Settings** — Listing, agent, booking, and display toggles in Appearance → Acreline Settings default **on**. The public site now shows those extras: card badges, price/sqft, DOM, MLS, agent stats/social/calendar, booking extra fields, and a sample market snapshot. Buyers switch off what they do not want.
+- **Home** — The Colors chip sits bottom-right (above the chat button) with palette dots so it is no longer hidden behind the sticky header.
+- **UI** — Featured, status, specialty, and review pills use ink-on-paper or ink-on-white so labels stay readable. Homepage Pulse market stats no longer inherit white type from the snapshot block.
+- **Copy** — Page-hero titles decode Gutenberg `em` markup instead of printing `u003cemu003e` on Agents and similar pages.
+
 ## 1.5.4
 
 - **Accessibility** — Contrast pass on themed chrome: muted notes (`--ink-faint`), top-bar chips and CTA, primary buttons, footer / Equal Housing copy, and newsletter fine print. Token generation floors text to WCAG AA (4.5:1) and UI chrome to 3:1 so Forest, Harvest, Charcoal, Clay, Orchard, Navy, and custom pale accents stay readable. Not a “fully AA certified” claim.
