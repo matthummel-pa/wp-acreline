@@ -26,7 +26,7 @@ Documentation (start here)
   Documentation/sources.html       Fonts, Sage, SVG marks, what is not bundled
   Documentation/credits.html       Credits (same as sources, Theme Check list)
   Documentation/changelog.html     History
-  Documentation/screenshots/       Extra item images (01–07)
+  Documentation/screenshots/       Extra item images (desktop 01–12 + mobile m-*)
   Documentation/assets/            House mark + wordmark SVG + docs CSS/JS
 
 Install

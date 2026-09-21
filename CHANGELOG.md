@@ -6,6 +6,7 @@
 - **Home** — The Colors chip sits bottom-right (above the chat button) with palette dots so it is no longer hidden behind the sticky header.
 - **UI** — Featured, status, specialty, and review pills use ink-on-paper or ink-on-white so labels stay readable. Homepage Pulse market stats no longer inherit white type from the snapshot block.
 - **Copy** — Page-hero titles decode Gutenberg `em` markup instead of printing `u003cemu003e` on Agents and similar pages.
+- **Docs** — README and marketplace screenshots recaptured as content areas (listings grid, agent cards, showing form, areas) plus mobile views.
 
 ## 1.5.4
 

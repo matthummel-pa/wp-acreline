@@ -220,21 +220,27 @@ WordPress.org-style tags (theme header): `blog, custom-colors, custom-logo, cust
 
 ---
 
-## Screenshots for item images (01–07)
+## Screenshots for item images
 
-Path in repo: `docs/marketplace/screenshots/` (copied to `Documentation/screenshots/` in the seller pack).
+Path in repo: `docs/marketplace/screenshots/` (copied to `Documentation/screenshots/` in the seller pack). Captures are **content areas** (grids, cards, forms) plus mobile — not hero-only.
 
 | # | Filename | Caption |
 | --- | --- | --- |
-| 1 | `01-homepage.png` | Homepage — hero search, Intent cards, Featured listings spotlight |
-| 2 | `02-listings.png` | Listings — filter bar (type, price, area), grid view |
-| 3 | `03-listing.png` | Listing detail — photo, stats, mortgage calculator, agent card, sticky CTA |
-| 4 | `04-agents.png` | Agents page — stats grid, designations, social links |
+| 1 | `01-homepage.png` | Featured listings spotlight |
+| 2 | `02-listings.png` | Listings grid — filters, status / featured pills, MLS |
+| 3 | `03-listing.png` | Listing body — photo, price / sq ft, specs, agent, open house |
+| 4 | `04-agents.png` | Agent cards — featured badge, specialty pills, reviews |
 | 5 | `05-contact.png` | Contact — office info from Customizer + message form |
-| 6 | `06-areas.png` | Areas — numbered sample market cards |
-| 7 | `07-book.png` | Book a Showing — request form, agent selector |
+| 6 | `06-areas.png` | Areas — numbered sample neighborhood cards |
+| 7 | `07-book.png` | Book a Showing — request form |
+| — | `08-topbar-desktop.png` | Homepage hero + listing search + Colors chip |
+| — | `09-listing-detail.png` | Mortgage calculator on the listing |
+| — | `10-homepage-intent.png` | Intent cards (Buy / Sell / Tour) |
+| — | `11-homepage-market.png` | Market pulse + value / alert tools |
+| — | `12-homepage-reviews.png` | Review cards |
+| — | `m-*.png` | Phone views of home, listings, listing, agents, book, areas, contact |
 
-Theme thumbnail: `screenshot.png` (1200×900).
+Theme thumbnail: `screenshot.png` (1200×900 homepage hero).
 
 ---
 

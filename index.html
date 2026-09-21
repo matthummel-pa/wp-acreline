@@ -7,7 +7,7 @@
   <meta name="description" content="A Sage 11 WordPress theme for real estate agents — featured homes, agent bios, and showing requests. Gutenberg marketing pages. No page builder. No ACF. No IDX required.">
   <meta property="og:title" content="Acreline WordPress Theme">
   <meta property="og:description" content="Built for real estate agents. Searchable listings, agent profiles, showing requests — all in one zip.">
-  <meta property="og:image" content="https://matthummel-pa.github.io/wp-acreline/docs/marketplace/screenshots/01-homepage.png">
+  <meta property="og:image" content="https://matthummel-pa.github.io/wp-acreline/docs/marketplace/screenshots/08-topbar-desktop.png">
   <meta property="og:url" content="https://matthummel-pa.github.io/wp-acreline/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -345,6 +345,13 @@
     }
     .screenshot-wide { grid-column: 1 / -1; }
     .screenshot-wide img { aspect-ratio: 21/9; object-position: top; }
+    .screenshot-phones {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .screenshot-phones .screenshot-item img { aspect-ratio: 9/19; object-position: top; }
 
     /* ── Blocks table ── */
     .blocks-grid {
@@ -598,11 +605,13 @@
       .two-col--reverse > * { order: unset !important; }
       .stats-bar__grid { grid-template-columns: repeat(2, 1fr); }
       .screenshot-grid { grid-template-columns: 1fr 1fr; }
+      .screenshot-phones { grid-template-columns: repeat(3, 1fr); }
       .footer-inner { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 640px) {
       section { padding: 56px 0; }
       .screenshot-grid { grid-template-columns: 1fr; }
+      .screenshot-phones { grid-template-columns: repeat(2, 1fr); }
       .screenshot-wide { grid-column: 1; }
       .nav-links { display: none; }
       .nav-toggle {
@@ -677,9 +686,9 @@
       </div>
       <div>
         <div class="hero__screenshot">
-          <img src="docs/marketplace/screenshots/01-homepage.png"
-               alt="Acreline homepage — hero search, intent cards, featured listings"
-               loading="lazy" width="1400" height="875">
+          <img src="docs/marketplace/screenshots/08-topbar-desktop.png"
+               alt="Acreline homepage — listing search, house mark, and Colors chip"
+               loading="lazy" width="1400" height="900">
         </div>
       </div>
     </div>
@@ -842,44 +851,82 @@
     <div class="section-head section-head--center">
       <span class="section-label">Screenshots</span>
       <h2 class="section-title">Captured from the concept demo</h2>
-      <p class="section-lede">Every screenshot uses the seeded sample data. Listings, agents, and phones are fictional.</p>
+      <p class="section-lede">Content areas from the seeded demo — grids, cards, and forms, plus phone views. Listings, agents, and phones are fictional.</p>
     </div>
     <div class="screenshot-grid">
-      <a href="docs/marketplace/screenshots/01-homepage.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Homepage screenshot">
-        <img src="docs/marketplace/screenshots/01-homepage.png" alt="Acreline homepage" loading="lazy" width="1400" height="875">
-        <div class="screenshot-item__label">Homepage — hero search · intent cards · featured listings</div>
+      <a href="docs/marketplace/screenshots/01-homepage.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Featured listings screenshot">
+        <img src="docs/marketplace/screenshots/01-homepage.png" alt="Featured listings spotlight" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Featured listings — spotlight cards · book a showing</div>
       </a>
-      <a href="docs/marketplace/screenshots/02-listings.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Listings page screenshot">
-        <img src="docs/marketplace/screenshots/02-listings.png" alt="Listings grid" loading="lazy" width="1400" height="875">
-        <div class="screenshot-item__label">Listings — filter bar · grid view · map toggle</div>
+      <a href="docs/marketplace/screenshots/02-listings.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Listings grid screenshot">
+        <img src="docs/marketplace/screenshots/02-listings.png" alt="Listings grid with status and featured pills" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Listings grid — filters · status / featured pills · MLS</div>
       </a>
       <a href="docs/marketplace/screenshots/03-listing.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Listing detail screenshot">
-        <img src="docs/marketplace/screenshots/03-listing.png" alt="Single listing detail" loading="lazy" width="1400" height="875">
-        <div class="screenshot-item__label">Listing — photo · price · stats · sticky CTA</div>
-      </a>
-      <a href="docs/marketplace/screenshots/09-listing-detail.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Listing detail scrolled screenshot">
-        <img src="docs/marketplace/screenshots/09-listing-detail.png" alt="Listing detail scrolled" loading="lazy" width="1400" height="875">
-        <div class="screenshot-item__label">Listing (scrolled) — mortgage calculator · agent card · book CTA</div>
+        <img src="docs/marketplace/screenshots/03-listing.png" alt="Listing body with price, specs, and agent" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Listing — photo · price / sq ft · specs · agent</div>
       </a>
       <a href="docs/marketplace/screenshots/04-agents.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Agents page screenshot">
-        <img src="docs/marketplace/screenshots/04-agents.png" alt="Agents page" loading="lazy" width="1400" height="875">
-        <div class="screenshot-item__label">Agents — stats grid · designations · social links</div>
-      </a>
-      <a href="docs/marketplace/screenshots/05-contact.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Contact page screenshot">
-        <img src="docs/marketplace/screenshots/05-contact.png" alt="Contact page" loading="lazy" width="1400" height="875">
-        <div class="screenshot-item__label">Contact — office info from Customizer + message form</div>
+        <img src="docs/marketplace/screenshots/04-agents.png" alt="Agent cards with reviews and specialty pills" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Agents — featured badge · specialty pills · reviews</div>
       </a>
       <a href="docs/marketplace/screenshots/07-book.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Book a showing screenshot">
-        <img src="docs/marketplace/screenshots/07-book.png" alt="Book a showing" loading="lazy" width="1400" height="875">
-        <div class="screenshot-item__label">Book a showing — request form · agent selector</div>
+        <img src="docs/marketplace/screenshots/07-book.png" alt="Book a showing form" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Book a showing — request form</div>
       </a>
       <a href="docs/marketplace/screenshots/06-areas.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Areas page screenshot">
-        <img src="docs/marketplace/screenshots/06-areas.png" alt="Areas page" loading="lazy" width="1400" height="875">
-        <div class="screenshot-item__label">Areas — market cards · sample area copy</div>
+        <img src="docs/marketplace/screenshots/06-areas.png" alt="Areas neighborhood cards" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Areas — sample neighborhood cards</div>
       </a>
-      <a href="docs/marketplace/screenshots/08-topbar-desktop.png" class="screenshot-item screenshot-wide" target="_blank" rel="noopener" aria-label="Top bar screenshot">
-        <img src="docs/marketplace/screenshots/08-topbar-desktop.png" alt="Desktop top bar" loading="lazy" width="1400" height="640">
-        <div class="screenshot-item__label">Desktop top bar (v1.4.0) — announcement badge · phone · social icons · CTA</div>
+      <a href="docs/marketplace/screenshots/10-homepage-intent.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Intent cards screenshot">
+        <img src="docs/marketplace/screenshots/10-homepage-intent.png" alt="Buy Sell Tour intent cards" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Intent cards — Buy · Sell · Tour</div>
+      </a>
+      <a href="docs/marketplace/screenshots/12-homepage-reviews.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Reviews screenshot">
+        <img src="docs/marketplace/screenshots/12-homepage-reviews.png" alt="Homepage review cards" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Reviews — testimonial cards with area pills</div>
+      </a>
+      <a href="docs/marketplace/screenshots/09-listing-detail.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Mortgage calculator screenshot">
+        <img src="docs/marketplace/screenshots/09-listing-detail.png" alt="Built-in mortgage calculator" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Mortgage calculator — on the listing, no plugin</div>
+      </a>
+      <a href="docs/marketplace/screenshots/05-contact.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Contact page screenshot">
+        <img src="docs/marketplace/screenshots/05-contact.png" alt="Contact page" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Contact — office info from Customizer + message form</div>
+      </a>
+      <a href="docs/marketplace/screenshots/11-homepage-market.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Market pulse screenshot">
+        <img src="docs/marketplace/screenshots/11-homepage-market.png" alt="Market pulse stats" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Market pulse — sample stats + value / alert tools</div>
+      </a>
+      <a href="docs/marketplace/screenshots/08-topbar-desktop.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Homepage search screenshot">
+        <img src="docs/marketplace/screenshots/08-topbar-desktop.png" alt="Homepage listing search" loading="lazy" width="1400" height="900">
+        <div class="screenshot-item__label">Homepage search — listing filters · Colors chip</div>
+      </a>
+    </div>
+    <div class="screenshot-phones">
+      <a href="docs/marketplace/screenshots/m-homepage.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Homepage on a phone">
+        <img src="docs/marketplace/screenshots/m-homepage.png" alt="Homepage spotlight on a phone" loading="lazy" width="780" height="1688">
+        <div class="screenshot-item__label">Home</div>
+      </a>
+      <a href="docs/marketplace/screenshots/m-listings.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Listings on a phone">
+        <img src="docs/marketplace/screenshots/m-listings.png" alt="Listing card on a phone" loading="lazy" width="780" height="1688">
+        <div class="screenshot-item__label">Listings</div>
+      </a>
+      <a href="docs/marketplace/screenshots/m-listing.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Listing detail on a phone">
+        <img src="docs/marketplace/screenshots/m-listing.png" alt="Listing specs on a phone" loading="lazy" width="780" height="1688">
+        <div class="screenshot-item__label">Listing</div>
+      </a>
+      <a href="docs/marketplace/screenshots/m-agents.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Agents on a phone">
+        <img src="docs/marketplace/screenshots/m-agents.png" alt="Agent card on a phone" loading="lazy" width="780" height="1688">
+        <div class="screenshot-item__label">Agents</div>
+      </a>
+      <a href="docs/marketplace/screenshots/m-book.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Book a showing on a phone">
+        <img src="docs/marketplace/screenshots/m-book.png" alt="Showing form on a phone" loading="lazy" width="780" height="1688">
+        <div class="screenshot-item__label">Book</div>
+      </a>
+      <a href="docs/marketplace/screenshots/m-areas.png" class="screenshot-item" target="_blank" rel="noopener" aria-label="Areas on a phone">
+        <img src="docs/marketplace/screenshots/m-areas.png" alt="Neighborhood cards on a phone" loading="lazy" width="780" height="1688">
+        <div class="screenshot-item__label">Areas</div>
       </a>
     </div>
   </div>

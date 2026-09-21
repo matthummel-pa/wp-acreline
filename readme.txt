@@ -116,15 +116,17 @@ Appearance → Update Theme. Fine-grained PAT: Contents: Read. Add Actions: Read
 
 == Screenshots ==
 
-Desktop captures of the seeded concept demo (also used on https://matthummel.com/projects/acreline/):
+Content-area captures of the seeded concept demo (also used on https://matthummel.com/projects/acreline/) — grids, cards, and forms, not hero-only:
 
-1. Homepage — search, Acreline house mark, and the path from listing to showing. (`docs/marketplace/screenshots/01-homepage.png`)
-2. Listings — sample inventory with type, price, and area filters. (`02-listings.png`)
-3. Listing single — property example with agent card and book-a-showing. (`03-listing.png`)
-4. Agents — license, specialties, and contact fields (not a live MLS roster). (`04-agents.png`)
+1. Featured listings spotlight. (`docs/marketplace/screenshots/01-homepage.png`)
+2. Listings grid — filters, status / featured pills, MLS. (`02-listings.png`)
+3. Listing body — photo, price / sq ft, specs, agent, open house. (`03-listing.png`)
+4. Agents — featured badge, specialty pills, reviews, stats. (`04-agents.png`)
 5. Contact — office phone and address from Customize → Identity. (`05-contact.png`)
-6. Areas — sample markets you replace with your own counties. (`06-areas.png`)
+6. Areas — sample neighborhood cards. (`06-areas.png`)
 7. Book a showing — writes a Booking post (concept pipeline, not a calendar). (`07-book.png`)
+
+Also in the same folder: homepage search (`08`), mortgage calculator (`09`), intent cards (`10`), market pulse (`11`), reviews (`12`), and phone views (`m-homepage.png`, `m-listings.png`, `m-listing.png`, `m-agents.png`, `m-book.png`, `m-areas.png`, `m-contact.png`).
 
 Theme thumbnail: screenshot.png (1200×900). Extra captures: docs/marketplace/screenshots/ (copied into Documentation/screenshots/ in the seller pack), plus public/images/brand/ for the house mark and lockup.
 
@@ -145,6 +147,7 @@ Upload your office logo under Customize → Site Identity. Colors: Forest sample
 * Colors chip sits bottom-right with palette dots so it is not hidden behind the sticky header.
 * Featured, status, specialty, and review pills stay readable (ink on paper/white). Pulse market stats no longer pick up white type from the snapshot block.
 * Page-hero titles decode Gutenberg emphasis instead of showing `u003cemu003e`.
+* README and marketplace screenshots recaptured as content areas plus mobile views.
 
 = 1.5.4 =
 * Color contrast: muted text, top-bar chips, buttons, footer, and Equal Housing copy stay readable on every color style (Forest, Harvest, Charcoal, and the rest). Custom pale accents pick a darker text color when needed.
@@ -303,7 +306,7 @@ Source hub: `docs/marketplace/` (seller pack copies it to Documentation/):
 * sources.html — fonts, Sage/Acorn, original SVG marks, what is not bundled
 * credits.html — third-party credits
 * changelog.html — user-facing history
-* screenshots/ — item images (01–07) used on the matthummel.com concept page
+* screenshots/ — content-area + mobile item images used on the matthummel.com concept page
 * assets/ — house mark, lockup, docs CSS/JS
 
 GitHub: README.md, SUPPORT.md, docs/marketplace/. Product landing: https://matthummel.com/projects/acreline/
