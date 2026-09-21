@@ -247,6 +247,10 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.6', [
+            __('Mobile menu and listing cards respond on the first tap — LiteSpeed was delaying the theme config script', 'acreline'),
+            __('Listing map pins scroll to the matching card using live inventory instead of fallback sample IDs', 'acreline'),
+        ]],
         ['1.5.5', [
             __('Block editor color picker works again — custom hex plus the eight Acreline styles', 'acreline'),
             __('Palette uses hex (Forest, Clay, paper, ink) instead of Tailwind oklch swatches Gutenberg could not apply', 'acreline'),

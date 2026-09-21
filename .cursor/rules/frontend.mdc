@@ -35,7 +35,7 @@ Identity CSS (`#keystone-identity`) must print **after** `@vite` in `layouts/app
 - Listings page reads those params in `resources/js/listings.js` (`fType`, `fPrice`, …)
 - Township option **values** are CPT meta (`Cumberland`, `Straban`, `Franklin`); labels are concept towns (North Ridge, Mill Creek, Oak Hollow)
 
-`window.ACRELINE` is composed in `app/View/Composers/App.php` (listings URL, REST, nonce, listing payload). Prefer that over hardcoded `/listings`.
+`window.ACRELINE` is composed in `app/View/Composers/App.php` (listings URL, REST, nonce, listing payload). Prefer that over hardcoded `/listings`. Print it in `layouts/app.blade.php` **before** `@vite`, with `data-no-optimize="1"` and `data-no-defer="1"`. LiteSpeed JS delay rewrites a plain `<script>` to `type="litespeed/javascript"`; the Vite module then boots without listings data, and the first tap (mobile menu / listing cards / map pins) only loads the delayed blob.
 
 Booking preselect is `?listing_id=` (not `?listing=` — that 404s `/book/` against the listing CPT).
 

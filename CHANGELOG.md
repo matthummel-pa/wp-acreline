@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.6
+
+- **Front end** — Hostinger LiteSpeed was delaying `window.ACRELINE` until the first tap. That swallowed the hamburger / listing-card click and left map pins talking to fallback sample IDs. The config script now prints before Vite and opts out of JS delay.
+
 ## 1.5.5
 
 - **Editor** — The block-editor color picker works again. Tailwind v4 had dumped 288 `oklch()` swatches into `theme.json` and turned off custom hex, so Gutenberg could not apply a color. The palette is now the eight Acreline hex styles plus paper, ink, and white, and the custom picker is on.
