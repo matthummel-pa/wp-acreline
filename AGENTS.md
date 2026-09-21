@@ -4,6 +4,8 @@ A [Roots Sage 11](https://roots.io/sage/) theme (Blade + Tailwind CSS v4 + Vite 
 
 ## Project rules (Cursor Agent)
 
+Local WordPress bootstrap skill: [`.cursor/skills/wordpress-studio-setup/SKILL.md`](.cursor/skills/wordpress-studio-setup/SKILL.md) (Mac: WordPress Studio; Linux/Cloud: `bin/setup-wp.sh`). Do not run `studio site delete`.
+
 Versioned Cursor rules live in [`.cursor/rules/`](.cursor/rules/) as `.mdc` files:
 
 - `keystone-project.mdc` — always on (fiction-only, theme vs live content)
