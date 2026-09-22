@@ -234,6 +234,10 @@
       var phoneEl = document.getElementById("showPhone") || document.getElementById("sfPhone");
       var emailEl = document.getElementById("showEmail") || document.getElementById("sfEmail");
       var notesEl = document.getElementById("showNotes") || document.getElementById("sfNotes");
+      function formVal(name){
+        var el = showingForm.querySelector('[name="'+name+'"]');
+        return el ? el.value : "";
+      }
       var payload = {
         listing_id: listingId,
         date: showDate ? showDate.value : "",
@@ -243,7 +247,11 @@
         phone: (phoneEl || {}).value || "",
         email: (emailEl || {}).value || "",
         notes: (notesEl || {}).value || "",
-        consent: consent ? consent.checked : false
+        consent: consent ? consent.checked : false,
+        buyer_type: formVal("buyer_type"),
+        attendees: formVal("attendees"),
+        comm_preference: formVal("comm_preference"),
+        source: formVal("source")
       };
 
       function showOk(message){

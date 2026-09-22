@@ -4,7 +4,12 @@
 @endphp
 <aside class="style-switcher" id="styleSwitcher">
   <button type="button" class="style-switcher-toggle" aria-expanded="false" aria-controls="styleSwitcherPanel">
-    {{ __('Colors', 'acreline') }}
+    <span class="style-switcher-dots" aria-hidden="true">
+      @foreach (array_slice($schemes, 0, 4) as $scheme)
+        <span class="style-switcher-dot" style="background:{{ $scheme['accent'] }}"></span>
+      @endforeach
+    </span>
+    <span>{{ __('Colors', 'acreline') }}</span>
   </button>
   <div class="style-switcher-panel" id="styleSwitcherPanel" hidden>
     <p class="style-switcher-label" id="styleSwitcherLabel">{{ __('Try a color style', 'acreline') }}</p>
@@ -22,6 +27,6 @@
         </button>
       @endforeach
     </div>
-    <p class="style-switcher-hint">{{ __('Set a style under Customize → Colors or Appearance → Acreline Settings.', 'acreline') }}</p>
+    <p class="style-switcher-hint">{{ __('Set a style under Customize → Colors or Appearance → Acreline Settings. Turn this chip off there when you ship a buyer site.', 'acreline') }}</p>
   </div>
 </aside>

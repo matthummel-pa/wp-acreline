@@ -1,7 +1,7 @@
 # Acreline — WordPress Theme for Real Estate Agents
 
 [![Deploy theme zip](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml/badge.svg)](https://github.com/matthummel-pa/wp-acreline/actions/workflows/deploy.yml)
-[![Version](https://img.shields.io/badge/version-1.5.8-155539?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.5.9-155539?style=flat-square)](CHANGELOG.md)
 [![License: GPLv2+](https://img.shields.io/badge/license-GPLv2%2B-3c763d?style=flat-square)](license.txt)
 [![PHP 8.3+](https://img.shields.io/badge/PHP-8.3%2B-777bb4?style=flat-square)](https://www.php.net/)
 [![WordPress 6.6+](https://img.shields.io/badge/WordPress-6.6%2B-21759b?style=flat-square)](https://wordpress.org/)
@@ -16,7 +16,7 @@
 | **Buy / checkout** | [matthummel.com/product/acreline/](https://matthummel.com/product/acreline/) |
 | **Support** | [matthummel.com/support/acreline/](https://matthummel.com/support/acreline/) · [GitHub Issues](https://github.com/matthummel-pa/wp-acreline/issues) |
 | **Author** | [Matt Hummel](https://matthummel.com/) |
-| **Version** | 1.5.8 |
+| **Version** | 1.5.9 |
 
 > **Fiction only.** The demo uses sample data — `555` phone numbers, `@acreline-concept.test` emails, concept listings. Not a live MLS, licensed brokerage, or booking system.
 
@@ -41,24 +41,35 @@
 
 ## Screenshots
 
-> Desktop captures from the seeded concept demo. Same images used on [matthummel.com/projects/acreline/](https://matthummel.com/projects/acreline/).
+> Seeded concept demo. These are **content areas** (grids, cards, forms) and **mobile views** — not hero-only crops. Same files are used on [matthummel.com/projects/acreline/](https://matthummel.com/projects/acreline/).
+
+### Selling features
 
 | | |
 |:---:|:---:|
-| [![Homepage](docs/marketplace/screenshots/01-homepage.png)](docs/marketplace/screenshots/01-homepage.png) | [![Listings](docs/marketplace/screenshots/02-listings.png)](docs/marketplace/screenshots/02-listings.png) |
-| **Homepage** — Hero search · Intent cards · Featured listings | **Listings** — Filter bar (type, price, area) · Grid view |
-| [![Listing detail](docs/marketplace/screenshots/03-listing.png)](docs/marketplace/screenshots/03-listing.png) | [![Listing detail scroll](docs/marketplace/screenshots/09-listing-detail.png)](docs/marketplace/screenshots/09-listing-detail.png) |
-| **Listing** — Photo, price, stats, sticky CTA | **Listing (scrolled)** — Mortgage calculator · Agent card · Book CTA |
-| [![Agents](docs/marketplace/screenshots/04-agents.png)](docs/marketplace/screenshots/04-agents.png) | [![Contact](docs/marketplace/screenshots/05-contact.png)](docs/marketplace/screenshots/05-contact.png) |
-| **Agents** — Stats · Designations · Social links | **Contact** — Office info from Customizer + message form |
-| [![Areas](docs/marketplace/screenshots/06-areas.png)](docs/marketplace/screenshots/06-areas.png) | [![Book a Showing](docs/marketplace/screenshots/07-book.png)](docs/marketplace/screenshots/07-book.png) |
-| **Areas** — Sample market cards | **Book a Showing** — Request form · Agent selector |
+| [![Featured listings](docs/marketplace/screenshots/01-homepage.png)](docs/marketplace/screenshots/01-homepage.png) | [![Listings grid](docs/marketplace/screenshots/02-listings.png)](docs/marketplace/screenshots/02-listings.png) |
+| **Featured listings** — Spotlight cards · Book a showing | **Listings grid** — Filters · Status / featured pills · MLS · Compare |
+| [![Intent cards](docs/marketplace/screenshots/10-homepage-intent.png)](docs/marketplace/screenshots/10-homepage-intent.png) | [![Listing detail](docs/marketplace/screenshots/03-listing.png)](docs/marketplace/screenshots/03-listing.png) |
+| **Intent cards** — Buy · Sell · Tour | **Listing** — Photo, price / sq ft, specs, agent, open house |
+| [![Agents](docs/marketplace/screenshots/04-agents.png)](docs/marketplace/screenshots/04-agents.png) | [![Book a Showing](docs/marketplace/screenshots/07-book.png)](docs/marketplace/screenshots/07-book.png) |
+| **Agents** — Featured badge · Specialty pills · Reviews · Stats | **Book a showing** — Property, date, type, notes |
+| [![Areas](docs/marketplace/screenshots/06-areas.png)](docs/marketplace/screenshots/06-areas.png) | [![Contact](docs/marketplace/screenshots/05-contact.png)](docs/marketplace/screenshots/05-contact.png) |
+| **Areas** — Sample neighborhood cards | **Contact** — Identity from Customizer + message form |
+| [![Market pulse](docs/marketplace/screenshots/11-homepage-market.png)](docs/marketplace/screenshots/11-homepage-market.png) | [![Reviews](docs/marketplace/screenshots/12-homepage-reviews.png)](docs/marketplace/screenshots/12-homepage-reviews.png) |
+| **Market pulse** — Sample stats + value / alert tools | **Reviews** — Testimonial cards with area pills |
+| [![Mortgage calculator](docs/marketplace/screenshots/09-listing-detail.png)](docs/marketplace/screenshots/09-listing-detail.png) | [![Homepage search](docs/marketplace/screenshots/08-topbar-desktop.png)](docs/marketplace/screenshots/08-topbar-desktop.png) |
+| **Mortgage calculator** — Built-in estimate on the listing | **Homepage search** — Hero listing search · Colors chip |
 
-### Top bar
+### Mobile
 
-[![Top bar desktop](docs/marketplace/screenshots/08-topbar-desktop.png)](docs/marketplace/screenshots/08-topbar-desktop.png)
+| | | |
+|:---:|:---:|:---:|
+| [![Homepage mobile](docs/marketplace/screenshots/m-homepage.png)](docs/marketplace/screenshots/m-homepage.png) | [![Listings mobile](docs/marketplace/screenshots/m-listings.png)](docs/marketplace/screenshots/m-listings.png) | [![Listing mobile](docs/marketplace/screenshots/m-listing.png)](docs/marketplace/screenshots/m-listing.png) |
+| **Home** — Spotlight cards | **Listings** — Card, pills, save | **Listing** — Price, specs, open house |
+| [![Agents mobile](docs/marketplace/screenshots/m-agents.png)](docs/marketplace/screenshots/m-agents.png) | [![Book mobile](docs/marketplace/screenshots/m-book.png)](docs/marketplace/screenshots/m-book.png) | [![Areas mobile](docs/marketplace/screenshots/m-areas.png)](docs/marketplace/screenshots/m-areas.png) |
+| **Agents** — Featured · Reviews | **Book** — Showing request | **Areas** — Neighborhood cards |
 
-**Desktop top bar (1.4.0)** — Announcement badge · Phone · Social icons · CTA pill. Hidden on mobile; content surfaces in the slide-out nav drawer instead.
+More phone captures (`m-homepage-intent.png`, `m-contact.png`) live in [`docs/marketplace/screenshots/`](docs/marketplace/screenshots/).
 
 ---
 
@@ -90,7 +101,7 @@ Every marketing page is built with WordPress blocks that render server-side — 
 
 | Block | What it does |
 | --- | --- |
-| Home Hero | Full-width hero with listing search; Ken Burns photo pan (on by default); optional phone tilt on the search panel (off) |
+| Home Hero | Full-width hero with listing search; Ken Burns photo pan (on by default); phone tilt on the search panel (on by default) |
 | Page Hero | Standard hero with photo, eyebrow, CTA buttons |
 | Intent Cards | Buy / Sell / Tour three-card section |
 | Featured Listings Spotlight | Dynamic grid of featured listings |
@@ -170,7 +181,7 @@ Every marketing page is built with WordPress blocks that render server-side — 
 | **Compliance** | Brokerage legal name, optional licenses, Fair Housing, MLS/IDX slots, privacy/terms URLs, form consent (not legal advice) |
 | **Site Identity** | Custom logo (replaces the Acreline house mark) |
 | **Colors** | Eight presets: Forest · Clay · Navy · Burgundy · Harvest · Lake · Orchard · Charcoal — plus accent, paper, and ink pickers |
-| **Header** | Sticky on/off, standard / compact height, homepage Ken Burns photo animation (`ks_hero_ken_burns`, on), optional mobile listing-search tilt (`ks_hero_search_tilt`, off) |
+| **Header** | Sticky on/off, standard / compact height, homepage Ken Burns photo animation (`ks_hero_ken_burns`, on), mobile listing-search tilt (`ks_hero_search_tilt`, on) |
 | **Top Bar** | Enable, color style, announcement badge + message + link, CTA pill, contact toggles, social icon toggles, dismiss option |
 | **Typography** | Five font families; base size 14–20 px; heading weight |
 | **Social links** | Facebook · Instagram · YouTube · LinkedIn · X |
@@ -179,7 +190,7 @@ Every marketing page is built with WordPress blocks that render server-side — 
 Homepage hero motion lives under **Header** and **Appearance → Acreline Settings → General** (same saved values):
 
 - **Animate homepage hero image** (`ks_hero_ken_burns`, **on**) — slow Ken Burns pan and zoom on the hero photo only. Headlines, overlay, and listing search stay still. Honors reduced motion.
-- **Tilt listing search on mobile** (`ks_hero_search_tilt`, **off**) — on phones, the listing search panel gently follows device tilt. No-op on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion.
+- **Tilt listing search on mobile** (`ks_hero_search_tilt`, **on**) — on phones, the listing search panel gently follows device tilt. Turn off under Header or Acreline Settings if you do not want motion. No-op on desktop, without sensors, if permission is denied, or if the visitor prefers reduced motion.
 
 ---
 
@@ -290,7 +301,7 @@ Upload your own logo under **Appearance → Customize → Site Identity**. Eight
 | [`docs/marketplace/index.html`](docs/marketplace/index.html) | Buyer docs hub — open first |
 | [`docs/marketplace/buyer-guide.html`](docs/marketplace/buyer-guide.html) | Install, Customizer, top bar, fields, FAQ |
 | [`docs/marketplace/compliance.html`](docs/marketplace/compliance.html) | Website compliance checklist (not legal advice) |
-| [`docs/marketplace/screenshots/`](docs/marketplace/screenshots/) | 01–09 screenshots used on matthummel.com |
+| [`docs/marketplace/screenshots/`](docs/marketplace/screenshots/) | Content-area + mobile screenshots used on matthummel.com |
 | [`public/images/brand/`](public/images/brand/) | House mark + lockup (SVG, GPLv2) |
 
 > **Developer documentation** (local setup, Vite build, PHP lint, template map, build scripts): see [`DEVELOPMENT.md`](DEVELOPMENT.md) and [`AGENTS.md`](AGENTS.md).

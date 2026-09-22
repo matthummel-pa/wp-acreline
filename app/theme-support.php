@@ -247,6 +247,12 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.9', [
+            __('Display settings default on: listing card extras, agent stats and social, booking fields, and a sample market snapshot', 'acreline'),
+            __('Colors chip sits bottom-right with palette dots so it is not hidden behind the header', 'acreline'),
+            __('Featured, status, specialty, and review pills stay readable; Pulse stats keep ink type', 'acreline'),
+            __('README screenshots recaptured as content areas plus mobile views', 'acreline'),
+        ]],
         ['1.5.8', [
             __('Mobile menu stays open on the first tap — the Vite bundle no longer toggles it closed', 'acreline'),
             __('Homepage sections under the hero stay visible after theme JavaScript runs', 'acreline'),

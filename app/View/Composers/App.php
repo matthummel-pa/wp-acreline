@@ -63,6 +63,7 @@ class App extends Composer
                 'listings' => Catalog::listings(),
                 'schemes' => ColorSchemes::forJs(),
                 'compliance' => Compliance::forJs(),
+                'settings' => \App\ks_public_settings(),
             ],
         ];
     }

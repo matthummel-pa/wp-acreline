@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.9
+
+- **Settings** — Listing, agent, booking, and display toggles in Appearance → Acreline Settings default **on**. The public site now shows those extras: card badges, price/sqft, DOM, MLS, agent stats/social/calendar, booking extra fields, and a sample market snapshot. Buyers switch off what they do not want.
+- **Home** — The Colors chip sits bottom-right (above the chat button) with palette dots so it is no longer hidden behind the sticky header.
+- **UI** — Featured, status, specialty, and review pills use ink-on-paper or ink-on-white so labels stay readable. Homepage Pulse market stats no longer inherit white type from the snapshot block.
+- **Copy** — Page-hero titles decode Gutenberg `em` markup instead of printing `u003cemu003e` on Agents and similar pages.
+- **Docs** — README and marketplace screenshots recaptured as content areas (listings grid, agent cards, showing form, areas) plus mobile views.
+
 ## 1.5.8
 
 - **Header** — The Vite bundle no longer binds a second hamburger click. The undelayed header script owns the menu and stops other click handlers, so the first tap stays open instead of opening then closing.
