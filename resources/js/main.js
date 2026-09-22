@@ -10,6 +10,7 @@
   "use strict";
 
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.documentElement.classList.add("js-ready");
 
   /* ============================= MOBILE NAV ============================= */
   var hamburgerBtn = document.getElementById("hamburgerBtn");
@@ -57,7 +58,9 @@
     }
   }
 
-  if(hamburgerBtn && mobileNav){
+  if(hamburgerBtn && hamburgerBtn.dataset.acrelineNav === "1"){
+    /* Inline header binder already owns click — skip so LiteSpeed delay cannot double-toggle. */
+  } else if(hamburgerBtn && mobileNav){
     if(!mobileNav.classList.contains("is-open")){
       mobileNav.hidden = true;
       mobileNav.setAttribute("aria-hidden", "true");

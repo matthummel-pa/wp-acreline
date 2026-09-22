@@ -265,3 +265,27 @@ add_action('widgets_init', function () {
 });
 
 Seo::boot();
+
+/**
+ * LiteSpeed JS delay / CSS combine must not touch Vite modules or .reveal would stay hidden
+ * and the hamburger would never bind on the first tap.
+ */
+add_action('wp', function (): void {
+    Vite::useScriptTagAttributes([
+        'data-no-optimize' => '1',
+        'data-no-defer' => '1',
+    ]);
+    Vite::useStyleTagAttributes([
+        'data-no-optimize' => '1',
+    ]);
+}, 0);
+
+$ksLiteSpeedExclude = function ($list) {
+    $list = is_array($list) ? $list : [];
+    $list[] = 'acreline/public/build';
+
+    return $list;
+};
+add_filter('litespeed_optimize_js_excludes', $ksLiteSpeedExclude);
+add_filter('litespeed_optm_js_defer_exc', $ksLiteSpeedExclude);
+add_filter('litespeed_optimize_css_excludes', $ksLiteSpeedExclude);

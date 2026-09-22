@@ -247,6 +247,10 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.7', [
+            __('Homepage sections under the hero stay visible if theme JavaScript is delayed or blocked', 'acreline'),
+            __('Mobile menu opens from an undelayed header script, so the hamburger works without the Vite bundle', 'acreline'),
+        ]],
         ['1.5.6', [
             __('Mobile menu and listing cards respond on the first tap — LiteSpeed was delaying the theme config script', 'acreline'),
             __('Listing map pins scroll to the matching card using live inventory instead of fallback sample IDs', 'acreline'),

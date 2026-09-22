@@ -172,3 +172,38 @@
     <a class="btn btn-primary" href="{{ esc_url($bookUrl) }}">{{ $cta }}</a>
   </div>
 </nav>
+<!-- litespeed nooptimize start -->
+<script data-no-optimize="1" data-no-defer="1">
+(function () {
+  var btn = document.getElementById('hamburgerBtn');
+  var nav = document.getElementById('mobileNav');
+  var backdrop = document.getElementById('navBackdrop');
+  var closeBtn = document.getElementById('mobileNavClose');
+  if (!btn || !nav || btn.dataset.acrelineNav === '1') return;
+  btn.dataset.acrelineNav = '1';
+  function setOpen(open) {
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.classList.toggle('nav-open', open);
+    nav.hidden = !open;
+    nav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    nav.classList.toggle('is-open', open);
+    if (backdrop) {
+      backdrop.hidden = !open;
+      backdrop.classList.toggle('is-open', open);
+    }
+  }
+  btn.addEventListener('click', function () {
+    setOpen(!nav.classList.contains('is-open'));
+  });
+  if (closeBtn) closeBtn.addEventListener('click', function () { setOpen(false); });
+  if (backdrop) backdrop.addEventListener('click', function () { setOpen(false); });
+  nav.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { setOpen(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) setOpen(false);
+  });
+})();
+</script>
+<!-- litespeed nooptimize end -->

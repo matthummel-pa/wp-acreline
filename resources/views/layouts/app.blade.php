@@ -24,6 +24,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{-- After Vite: compiled :root fallbacks (--tb-*, --cta-*, --nav-*) must not beat Identity tokens. --}}
     <style id="keystone-identity">{!! \App\Support\Identity::cssVariables() !!}</style>
+    <!-- litespeed nooptimize start -->
+    <style data-no-optimize="1">
+      /* If LiteSpeed/Vite JS never runs, homepage .reveal sections stay visible. */
+      .reveal{opacity:1;transform:none}
+    </style>
+    <!-- litespeed nooptimize end -->
   </head>
 
   <body @php(body_class())>

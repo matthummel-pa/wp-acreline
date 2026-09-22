@@ -165,8 +165,16 @@ input,select,textarea{font-family:inherit;font-size:1rem;}
 .ks-body--lg p{font-size:1.125rem !important;}
 .ks-body--xl p{font-size:1.25rem !important;}
 
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
-.reveal.in-view{opacity:1;transform:none;}
+/* Visible unless JS actually booted. Opacity:0 with no .in-view hid the whole homepage under the hero when Vite/LiteSpeed failed. */
+.reveal{opacity:1;transform:none;}
+@media(prefers-reduced-motion:no-preference){
+  html.js-ready .reveal:not(.in-view){
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity .8s var(--ease),transform .8s var(--ease);
+  }
+  html.js-ready .reveal.in-view{opacity:1;transform:none;}
+}
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none;}
   .hero-media img,.hero-inner{animation:none !important;transform:none;}

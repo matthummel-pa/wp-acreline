@@ -37,6 +37,10 @@ Identity CSS (`#keystone-identity`) must print **after** `@vite` in `layouts/app
 
 `window.ACRELINE` is composed in `app/View/Composers/App.php` (listings URL, REST, nonce, listing payload). Prefer that over hardcoded `/listings`. Print it in `layouts/app.blade.php` **before** `@vite`, with `data-no-optimize="1"` and `data-no-defer="1"`. LiteSpeed JS delay rewrites a plain `<script>` to `type="litespeed/javascript"`; the Vite module then boots without listings data, and the first tap (mobile menu / listing cards / map pins) only loads the delayed blob.
 
+Do **not** hide `.reveal` with `opacity: 0` unless `html.js-ready` is set from `resources/js/main.js`. Homepage bands under the hero use `.reveal`; if Vite never runs they stay invisible. The hamburger also binds from an undelayed script at the end of `sections/header.blade.php` so the menu opens even when the Vite file 404s or is a stub import.
+
+Vite `public/build` URLs are excluded from LiteSpeed combine/delay in `app/setup.php`. Never ship a 1-line `import "./old-hash.js?v=…"` as the Vite entry — iOS Safari often never executes that graph.
+
 Booking preselect is `?listing_id=` (not `?listing=` — that 404s `/book/` against the listing CPT).
 
 Booking preselect is `?listing_id=` (not `?listing=` — that 404s `/book/` against the listing CPT).

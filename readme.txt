@@ -3,7 +3,7 @@ Contributors: matthummel
 Requires at least: 6.6
 Tested up to: 7.0.1
 Requires PHP: 8.3
-Stable tag: 1.5.6
+Stable tag: 1.5.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, theme-options, threaded-comments, translation-ready
@@ -139,6 +139,10 @@ Original house mark and horizontal lockup (not NAR / HUD / MLS artwork):
 Upload your office logo under Customize → Site Identity. Colors: Forest sample ink #141210, paper #f5f4f1, accent #1f6b4a. Footer “Equal Housing Opportunity (concept)” is sample copy — use official artwork on a licensed office. See docs/marketplace/branding.html (Documentation/branding.html in the seller pack).
 
 == Changelog ==
+
+= 1.5.7 =
+* Home: sections under the hero stay visible if theme JS is delayed or blocked. `.reveal` no longer starts at opacity 0.
+* Mobile menu opens from an undelayed header script, so the hamburger works even when the Vite bundle does not.
 
 = 1.5.6 =
 * Front end: LiteSpeed was delaying window.ACRELINE, so the first mobile tap did nothing and listing map/cards booted without live inventory. The config script now skips that delay.

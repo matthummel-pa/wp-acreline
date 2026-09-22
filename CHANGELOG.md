@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.7
+
+- **Home** — Sections under the hero stay visible if Vite or LiteSpeed never run. `.reveal` used to start at `opacity: 0` until JS added `.in-view`, so a failed module left a blank page under the fold.
+- **Header** — Hamburger binds in an undelayed script in the header, so the mobile menu opens on the first tap even when the Vite file is delayed or is a stub `import`.
+
 ## 1.5.6
 
 - **Front end** — Hostinger LiteSpeed was delaying `window.ACRELINE` until the first tap. That swallowed the hamburger / listing-card click and left map pins talking to fallback sample IDs. The config script now prints before Vite and opts out of JS delay.
