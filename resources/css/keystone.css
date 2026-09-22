@@ -168,10 +168,11 @@ input,select,textarea{font-family:inherit;font-size:1rem;}
 /* Visible unless JS actually booted. Opacity:0 with no .in-view hid the whole homepage under the hero when Vite/LiteSpeed failed. */
 .reveal{opacity:1;transform:none;}
 @media(prefers-reduced-motion:no-preference){
+  html.js-ready .reveal{
+    transition:transform .8s var(--ease);
+  }
   html.js-ready .reveal:not(.in-view){
-    opacity:0;
-    transform:translateY(22px);
-    transition:opacity .8s var(--ease),transform .8s var(--ease);
+    transform:translateY(12px);
   }
   html.js-ready .reveal.in-view{opacity:1;transform:none;}
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.8
+
+- **Header** — The Vite bundle no longer binds a second hamburger click. The undelayed header script owns the menu and stops other click handlers, so the first tap stays open instead of opening then closing.
+- **Home** — `.reveal` sections stay opaque even after theme JS runs. Compiled CSS used to hide them at `opacity: 0` until IntersectionObserver added `.in-view`, which blanked the homepage under the hero on iOS.
+
 ## 1.5.7
 
 - **Home** — Sections under the hero stay visible if Vite or LiteSpeed never run. `.reveal` used to start at `opacity: 0` until JS added `.in-view`, so a failed module left a blank page under the fold.

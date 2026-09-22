@@ -193,7 +193,8 @@
       backdrop.classList.toggle('is-open', open);
     }
   }
-  btn.addEventListener('click', function () {
+  btn.addEventListener('click', function (e) {
+    e.stopImmediatePropagation();
     setOpen(!nav.classList.contains('is-open'));
   });
   if (closeBtn) closeBtn.addEventListener('click', function () { setOpen(false); });

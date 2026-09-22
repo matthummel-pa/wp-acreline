@@ -12,90 +12,25 @@
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.documentElement.classList.add("js-ready");
 
-  /* ============================= MOBILE NAV ============================= */
+  /* ============================= MOBILE NAV =============================
+     Click / close / trap live in the undelayed script in header.blade.php.
+     Do not bind a second click here — that opens then immediately closes. */
   var hamburgerBtn = document.getElementById("hamburgerBtn");
   var mobileNav = document.getElementById("mobileNav");
-  var navBackdrop = document.getElementById("navBackdrop");
-  var mobileNavClose = document.getElementById("mobileNavClose");
-  var navCloseTimer = 0;
-
-  function navFocusable(){
-    if(!mobileNav) return [];
-    return Array.prototype.slice.call(
-      mobileNav.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
-    );
-  }
 
   function setNavOpen(open){
     if(!hamburgerBtn || !mobileNav) return;
-    window.clearTimeout(navCloseTimer);
-
     hamburgerBtn.setAttribute("aria-expanded", open ? "true" : "false");
     hamburgerBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     document.body.classList.toggle("nav-open", open);
+    mobileNav.hidden = !open;
     mobileNav.setAttribute("aria-hidden", open ? "false" : "true");
-
-    if(open){
-      mobileNav.hidden = false;
-      if(navBackdrop) navBackdrop.hidden = false;
-      window.requestAnimationFrame(function(){
-        window.requestAnimationFrame(function(){
-          mobileNav.classList.add("is-open");
-          if(navBackdrop) navBackdrop.classList.add("is-open");
-        });
-      });
-      var closeOrFirst = mobileNavClose || mobileNav.querySelector("a");
-      if(closeOrFirst) closeOrFirst.focus();
-    } else {
-      mobileNav.classList.remove("is-open");
-      if(navBackdrop) navBackdrop.classList.remove("is-open");
-      navCloseTimer = window.setTimeout(function(){
-        if(!mobileNav.classList.contains("is-open")){
-          mobileNav.hidden = true;
-          if(navBackdrop) navBackdrop.hidden = true;
-        }
-      }, 320);
-    }
-  }
-
-  if(hamburgerBtn && hamburgerBtn.dataset.acrelineNav === "1"){
-    /* Inline header binder already owns click — skip so LiteSpeed delay cannot double-toggle. */
-  } else if(hamburgerBtn && mobileNav){
-    if(!mobileNav.classList.contains("is-open")){
-      mobileNav.hidden = true;
-      mobileNav.setAttribute("aria-hidden", "true");
-      if(navBackdrop) navBackdrop.hidden = true;
-    }
-
-    hamburgerBtn.addEventListener("click", function(){
-      setNavOpen(!mobileNav.classList.contains("is-open"));
-    });
-    if(mobileNavClose){
-      mobileNavClose.addEventListener("click", function(){ setNavOpen(false); });
-    }
+    mobileNav.classList.toggle("is-open", open);
+    var navBackdrop = document.getElementById("navBackdrop");
     if(navBackdrop){
-      navBackdrop.addEventListener("click", function(){ setNavOpen(false); });
+      navBackdrop.hidden = !open;
+      navBackdrop.classList.toggle("is-open", open);
     }
-    mobileNav.querySelectorAll("a").forEach(function(a){
-      a.addEventListener("click", function(){ setNavOpen(false); });
-    });
-    mobileNav.addEventListener("keydown", function(e){
-      if(e.key !== "Tab" || !mobileNav.classList.contains("is-open")) return;
-      var nodes = navFocusable();
-      if(!nodes.length) return;
-      var first = nodes[0];
-      var last = nodes[nodes.length - 1];
-      if(e.shiftKey && document.activeElement === first){
-        e.preventDefault();
-        last.focus();
-      } else if(!e.shiftKey && document.activeElement === last){
-        e.preventDefault();
-        first.focus();
-      }
-    });
-    window.addEventListener("resize", function(){
-      if(window.innerWidth >= 1100) setNavOpen(false);
-    });
   }
 
   /* ============================= HEADER SHADOW ON SCROLL ============================= */
@@ -110,20 +45,24 @@
 
   /* ============================= REVEAL ON SCROLL ============================= */
   var revealEls = document.querySelectorAll(".reveal");
+  function markInView(el){ el.classList.add("in-view"); }
   if(reduceMotion){
-    revealEls.forEach(function(el){ el.classList.add("in-view"); });
+    revealEls.forEach(markInView);
   } else if("IntersectionObserver" in window){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){
-          entry.target.classList.add("in-view");
+          markInView(entry.target);
           io.unobserve(entry.target);
         }
       });
     }, {threshold:.12, rootMargin:"0px 0px -40px 0px"});
     revealEls.forEach(function(el){ io.observe(el); });
+    window.setTimeout(function(){
+      revealEls.forEach(markInView);
+    }, 80);
   } else {
-    revealEls.forEach(function(el){ el.classList.add("in-view"); });
+    revealEls.forEach(markInView);
   }
 
   /* ============================= CONCEPT CHAT WIDGET ============================= */

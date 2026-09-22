@@ -26,8 +26,8 @@
     <style id="keystone-identity">{!! \App\Support\Identity::cssVariables() !!}</style>
     <!-- litespeed nooptimize start -->
     <style data-no-optimize="1">
-      /* If LiteSpeed/Vite JS never runs, homepage .reveal sections stay visible. */
-      .reveal{opacity:1;transform:none}
+      /* Beat compiled CSS and html.js-ready — JS must not blank homepage bands. */
+      .reveal,html.js-ready .reveal,html.js-ready .reveal:not(.in-view){opacity:1!important;transform:none}
     </style>
     <!-- litespeed nooptimize end -->
   </head>

@@ -247,6 +247,10 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.8', [
+            __('Mobile menu stays open on the first tap — the Vite bundle no longer toggles it closed', 'acreline'),
+            __('Homepage sections under the hero stay visible after theme JavaScript runs', 'acreline'),
+        ]],
         ['1.5.7', [
             __('Homepage sections under the hero stay visible if theme JavaScript is delayed or blocked', 'acreline'),
             __('Mobile menu opens from an undelayed header script, so the hamburger works without the Vite bundle', 'acreline'),
