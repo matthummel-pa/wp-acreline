@@ -8,6 +8,9 @@
   var panel = root.querySelector(".style-switcher-panel");
   var buttons = root.querySelectorAll("[data-scheme]");
   var schemes = (window.ACRELINE && window.ACRELINE.schemes) || {};
+  document.addEventListener("acreline:ready", function () {
+    schemes = (window.ACRELINE && window.ACRELINE.schemes) || schemes;
+  });
   var storageKey = "ks-color-scheme";
 
   function applyScheme(key) {

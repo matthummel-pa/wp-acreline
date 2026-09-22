@@ -8,14 +8,28 @@
     @php(do_action('get_header'))
     @php(wp_head())
 
+    {{--
+      Print before @vite and skip LiteSpeed delay. Hostinger/LiteSpeed was rewriting
+      this as type="litespeed/javascript", so the Vite module booted without ACRELINE
+      and the first tap (hamburger / listing cards) only loaded the delayed blob.
+    --}}
+    <!-- litespeed nooptimize start -->
+    <script data-no-optimize="1" data-no-defer="1">
+      window.ACRELINE = @json($keystone);
+      window.KEYSTONE = window.ACRELINE;
+      document.dispatchEvent(new Event('acreline:ready'));
+    </script>
+    <!-- litespeed nooptimize end -->
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{-- After Vite: compiled :root fallbacks (--tb-*, --cta-*, --nav-*) must not beat Identity tokens. --}}
     <style id="keystone-identity">{!! \App\Support\Identity::cssVariables() !!}</style>
-
-    <script>
-      window.ACRELINE = @json($keystone);
-      window.KEYSTONE = window.ACRELINE;
-    </script>
+    <!-- litespeed nooptimize start -->
+    <style data-no-optimize="1">
+      /* Beat compiled CSS and html.js-ready — JS must not blank homepage bands. */
+      .reveal,html.js-ready .reveal,html.js-ready .reveal:not(.in-view){opacity:1!important;transform:none}
+    </style>
+    <!-- litespeed nooptimize end -->
   </head>
 
   <body @php(body_class())>

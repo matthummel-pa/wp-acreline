@@ -135,9 +135,14 @@
     }
   ];
 
-  if(window.ACRELINE && Array.isArray(window.ACRELINE.listings) && window.ACRELINE.listings.length){
-    LISTINGS = window.ACRELINE.listings;
+  function applyAcrelineListings(){
+    if(window.ACRELINE && Array.isArray(window.ACRELINE.listings) && window.ACRELINE.listings.length){
+      LISTINGS = window.ACRELINE.listings;
+      return true;
+    }
+    return false;
   }
+  applyAcrelineListings();
 
   if(!document.getElementById("listingGrid")) return; /* not the listings page */
 
@@ -903,5 +908,13 @@
   render();
   updateSavedFab();
   updateSavedDrawer();
+
+  document.addEventListener("acreline:ready", function(){
+    if(applyAcrelineListings()){
+      render();
+      updateSavedFab();
+      updateSavedDrawer();
+    }
+  });
 
 })();

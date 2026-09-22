@@ -35,7 +35,11 @@ Identity CSS (`#keystone-identity`) must print **after** `@vite` in `layouts/app
 - Listings page reads those params in `resources/js/listings.js` (`fType`, `fPrice`, …)
 - Township option **values** are CPT meta (`Cumberland`, `Straban`, `Franklin`); labels are concept towns (North Ridge, Mill Creek, Oak Hollow)
 
-`window.ACRELINE` is composed in `app/View/Composers/App.php` (listings URL, REST, nonce, listing payload). Prefer that over hardcoded `/listings`.
+`window.ACRELINE` is composed in `app/View/Composers/App.php` (listings URL, REST, nonce, listing payload). Prefer that over hardcoded `/listings`. Print it in `layouts/app.blade.php` **before** `@vite`, with `data-no-optimize="1"` and `data-no-defer="1"`. LiteSpeed JS delay rewrites a plain `<script>` to `type="litespeed/javascript"`; the Vite module then boots without listings data, and the first tap (mobile menu / listing cards / map pins) only loads the delayed blob.
+
+Do **not** hide `.reveal` with `opacity: 0`. Homepage bands under the hero use `.reveal`; starting them invisible blanks the page when Vite, LiteSpeed, or IntersectionObserver misbehave. The hamburger binds only from the undelayed script at the end of `sections/header.blade.php` — `resources/js/main.js` must not add a second click handler (that opens then immediately closes). The header click uses `stopImmediatePropagation`.
+
+Vite `public/build` URLs are excluded from LiteSpeed combine/delay in `app/setup.php`. Never ship a 1-line `import "./old-hash.js?v=…"` as the Vite entry — iOS Safari often never executes that graph.
 
 Booking preselect is `?listing_id=` (not `?listing=` — that 404s `/book/` against the listing CPT).
 

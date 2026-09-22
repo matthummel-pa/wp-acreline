@@ -1,5 +1,5 @@
 {
-  "__preprocessed__": "This file is used to build the theme.json file in the `public/build/assets` directory. The built artifact includes Tailwind's colors, fonts, and font sizes.",
+  "__preprocessed__": "This file is used to build the theme.json file in the `public/build/assets` directory. The built artifact includes Tailwind fonts and font sizes. Colors are an Acreline hex palette — not Tailwind's oklch defaults — so the block editor color picker can parse and apply them.",
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 3,
   "settings": {
@@ -10,13 +10,26 @@
       "backgroundImage": true
     },
     "color": {
-      "custom": false,
+      "custom": true,
       "customDuotone": false,
       "customGradient": false,
       "defaultDuotone": false,
       "defaultGradients": false,
       "defaultPalette": false,
-      "duotone": []
+      "duotone": [],
+      "palette": [
+        { "name": "Forest", "slug": "forest", "color": "#1f6b4a" },
+        { "name": "Clay", "slug": "clay", "color": "#9a4324" },
+        { "name": "Navy", "slug": "navy", "color": "#1e3a5f" },
+        { "name": "Burgundy", "slug": "burgundy", "color": "#722f37" },
+        { "name": "Harvest", "slug": "harvest", "color": "#7a5b14" },
+        { "name": "Lake", "slug": "lake", "color": "#0e5f5c" },
+        { "name": "Orchard", "slug": "orchard", "color": "#5c3d6e" },
+        { "name": "Charcoal", "slug": "charcoal", "color": "#2c2a28" },
+        { "name": "Paper", "slug": "paper", "color": "#f5f4f1" },
+        { "name": "Ink", "slug": "ink", "color": "#141210" },
+        { "name": "White", "slug": "white", "color": "#ffffff" }
+      ]
     },
     "custom": {
       "spacing": {},

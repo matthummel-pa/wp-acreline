@@ -1252,6 +1252,14 @@ jQuery(function($){
     $("#ks_ks_paper").val(s.paper).trigger("input");
     $("#ks_ks_ink").val(s.ink).trigger("input");
   });
+  $("#ksSettingsForm").on("submit", function(){
+    $(".ks-color-hex").each(function(){
+      var v = String(this.value || "");
+      if(/^#[0-9A-Fa-f]{6}$/.test(v)){
+        $(this).closest(".ks-color-row").find("input[type=color]").val(v);
+      }
+    });
+  });
 });
 ';
 }

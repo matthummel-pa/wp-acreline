@@ -1,12 +1,30 @@
 # Changelog
 
-## 1.5.5
+## 1.5.9
 
 - **Settings** — Listing, agent, booking, and display toggles in Appearance → Acreline Settings default **on**. The public site now shows those extras: card badges, price/sqft, DOM, MLS, agent stats/social/calendar, booking extra fields, and a sample market snapshot. Buyers switch off what they do not want.
 - **Home** — The Colors chip sits bottom-right (above the chat button) with palette dots so it is no longer hidden behind the sticky header.
 - **UI** — Featured, status, specialty, and review pills use ink-on-paper or ink-on-white so labels stay readable. Homepage Pulse market stats no longer inherit white type from the snapshot block.
 - **Copy** — Page-hero titles decode Gutenberg `em` markup instead of printing `u003cemu003e` on Agents and similar pages.
 - **Docs** — README and marketplace screenshots recaptured as content areas (listings grid, agent cards, showing form, areas) plus mobile views.
+
+## 1.5.8
+
+- **Header** — The Vite bundle no longer binds a second hamburger click. The undelayed header script owns the menu and stops other click handlers, so the first tap stays open instead of opening then closing.
+- **Home** — `.reveal` sections stay opaque even after theme JS runs. Compiled CSS used to hide them at `opacity: 0` until IntersectionObserver added `.in-view`, which blanked the homepage under the hero on iOS.
+
+## 1.5.7
+
+- **Home** — Sections under the hero stay visible if Vite or LiteSpeed never run. `.reveal` used to start at `opacity: 0` until JS added `.in-view`, so a failed module left a blank page under the fold.
+- **Header** — Hamburger binds in an undelayed script in the header, so the mobile menu opens on the first tap even when the Vite file is delayed or is a stub `import`.
+
+## 1.5.6
+
+- **Front end** — Hostinger LiteSpeed was delaying `window.ACRELINE` until the first tap. That swallowed the hamburger / listing-card click and left map pins talking to fallback sample IDs. The config script now prints before Vite and opts out of JS delay.
+
+## 1.5.5
+
+- **Editor** — The block-editor color picker works again. Tailwind v4 had dumped 288 `oklch()` swatches into `theme.json` and turned off custom hex, so Gutenberg could not apply a color. The palette is now the eight Acreline hex styles plus paper, ink, and white, and the custom picker is on.
 
 ## 1.5.4
 

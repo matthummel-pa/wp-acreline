@@ -247,11 +247,27 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
-        ['1.5.5', [
+        ['1.5.9', [
             __('Display settings default on: listing card extras, agent stats and social, booking fields, and a sample market snapshot', 'acreline'),
             __('Colors chip sits bottom-right with palette dots so it is not hidden behind the header', 'acreline'),
             __('Featured, status, specialty, and review pills stay readable; Pulse stats keep ink type', 'acreline'),
             __('README screenshots recaptured as content areas plus mobile views', 'acreline'),
+        ]],
+        ['1.5.8', [
+            __('Mobile menu stays open on the first tap — the Vite bundle no longer toggles it closed', 'acreline'),
+            __('Homepage sections under the hero stay visible after theme JavaScript runs', 'acreline'),
+        ]],
+        ['1.5.7', [
+            __('Homepage sections under the hero stay visible if theme JavaScript is delayed or blocked', 'acreline'),
+            __('Mobile menu opens from an undelayed header script, so the hamburger works without the Vite bundle', 'acreline'),
+        ]],
+        ['1.5.6', [
+            __('Mobile menu and listing cards respond on the first tap — LiteSpeed was delaying the theme config script', 'acreline'),
+            __('Listing map pins scroll to the matching card using live inventory instead of fallback sample IDs', 'acreline'),
+        ]],
+        ['1.5.5', [
+            __('Block editor color picker works again — custom hex plus the eight Acreline styles', 'acreline'),
+            __('Palette uses hex (Forest, Clay, paper, ink) instead of Tailwind oklch swatches Gutenberg could not apply', 'acreline'),
         ]],
         ['1.5.4', [
             __('Contrast pass: muted text, top-bar chips, buttons, footer, and Equal Housing stay readable on every color style', 'acreline'),

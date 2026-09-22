@@ -29,7 +29,9 @@ export default defineConfig({
     // Generate the theme.json file in the public/build/assets directory
     // based on the Tailwind config and the theme.json file from base theme folder
     wordpressThemeJson({
-      disableTailwindColors: false,
+      // Tailwind v4 defaults are oklch(); Gutenberg's color picker cannot
+      // apply those swatches. Acreline hex colors live in theme.json instead.
+      disableTailwindColors: true,
       disableTailwindFonts: false,
       disableTailwindFontSizes: false,
       disableTailwindBorderRadius: false,

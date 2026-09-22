@@ -29,7 +29,7 @@
     <p>User-facing history for ThemeForest / WordPress.org. Keep dates and a one-line “why it matters.” Do not paste git logs. Also in <code>readme.txt</code> and GitHub <code>CHANGELOG.md</code>.</p>
     <div class="note">After you install an update, Customizer settings and <code>ks_*</code> listing/agent meta stay put. Re-test Home, Listings, a listing permalink, and Book a showing.</div>
 
-    <h2>1.5.5 — September 2026</h2>
+    <h2>1.5.9 — September 2026</h2>
     <ul>
       <li><strong>Settings</strong> — Listing, agent, booking, and display toggles default on. The public site shows card extras, agent stats/social/calendar, booking extra fields, and a sample market snapshot. Turn off what you do not want.</li>
       <li><strong>Home</strong> — The Colors chip sits bottom-right (above chat) with palette dots so it is not hidden behind the sticky header.</li>
@@ -38,6 +38,30 @@
       <li><strong>Docs</strong> — README and marketplace screenshots recaptured as content areas (listings grid, agent cards, showing form, areas) plus mobile views.</li>
     </ul>
     <p><strong>Re-test:</strong> Home Colors chip; Listings cards (featured/status pills, price/sqft); Agents grid (featured badge, specialty tags, reviews); Book a showing extra fields; homepage Pulse stats vs market snapshot.</p>
+
+    <h2>1.5.8 — September 2026</h2>
+    <ul>
+      <li>Mobile menu stays open on the first tap. The Vite bundle no longer binds a second hamburger click that closed it immediately.</li>
+      <li>Homepage sections under the hero stay visible after theme JavaScript runs. <code>.reveal</code> is no longer hidden at opacity 0.</li>
+    </ul>
+
+    <h2>1.5.7 — September 2026</h2>
+    <ul>
+      <li>Homepage sections under the hero stay visible if theme JavaScript is delayed or blocked.</li>
+      <li>Mobile menu opens from an undelayed header script, so the hamburger works without the Vite bundle.</li>
+    </ul>
+
+    <h2>1.5.6 — September 2026</h2>
+    <ul>
+      <li>Mobile menu and listing cards respond on the first tap. LiteSpeed was delaying the theme config script.</li>
+      <li>Listing map pins use live inventory so they scroll to the matching card.</li>
+    </ul>
+
+    <h2>1.5.5 — September 2026</h2>
+    <ul>
+      <li><strong>Editor</strong> — Block-editor color picker works again. Custom hex is on. Palette is Forest, Clay, Navy, Burgundy, Harvest, Lake, Orchard, Charcoal, plus paper, ink, and white — not Tailwind’s 288 oklch swatches.</li>
+    </ul>
+    <p><strong>Re-test:</strong> Edit a page. Select a paragraph. Color panel: pick Forest, then a custom hex. The text should change in the canvas and on the front.</p>
 
     <h2>1.5.4 — September 2026</h2>
     <ul>
