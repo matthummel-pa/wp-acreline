@@ -30,3 +30,4 @@ Cursor and Claude share one set of rules. `AGENTS.md` (above) and `.cursor/rules
 - `/ship` — checks, commit, push, PR.
 - `python3 .github/scripts/wp-review` — WordPress Handbook checks on changed lines. Checklist: `.github/review-checklist.md`.
 - Local WordPress: WordPress Studio (`studio wp …`, never plain `wp` against a Studio site). Clear Blade cache with `studio wp acorn view:clear` after template edits.
+- Setting up a local site: follow `.cursor/skills/wordpress-studio-setup/SKILL.md` (Studio on Mac, `bin/setup-wp.sh` on Linux/Cloud). Never run `studio site delete`.
