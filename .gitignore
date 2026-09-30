@@ -21,3 +21,6 @@ Thumbs.db
 
 # Claude Code personal settings
 .claude/settings.local.json
+
+# Local QA reports (Lighthouse)
+lighthouse-report*
