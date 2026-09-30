@@ -1333,6 +1333,7 @@ function ks_render_home_hero(array $attrs): string
     $heroImg = ks_hero_media($attrs, (int) get_the_ID(), 'home');
     $imgUrl = esc_url($heroImg['url']);
     $imgSrcset = esc_attr($heroImg['srcset']);
+    $imgPortrait = HeroImage::portraitSrcset($heroImg['url']);
     $heroClass = esc_attr(ks_hero_class($attrs, 'hero'));
     $veilStyle = ks_veil_style($attrs);
     $primaryBtnClass = esc_attr(ks_btn_class(sanitize_key((string) ($attrs['primaryBtnStyle'] ?? 'primary'))));
@@ -1345,7 +1346,10 @@ function ks_render_home_hero(array $attrs): string
     <?php echo $ldjson; // already escaped?>
     <section class="<?php echo $heroClass; ?>" id="top" aria-labelledby="hero-heading" style="--hero-photo:url('<?php echo $imgUrl; ?>')">
       <figure class="hero-media">
-        <img src="<?php echo $imgUrl; ?>" srcset="<?php echo $imgSrcset; ?>" sizes="100vw" width="1600" height="900" alt="" fetchpriority="high" loading="eager" decoding="sync">
+        <picture>
+          <?php if ($imgPortrait !== '') { ?><source media="(max-width: 599px)" srcset="<?php echo esc_attr($imgPortrait); ?>" sizes="100vw" width="900" height="1600"><?php } ?>
+          <img src="<?php echo $imgUrl; ?>" srcset="<?php echo $imgSrcset; ?>" sizes="100vw" width="1600" height="900" alt="" fetchpriority="high" loading="eager" decoding="sync">
+        </picture>
       </figure>
       <div class="hero-veil" aria-hidden="true"<?php if ($veilStyle) { ?> style="<?php echo esc_attr($veilStyle); ?>"<?php } ?>></div>
       <div class="hero-inner">
@@ -1418,6 +1422,7 @@ function ks_render_page_hero(array $attrs): string
     $heroImg = ks_hero_media($attrs, $pageId, $pageId > 0 ? (string) get_post_field('post_name', $pageId) : '');
     $thumbUrl = esc_url($heroImg['url']);
     $thumbSrcset = esc_attr($heroImg['srcset']);
+    $thumbPortrait = HeroImage::portraitSrcset($heroImg['url']);
     $heroClass = esc_attr(ks_hero_class($attrs, 'page-hero page-hero--photo'));
     $veilStyle = ks_veil_style($attrs);
     $primaryBtnClass = esc_attr(ks_btn_class(sanitize_key((string) ($attrs['primaryBtnStyle'] ?? 'primary'))));
@@ -1427,7 +1432,10 @@ function ks_render_page_hero(array $attrs): string
     ?>
     <section class="<?php echo $heroClass; ?>" aria-labelledby="page-hero-heading" style="--hero-photo:url('<?php echo $thumbUrl; ?>')">
       <figure class="page-hero-media">
-        <img src="<?php echo $thumbUrl; ?>" srcset="<?php echo $thumbSrcset; ?>" sizes="100vw" width="1600" height="900" alt="" fetchpriority="high" loading="eager" decoding="sync">
+        <picture>
+          <?php if ($thumbPortrait !== '') { ?><source media="(max-width: 599px)" srcset="<?php echo esc_attr($thumbPortrait); ?>" sizes="100vw" width="900" height="1600"><?php } ?>
+          <img src="<?php echo $thumbUrl; ?>" srcset="<?php echo $thumbSrcset; ?>" sizes="100vw" width="1600" height="900" alt="" fetchpriority="high" loading="eager" decoding="sync">
+        </picture>
       </figure>
       <div class="page-hero-veil" aria-hidden="true"<?php if ($veilStyle) { ?> style="<?php echo esc_attr($veilStyle); ?>"<?php } ?>></div>
       <div class="page-hero-inner">

@@ -85,6 +85,23 @@ class HeroImage
         return ['url' => $url, 'srcset' => $url.' 1600w'];
     }
 
+    /**
+     * 9:16 crops for phones. The hero is object-fit: cover in a tall box, so a
+     * 16:9 file at sizes="100vw" gets upscaled ~3x. Unsplash only: uploads
+     * have no portrait crop, so they keep the landscape srcset.
+     */
+    public static function portraitSrcset(string $url): string
+    {
+        if (! str_contains($url, 'images.unsplash.com')) {
+            return '';
+        }
+        $base = preg_replace('/\?.*$/', '', $url) ?: $url;
+
+        return $base.'?auto=format&fit=crop&w=600&h=1067&q=70 600w, '
+            .$base.'?auto=format&fit=crop&w=900&h=1600&q=70 900w, '
+            .$base.'?auto=format&fit=crop&w=1200&h=2133&q=70 1200w';
+    }
+
     public static function postBundledKey(string $slug): string
     {
         return match ($slug) {
