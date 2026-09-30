@@ -9,7 +9,7 @@ Everything in a store zip must be GPL-compatible. This list is the Theme Check /
 
 MIT is GPL-compatible. The distributed theme is offered under GPLv2 or later.
 
-## Fonts (loaded from Google Fonts when selected)
+## Fonts (bundled, self-hosted)
 
 | Family | License | Source |
 | --- | --- | --- |
@@ -24,7 +24,7 @@ MIT is GPL-compatible. The distributed theme is offered under GPLv2 or later.
 | Outfit | SIL OFL | https://fonts.google.com/specimen/Outfit |
 | Lato | SIL OFL | https://fonts.google.com/specimen/Lato |
 
-No font files are vendored in the zip.
+Latin and Latin Extended `.woff2` files ship in `public/build/assets/`, built from [Fontsource](https://fontsource.org) packages by `bin/build-fonts.mjs`. The theme makes no requests to Google Fonts. SIL Open Font License 1.1: https://openfontlicense.org
 
 ## Images
 

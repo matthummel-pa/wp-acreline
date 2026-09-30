@@ -7,8 +7,9 @@ class Typography
     /**
      * Popular realtor-site sans-serifs. Inter is the default — widely used
      * on modern brokerage and listing sites for both UI and headlines.
+     * Faces are self-hosted from resources/css/fonts.css (bin/build-fonts.mjs).
      *
-     * @return array<string, array{label: string, stack: string, google: string}>
+     * @return array<string, array{label: string, stack: string}>
      */
     public static function fonts(): array
     {
@@ -16,52 +17,42 @@ class Typography
             'inter' => [
                 'label' => 'Inter',
                 'stack' => '"Inter", system-ui, sans-serif',
-                'google' => 'Inter:ital,wght@0,400;0,500;0,600;0,700;1,400',
             ],
             'plus-jakarta-sans' => [
                 'label' => 'Plus Jakarta Sans',
                 'stack' => '"Plus Jakarta Sans", system-ui, sans-serif',
-                'google' => 'Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400',
             ],
             'dm-sans' => [
                 'label' => 'DM Sans',
                 'stack' => '"DM Sans", system-ui, sans-serif',
-                'google' => 'DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400',
             ],
             'manrope' => [
                 'label' => 'Manrope',
                 'stack' => '"Manrope", system-ui, sans-serif',
-                'google' => 'Manrope:wght@400;500;600;700',
             ],
             'montserrat' => [
                 'label' => 'Montserrat',
                 'stack' => '"Montserrat", system-ui, sans-serif',
-                'google' => 'Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400',
             ],
             'poppins' => [
                 'label' => 'Poppins',
                 'stack' => '"Poppins", system-ui, sans-serif',
-                'google' => 'Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400',
             ],
             'source-sans-3' => [
                 'label' => 'Source Sans 3',
                 'stack' => '"Source Sans 3", system-ui, sans-serif',
-                'google' => 'Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400',
             ],
             'nunito-sans' => [
                 'label' => 'Nunito Sans',
                 'stack' => '"Nunito Sans", system-ui, sans-serif',
-                'google' => 'Nunito+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400',
             ],
             'outfit' => [
                 'label' => 'Outfit',
                 'stack' => '"Outfit", system-ui, sans-serif',
-                'google' => 'Outfit:wght@400;500;600;700',
             ],
             'lato' => [
                 'label' => 'Lato',
                 'stack' => '"Lato", system-ui, sans-serif',
-                'google' => 'Lato:ital,wght@0,400;0,700;1,400',
             ],
         ];
     }
@@ -109,23 +100,6 @@ class Typography
         $weight = (int) get_theme_mod('ks_heading_weight', 700);
 
         return in_array($weight, [500, 600, 700], true) ? $weight : 700;
-    }
-
-    /**
-     * @return list<string>
-     */
-    public static function googleFamilies(): array
-    {
-        $fonts = self::fonts();
-        $needed = [];
-        foreach (array_keys(self::roles()) as $role) {
-            $key = self::option($role);
-            if (isset($fonts[$key])) {
-                $needed[$key] = $fonts[$key]['google'];
-            }
-        }
-
-        return array_values($needed);
     }
 
     public static function cssVariables(): string
