@@ -2,28 +2,16 @@
 (function () {
   if (!wp || !wp.customize || !window.ACRELINE_FONTS) return;
 
+  // Every font's @font-face ships in app.css (resources/css/fonts.css), so
+  // swapping the stack is enough; the browser fetches the file on first use.
   var stacks = ACRELINE_FONTS.stacks || {};
-  var google = ACRELINE_FONTS.google || {};
   var roles = ACRELINE_FONTS.roles || {};
-
-  function loadGoogleFont(key) {
-    var family = google[key];
-    if (!family) return;
-    var id = "ks-preview-font-" + key;
-    if (document.getElementById(id)) return;
-    var link = document.createElement("link");
-    link.id = id;
-    link.rel = "stylesheet";
-    link.href = "https://fonts.googleapis.com/css2?family=" + family + "&display=swap";
-    document.head.appendChild(link);
-  }
 
   Object.keys(roles).forEach(function (role) {
     wp.customize("ks_font_" + role, function (setting) {
       setting.bind(function (value) {
         var stack = stacks[value];
         if (!stack) return;
-        loadGoogleFont(value);
         document.documentElement.style.setProperty(roles[role], stack);
       });
     });

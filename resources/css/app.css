@@ -3,6 +3,9 @@
 @source "../**/*.blade.php";
 @source "../**/*.js";
 
+/* Self-hosted Customizer fonts (no Google Fonts calls). */
+@import "./fonts.css";
+
 /* Acreline — concept design system.
    Ported from realtor-keystone-homes-and-land-theme. */
 @import "./keystone.css";

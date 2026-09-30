@@ -622,25 +622,6 @@ function ks_register_compliance_customizer(WP_Customize_Manager $wp_customize): 
     ]);
 }
 
-add_action('wp_enqueue_scripts', function () {
-    $families = Typography::googleFamilies();
-    if ($families === []) {
-        return;
-    }
-    $href = 'https://fonts.googleapis.com/css2?family='.implode('&family=', $families).'&display=swap';
-    wp_enqueue_style('keystone-fonts', $href, [], null);
-}, 5);
-
-add_filter('style_loader_tag', function (string $tag, string $handle) {
-    if ($handle !== 'keystone-fonts') {
-        return $tag;
-    }
-
-    return '<link rel="preconnect" href="https://fonts.googleapis.com">'."\n"
-        .'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'."\n"
-        .$tag;
-}, 10, 2);
-
 add_action('wp_head', function () {
     echo '<style id="keystone-typography">'.Typography::cssVariables().'</style>'."\n";
 }, 20);
@@ -672,7 +653,6 @@ add_action('customize_preview_init', function () {
     );
     wp_localize_script('keystone-customizer-preview', 'ACRELINE_FONTS', [
         'stacks' => Typography::stacksForJs(),
-        'google' => array_map(fn ($font) => $font['google'], Typography::fonts()),
         'roles' => array_map(fn ($def) => $def['css'], Typography::roles()),
     ]);
 });
