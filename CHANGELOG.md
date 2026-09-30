@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.10
+
+- **Fonts** — All 10 Customizer fonts ship with the theme (latin + latin-ext `.woff2`). No requests to Google Fonts: faster first paint, no visitor IPs sent to Google, and in line with WordPress.org theme rules.
+- **Home** — The hero photo is sharp on phones. Small screens get a portrait crop instead of a stretched landscape file, and the photo downloads once instead of twice.
+- **Footer** — Block-widget headings (the default "Archives" / "Categories") are readable on the dark footer. They printed dark-on-dark before.
+
 ## 1.5.9
 
 - **Settings** — Listing, agent, booking, and display toggles in Appearance → Acreline Settings default **on**. The public site now shows those extras: card badges, price/sqft, DOM, MLS, agent stats/social/calendar, booking extra fields, and a sample market snapshot. Buyers switch off what they do not want.
