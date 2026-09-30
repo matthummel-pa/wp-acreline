@@ -247,6 +247,11 @@ function render_support_page(): void
         <div class="kss-changelog">
           <?php
     $changelog = [
+        ['1.5.10', [
+            __('Fonts are bundled with the theme — no requests to Google Fonts', 'acreline'),
+            __('Homepage hero photo is sharp on phones and downloads once', 'acreline'),
+            __('Footer widget headings are readable on the dark footer', 'acreline'),
+        ]],
         ['1.5.9', [
             __('Display settings default on: listing card extras, agent stats and social, booking fields, and a sample market snapshot', 'acreline'),
             __('Colors chip sits bottom-right with palette dots so it is not hidden behind the header', 'acreline'),
