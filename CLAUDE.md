@@ -8,6 +8,7 @@ Cursor and Claude share one set of rules. `AGENTS.md` (above) and `.cursor/rules
 
 @.cursor/rules/keystone-project.mdc
 @.cursor/rules/wp-review.mdc
+@.cursor/rules/wordpress.mdc
 
 ## Read before editing matching files
 
