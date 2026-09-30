@@ -49,6 +49,8 @@ npm run dev              # Vite HMR alongside wp server
 ./vendor/bin/pint --test # check only (used in CI)
 ```
 
+For HMR on a local site that is not `*.test` (e.g. Studio's `acreline.local`), put its URL in a gitignored `.env` so Vite accepts requests from it: `echo "APP_URL=https://acreline.local" > .env`
+
 After editing `.blade.php` files, clear the Blade cache if changes don't appear:
 
 ```bash

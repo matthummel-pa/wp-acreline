@@ -1,11 +1,13 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import tailwindcss from '@tailwindcss/vite';
 import laravel from 'laravel-vite-plugin'
 import { wordpressPlugin, wordpressThemeJson } from '@roots/vite-plugin';
 
-// Set APP_URL if it doesn't exist for Laravel Vite plugin
+// Laravel Vite plugin only lets APP_URL load dev-server assets (CORS).
+// Read it from a gitignored .env (e.g. APP_URL=https://acreline.local)
+// before falling back, or the local site's scripts get blocked.
 if (! process.env.APP_URL) {
-  process.env.APP_URL = 'http://example.test';
+  process.env.APP_URL = loadEnv('development', process.cwd(), '').APP_URL || 'http://example.test';
 }
 
 export default defineConfig({
