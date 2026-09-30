@@ -1,0 +1,22 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "runners": [ "axe", "htmlcs" ],
+    "timeout": 60000,
+    "wait": 1000,
+    "chromeLaunchConfig": { "args": [ "--no-sandbox" ] }
+  },
+  "urls": [
+    "http://localhost:8888/",
+    "http://localhost:8888/listings/",
+    "http://localhost:8888/listing/marsh-creek-land-parcel/",
+    "http://localhost:8888/areas/",
+    "http://localhost:8888/guide/",
+    "http://localhost:8888/agents/",
+    "http://localhost:8888/agent/renee-musselman/",
+    "http://localhost:8888/contact/",
+    "http://localhost:8888/book/",
+    "http://localhost:8888/first-time-buyer-checklist/",
+    "http://localhost:8888/?s=test"
+  ]
+}
