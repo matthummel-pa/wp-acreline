@@ -1614,7 +1614,8 @@ body.nav-open .chat-widget{visibility:hidden;pointer-events:none;}
 @media(min-width:700px){.footer-widgets{grid-template-columns:repeat(2,1fr);}}
 @media(min-width:1000px){.footer-widgets{grid-template-columns:repeat(4,1fr);}}
 .site-footer .widget{font-size:.9rem;}
-.site-footer .widget h3,
+/* Block widgets (WP 5.8+ defaults) print h2.wp-block-heading, not h3. */
+.site-footer .widget :is(h2,h3,h4),
 .site-footer .widget .widget-title{
   color:var(--footer-strong, #fff);font-family:var(--ff-mono);font-size:.68rem;text-transform:uppercase;
   letter-spacing:.16em;margin:0 0 12px;font-weight:600;
