@@ -6,7 +6,7 @@
   </defs>
   <style>
     .kicker { font: 600 13px/1 -apple-system, "Segoe UI", Inter, Helvetica, Arial, sans-serif; fill: #9fd8bf; letter-spacing: .18em; text-transform: uppercase; }
-    .title { font: 800 46px/1 -apple-system, "Segoe UI", Inter, Helvetica, Arial, sans-serif; fill: #ffffff; letter-spacing: -.03em; }
+    .title { font: 800 40px/1 -apple-system, "Segoe UI", Inter, Helvetica, Arial, sans-serif; fill: #ffffff; letter-spacing: -.03em; }
     .sub { font: 400 18px/1.4 -apple-system, "Segoe UI", Inter, Helvetica, Arial, sans-serif; fill: #dceee5; }
     .chip { fill: rgba(255,255,255,.08); stroke: rgba(255,255,255,.18); }
     .chipt { font: 600 12px/1 -apple-system, "Segoe UI", Inter, Helvetica, Arial, sans-serif; fill: #f3f4f6; letter-spacing: .02em; }
@@ -16,9 +16,9 @@
   <rect width="1200" height="260" rx="18" fill="url(#bg)"/><rect width="1200" height="260" rx="18" fill="url(#grid)"/>
   <g transform="translate(56,58)"><rect width="72" height="72" rx="16" fill="#f5f4f1"/><text class="markt" x="36" y="46" text-anchor="middle">A</text></g>
   <text class="kicker" x="156" y="70">matthummel-pa / wp-acreline</text>
-  <text class="title" x="154" y="118">Acreline — WordPress theme for real estate agents</text>
+  <text class="title" x="154" y="118">Acreline — real estate WordPress theme</text>
   <rect x="156" y="132" width="88" height="4" rx="2" fill="url(#rule)"/>
   <text class="sub" x="156" y="168">Sage 11 · Acorn 6 · Blade · Tailwind CSS v4 · Vite 8 · PHP 8.3 · WordPress 6.6+</text>
-  <g transform="translate(156,194)"><rect class="chip" x="0" width="225" height="30" rx="15"/><text class="chipt" x="14" y="19">42 Gutenberg block types</text><rect class="chip" x="235" width="258" height="30" rx="15"/><text class="chipt" x="249" y="19">Listings · agents · showings</text><rect class="chip" x="502" width="266" height="30" rx="15"/><text class="chipt" x="516" y="19">Setup wizard + 8 color styles</text><rect class="chip" x="778" width="282" height="30" rx="15"/><text class="chipt" x="792" y="19">No page builder, no ACF, no IDX</text></g>
+  <g transform="translate(156,194)"><rect class="chip" x="0" width="225" height="30" rx="15"/><text class="chipt" x="14" y="19">42 Gutenberg block types</text><rect class="chip" x="235" width="258" height="30" rx="15"/><text class="chipt" x="249" y="19">Listings · agents · showings</text><rect class="chip" x="502" width="266" height="30" rx="15"/><text class="chipt" x="516" y="19">Setup wizard · 8 color styles</text><rect class="chip" x="778" width="258" height="30" rx="15"/><text class="chipt" x="792" y="19">No builder · no ACF · no IDX</text></g>
   <text class="mono" x="1144" y="236" text-anchor="end">v1.5.10 · GPLv2+</text>
 </svg>
